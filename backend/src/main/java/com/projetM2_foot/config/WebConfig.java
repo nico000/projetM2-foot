@@ -1,4 +1,4 @@
-package com.projetM2-foot.config;
+package com.projetM2_foot.config;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;

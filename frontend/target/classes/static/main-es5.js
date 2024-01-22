@@ -56,6 +56,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/@creation/creation.component.html":
+  /*!*****************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/@creation/creation.component.html ***!
+    \*****************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppCreationCreationComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/@footer/footer.component.html":
   /*!*************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/@footer/footer.component.html ***!
@@ -71,7 +91,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"ecriture\">\n    Pour nous contacté :\n    <br>\n      Notre page facebook : <a href=\"facebook.com\">FACEBOOK</a>\n      Notre page twitter : <a href=\"twitter.com\">TWITTER</a>\n      Notre page instagram : <a href=\"instagram.com\">INSTAGRAM</a>\n    <br>\n      notre mail : tech@gmail.com\n    <br>\n        Telephone: 03.68.62.68.62 / 06.59.59.85.80\n</div>\n";
+    __webpack_exports__["default"] = "<div class=\"ecriture\">\n</div>\n";
     /***/
   },
 
@@ -91,7 +111,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!-- menu -->\n<nav class=\"menu\">\n\n</nav>\n<!-- barre de recherche -->\n<div align=\"middle\">\n    Header\n</div>\n";
+    __webpack_exports__["default"] = "<header class=\"fond\">\n    <img src=\"/assets.logo.png\" height=\"180\">\n    <!-- menu -->\n    <nav class=\"menu\">\n        <li class=\"boutton\">\n            <a routerLink=\"/creation\">Creation</a>\n        </li>\n\n        <li class=\"boutton\">\n            <a routerLink=\"/home\">Simulation</a>\n        </li>\n\n        <li class=\"boutton\">\n            <a routerLink=\"/resultat\">Resultat</a>\n        </li>\n    </nav>\n</header>\n\n\n";
     /***/
   },
 
@@ -132,6 +152,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     __webpack_exports__["default"] = "<div class=\"jw-modal\">\n  <div class=\"jw-modal-body\">\n    <ng-content></ng-content>\n  </div>\n</div>\n<div class=\"jw-modal-background\"></div>\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/@resultat/resultat.component.html":
+  /*!*****************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/@resultat/resultat.component.html ***!
+    \*****************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppResultatResultatComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "";
     /***/
   },
 
@@ -808,6 +848,80 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/@creation/creation.component.css":
+  /*!**************************************************!*\
+    !*** ./src/app/@creation/creation.component.css ***!
+    \**************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppCreationCreationComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL0BjcmVhdGlvbi9jcmVhdGlvbi5jb21wb25lbnQuY3NzIn0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/@creation/creation.component.ts":
+  /*!*************************************************!*\
+    !*** ./src/app/@creation/creation.component.ts ***!
+    \*************************************************/
+
+  /*! exports provided: CreationComponent */
+
+  /***/
+  function srcAppCreationCreationComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "CreationComponent", function () {
+      return CreationComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var CreationComponent =
+    /*#__PURE__*/
+
+    /** Composant qui represente le header du site */
+    _createClass(function CreationComponent() {
+      _classCallCheck(this, CreationComponent);
+    });
+
+    CreationComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'navigation-bar',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./creation.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/@creation/creation.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./creation.component.css */
+      "./src/app/@creation/creation.component.css"))["default"]]
+    })
+    /** Composant qui represente le header du site */
+    ], CreationComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/@footer/footer.component.css":
   /*!**********************************************!*\
     !*** ./src/app/@footer/footer.component.css ***!
@@ -897,7 +1011,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "nav.menu ul  .boutton{\n    display: inline-block;\n\n    width: 20%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: Aqua;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:35px;\n    justify-content: center;\n}\n\nnav.menu ul li.boutton:hover a{\n    color: Aqua\t;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjs7SUFFckIsVUFBVTtBQUNkOztBQUVBO0lBQ0ksWUFBWTtJQUNaLHNCQUFzQjtJQUN0QixxQkFBcUI7SUFDckIsa0JBQWtCO0lBQ2xCLGFBQWE7SUFDYixjQUFjO0lBQ2QsdUJBQXVCO0FBQzNCOztBQUVBO0lBQ0ksWUFBWTtJQUNaLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEIiLCJmaWxlIjoic3JjL2FwcC9AaGVhZGVyL2hlYWRlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsibmF2Lm1lbnUgdWwgIC5ib3V0dG9ue1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcblxuICAgIHdpZHRoOiAyMCU7XG59XG5cbm5hdi5tZW51IHVsIGxpLmJvdXR0b24gYXtcbiAgICBjb2xvciA6QXp1cmU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogQXF1YTtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZm9udC1zaXplOjM1cHg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5cbm5hdi5tZW51IHVsIGxpLmJvdXR0b246aG92ZXIgYXtcbiAgICBjb2xvcjogQXF1YVx0O1xuICAgIGJhY2tncm91bmQtY29sb3I6IEF6dXJlO1xuICAgIHRyYW5zaXRpb246IDAuNXMgYWxsO1xufVxuXG5cbiJdfQ== */";
+    __webpack_exports__["default"] = "nav.menu ul  .boutton{\n    display: inline-block;\n\n    width: 20%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: firebrick;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:35px;\n    justify-content: center;\n}\n\nnav.menu ul li.boutton:hover a{\n    color: firebrick\t;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.fond {\n    background: firebrick;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjs7SUFFckIsVUFBVTtBQUNkOztBQUVBO0lBQ0ksWUFBWTtJQUNaLDJCQUEyQjtJQUMzQixxQkFBcUI7SUFDckIsa0JBQWtCO0lBQ2xCLGFBQWE7SUFDYixjQUFjO0lBQ2QsdUJBQXVCO0FBQzNCOztBQUVBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEI7O0FBQ0E7SUFDSSxxQkFBcUI7QUFDekIiLCJmaWxlIjoic3JjL2FwcC9AaGVhZGVyL2hlYWRlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsibmF2Lm1lbnUgdWwgIC5ib3V0dG9ue1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcblxuICAgIHdpZHRoOiAyMCU7XG59XG5cbm5hdi5tZW51IHVsIGxpLmJvdXR0b24gYXtcbiAgICBjb2xvciA6QXp1cmU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZmlyZWJyaWNrO1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgICB0ZXh0LWFsaWduOmNlbnRlciA7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmb250LXNpemU6MzVweDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICAgIGNvbG9yOiBmaXJlYnJpY2tcdDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBBenVyZTtcbiAgICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcbn1cbi5mb25kIHtcbiAgICBiYWNrZ3JvdW5kOiBmaXJlYnJpY2s7XG59XG5cblxuIl19 */";
     /***/
   },
 
@@ -1249,6 +1363,80 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/@resultat/resultat.component.css":
+  /*!**************************************************!*\
+    !*** ./src/app/@resultat/resultat.component.css ***!
+    \**************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppResultatResultatComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL0ByZXN1bHRhdC9yZXN1bHRhdC5jb21wb25lbnQuY3NzIn0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/@resultat/resultat.component.ts":
+  /*!*************************************************!*\
+    !*** ./src/app/@resultat/resultat.component.ts ***!
+    \*************************************************/
+
+  /*! exports provided: ResultatComponent */
+
+  /***/
+  function srcAppResultatResultatComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ResultatComponent", function () {
+      return ResultatComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var ResultatComponent =
+    /*#__PURE__*/
+
+    /** Composant qui represente le header du site */
+    _createClass(function ResultatComponent() {
+      _classCallCheck(this, ResultatComponent);
+    });
+
+    ResultatComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'navigation-bar',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./resultat.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/@resultat/resultat.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./resultat.component.css */
+      "./src/app/@resultat/resultat.component.css"))["default"]]
+    })
+    /** Composant qui represente le header du site */
+    ], ResultatComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/app-routing.module.ts":
   /*!***************************************!*\
     !*** ./src/app/app-routing.module.ts ***!
@@ -1288,7 +1476,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _creation_creation_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./@creation/creation.component */
+    "./src/app/@creation/creation.component.ts");
+    /* harmony import */
+
+
+    var _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ./@resultat/resultat.component */
+    "./src/app/@resultat/resultat.component.ts");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
 
@@ -1299,13 +1499,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: 'home',
       component: _home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"]
+    }, {
+      path: 'creation',
+      component: _creation_creation_component__WEBPACK_IMPORTED_MODULE_3__["CreationComponent"]
+    }, {
+      path: 'resultat',
+      component: _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_4__["ResultatComponent"]
     }];
 
     var AppRoutingModule = /*#__PURE__*/_createClass(function AppRoutingModule() {
       _classCallCheck(this, AppRoutingModule);
     });
 
-    AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
+    AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["NgModule"])({
       imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, {
         useHash: true
       })],
@@ -1405,13 +1611,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _modal_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! ../@modal/modal.component */
     "./src/app/@modal/modal.component.ts");
+    /* harmony import */
+
+
+    var _creation_creation_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    /*! ../@creation/creation.component */
+    "./src/app/@creation/creation.component.ts");
+    /* harmony import */
+
+
+    var _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    /*! ../@resultat/resultat.component */
+    "./src/app/@resultat/resultat.component.ts");
 
     var AppModule = /*#__PURE__*/_createClass(function AppModule() {
       _classCallCheck(this, AppModule);
     });
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _modal_modal_component__WEBPACK_IMPORTED_MODULE_11__["ModalComponent"]],
+      declarations: [_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _creation_creation_component__WEBPACK_IMPORTED_MODULE_12__["CreationComponent"], _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_13__["ResultatComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _modal_modal_component__WEBPACK_IMPORTED_MODULE_11__["ModalComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__["NgbModule"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["CommonModule"]],
       providers: [],
       bootstrap: [_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]

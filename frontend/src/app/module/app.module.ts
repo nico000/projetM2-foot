@@ -10,6 +10,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {CommonModule} from "@angular/common";
 import {ModalComponent} from "../@modal/modal.component";
+import {CreationComponent} from "../@creation/creation.component";
+import {ResultatComponent} from "../@resultat/resultat.component";
 
 
 
@@ -19,6 +21,8 @@ import {ModalComponent} from "../@modal/modal.component";
     AppComponent,
       HeaderComponent,
       HomeComponent,
+      CreationComponent,
+      ResultatComponent,
       FooterComponent,
       ModalComponent
   ],

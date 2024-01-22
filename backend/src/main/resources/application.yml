@@ -1,0 +1,16 @@
+spring:
+  neo4j:
+    uri: bolt://localhost:7687
+  data:
+    neo4j:
+      username: neo4j
+      password: secret
+
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html

@@ -1,3 +1,4 @@
-com/projetM2_foot/ProjetM2_footApplication.class
-com/projetM2_foot/config/WebConfig.class
-com/projetM2_foot/config/WebConfig$1.class
+com\projetM2_foot\config\WebConfig.class
+com\projetM2_foot\ProjetM2_footApplication.class
+com\projetM2_foot\controller\ScenarioController.class
+com\projetM2_foot\config\WebConfig$1.class

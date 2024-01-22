@@ -1,0 +1,23 @@
+nav.menu ul  .boutton{
+    display: inline-block;
+
+    width: 20%;
+}
+
+nav.menu ul li.boutton a{
+    color :Azure;
+    background-color: Aqua;
+    text-decoration: none;
+    text-align:center ;
+    display: flex;
+    font-size:35px;
+    justify-content: center;
+}
+
+nav.menu ul li.boutton:hover a{
+    color: Aqua	;
+    background-color: Azure;
+    transition: 0.5s all;
+}
+
+

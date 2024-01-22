@@ -6,7 +6,7 @@ nav.menu ul  .boutton{
 
 nav.menu ul li.boutton a{
     color :Azure;
-    background-color: Aqua;
+    background-color: firebrick;
     text-decoration: none;
     text-align:center ;
     display: flex;
@@ -15,9 +15,12 @@ nav.menu ul li.boutton a{
 }
 
 nav.menu ul li.boutton:hover a{
-    color: Aqua	;
+    color: firebrick	;
     background-color: Azure;
     transition: 0.5s all;
+}
+.fond {
+    background: firebrick;
 }
 
 

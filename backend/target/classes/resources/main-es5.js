@@ -71,7 +71,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "";
+    __webpack_exports__["default"] = "<div >PAGE creation</div>";
     /***/
   },
 
@@ -111,7 +111,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<header class=\"fond\">\n    <img src=\"/assets.logo.png\" height=\"180\">\n    <!-- menu -->\n    <nav class=\"menu\">\n        <li class=\"boutton\">\n            <a routerLink=\"/creation\">Creation</a>\n        </li>\n\n        <li class=\"boutton\">\n            <a routerLink=\"/home\">Simulation</a>\n        </li>\n\n        <li class=\"boutton\">\n            <a routerLink=\"/resultat\">Resultat</a>\n        </li>\n    </nav>\n</header>\n\n\n";
+    __webpack_exports__["default"] = "<header class=\"fond\">\n    <img src=\"/assets/logo.png\" height=\"180\">\n</header>\n\n<!-- menu -->\n<nav class=\"menu\">\n    <ul>\n        <li class=\"boutton\">\n            <a routerLink=\"/creation\">Creation</a>\n        </li>\n\n        <li class=\"boutton\">\n            <a routerLink=\"/home\">Simulation</a>\n        </li>\n\n        <li class=\"boutton\">\n            <a routerLink=\"/resultat\">Resultat</a>\n        </li>\n    </ul>\n</nav>\n";
     /***/
   },
 
@@ -171,7 +171,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "";
+    __webpack_exports__["default"] = "<div >PAGE resultat</div>";
     /***/
   },
 
@@ -899,25 +899,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
 
-    var CreationComponent =
-    /*#__PURE__*/
-
-    /** Composant qui represente le header du site */
-    _createClass(function CreationComponent() {
+    var CreationComponent = /*#__PURE__*/_createClass(function CreationComponent() {
       _classCallCheck(this, CreationComponent);
     });
 
     CreationComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'navigation-bar',
+      selector: 'creation',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./creation.component.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/@creation/creation.component.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./creation.component.css */
       "./src/app/@creation/creation.component.css"))["default"]]
-    })
-    /** Composant qui represente le header du site */
-    ], CreationComponent);
+    })], CreationComponent);
     /***/
   },
 
@@ -1011,7 +1005,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "nav.menu ul  .boutton{\n    display: inline-block;\n\n    width: 20%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: firebrick;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:35px;\n    justify-content: center;\n}\n\nnav.menu ul li.boutton:hover a{\n    color: firebrick\t;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.fond {\n    background: firebrick;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjs7SUFFckIsVUFBVTtBQUNkOztBQUVBO0lBQ0ksWUFBWTtJQUNaLDJCQUEyQjtJQUMzQixxQkFBcUI7SUFDckIsa0JBQWtCO0lBQ2xCLGFBQWE7SUFDYixjQUFjO0lBQ2QsdUJBQXVCO0FBQzNCOztBQUVBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEI7O0FBQ0E7SUFDSSxxQkFBcUI7QUFDekIiLCJmaWxlIjoic3JjL2FwcC9AaGVhZGVyL2hlYWRlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsibmF2Lm1lbnUgdWwgIC5ib3V0dG9ue1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcblxuICAgIHdpZHRoOiAyMCU7XG59XG5cbm5hdi5tZW51IHVsIGxpLmJvdXR0b24gYXtcbiAgICBjb2xvciA6QXp1cmU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZmlyZWJyaWNrO1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgICB0ZXh0LWFsaWduOmNlbnRlciA7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmb250LXNpemU6MzVweDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICAgIGNvbG9yOiBmaXJlYnJpY2tcdDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBBenVyZTtcbiAgICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcbn1cbi5mb25kIHtcbiAgICBiYWNrZ3JvdW5kOiBmaXJlYnJpY2s7XG59XG5cblxuIl19 */";
+    __webpack_exports__["default"] = "nav.menu ul  .boutton{\n    display: inline-block;\n\n    width: 33%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: firebrick;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:35px;\n    justify-content: center;\n}\n\nnav.menu ul li.boutton:hover a{\n    color: firebrick\t;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.fond {\n    background: firebrick;\n    text-align:center ;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjs7SUFFckIsVUFBVTtBQUNkOztBQUVBO0lBQ0ksWUFBWTtJQUNaLDJCQUEyQjtJQUMzQixxQkFBcUI7SUFDckIsa0JBQWtCO0lBQ2xCLGFBQWE7SUFDYixjQUFjO0lBQ2QsdUJBQXVCO0FBQzNCOztBQUVBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsa0JBQWtCO0FBQ3RCIiwiZmlsZSI6InNyYy9hcHAvQGhlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIm5hdi5tZW51IHVsICAuYm91dHRvbntcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cbiAgICB3aWR0aDogMzMlO1xufVxuXG5uYXYubWVudSB1bCBsaS5ib3V0dG9uIGF7XG4gICAgY29sb3IgOkF6dXJlO1xuICAgIGJhY2tncm91bmQtY29sb3I6IGZpcmVicmljaztcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZm9udC1zaXplOjM1cHg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5cbm5hdi5tZW51IHVsIGxpLmJvdXR0b246aG92ZXIgYXtcbiAgICBjb2xvcjogZmlyZWJyaWNrXHQ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogQXp1cmU7XG4gICAgdHJhbnNpdGlvbjogMC41cyBhbGw7XG59XG4uZm9uZCB7XG4gICAgYmFja2dyb3VuZDogZmlyZWJyaWNrO1xuICAgIHRleHQtYWxpZ246Y2VudGVyIDtcbn1cblxuXG4iXX0= */";
     /***/
   },
 
@@ -1121,11 +1115,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
 
-    var HomeComponent =
-    /*#__PURE__*/
-
-    /** Composant qui represente le header du site */
-    _createClass(function HomeComponent() {
+    var HomeComponent = /*#__PURE__*/_createClass(function HomeComponent() {
       _classCallCheck(this, HomeComponent);
     });
 
@@ -1137,9 +1127,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./home.component.css */
       "./src/app/@home/home.component.css"))["default"]]
-    })
-    /** Composant qui represente le header du site */
-    ], HomeComponent);
+    })], HomeComponent);
     /***/
   },
 
@@ -1414,25 +1402,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
 
-    var ResultatComponent =
-    /*#__PURE__*/
-
-    /** Composant qui represente le header du site */
-    _createClass(function ResultatComponent() {
+    var ResultatComponent = /*#__PURE__*/_createClass(function ResultatComponent() {
       _classCallCheck(this, ResultatComponent);
     });
 
     ResultatComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'navigation-bar',
+      selector: 'resultat',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./resultat.component.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/@resultat/resultat.component.html"))["default"],
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./resultat.component.css */
       "./src/app/@resultat/resultat.component.css"))["default"]]
-    })
-    /** Composant qui represente le header du site */
-    ], ResultatComponent);
+    })], ResultatComponent);
     /***/
   },
 
@@ -1623,6 +1605,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! ../@resultat/resultat.component */
     "./src/app/@resultat/resultat.component.ts");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/fesm2015/forms.js");
 
     var AppModule = /*#__PURE__*/_createClass(function AppModule() {
       _classCallCheck(this, AppModule);
@@ -1630,7 +1618,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
       declarations: [_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _creation_creation_component__WEBPACK_IMPORTED_MODULE_12__["CreationComponent"], _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_13__["ResultatComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _modal_modal_component__WEBPACK_IMPORTED_MODULE_11__["ModalComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__["NgbModule"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["CommonModule"]],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__["NgbModule"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["CommonModule"]],
       providers: [],
       bootstrap: [_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
     })], AppModule);

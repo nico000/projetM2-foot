@@ -1,7 +1,7 @@
 nav.menu ul  .boutton{
     display: inline-block;
 
-    width: 20%;
+    width: 33%;
 }
 
 nav.menu ul li.boutton a{
@@ -21,6 +21,7 @@ nav.menu ul li.boutton:hover a{
 }
 .fond {
     background: firebrick;
+    text-align:center ;
 }
 
 

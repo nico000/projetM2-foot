@@ -7,7 +7,7 @@ import {Component} from "@angular/core";
     styleUrls: ['./home.component.css' ]
 })
 
-/** Composant qui represente le header du site */
+
 export class HomeComponent {
 
 }

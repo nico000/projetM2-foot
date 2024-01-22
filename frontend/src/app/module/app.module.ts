@@ -12,6 +12,7 @@ import {CommonModule} from "@angular/common";
 import {ModalComponent} from "../@modal/modal.component";
 import {CreationComponent} from "../@creation/creation.component";
 import {ResultatComponent} from "../@resultat/resultat.component";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -30,6 +31,7 @@ import {ResultatComponent} from "../@resultat/resultat.component";
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
+        FormsModule,
         NgbModule,
         CommonModule
     ],

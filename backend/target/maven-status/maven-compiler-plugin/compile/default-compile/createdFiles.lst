@@ -1,4 +1,15 @@
+com\projetM2_foot\entity\Feedback$FeedbackBuilder.class
 com\projetM2_foot\config\WebConfig.class
 com\projetM2_foot\ProjetM2_footApplication.class
+com\projetM2_foot\entity\Entite.class
+com\projetM2_foot\entity\Scenario$ScenarioBuilder.class
+com\projetM2_foot\entity\Scenario.class
+com\projetM2_foot\entity\Zone$ZoneBuilder.class
 com\projetM2_foot\controller\ScenarioController.class
+com\projetM2_foot\entity\Deplacement$DeplacementBuilder.class
+com\projetM2_foot\entity\Deplacement.class
 com\projetM2_foot\config\WebConfig$1.class
+com\projetM2_foot\entity\Zone.class
+com\projetM2_foot\constant\TypeFeedback.class
+com\projetM2_foot\entity\Entite$EntiteBuilder.class
+com\projetM2_foot\entity\Feedback.class

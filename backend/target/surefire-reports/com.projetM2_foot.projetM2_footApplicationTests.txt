@@ -1,4 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: com.projetM2_foot.projetM2_footApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.677 s - in com.projetM2_foot.projetM2_footApplicationTests
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 10.68 s <<< FAILURE! - in com.projetM2_foot.projetM2_footApplicationTests
+contextLoads  Time elapsed: 0.004 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.data.neo4j.repository.config.Neo4jMappingContextFactoryBean#0': Invocation of init method failed; nested exception is java.lang.reflect.InaccessibleObjectException: Unable to make field private final java.lang.String java.lang.Enum.name accessible: module java.base does not "opens java.lang" to unnamed module @67205a84
+Caused by: java.lang.reflect.InaccessibleObjectException: Unable to make field private final java.lang.String java.lang.Enum.name accessible: module java.base does not "opens java.lang" to unnamed module @67205a84
+

@@ -51,7 +51,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<navigation-bar></navigation-bar>\n<div id=\"page\" #page class=\"container-fluid\">\n  <router-outlet></router-outlet>\n</div>\n<footer></footer>\n";
+    __webpack_exports__["default"] = "<navigation-bar></navigation-bar>\r\n<div id=\"page\" #page class=\"container-fluid\">\r\n  <router-outlet></router-outlet>\r\n</div>\r\n<footer></footer>\r\n";
     /***/
   },
 
@@ -91,7 +91,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"ecriture\">\n</div>\n";
+    __webpack_exports__["default"] = "<div class=\"ecriture\">\r\n</div>\r\n";
     /***/
   },
 
@@ -111,7 +111,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<header class=\"fond\">\n    <img src=\"/assets/logo.png\" height=\"180\">\n</header>\n\n<!-- menu -->\n<nav class=\"menu\">\n    <ul>\n        <li class=\"boutton\">\n            <a routerLink=\"/creation\">Creation</a>\n        </li>\n\n        <li class=\"boutton\">\n            <a routerLink=\"/home\">Simulation</a>\n        </li>\n\n        <li class=\"boutton\">\n            <a routerLink=\"/resultat\">Resultat</a>\n        </li>\n    </ul>\n</nav>\n";
+    __webpack_exports__["default"] = "<header class=\"fond\">\r\n    <img src=\"/assets/logo.png\" height=\"180\">\r\n</header>\r\n\r\n<!-- menu -->\r\n<nav class=\"menu\">\r\n    <ul>\r\n        <li class=\"boutton\">\r\n            <a routerLink=\"/creation\">Creation</a>\r\n        </li>\r\n\r\n        <li class=\"boutton\">\r\n            <a routerLink=\"/home\">Simulation</a>\r\n        </li>\r\n\r\n        <li class=\"boutton\">\r\n            <a routerLink=\"/resultat\">Resultat</a>\r\n        </li>\r\n    </ul>\r\n</nav>\r\n";
     /***/
   },
 
@@ -131,7 +131,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div >PAGE D'acceuille</div>\n\n\n";
+    __webpack_exports__["default"] = "<div >PAGE D'acceuille</div>\r\n\r\n\r\n";
     /***/
   },
 
@@ -151,7 +151,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"jw-modal\">\n  <div class=\"jw-modal-body\">\n    <ng-content></ng-content>\n  </div>\n</div>\n<div class=\"jw-modal-background\"></div>\n";
+    __webpack_exports__["default"] = "<div class=\"jw-modal\">\r\n  <div class=\"jw-modal-body\">\r\n    <ng-content></ng-content>\r\n  </div>\r\n</div>\r\n<div class=\"jw-modal-background\"></div>\r\n";
     /***/
   },
 
@@ -795,7 +795,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\nfooter {\n    background-color: #00000b;\n}\nslider{\n    background: #a29292;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGFwcC9hcHAuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7SUFDSSx5QkFBeUI7QUFDN0I7QUFDQTtJQUNJLG1CQUFtQjtBQUN2QiIsImZpbGUiOiJzcmMvYXBwL0BhcHAvYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbmZvb3RlciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzAwMDAwYjtcbn1cbnNsaWRlcntcbiAgICBiYWNrZ3JvdW5kOiAjYTI5MjkyO1xufVxuIl19 */";
+    __webpack_exports__["default"] = "\r\nfooter {\r\n    background-color: #00000b;\r\n}\r\nslider{\r\n    background: #a29292;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGFwcC9hcHAuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7SUFDSSx5QkFBeUI7QUFDN0I7QUFDQTtJQUNJLG1CQUFtQjtBQUN2QiIsImZpbGUiOiJzcmMvYXBwL0BhcHAvYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuZm9vdGVyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDAwMGI7XHJcbn1cclxuc2xpZGVye1xyXG4gICAgYmFja2dyb3VuZDogI2EyOTI5MjtcclxufVxyXG4iXX0= */";
     /***/
   },
 
@@ -916,6 +916,60 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/@creation/creation.service.ts":
+  /*!***********************************************!*\
+    !*** ./src/app/@creation/creation.service.ts ***!
+    \***********************************************/
+
+  /*! exports provided: CreationService */
+
+  /***/
+  function srcAppCreationCreationServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "CreationService", function () {
+      return CreationService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+
+    var CreationService = /*#__PURE__*/_createClass(function CreationService(_http) {
+      _classCallCheck(this, CreationService);
+
+      this._http = _http;
+    });
+
+    CreationService.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+      }];
+    };
+
+    CreationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], CreationService);
+    /***/
+  },
+
+  /***/
   "./src/app/@footer/footer.component.css":
   /*!**********************************************!*\
     !*** ./src/app/@footer/footer.component.css ***!
@@ -931,7 +985,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".ecriture{\n    color: white;\n    font-size: 150%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGZvb3Rlci9mb290ZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7SUFDWixlQUFlO0FBQ25CIiwiZmlsZSI6InNyYy9hcHAvQGZvb3Rlci9mb290ZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5lY3JpdHVyZXtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgZm9udC1zaXplOiAxNTAlO1xufSJdfQ== */";
+    __webpack_exports__["default"] = ".ecriture{\r\n    color: white;\r\n    font-size: 150%;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGZvb3Rlci9mb290ZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7SUFDWixlQUFlO0FBQ25CIiwiZmlsZSI6InNyYy9hcHAvQGZvb3Rlci9mb290ZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5lY3JpdHVyZXtcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgIGZvbnQtc2l6ZTogMTUwJTtcclxufSJdfQ== */";
     /***/
   },
 
@@ -1005,7 +1059,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "nav.menu ul  .boutton{\n    display: inline-block;\n\n    width: 33%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: firebrick;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:35px;\n    justify-content: center;\n}\n\nnav.menu ul li.boutton:hover a{\n    color: firebrick\t;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.fond {\n    background: firebrick;\n    text-align:center ;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjs7SUFFckIsVUFBVTtBQUNkOztBQUVBO0lBQ0ksWUFBWTtJQUNaLDJCQUEyQjtJQUMzQixxQkFBcUI7SUFDckIsa0JBQWtCO0lBQ2xCLGFBQWE7SUFDYixjQUFjO0lBQ2QsdUJBQXVCO0FBQzNCOztBQUVBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsa0JBQWtCO0FBQ3RCIiwiZmlsZSI6InNyYy9hcHAvQGhlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIm5hdi5tZW51IHVsICAuYm91dHRvbntcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cbiAgICB3aWR0aDogMzMlO1xufVxuXG5uYXYubWVudSB1bCBsaS5ib3V0dG9uIGF7XG4gICAgY29sb3IgOkF6dXJlO1xuICAgIGJhY2tncm91bmQtY29sb3I6IGZpcmVicmljaztcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZm9udC1zaXplOjM1cHg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5cbm5hdi5tZW51IHVsIGxpLmJvdXR0b246aG92ZXIgYXtcbiAgICBjb2xvcjogZmlyZWJyaWNrXHQ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogQXp1cmU7XG4gICAgdHJhbnNpdGlvbjogMC41cyBhbGw7XG59XG4uZm9uZCB7XG4gICAgYmFja2dyb3VuZDogZmlyZWJyaWNrO1xuICAgIHRleHQtYWxpZ246Y2VudGVyIDtcbn1cblxuXG4iXX0= */";
+    __webpack_exports__["default"] = "nav.menu ul  .boutton{\r\n    display: inline-block;\r\n\r\n    width: 33%;\r\n}\r\n\r\nnav.menu ul li.boutton a{\r\n    color :Azure;\r\n    background-color: firebrick;\r\n    text-decoration: none;\r\n    text-align:center ;\r\n    display: flex;\r\n    font-size:35px;\r\n    justify-content: center;\r\n}\r\n\r\nnav.menu ul li.boutton:hover a{\r\n    color: firebrick\t;\r\n    background-color: Azure;\r\n    transition: 0.5s all;\r\n}\r\n\r\n.fond {\r\n    background: firebrick;\r\n    text-align:center ;\r\n}\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjs7SUFFckIsVUFBVTtBQUNkOztBQUVBO0lBQ0ksWUFBWTtJQUNaLDJCQUEyQjtJQUMzQixxQkFBcUI7SUFDckIsa0JBQWtCO0lBQ2xCLGFBQWE7SUFDYixjQUFjO0lBQ2QsdUJBQXVCO0FBQzNCOztBQUVBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsa0JBQWtCO0FBQ3RCIiwiZmlsZSI6InNyYy9hcHAvQGhlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIm5hdi5tZW51IHVsICAuYm91dHRvbntcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuXHJcbiAgICB3aWR0aDogMzMlO1xyXG59XHJcblxyXG5uYXYubWVudSB1bCBsaS5ib3V0dG9uIGF7XHJcbiAgICBjb2xvciA6QXp1cmU7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBmaXJlYnJpY2s7XHJcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgICB0ZXh0LWFsaWduOmNlbnRlciA7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZm9udC1zaXplOjM1cHg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG5cclxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xyXG4gICAgY29sb3I6IGZpcmVicmlja1x0O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogQXp1cmU7XHJcbiAgICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcclxufVxyXG4uZm9uZCB7XHJcbiAgICBiYWNrZ3JvdW5kOiBmaXJlYnJpY2s7XHJcbiAgICB0ZXh0LWFsaWduOmNlbnRlciA7XHJcbn1cclxuXHJcblxyXG4iXX0= */";
     /***/
   },
 
@@ -1079,7 +1133,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".titre{\n  font-size: 180%;\n  color: blue;\n  text-align: center;\n}\n.ecriture{\n  font-size: 120%;\n  text-align: center;\n  color: white;\n}\n.presentation{\n  font-size: 150%;\n  text-indent: 10px;\n  color: aqua;\n}\n\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhvbWUvaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZUFBZTtFQUNmLFdBQVc7RUFDWCxrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLGVBQWU7RUFDZixrQkFBa0I7RUFDbEIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxlQUFlO0VBQ2YsaUJBQWlCO0VBQ2pCLFdBQVc7QUFDYiIsImZpbGUiOiJzcmMvYXBwL0Bob21lL2hvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi50aXRyZXtcbiAgZm9udC1zaXplOiAxODAlO1xuICBjb2xvcjogYmx1ZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmVjcml0dXJle1xuICBmb250LXNpemU6IDEyMCU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgY29sb3I6IHdoaXRlO1xufVxuLnByZXNlbnRhdGlvbntcbiAgZm9udC1zaXplOiAxNTAlO1xuICB0ZXh0LWluZGVudDogMTBweDtcbiAgY29sb3I6IGFxdWE7XG59XG5cblxuXG4iXX0= */";
+    __webpack_exports__["default"] = ".titre{\r\n  font-size: 180%;\r\n  color: blue;\r\n  text-align: center;\r\n}\r\n.ecriture{\r\n  font-size: 120%;\r\n  text-align: center;\r\n  color: white;\r\n}\r\n.presentation{\r\n  font-size: 150%;\r\n  text-indent: 10px;\r\n  color: aqua;\r\n}\r\n\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhvbWUvaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZUFBZTtFQUNmLFdBQVc7RUFDWCxrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLGVBQWU7RUFDZixrQkFBa0I7RUFDbEIsWUFBWTtBQUNkO0FBQ0E7RUFDRSxlQUFlO0VBQ2YsaUJBQWlCO0VBQ2pCLFdBQVc7QUFDYiIsImZpbGUiOiJzcmMvYXBwL0Bob21lL2hvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi50aXRyZXtcclxuICBmb250LXNpemU6IDE4MCU7XHJcbiAgY29sb3I6IGJsdWU7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbi5lY3JpdHVyZXtcclxuICBmb250LXNpemU6IDEyMCU7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxufVxyXG4ucHJlc2VudGF0aW9ue1xyXG4gIGZvbnQtc2l6ZTogMTUwJTtcclxuICB0ZXh0LWluZGVudDogMTBweDtcclxuICBjb2xvcjogYXF1YTtcclxufVxyXG5cclxuXHJcblxyXG4iXX0= */";
     /***/
   },
 
@@ -1132,6 +1186,60 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/@home/home.service.ts":
+  /*!***************************************!*\
+    !*** ./src/app/@home/home.service.ts ***!
+    \***************************************/
+
+  /*! exports provided: HomeService */
+
+  /***/
+  function srcAppHomeHomeServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "HomeService", function () {
+      return HomeService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+
+    var HomeService = /*#__PURE__*/_createClass(function HomeService(_http) {
+      _classCallCheck(this, HomeService);
+
+      this._http = _http;
+    });
+
+    HomeService.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+      }];
+    };
+
+    HomeService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], HomeService);
+    /***/
+  },
+
+  /***/
   "./src/app/@modal/modal.component.less":
   /*!*********************************************!*\
     !*** ./src/app/@modal/modal.component.less ***!
@@ -1147,7 +1255,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "/* MODAL STYLES\n-------------------------------*/\njw-modal {\n  /* modals are hidden by default */\n  display: none;\n}\njw-modal .jw-modal {\n  /* modal container fixed across whole screen */\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  /* z-index must be higher than .jw-modal-background */\n  z-index: 1000;\n  /* enables scrolling for tall modals */\n  overflow: auto;\n}\njw-modal .jw-modal .jw-modal-body {\n  padding: 20px;\n  background: dimgrey;\n  /* margin exposes part of the modal background */\n  margin: 40px;\n}\njw-modal .jw-modal-background {\n  /* modal background fixed across whole screen */\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  /* semi-transparent black  */\n  background-color: #000;\n  opacity: 0.75;\n  /* z-index must be below .jw-modal and above everything else  */\n  z-index: 900;\n}\nbody.jw-modal-open {\n  /* body overflow is hidden to hide main scrollbar when modal window is open */\n  overflow: hidden;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQG1vZGFsL21vZGFsLmNvbXBvbmVudC5sZXNzIiwiL2hvbWUvcm0vQnVyZWF1L3Byb2pldE0yLWZvb3QvZnJvbnRlbmQvc3JjL2FwcC9AbW9kYWwvbW9kYWwuY29tcG9uZW50Lmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Z0NBQ2dDO0FDQ2hDO0VEQ0UsaUNBQWlDO0VDQy9CLGFBQUE7QURDSjtBQ0hBO0VES0UsOENBQThDO0VDQzVDLGVBQUE7RUFDQSxNQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSxPQUFBO0VEQ0YscURBQXFEO0VDRW5ELGFBQUE7RURBRixzQ0FBc0M7RUNHcEMsY0FBQTtBRERKO0FDZkE7RUFtQkksYUFBQTtFQUNBLG1CQUFBO0VEREYsZ0RBQWdEO0VDSTlDLFlBQUE7QURGSjtBQ3JCQTtFRHVCRSwrQ0FBK0M7RUNNN0MsZUFBQTtFQUNBLE1BQUE7RUFDQSxRQUFBO0VBQ0EsU0FBQTtFQUNBLE9BQUE7RURKRiw0QkFBNEI7RUNPMUIsc0JBQUE7RUFDQSxhQUFBO0VETEYsK0RBQStEO0VDUTdELFlBQUE7QUROSjtBQ1VBO0VEUkUsNkVBQTZFO0VDVTNFLGdCQUFBO0FEUkoiLCJmaWxlIjoic3JjL2FwcC9AbW9kYWwvbW9kYWwuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBNT0RBTCBTVFlMRVNcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0qL1xuanctbW9kYWwge1xuICAvKiBtb2RhbHMgYXJlIGhpZGRlbiBieSBkZWZhdWx0ICovXG4gIGRpc3BsYXk6IG5vbmU7XG59XG5qdy1tb2RhbCAuanctbW9kYWwge1xuICAvKiBtb2RhbCBjb250YWluZXIgZml4ZWQgYWNyb3NzIHdob2xlIHNjcmVlbiAqL1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIHRvcDogMDtcbiAgcmlnaHQ6IDA7XG4gIGJvdHRvbTogMDtcbiAgbGVmdDogMDtcbiAgLyogei1pbmRleCBtdXN0IGJlIGhpZ2hlciB0aGFuIC5qdy1tb2RhbC1iYWNrZ3JvdW5kICovXG4gIHotaW5kZXg6IDEwMDA7XG4gIC8qIGVuYWJsZXMgc2Nyb2xsaW5nIGZvciB0YWxsIG1vZGFscyAqL1xuICBvdmVyZmxvdzogYXV0bztcbn1cbmp3LW1vZGFsIC5qdy1tb2RhbCAuanctbW9kYWwtYm9keSB7XG4gIHBhZGRpbmc6IDIwcHg7XG4gIGJhY2tncm91bmQ6IGRpbWdyZXk7XG4gIC8qIG1hcmdpbiBleHBvc2VzIHBhcnQgb2YgdGhlIG1vZGFsIGJhY2tncm91bmQgKi9cbiAgbWFyZ2luOiA0MHB4O1xufVxuanctbW9kYWwgLmp3LW1vZGFsLWJhY2tncm91bmQge1xuICAvKiBtb2RhbCBiYWNrZ3JvdW5kIGZpeGVkIGFjcm9zcyB3aG9sZSBzY3JlZW4gKi9cbiAgcG9zaXRpb246IGZpeGVkO1xuICB0b3A6IDA7XG4gIHJpZ2h0OiAwO1xuICBib3R0b206IDA7XG4gIGxlZnQ6IDA7XG4gIC8qIHNlbWktdHJhbnNwYXJlbnQgYmxhY2sgICovXG4gIGJhY2tncm91bmQtY29sb3I6ICMwMDA7XG4gIG9wYWNpdHk6IDAuNzU7XG4gIC8qIHotaW5kZXggbXVzdCBiZSBiZWxvdyAuanctbW9kYWwgYW5kIGFib3ZlIGV2ZXJ5dGhpbmcgZWxzZSAgKi9cbiAgei1pbmRleDogOTAwO1xufVxuYm9keS5qdy1tb2RhbC1vcGVuIHtcbiAgLyogYm9keSBvdmVyZmxvdyBpcyBoaWRkZW4gdG8gaGlkZSBtYWluIHNjcm9sbGJhciB3aGVuIG1vZGFsIHdpbmRvdyBpcyBvcGVuICovXG4gIG92ZXJmbG93OiBoaWRkZW47XG59XG4iLCIvKiBNT0RBTCBTVFlMRVNcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0qL1xuanctbW9kYWwge1xuICAgIC8qIG1vZGFscyBhcmUgaGlkZGVuIGJ5IGRlZmF1bHQgKi9cbiAgICBkaXNwbGF5OiBub25lO1xuXG4uanctbW9kYWwge1xuICAgIC8qIG1vZGFsIGNvbnRhaW5lciBmaXhlZCBhY3Jvc3Mgd2hvbGUgc2NyZWVuICovXG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogMDtcbiAgICByaWdodDogMDtcbiAgICBib3R0b206IDA7XG4gICAgbGVmdDogMDtcblxuICAgIC8qIHotaW5kZXggbXVzdCBiZSBoaWdoZXIgdGhhbiAuanctbW9kYWwtYmFja2dyb3VuZCAqL1xuICAgIHotaW5kZXg6IDEwMDA7XG5cbiAgICAvKiBlbmFibGVzIHNjcm9sbGluZyBmb3IgdGFsbCBtb2RhbHMgKi9cbiAgICBvdmVyZmxvdzogYXV0bztcblxuLmp3LW1vZGFsLWJvZHkge1xuICAgIHBhZGRpbmc6IDIwcHg7XG4gICAgYmFja2dyb3VuZDogZGltZ3JleTtcblxuICAgIC8qIG1hcmdpbiBleHBvc2VzIHBhcnQgb2YgdGhlIG1vZGFsIGJhY2tncm91bmQgKi9cbiAgICBtYXJnaW46IDQwcHg7XG59XG59XG5cbi5qdy1tb2RhbC1iYWNrZ3JvdW5kIHtcbiAgICAvKiBtb2RhbCBiYWNrZ3JvdW5kIGZpeGVkIGFjcm9zcyB3aG9sZSBzY3JlZW4gKi9cbiAgICBwb3NpdGlvbjogZml4ZWQ7XG4gICAgdG9wOiAwO1xuICAgIHJpZ2h0OiAwO1xuICAgIGJvdHRvbTogMDtcbiAgICBsZWZ0OiAwO1xuXG4gICAgLyogc2VtaS10cmFuc3BhcmVudCBibGFjayAgKi9cbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDAwO1xuICAgIG9wYWNpdHk6IDAuNzU7XG5cbiAgICAvKiB6LWluZGV4IG11c3QgYmUgYmVsb3cgLmp3LW1vZGFsIGFuZCBhYm92ZSBldmVyeXRoaW5nIGVsc2UgICovXG4gICAgei1pbmRleDogOTAwO1xufVxufVxuXG5ib2R5Lmp3LW1vZGFsLW9wZW4ge1xuICAgIC8qIGJvZHkgb3ZlcmZsb3cgaXMgaGlkZGVuIHRvIGhpZGUgbWFpbiBzY3JvbGxiYXIgd2hlbiBtb2RhbCB3aW5kb3cgaXMgb3BlbiAqL1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG59XG4iXX0= */";
+    __webpack_exports__["default"] = "/* MODAL STYLES\n-------------------------------*/\njw-modal {\n  /* modals are hidden by default */\n  display: none;\n}\njw-modal .jw-modal {\n  /* modal container fixed across whole screen */\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  /* z-index must be higher than .jw-modal-background */\n  z-index: 1000;\n  /* enables scrolling for tall modals */\n  overflow: auto;\n}\njw-modal .jw-modal .jw-modal-body {\n  padding: 20px;\n  background: dimgrey;\n  /* margin exposes part of the modal background */\n  margin: 40px;\n}\njw-modal .jw-modal-background {\n  /* modal background fixed across whole screen */\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  /* semi-transparent black  */\n  background-color: #000;\n  opacity: 0.75;\n  /* z-index must be below .jw-modal and above everything else  */\n  z-index: 900;\n}\nbody.jw-modal-open {\n  /* body overflow is hidden to hide main scrollbar when modal window is open */\n  overflow: hidden;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQG1vZGFsL21vZGFsLmNvbXBvbmVudC5sZXNzIiwic3JjL2FwcC9AbW9kYWwvQzovVXNlcnMvbmljbzAvRGVza3RvcC9Qcm9qZXQvRk9PVF8zL3Byb2pldE0yLWZvb3QvZnJvbnRlbmQvc3JjL2FwcC9AbW9kYWwvbW9kYWwuY29tcG9uZW50Lmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Z0NBQ2dDO0FDQ2hDO0VEQ0UsaUNBQWlDO0VDQy9CLGFBQUE7QURDSjtBQ0hBO0VES0UsOENBQThDO0VDQzVDLGVBQUE7RUFDQSxNQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSxPQUFBO0VEQ0YscURBQXFEO0VDRW5ELGFBQUE7RURBRixzQ0FBc0M7RUNHcEMsY0FBQTtBRERKO0FDZkE7RUFtQkksYUFBQTtFQUNBLG1CQUFBO0VEREYsZ0RBQWdEO0VDSTlDLFlBQUE7QURGSjtBQ3JCQTtFRHVCRSwrQ0FBK0M7RUNNN0MsZUFBQTtFQUNBLE1BQUE7RUFDQSxRQUFBO0VBQ0EsU0FBQTtFQUNBLE9BQUE7RURKRiw0QkFBNEI7RUNPMUIsc0JBQUE7RUFDQSxhQUFBO0VETEYsK0RBQStEO0VDUTdELFlBQUE7QUROSjtBQ1VBO0VEUkUsNkVBQTZFO0VDVTNFLGdCQUFBO0FEUkoiLCJmaWxlIjoic3JjL2FwcC9AbW9kYWwvbW9kYWwuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBNT0RBTCBTVFlMRVNcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0qL1xuanctbW9kYWwge1xuICAvKiBtb2RhbHMgYXJlIGhpZGRlbiBieSBkZWZhdWx0ICovXG4gIGRpc3BsYXk6IG5vbmU7XG59XG5qdy1tb2RhbCAuanctbW9kYWwge1xuICAvKiBtb2RhbCBjb250YWluZXIgZml4ZWQgYWNyb3NzIHdob2xlIHNjcmVlbiAqL1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIHRvcDogMDtcbiAgcmlnaHQ6IDA7XG4gIGJvdHRvbTogMDtcbiAgbGVmdDogMDtcbiAgLyogei1pbmRleCBtdXN0IGJlIGhpZ2hlciB0aGFuIC5qdy1tb2RhbC1iYWNrZ3JvdW5kICovXG4gIHotaW5kZXg6IDEwMDA7XG4gIC8qIGVuYWJsZXMgc2Nyb2xsaW5nIGZvciB0YWxsIG1vZGFscyAqL1xuICBvdmVyZmxvdzogYXV0bztcbn1cbmp3LW1vZGFsIC5qdy1tb2RhbCAuanctbW9kYWwtYm9keSB7XG4gIHBhZGRpbmc6IDIwcHg7XG4gIGJhY2tncm91bmQ6IGRpbWdyZXk7XG4gIC8qIG1hcmdpbiBleHBvc2VzIHBhcnQgb2YgdGhlIG1vZGFsIGJhY2tncm91bmQgKi9cbiAgbWFyZ2luOiA0MHB4O1xufVxuanctbW9kYWwgLmp3LW1vZGFsLWJhY2tncm91bmQge1xuICAvKiBtb2RhbCBiYWNrZ3JvdW5kIGZpeGVkIGFjcm9zcyB3aG9sZSBzY3JlZW4gKi9cbiAgcG9zaXRpb246IGZpeGVkO1xuICB0b3A6IDA7XG4gIHJpZ2h0OiAwO1xuICBib3R0b206IDA7XG4gIGxlZnQ6IDA7XG4gIC8qIHNlbWktdHJhbnNwYXJlbnQgYmxhY2sgICovXG4gIGJhY2tncm91bmQtY29sb3I6ICMwMDA7XG4gIG9wYWNpdHk6IDAuNzU7XG4gIC8qIHotaW5kZXggbXVzdCBiZSBiZWxvdyAuanctbW9kYWwgYW5kIGFib3ZlIGV2ZXJ5dGhpbmcgZWxzZSAgKi9cbiAgei1pbmRleDogOTAwO1xufVxuYm9keS5qdy1tb2RhbC1vcGVuIHtcbiAgLyogYm9keSBvdmVyZmxvdyBpcyBoaWRkZW4gdG8gaGlkZSBtYWluIHNjcm9sbGJhciB3aGVuIG1vZGFsIHdpbmRvdyBpcyBvcGVuICovXG4gIG92ZXJmbG93OiBoaWRkZW47XG59XG4iLCIvKiBNT0RBTCBTVFlMRVNcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0qL1xuanctbW9kYWwge1xuICAgIC8qIG1vZGFscyBhcmUgaGlkZGVuIGJ5IGRlZmF1bHQgKi9cbiAgICBkaXNwbGF5OiBub25lO1xuXG4uanctbW9kYWwge1xuICAgIC8qIG1vZGFsIGNvbnRhaW5lciBmaXhlZCBhY3Jvc3Mgd2hvbGUgc2NyZWVuICovXG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogMDtcbiAgICByaWdodDogMDtcbiAgICBib3R0b206IDA7XG4gICAgbGVmdDogMDtcblxuICAgIC8qIHotaW5kZXggbXVzdCBiZSBoaWdoZXIgdGhhbiAuanctbW9kYWwtYmFja2dyb3VuZCAqL1xuICAgIHotaW5kZXg6IDEwMDA7XG5cbiAgICAvKiBlbmFibGVzIHNjcm9sbGluZyBmb3IgdGFsbCBtb2RhbHMgKi9cbiAgICBvdmVyZmxvdzogYXV0bztcblxuLmp3LW1vZGFsLWJvZHkge1xuICAgIHBhZGRpbmc6IDIwcHg7XG4gICAgYmFja2dyb3VuZDogZGltZ3JleTtcblxuICAgIC8qIG1hcmdpbiBleHBvc2VzIHBhcnQgb2YgdGhlIG1vZGFsIGJhY2tncm91bmQgKi9cbiAgICBtYXJnaW46IDQwcHg7XG59XG59XG5cbi5qdy1tb2RhbC1iYWNrZ3JvdW5kIHtcbiAgICAvKiBtb2RhbCBiYWNrZ3JvdW5kIGZpeGVkIGFjcm9zcyB3aG9sZSBzY3JlZW4gKi9cbiAgICBwb3NpdGlvbjogZml4ZWQ7XG4gICAgdG9wOiAwO1xuICAgIHJpZ2h0OiAwO1xuICAgIGJvdHRvbTogMDtcbiAgICBsZWZ0OiAwO1xuXG4gICAgLyogc2VtaS10cmFuc3BhcmVudCBibGFjayAgKi9cbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDAwO1xuICAgIG9wYWNpdHk6IDAuNzU7XG5cbiAgICAvKiB6LWluZGV4IG11c3QgYmUgYmVsb3cgLmp3LW1vZGFsIGFuZCBhYm92ZSBldmVyeXRoaW5nIGVsc2UgICovXG4gICAgei1pbmRleDogOTAwO1xufVxufVxuXG5ib2R5Lmp3LW1vZGFsLW9wZW4ge1xuICAgIC8qIGJvZHkgb3ZlcmZsb3cgaXMgaGlkZGVuIHRvIGhpZGUgbWFpbiBzY3JvbGxiYXIgd2hlbiBtb2RhbCB3aW5kb3cgaXMgb3BlbiAqL1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG59XG4iXX0= */";
     /***/
   },
 
@@ -1419,6 +1527,60 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/@resultat/resultat.service.ts":
+  /*!***********************************************!*\
+    !*** ./src/app/@resultat/resultat.service.ts ***!
+    \***********************************************/
+
+  /*! exports provided: ResultatService */
+
+  /***/
+  function srcAppResultatResultatServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ResultatService", function () {
+      return ResultatService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+
+    var ResultatService = /*#__PURE__*/_createClass(function ResultatService(_http) {
+      _classCallCheck(this, ResultatService);
+
+      this._http = _http;
+    });
+
+    ResultatService.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+      }];
+    };
+
+    ResultatService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], ResultatService);
+    /***/
+  },
+
+  /***/
   "./src/app/app-routing.module.ts":
   /*!***************************************!*\
     !*** ./src/app/app-routing.module.ts ***!
@@ -1560,55 +1722,73 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _home_home_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../@home/home.service */
+    "./src/app/@home/home.service.ts");
+    /* harmony import */
+
+
+    var _footer_footer_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ../@footer/footer.component */
     "./src/app/@footer/footer.component.ts");
     /* harmony import */
 
 
-    var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ../app-routing.module */
     "./src/app/app-routing.module.ts");
     /* harmony import */
 
 
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/fesm2015/http.js");
     /* harmony import */
 
 
-    var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! @ng-bootstrap/ng-bootstrap */
     "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
     /* harmony import */
 
 
-    var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! @angular/common */
     "./node_modules/@angular/common/fesm2015/common.js");
     /* harmony import */
 
 
-    var _modal_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var _modal_modal_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ../@modal/modal.component */
     "./src/app/@modal/modal.component.ts");
     /* harmony import */
 
 
-    var _creation_creation_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var _creation_creation_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! ../@creation/creation.component */
     "./src/app/@creation/creation.component.ts");
     /* harmony import */
 
 
-    var _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    var _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
     /*! ../@resultat/resultat.component */
     "./src/app/@resultat/resultat.component.ts");
     /* harmony import */
 
 
-    var _angular_forms__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    var _creation_creation_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+    /*! ../@creation/creation.service */
+    "./src/app/@creation/creation.service.ts");
+    /* harmony import */
+
+
+    var _resultat_resultat_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+    /*! ../@resultat/resultat.service */
+    "./src/app/@resultat/resultat.service.ts");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
     /*! @angular/forms */
     "./node_modules/@angular/forms/fesm2015/forms.js");
 
@@ -1617,9 +1797,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     });
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _creation_creation_component__WEBPACK_IMPORTED_MODULE_12__["CreationComponent"], _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_13__["ResultatComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"], _modal_modal_component__WEBPACK_IMPORTED_MODULE_11__["ModalComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__["NgbModule"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["CommonModule"]],
-      providers: [],
+      declarations: [_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _creation_creation_component__WEBPACK_IMPORTED_MODULE_13__["CreationComponent"], _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_14__["ResultatComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_7__["FooterComponent"], _modal_modal_component__WEBPACK_IMPORTED_MODULE_12__["ModalComponent"]],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_17__["FormsModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_10__["NgbModule"], _angular_common__WEBPACK_IMPORTED_MODULE_11__["CommonModule"]],
+      providers: [_home_home_service__WEBPACK_IMPORTED_MODULE_6__["HomeService"], _creation_creation_service__WEBPACK_IMPORTED_MODULE_15__["CreationService"], _resultat_resultat_service__WEBPACK_IMPORTED_MODULE_16__["ResultatService"]],
       bootstrap: [_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
     })], AppModule);
     /***/
@@ -1734,7 +1914,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! /home/rm/Bureau/projetM2-foot/frontend/src/main.ts */
+    /*! C:\Users\nico0\Desktop\Projet\FOOT_3\projetM2-foot\frontend\src\main.ts */
     "./src/main.ts");
     /***/
   }

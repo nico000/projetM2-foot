@@ -1,6 +1,7 @@
 package com.projetM2_foot.entity;
 
 import lombok.*;
+import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 import java.util.List;
@@ -13,8 +14,11 @@ import java.util.List;
 @NodeEntity
 public class Scenario {
 
+    @Id
+    private long id;
     private String nom;
 
+    /** action par action scene par scene */
     private String mode_scene;
     //private int dimension;
     private String terrain_couleur;

@@ -10,7 +10,7 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 public class Zone {
     @Id
-    private String id;
+    private String id; // Type temporaire voir pour changer le type
     private Boolean use;
     private Boolean display;
     private int nb_zone;

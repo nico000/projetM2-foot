@@ -1,10 +1,10 @@
 spring:
   neo4j:
     uri: bolt://localhost:7687
-    authentication:
-      username: neo4j
-      password: secret
-
+data:
+  neo4j:
+    username: neo4j
+    password: secret
 
 springdoc:
   api-docs:

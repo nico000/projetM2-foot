@@ -23,11 +23,21 @@ public class Scenario {
     private int joueur_nb;
     //private String joueur_icon;
 
-    private Feedback feedback;
-    private Zone zone;
+    //feedBack
+    private int feedback_frequence;
+    /** Nombre de visionnage (kr ,krr) */
+    private int feedback_condition;
+    private String feedback_type;
 
-    private List<Entite> listEntite;
-    private List<Deplacement> listDeplacement;
+    //zone
+    private Boolean zone_use;
+    private Boolean zone_display;
+    private int zone_nb_zone;
+    private int zone_nb_couloir;
+    private int zone_epaisseur;
+
+    //private List<Entite> listEntite;
+    //private List<Deplacement> listDeplacement;
 
 
 }

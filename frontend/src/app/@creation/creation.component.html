@@ -1,1 +1,23 @@
-<div >PAGE creation</div>
+<h1 class="presentation">Ajout d'un Scenario</h1>
+
+nom: <input type="text" [(ngModel)]="_newScenario.nom"/><br>
+mode_scene: <input type="text" [(ngModel)]="_newScenario.mode_scene"/><br>
+terrain_couleur: <input type="text" [(ngModel)]="_newScenario.terrain_couleur"/><br>
+terrain_taille: <input type="text" [(ngModel)]="_newScenario.terrain_taille"/><br>
+feedback_frequence: <input type="text" [(ngModel)]="_newScenario.feedback_frequence"/><br>
+feedback_condition: <input type="text" [(ngModel)]="_newScenario.feedback_condition"/><br>
+feedback_type: <input type="text" [(ngModel)]="_newScenario.feedback_type"/><br>
+zone_use: <input type="text" [(ngModel)]="_newScenario.zone_use"/><br>
+zone_display: <input type="text" [(ngModel)]="_newScenario.zone_display"/><br>
+zone_nb_zone: <input type="text" [(ngModel)]="_newScenario.zone_nb_zone"/><br>
+zone_nb_couloir: <input type="text" [(ngModel)]="_newScenario.zone_nb_couloir"/><br>
+zone_epaisseur: <input type="text" [(ngModel)]="_newScenario.zone_epaisseur"/><br>
+
+
+<button  (click)="openModal(_addScenarioModalName)">valider</button>
+
+<jw-modal id="{{_addScenarioModalName}}" >
+    <p class="verif">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>
+    <button  (click)="addScenario(_addScenarioModalName)">oui</button>
+    <button  (click)="resetData(_addScenarioModalName);">non</button>
+</jw-modal>

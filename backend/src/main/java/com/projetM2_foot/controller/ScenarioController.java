@@ -2,6 +2,7 @@ package com.projetM2_foot.controller;
 
 
 import com.projetM2_foot.dto.request.ScenarioRequestCreate;
+import com.projetM2_foot.dto.response.ScenarioResponseAll;
 import com.projetM2_foot.dto.response.ScenarioResponse;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.mapper.ScenarioMapper;
@@ -13,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/scenario")
@@ -43,4 +46,11 @@ public class ScenarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
+    @GetMapping
+    public ResponseEntity<ScenarioResponseAll> getAllScenario(){
+        final List<Scenario> scenarioList = scenarioService.getAllScenario();
+        final ScenarioResponseAll reponse =scenarioMapper.toGetAll(scenarioList);
+
+        return ResponseEntity.ok(reponse);
+    }
 }

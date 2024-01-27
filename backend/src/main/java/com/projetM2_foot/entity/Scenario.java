@@ -6,7 +6,7 @@ import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
+
 
 @Getter
 @Setter

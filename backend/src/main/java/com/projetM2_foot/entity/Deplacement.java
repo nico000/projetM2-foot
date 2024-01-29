@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -31,7 +32,8 @@ public class Deplacement {
     private int numBloc;
 
     /** [FK] Entité */
-    private Long idEntite;
+    @ManyToOne
+    private Entite entite;
     /** Position X de début */
     private int startPosX;
     /** Position Y de début */

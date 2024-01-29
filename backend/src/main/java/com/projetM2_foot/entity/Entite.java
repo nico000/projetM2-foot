@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -18,6 +19,10 @@ public class Entite {
     @Id
     @GeneratedValue
     private Long id;
+
+    /** Scenario auxquel il est rattaché */
+    @ManyToOne
+    private Scenario scenario;
 
     /** Type d'entité :
      * 0 -> ballon /

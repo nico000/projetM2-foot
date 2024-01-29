@@ -6,7 +6,9 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 
 @Getter
@@ -22,6 +24,9 @@ public class Scenario {
     private Long id;
     @NotNull
     private String name;
+
+
+
 
     // **** DESIGN **** //
     /** Visuel du terrain en 3D (par défaut inactif) */

@@ -1,8 +1,8 @@
 package com.projetM2_foot.mapper;
 
-import com.projetM2_foot.dto.request.ScenarioRequestCreate;
-import com.projetM2_foot.dto.response.ScenarioResponseAll;
-import com.projetM2_foot.dto.response.ScenarioResponse;
+import com.projetM2_foot.api.request.ScenarioRequestCreate;
+import com.projetM2_foot.api.response.ScenarioResponseAll;
+import com.projetM2_foot.api.response.ScenarioResponse;
 import com.projetM2_foot.entity.Scenario;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class ScenarioMapper {
 
     public Scenario ToEntity (ScenarioRequestCreate scenarioRequestCreate){
+        /*
         return Scenario.builder()
                 .nom(scenarioRequestCreate.getNom())
                 .mode_scene(scenarioRequestCreate.getMode_scene())
@@ -28,9 +29,12 @@ public class ScenarioMapper {
                 .zone_nb_couloir(scenarioRequestCreate.getZone_nb_couloir())
                 .zone_epaisseur(scenarioRequestCreate.getZone_epaisseur())
                 .build();
+        */
+        return null;
     }
 
     public ScenarioResponse ToDto (Scenario scenario){
+        /*
         return ScenarioResponse.builder()
                 .id(scenario.getId())
                 .nom(scenario.getNom())
@@ -47,6 +51,9 @@ public class ScenarioMapper {
                 .zone_nb_couloir(scenario.getZone_nb_couloir())
                 .zone_epaisseur(scenario.getZone_epaisseur())
                 .build();
+
+         */
+        return null;
     }
 
     public ScenarioResponseAll toGetAll (List<Scenario> scenarioList){

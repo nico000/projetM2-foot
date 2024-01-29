@@ -4,6 +4,7 @@ package com.projetM2_foot.controller;
 
 import com.projetM2_foot.api.request.ScenarioRequestCreate;
 import com.projetM2_foot.api.response.ScenarioResponse;
+import com.projetM2_foot.api.response.ScenarioResponseAll;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.mapper.ScenarioMapper;
 import com.projetM2_foot.service.ScenarioService;
@@ -52,9 +53,17 @@ public class ScenarioController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
-    @GetMapping
-    public ResponseEntity<List<Scenario>> GetScenario (){
+    @GetMapping("/test")
+    public ResponseEntity<List<Scenario>> GetScenario2 (){
         return new ResponseEntity<>(scenarioService.getAllScenario(), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ScenarioResponse>> GetScenario (){
+        final List<Scenario> listScenario =scenarioService.getAllScenario();
+        final ScenarioResponseAll response =scenarioMapper.toGetAll(listScenario);
+
+        return ResponseEntity.ok(response.getScenarioResponseList());
     }
 
 

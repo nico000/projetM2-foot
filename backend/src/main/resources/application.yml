@@ -1,10 +1,17 @@
+
+
 spring:
-  neo4j:
-    uri: bolt://localhost:7687
-data:
-  neo4j:
-    username: neo4j
-    password: secret
+  jpa:
+    database-platform: com.projetM2_foot.config.SQLDialect
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:sqlite:sqlitesample.db
+    driver-class-name: org.sqlite.JDBC
+
+    username: admin
+    password: admin
 
 springdoc:
   api-docs:

@@ -13,48 +13,38 @@ import java.util.stream.Collectors;
 public class ScenarioMapper {
 
     public Scenario ToEntity (ScenarioRequestCreate scenarioRequestCreate){
-        /*
+
         return Scenario.builder()
-                .nom(scenarioRequestCreate.getNom())
-                .mode_scene(scenarioRequestCreate.getMode_scene())
-                .terrain_couleur(scenarioRequestCreate.getTerrain_couleur())
-                .terrain_taille(scenarioRequestCreate.getTerrain_taille())
-                .joueur_nb(scenarioRequestCreate.getJoueur_nb())
-                .feedback_frequence(scenarioRequestCreate.getFeedback_frequence())
-                .feedback_condition(scenarioRequestCreate.getFeedback_condition())
-                .feedback_type(scenarioRequestCreate.getFeedback_type())
-                .zone_use(scenarioRequestCreate.getZone_use())
-                .zone_display(scenarioRequestCreate.getZone_display())
-                .zone_nb_zone(scenarioRequestCreate.getZone_nb_zone())
-                .zone_nb_couloir(scenarioRequestCreate.getZone_nb_couloir())
-                .zone_epaisseur(scenarioRequestCreate.getZone_epaisseur())
+                .name(scenarioRequestCreate.getNom())
+                .modeScene(scenarioRequestCreate.getMode_scene())
+                .groundColor(scenarioRequestCreate.getTerrain_couleur())
+                .groundWidth(Integer.parseInt(scenarioRequestCreate.getTerrain_taille()))
+                .playerNb(scenarioRequestCreate.getJoueur_nb())
+                .displayArea(scenarioRequestCreate.getZone_display())
+                .colonArea(scenarioRequestCreate.getZone_nb_zone())
+                .corridorArea(scenarioRequestCreate.getZone_nb_couloir())
                 .build();
-        */
-        return null;
     }
 
     public ScenarioResponse ToDto (Scenario scenario){
-        /*
+
         return ScenarioResponse.builder()
                 .id(scenario.getId())
-                .nom(scenario.getNom())
-                .mode_scene(scenario.getMode_scene())
-                .terrain_couleur(scenario.getTerrain_couleur())
-                .terrain_taille(scenario.getTerrain_taille())
-                .joueur_nb(scenario.getJoueur_nb())
-                .feedback_frequence(scenario.getFeedback_frequence())
-                .feedback_condition(scenario.getFeedback_condition())
-                .feedback_type(scenario.getFeedback_type())
-                .zone_use(scenario.getZone_use())
-                .zone_display(scenario.getZone_display())
-                .zone_nb_zone(scenario.getZone_nb_zone())
-                .zone_nb_couloir(scenario.getZone_nb_couloir())
-                .zone_epaisseur(scenario.getZone_epaisseur())
+                .nom(scenario.getName())
+                .mode_scene(scenario.getModeScene())
+                .terrain_couleur(scenario.getGroundColor())
+                .terrain_taille(String.valueOf(scenario.getGroundWidth()))
+                .joueur_nb(scenario.getPlayerNb())
+                .zone_use(true)
+                .zone_display(scenario.getDisplayArea())
+                .zone_nb_zone(scenario.getColonArea())
+                .zone_nb_couloir(scenario.getCorridorArea())
+                .zone_epaisseur(2)
                 .build();
 
-         */
-        return null;
     }
+
+
 
     public ScenarioResponseAll toGetAll (List<Scenario> scenarioList){
         final List<ScenarioResponse> dtos = scenarioList.stream()
@@ -64,5 +54,7 @@ public class ScenarioMapper {
                 .scenarioResponseList(dtos)
                 .build();
     }
+
+
 
 }

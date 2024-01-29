@@ -4,11 +4,15 @@ package com.projetM2_foot.controller;
 
 import com.projetM2_foot.api.request.ScenarioRequestCreate;
 import com.projetM2_foot.api.response.ScenarioResponse;
+import com.projetM2_foot.entity.Scenario;
+import com.projetM2_foot.mapper.ScenarioMapper;
+import com.projetM2_foot.service.ScenarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 // lombok.extern.slf4j.Slf4j;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,12 +26,12 @@ import org.springframework.web.bind.annotation.*;
 )
 public class ScenarioController {
 
-    //public final ScenarioMapper scenarioMapper;
-    //public final ScenarioService scenarioService;
+    public final ScenarioMapper scenarioMapper;
+    public final ScenarioService scenarioService;
 
     @GetMapping("/getScenario")
     @Operation(
-            summary = "Récupérer un scénario",
+            summary = "Récupérer un scénario [NON FONCTIONNELLE]",
             description = "Récupère les détails d'un scénario.")
     public String getScenario() {
         log.info("Endpoint appelé : GET /scenario/getScenario");
@@ -41,12 +45,10 @@ public class ScenarioController {
     public ResponseEntity<ScenarioResponse> createScenario (
             @RequestBody ScenarioRequestCreate scenarioRequestCreate){
 
-        //log.info("Creating equipement from {}",scenarioRequestCreate);
-      //  final Scenario scenario = scenarioService.create(scenarioRequestCreate);
-       // final ScenarioResponse dto = scenarioMapper.ToDto(scenario);
+        final Scenario scenario = scenarioService.create(scenarioRequestCreate);
+        final ScenarioResponse dto = scenarioMapper.ToDto(scenario);
 
-    //    return ResponseEntity.status(HttpStatus.CREATED).body(dto);
-        return null;
+        return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
 

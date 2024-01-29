@@ -1,6 +1,8 @@
 
 
 spring:
+
+  profile: dev
   jpa:
     database-platform: com.projetM2_foot.config.SQLDialect
     hibernate:

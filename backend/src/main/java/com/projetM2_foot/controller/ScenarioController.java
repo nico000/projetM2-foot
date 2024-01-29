@@ -61,7 +61,7 @@ public class ScenarioController {
     @GetMapping
     public ResponseEntity<List<ScenarioResponse>> GetScenario (){
         final List<Scenario> listScenario =scenarioService.getAllScenario();
-        final ScenarioResponseAll response =scenarioMapper.toGetAll(listScenario);
+        final ScenarioResponseAll response = scenarioMapper.toGetAll(listScenario);
 
         return ResponseEntity.ok(response.getScenarioResponseList());
     }

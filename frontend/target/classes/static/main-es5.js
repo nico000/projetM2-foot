@@ -71,7 +71,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1 class=\"presentation\">Ajout d'un Scenario</h1>\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\">Action</label>\n            </div><br>\n            <div class=\"titre\">\n                nombre de joueur: <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain: <input type=\"text\" [(ngModel)]=\"_newScenario.terrain_couleur\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\">Grand</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\">Afficher les zones du terrain</label>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Epaisseur:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_epaisseur\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"titre colonne2\" ><!-- terrain -->\n\n        </td>\n    </tr>\n</table>\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" ><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" ><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
+    __webpack_exports__["default"] = "<h1 class=\"presentation\">Ajout d'un Scenario</h1>\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\">Action</label>\n            </div><br>\n            <div class=\"titre\">\n                nombre de joueur: <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain: <input type=\"text\" [(ngModel)]=\"_newScenario.terrain_couleur\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\">Grand</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\">Afficher les zones du terrain</label>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <tr>\n                    <div id=\"deplacableObject\" class=\"draggable\"></div><br><br><br><br><br><br>\n                </tr>\n                <tr *ngFor=\"let couloir of nb_couloir(_newScenario.zone_nb_couloir)\" class=\"couloir\">\n                    <td *ngFor=\"let zone of nb_couloir(_newScenario.zone_nb_zone)\" class=\"zone\">\n\n                    </td>\n                    <!-- Ajoutez d'autres colonnes au besoin -->\n                </tr>\n            </table>\n        </td>\n    </tr>\n</table>\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" ><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" ><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
     /***/
   },
 
@@ -909,7 +909,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".presentation{\n    font-size: 200%;\n    color: white;\n    text-align: center;\n}\n\n.verif{\n    font-size: 150%;\n    color: red;\n    text-align: center;\n}\n\n.titre{\n    font-size: 130%;\n    color: mediumblue;\n    text-align: center;\n}\n\n.round-button {\n    display: inline-block;\n    cursor: pointer;\n    padding: 10px;\n    border: 2px solid white;\n    border-radius: 50px;\n    font-size: 16px;\n    text-align: center;\n    color: white;\n    transition: background-color 0.3s;\n}\n\n.round-button:hover {\n    background-color: #3498db;\n    color: #fff;\n}\n\n.hidden-checkbox {\n    display: none;\n}\n\nnav.menu ul  .boutton{\n    display: inline-block;\n    width: 80%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: green;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:30px;\n    justify-content: center;\n    border: 2px solid white;\n\n}\n\nnav.menu ul li.boutton:hover a{\n    color: lightgreen;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.tableau{\n    padding: 5px;\n    width:100%;\n}\n\n.colonne{\n    width:35%;\n}\n\n.colonne2{\n    width:65%;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGNyZWF0aW9uL2NyZWF0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsWUFBWTtJQUNaLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLGVBQWU7SUFDZixVQUFVO0lBQ1Ysa0JBQWtCO0FBQ3RCOztBQUNBO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsZUFBZTtJQUNmLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLGlDQUFpQztBQUNyQzs7QUFDQTtJQUNJLHlCQUF5QjtJQUN6QixXQUFXO0FBQ2Y7O0FBRUE7SUFDSSxhQUFhO0FBQ2pCOztBQUNBO0lBQ0kscUJBQXFCO0lBQ3JCLFVBQVU7QUFDZDs7QUFDQTtJQUNJLFlBQVk7SUFDWix1QkFBdUI7SUFDdkIscUJBQXFCO0lBQ3JCLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsY0FBYztJQUNkLHVCQUF1QjtJQUN2Qix1QkFBdUI7O0FBRTNCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEI7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osVUFBVTtBQUNkOztBQUNBO0lBQ0ksU0FBUztBQUNiOztBQUNBO0lBQ0ksU0FBUztBQUNiIiwiZmlsZSI6InNyYy9hcHAvQGNyZWF0aW9uL2NyZWF0aW9uLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucHJlc2VudGF0aW9ue1xuICAgIGZvbnQtc2l6ZTogMjAwJTtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4udmVyaWZ7XG4gICAgZm9udC1zaXplOiAxNTAlO1xuICAgIGNvbG9yOiByZWQ7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLnRpdHJle1xuICAgIGZvbnQtc2l6ZTogMTMwJTtcbiAgICBjb2xvcjogbWVkaXVtYmx1ZTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4ucm91bmQtYnV0dG9uIHtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG4gICAgYm9yZGVyLXJhZGl1czogNTBweDtcbiAgICBmb250LXNpemU6IDE2cHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuM3M7XG59XG4ucm91bmQtYnV0dG9uOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzQ5OGRiO1xuICAgIGNvbG9yOiAjZmZmO1xufVxuXG4uaGlkZGVuLWNoZWNrYm94IHtcbiAgICBkaXNwbGF5OiBub25lO1xufVxubmF2Lm1lbnUgdWwgIC5ib3V0dG9ue1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB3aWR0aDogODAlO1xufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbiBhe1xuICAgIGNvbG9yIDpBenVyZTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBncmVlbjtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZm9udC1zaXplOjMwcHg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG5cbn1cbm5hdi5tZW51IHVsIGxpLmJvdXR0b246aG92ZXIgYXtcbiAgICBjb2xvcjogbGlnaHRncmVlbjtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBBenVyZTtcbiAgICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcbn1cbi50YWJsZWF1e1xuICAgIHBhZGRpbmc6IDVweDtcbiAgICB3aWR0aDoxMDAlO1xufVxuLmNvbG9ubmV7XG4gICAgd2lkdGg6MzUlO1xufVxuLmNvbG9ubmUye1xuICAgIHdpZHRoOjY1JTtcbn1cblxuIl19 */";
+    __webpack_exports__["default"] = ".presentation{\n    font-size: 200%;\n    color: white;\n    text-align: center;\n}\n\n.verif{\n    font-size: 150%;\n    color: red;\n    text-align: center;\n}\n\n.titre{\n    font-size: 130%;\n    color: mediumblue;\n    text-align: center;\n}\n\n.round-button {\n    display: inline-block;\n    cursor: pointer;\n    padding: 10px;\n    border: 2px solid white;\n    border-radius: 50px;\n    font-size: 16px;\n    text-align: center;\n    color: white;\n    transition: background-color 0.3s;\n}\n\n.round-button:hover {\n    background-color: #3498db;\n    color: #fff;\n}\n\n.hidden-checkbox {\n    display: none;\n}\n\nnav.menu ul  .boutton{\n    display: inline-block;\n    width: 80%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: green;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:30px;\n    justify-content: center;\n    border: 2px solid white;\n\n}\n\nnav.menu ul li.boutton:hover a{\n    color: lightgreen;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.tableau{\n    padding: 5px;\n    width:100%;\n}\n\n.colonne{\n    width:35%;\n}\n\n.colonne2{\n    width:65%;\n}\n\n/*front*/\n\n.draggable {\n    position: absolute;\n    width: 50px;\n    height: 50px;\n    background-color: #ffeb3b; /* Jaune */\n    border-radius: 50%;\n    cursor: -webkit-grab;\n    cursor: grab;\n}\n\n.couloir{\n    background: green;\n    border: 1px solid black;\n    border-collapse: collapse;\n    height: 70px;\n}\n\n.zone{\n    background: green;\n    border: 1px solid black;\n    border-collapse: collapse;\n    height: 70px;\n}\n\n.tableau_terrain{\n    padding: 5px;\n    width:100%;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGNyZWF0aW9uL2NyZWF0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsWUFBWTtJQUNaLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLGVBQWU7SUFDZixVQUFVO0lBQ1Ysa0JBQWtCO0FBQ3RCOztBQUNBO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsZUFBZTtJQUNmLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLGlDQUFpQztBQUNyQzs7QUFDQTtJQUNJLHlCQUF5QjtJQUN6QixXQUFXO0FBQ2Y7O0FBRUE7SUFDSSxhQUFhO0FBQ2pCOztBQUNBO0lBQ0kscUJBQXFCO0lBQ3JCLFVBQVU7QUFDZDs7QUFDQTtJQUNJLFlBQVk7SUFDWix1QkFBdUI7SUFDdkIscUJBQXFCO0lBQ3JCLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsY0FBYztJQUNkLHVCQUF1QjtJQUN2Qix1QkFBdUI7O0FBRTNCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEI7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osVUFBVTtBQUNkOztBQUNBO0lBQ0ksU0FBUztBQUNiOztBQUNBO0lBQ0ksU0FBUztBQUNiOztBQUNBLFFBQVE7O0FBQ1I7SUFDSSxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFlBQVk7SUFDWix5QkFBeUIsRUFBRSxVQUFVO0lBQ3JDLGtCQUFrQjtJQUNsQixvQkFBWTtJQUFaLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsdUJBQXVCO0lBQ3ZCLHlCQUF5QjtJQUN6QixZQUFZO0FBQ2hCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2Qix5QkFBeUI7SUFDekIsWUFBWTtBQUNoQjs7QUFDQTtJQUNJLFlBQVk7SUFDWixVQUFVO0lBQ1YsdUJBQXVCO0lBQ3ZCLHlCQUF5QjtBQUM3QiIsImZpbGUiOiJzcmMvYXBwL0BjcmVhdGlvbi9jcmVhdGlvbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByZXNlbnRhdGlvbntcbiAgICBmb250LXNpemU6IDIwMCU7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLnZlcmlme1xuICAgIGZvbnQtc2l6ZTogMTUwJTtcbiAgICBjb2xvcjogcmVkO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi50aXRyZXtcbiAgICBmb250LXNpemU6IDEzMCU7XG4gICAgY29sb3I6IG1lZGl1bWJsdWU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLnJvdW5kLWJ1dHRvbiB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIGJvcmRlcjogMnB4IHNvbGlkIHdoaXRlO1xuICAgIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gICAgZm9udC1zaXplOiAxNnB4O1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjNzO1xufVxuLnJvdW5kLWJ1dHRvbjpob3ZlciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzM0OThkYjtcbiAgICBjb2xvcjogI2ZmZjtcbn1cblxuLmhpZGRlbi1jaGVja2JveCB7XG4gICAgZGlzcGxheTogbm9uZTtcbn1cbm5hdi5tZW51IHVsICAuYm91dHRvbntcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgd2lkdGg6IDgwJTtcbn1cbm5hdi5tZW51IHVsIGxpLmJvdXR0b24gYXtcbiAgICBjb2xvciA6QXp1cmU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZvbnQtc2l6ZTozMHB4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGJvcmRlcjogMnB4IHNvbGlkIHdoaXRlO1xuXG59XG5uYXYubWVudSB1bCBsaS5ib3V0dG9uOmhvdmVyIGF7XG4gICAgY29sb3I6IGxpZ2h0Z3JlZW47XG4gICAgYmFja2dyb3VuZC1jb2xvcjogQXp1cmU7XG4gICAgdHJhbnNpdGlvbjogMC41cyBhbGw7XG59XG4udGFibGVhdXtcbiAgICBwYWRkaW5nOiA1cHg7XG4gICAgd2lkdGg6MTAwJTtcbn1cbi5jb2xvbm5le1xuICAgIHdpZHRoOjM1JTtcbn1cbi5jb2xvbm5lMntcbiAgICB3aWR0aDo2NSU7XG59XG4vKmZyb250Ki9cbi5kcmFnZ2FibGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB3aWR0aDogNTBweDtcbiAgICBoZWlnaHQ6IDUwcHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZWIzYjsgLyogSmF1bmUgKi9cbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgY3Vyc29yOiBncmFiO1xufVxuLmNvdWxvaXJ7XG4gICAgYmFja2dyb3VuZDogZ3JlZW47XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbiAgICBoZWlnaHQ6IDcwcHg7XG59XG4uem9uZXtcbiAgICBiYWNrZ3JvdW5kOiBncmVlbjtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICAgIGhlaWdodDogNzBweDtcbn1cbi50YWJsZWF1X3RlcnJhaW57XG4gICAgcGFkZGluZzogNXB4O1xuICAgIHdpZHRoOjEwMCU7XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cblxuIl19 */";
     /***/
   },
 
@@ -971,6 +971,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this._modalService = _modalService;
         this._newScenario = new _beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"]();
         this._addScenarioModalName = "addScenarioModal";
+        this.isDragging = false;
+        this.offsetX = 0;
+        this.offsetY = 0; // Obtenez une référence vers l'élément du DOM
+
+        this.draggableObject = null;
       }
 
       _createClass(CreationComponent, [{
@@ -1023,6 +1028,89 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           } else {
             this._newScenario.zone_display = false;
           }
+        }
+        /*terrain*/
+
+      }, {
+        key: "nb_couloir",
+        value: function nb_couloir(nombreDeCouloirs) {
+          return Array.from({
+            length: nombreDeCouloirs
+          }, function (_, index) {
+            return index + 1;
+          });
+        }
+      }, {
+        key: "ngAfterViewInit",
+        value: function ngAfterViewInit() {
+          // Après l'initialisation de la vue, obtenez une référence vers l'élément du DOM
+          this.draggableObject = document.getElementById('deplacableObject');
+          this.addEventListeners();
+        }
+      }, {
+        key: "addEventListeners",
+        value: function addEventListeners() {
+          var _this2 = this;
+
+          if (this.draggableObject) {
+            this.draggableObject.addEventListener('mousedown', function (e) {
+              return _this2.onMouseDown(e);
+            });
+            document.addEventListener('mousemove', function (e) {
+              return _this2.onMouseMove(e);
+            });
+            document.addEventListener('mouseup', function () {
+              return _this2.onMouseUp();
+            });
+            document.addEventListener('mouseleave', function () {
+              return _this2.onMouseLeave();
+            });
+          }
+        }
+      }, {
+        key: "onMouseDown",
+        value: function onMouseDown(event) {
+          if (this.draggableObject) {
+            this.isDragging = true;
+            this.offsetX = event.clientX - this.draggableObject.getBoundingClientRect().left;
+            this.offsetY = event.clientY - this.draggableObject.getBoundingClientRect().top;
+            this.draggableObject.style.cursor = 'grabbing';
+          }
+        }
+      }, {
+        key: "onMouseMove",
+        value: function onMouseMove(event) {
+          if (this.isDragging && this.draggableObject) {
+            var x = event.clientX - this.offsetX;
+            var y = event.clientY - this.offsetY;
+            this.draggableObject.style.left = "".concat(x, "px");
+            this.draggableObject.style.top = "".concat(y, "px");
+          }
+        }
+      }, {
+        key: "onMouseUp",
+        value: function onMouseUp() {
+          if (this.isDragging && this.draggableObject) {
+            this.isDragging = false;
+            this.draggableObject.style.cursor = 'grab'; // Appeler la fonction add lorsque le déplacement est terminé
+
+            this.add();
+          }
+        }
+      }, {
+        key: "onMouseLeave",
+        value: function onMouseLeave() {
+          if (this.isDragging && this.draggableObject) {
+            this.isDragging = false;
+            this.draggableObject.style.cursor = 'grab';
+          }
+        }
+      }, {
+        key: "add",
+        value: function add() {
+          // Ajoutez ici la logique de votre fonction add
+          // Par exemple, vous pouvez enregistrer les coordonnées finales du jeton ou effectuer d'autres actions.
+          console.log("Objet déplacé. Fonction 'add' appelée.");
         }
       }]);
 
@@ -1346,10 +1434,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(HomeComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this2 = this;
+          var _this3 = this;
 
           this._homeService.getScenarioList().subscribe(function (res) {
-            return _this2._scenarioList = res;
+            return _this3._scenarioList = res;
           });
         }
       }, {
@@ -1373,11 +1461,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "resetFilter",
         value: function resetFilter() {
-          var _this3 = this;
+          var _this4 = this;
 
           this._homeService.getScenarioList().subscribe(function (res) {
-            _this3._scenarioList = res;
-            _this3._isFiltering = false;
+            _this4._scenarioList = res;
+            _this4._isFiltering = false;
           });
         }
       }]);
@@ -1540,7 +1628,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ModalComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this4 = this;
+          var _this5 = this;
 
           // ensure id attribute exists
           if (!this.id) {
@@ -1553,7 +1641,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.element.addEventListener('click', function (el) {
             if (el.target.className === 'jw-modal') {
-              _this4.close();
+              _this5.close();
             }
           }); // add self (this modal instance) to the modal service so it's accessible from controllers
 

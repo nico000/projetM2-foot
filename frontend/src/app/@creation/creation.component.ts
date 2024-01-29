@@ -59,5 +59,72 @@ export class CreationComponent {
         }
     }
 
+    /*terrain*/
+    nb_couloir(nombreDeCouloirs: number): number[] {
+        return Array.from({ length: nombreDeCouloirs }, (_, index) => index + 1);
+    }
 
+    private isDragging = false;
+    private offsetX = 0;
+    private offsetY = 0;
+
+    // Obtenez une référence vers l'élément du DOM
+    private draggableObject: HTMLDivElement | null = null;
+
+    ngAfterViewInit() {
+        // Après l'initialisation de la vue, obtenez une référence vers l'élément du DOM
+        this.draggableObject = document.getElementById('deplacableObject') as HTMLDivElement;
+        this.addEventListeners();
+    }
+
+    private addEventListeners() {
+        if (this.draggableObject) {
+            this.draggableObject.addEventListener('mousedown', (e: MouseEvent) => this.onMouseDown(e));
+            document.addEventListener('mousemove', (e: MouseEvent) => this.onMouseMove(e));
+            document.addEventListener('mouseup', () => this.onMouseUp());
+            document.addEventListener('mouseleave', () => this.onMouseLeave());
+        }
+    }
+
+    private onMouseDown(event: MouseEvent) {
+        if (this.draggableObject) {
+            this.isDragging = true;
+            this.offsetX = event.clientX - this.draggableObject.getBoundingClientRect().left;
+            this.offsetY = event.clientY - this.draggableObject.getBoundingClientRect().top;
+            this.draggableObject.style.cursor = 'grabbing';
+        }
+    }
+
+    private onMouseMove(event: MouseEvent) {
+        if (this.isDragging && this.draggableObject) {
+            const x = event.clientX - this.offsetX;
+            const y = event.clientY - this.offsetY;
+
+            this.draggableObject.style.left = `${x}px`;
+            this.draggableObject.style.top = `${y}px`;
+        }
+    }
+
+    private onMouseUp() {
+        if (this.isDragging && this.draggableObject) {
+            this.isDragging = false;
+            this.draggableObject.style.cursor = 'grab';
+
+            // Appeler la fonction add lorsque le déplacement est terminé
+            this.add();
+        }
+    }
+
+    private onMouseLeave() {
+        if (this.isDragging && this.draggableObject) {
+            this.isDragging = false;
+            this.draggableObject.style.cursor = 'grab';
+        }
+    }
+
+    private add() {
+        // Ajoutez ici la logique de votre fonction add
+        // Par exemple, vous pouvez enregistrer les coordonnées finales du jeton ou effectuer d'autres actions.
+        console.log("Objet déplacé. Fonction 'add' appelée.");
+    }
 }

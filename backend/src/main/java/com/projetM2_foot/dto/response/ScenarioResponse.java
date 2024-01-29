@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class ScenarioResponse {
-    private long id;
+    private Long id;
     private String nom;
     private String mode_scene;
     private String terrain_couleur;

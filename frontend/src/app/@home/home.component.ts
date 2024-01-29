@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {Scenario} from "../@creation/beans/Scenario";
 import {HomeService} from "./home.service";
 import {ModalService} from "../@modal/modal.service";
+import {ScenarioList} from "./beans/ScenarioList";
 
 
 @Component({
@@ -23,7 +24,8 @@ export class HomeComponent {
 
     ngOnInit(): void{
         this._homeService.getScenarioList().subscribe(
-            res => this._scenarioList = res
+            res  =>
+                this._scenarioList = res
         )
     }
 

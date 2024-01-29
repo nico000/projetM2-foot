@@ -20,6 +20,7 @@ public class ScenarioService {
 
     public Scenario create (ScenarioRequestCreate scenarioRequestCreate){
         final Scenario scenario = scenarioMapper.ToEntity(scenarioRequestCreate);
+
         return scenarioRepository.save(scenario);
     }
 

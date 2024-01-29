@@ -1,2 +1,50 @@
 <h1 class="presentation">Liste des scénario : </h1>
+<nav class="menu">
+    <ul>
+        <li  class="boutton" >
+            <a *ngIf="_isFiltering == true" (click)="resetFilter()">Annuler les filtres</a>
+        </li>
+        <li  class="boutton" >
+            <a *ngIf="_isFiltering == false" (click)="_isFiltering = true">Filtrer</a>
+        </li>
+    </ul>
+</nav>
 
+
+
+<table class="tableau">
+    <tr>
+        <td class="titre colonne" (click)="orderBy('nom')">
+            Nom
+            <div *ngIf="_isFiltering == true"><input class="contient" type="text" #titreFilter placeholder="Contient..."/>
+            <button (click)="filterBy('nom', titreFilter.value)"><span>&#10003;</span></button></div>
+        </td>
+        <td class="titre colonne" (click)="orderBy('joueur_nb')">
+            Nombre de joueur
+            <div *ngIf="_isFiltering == true"><input class="contient" type="text" #titreFilter placeholder="Contient..."/>
+                <button (click)="filterBy('joueur_nb', titreFilter.value)"><span>&#10003;</span></button></div>
+        </td>
+        <td class="titre colonne" (click)="orderBy('nom')">
+            Nombre de deplacement
+            <div *ngIf="_isFiltering == true"><input class="contient" type="text" #titreFilter placeholder="Contient..."/>
+                <button (click)="filterBy('nom', titreFilter.value)"><span>&#10003;</span></button></div>
+        </td>
+        <td class="titre colonne2">
+            Bouton
+        </td>
+    </tr>
+    <tr *ngFor="let scenario of _scenarioList" (play)="orderBy('nom')" >
+        <td class="colonne ecriture">
+            {{scenario.nom}}
+        </td>
+        <td class="colonne ecriture">
+            {{scenario.joueur_nb}}
+        </td>
+        <td class="colonne ecriture">
+            <p>Undif</p>
+        </td>
+        <td class="colonne ecriture">
+            <p>Undif</p>
+        </td>
+    </tr>
+</table>

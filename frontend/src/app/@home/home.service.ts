@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Scenario} from "../@creation/beans/Scenario";
 import {Observable} from "rxjs";
+import {ScenarioList} from "./beans/ScenarioList";
 
 
 @Injectable()

@@ -38,7 +38,27 @@ export class CreationComponent {
         this._newScenario = new Scenario();
     }
 
+    updateModeScenario (nom: string){
+        this._newScenario.mode_scene=nom;
+    }
 
+    updateterrainScenario (nom: string){
+        this._newScenario.terrain_taille=nom;
+    }
+    updateUseZone (nom: string){
+        if (nom=='true'){
+            this._newScenario.zone_use=true;
+        }else{
+            this._newScenario.zone_use=false;
+        }
+    }
+    updateAfficheZone (nom: string){
+        if (nom=='true'){
+            this._newScenario.zone_display=true;
+        }else{
+            this._newScenario.zone_display=false;
+        }
+    }
 
 
 }

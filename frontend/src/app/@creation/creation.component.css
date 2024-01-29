@@ -10,7 +10,7 @@
     text-align: center;
 }
 .titre{
-    font-size: 150%;
+    font-size: 130%;
     color: mediumblue;
     text-align: center;
 }
@@ -35,20 +35,32 @@
 }
 nav.menu ul  .boutton{
     display: inline-block;
-
-    width: 33%;
+    width: 80%;
 }
 nav.menu ul li.boutton a{
     color :Azure;
-    background-color: mediumblue;
+    background-color: green;
     text-decoration: none;
     text-align:center ;
     display: flex;
-    font-size:35px;
+    font-size:30px;
     justify-content: center;
+    border: 2px solid white;
+
 }
 nav.menu ul li.boutton:hover a{
-    color: mediumblue;
+    color: lightgreen;
     background-color: Azure;
     transition: 0.5s all;
 }
+.tableau{
+    padding: 5px;
+    width:100%;
+}
+.colonne{
+    width:35%;
+}
+.colonne2{
+    width:65%;
+}
+

@@ -41,7 +41,7 @@ nav.menu ul  .boutton{
 }
 nav.menu ul li.boutton a{
   color :Azure;
-  background-color: mediumblue;
+  background-color: green;
   text-decoration: none;
   text-align: center;
   display: flex;
@@ -49,9 +49,13 @@ nav.menu ul li.boutton a{
   justify-content: center;
 }
 nav.menu ul li.boutton:hover a{
-  color: mediumblue;
+  color: green;
   background-color: Azure;
   transition: 0.5s all;
+}
+nav.menu ul {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
 }
 
 

@@ -20,7 +20,6 @@ export class CreationComponent {
                 private _modalService: ModalService) {}
 
     addScenario(modal: string):void {
-        this._newScenario.joueur_nb=0.0;
         this._creationService.addScenario(this._newScenario).subscribe(
             res => {
                 this._scenarioList.push(res);

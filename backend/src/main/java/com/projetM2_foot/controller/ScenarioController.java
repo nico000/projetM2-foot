@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/scenario")
 @Slf4j
@@ -50,6 +52,11 @@ public class ScenarioController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
+    @GetMapping
+    public ResponseEntity<List<Scenario>> GetScenario (){
+        return new ResponseEntity<>(scenarioService.getAllScenario(), HttpStatus.OK);
+    }
+
 
 
 

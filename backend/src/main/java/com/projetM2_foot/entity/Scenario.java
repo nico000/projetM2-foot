@@ -36,7 +36,7 @@ public class Scenario {
     /** Couleur du terrain (par défaut vert) */
     private String groundColor = "#00FF00";
     /** Taille du terrains (par défaut grand) */
-    private int groundWidth = 1;
+    private String groundWidth;
 
     // **** JOUEUR **** //
     /** Nombre du joueur dans le scénario (par défaut 0) */

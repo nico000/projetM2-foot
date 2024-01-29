@@ -9,3 +9,46 @@
     color: red;
     text-align: center;
 }
+.titre{
+    font-size: 150%;
+    color: mediumblue;
+    text-align: center;
+}
+.round-button {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 50px;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    transition: background-color 0.3s;
+}
+.round-button:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.hidden-checkbox {
+    display: none;
+}
+nav.menu ul  .boutton{
+    display: inline-block;
+
+    width: 33%;
+}
+nav.menu ul li.boutton a{
+    color :Azure;
+    background-color: mediumblue;
+    text-decoration: none;
+    text-align:center ;
+    display: flex;
+    font-size:35px;
+    justify-content: center;
+}
+nav.menu ul li.boutton:hover a{
+    color: mediumblue;
+    background-color: Azure;
+    transition: 0.5s all;
+}

@@ -1,27 +1,29 @@
 nav.menu ul  .boutton{
     display: inline-block;
 
-    width: 33%;
+    width: 25%;
 }
-
 nav.menu ul li.boutton a{
     color :Azure;
-    background-color: firebrick;
+    background-color: green;
     text-decoration: none;
     text-align:center ;
     display: flex;
     font-size:35px;
     justify-content: center;
+    border: 1px solid white;
 }
-
 nav.menu ul li.boutton:hover a{
-    color: firebrick	;
+    color: green	;
     background-color: Azure;
     transition: 0.5s all;
 }
+
 .fond {
-    background: firebrick;
+    background: limegreen;
     text-align:center ;
+    font-size: 35px;
+    color: white;
 }
 
 

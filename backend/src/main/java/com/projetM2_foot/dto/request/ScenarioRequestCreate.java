@@ -12,10 +12,6 @@ public class ScenarioRequestCreate {
     private String terrain_taille;
     private int joueur_nb;
 
-    //feedBack
-    private int feedback_frequence;
-    private int feedback_condition;
-    private String feedback_type;
 
     //zone
     private Boolean zone_use;

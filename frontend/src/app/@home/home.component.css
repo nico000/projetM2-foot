@@ -1,17 +1,57 @@
-.titre{
-  font-size: 180%;
-  color: blue;
+
+.presentation{
+  font-size: 200%;
+  color: white;
   text-align: center;
 }
+.tableau{
+  padding: 5px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  width:100%;
+}
+
+.colonne{
+  width:10%;
+}
+.colonne2{
+  width:30%;
+}
+
+.titre{
+  font-size: 150%;
+  color: mediumblue;
+  text-align: center;
+}
+
 .ecriture{
   font-size: 120%;
   text-align: center;
-  color: white;
 }
-.presentation{
-  font-size: 150%;
-  text-indent: 10px;
-  color: aqua;
+
+.contient{
+  font-size: 50%;
+  width: 50%;
+}
+nav.menu ul  .boutton{
+  display: inline-block;
+  text-align:center ;
+  width: 20%;
+  margin: auto;
+}
+nav.menu ul li.boutton a{
+  color :Azure;
+  background-color: mediumblue;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  font-size:35px;
+  justify-content: center;
+}
+nav.menu ul li.boutton:hover a{
+  color: mediumblue;
+  background-color: Azure;
+  transition: 0.5s all;
 }
 
 

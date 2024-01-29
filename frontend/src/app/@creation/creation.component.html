@@ -1,23 +1,66 @@
 <h1 class="presentation">Ajout d'un Scenario</h1>
 
-nom: <input type="text" [(ngModel)]="_newScenario.nom"/><br>
-mode_scene: <input type="text" [(ngModel)]="_newScenario.mode_scene"/><br>
-terrain_couleur: <input type="text" [(ngModel)]="_newScenario.terrain_couleur"/><br>
-terrain_taille: <input type="text" [(ngModel)]="_newScenario.terrain_taille"/><br>
-feedback_frequence: <input type="text" [(ngModel)]="_newScenario.feedback_frequence"/><br>
-feedback_condition: <input type="text" [(ngModel)]="_newScenario.feedback_condition"/><br>
-feedback_type: <input type="text" [(ngModel)]="_newScenario.feedback_type"/><br>
-zone_use: <input type="text" [(ngModel)]="_newScenario.zone_use"/><br>
-zone_display: <input type="text" [(ngModel)]="_newScenario.zone_display"/><br>
-zone_nb_zone: <input type="text" [(ngModel)]="_newScenario.zone_nb_zone"/><br>
-zone_nb_couloir: <input type="text" [(ngModel)]="_newScenario.zone_nb_couloir"/><br>
-zone_epaisseur: <input type="text" [(ngModel)]="_newScenario.zone_epaisseur"/><br>
+<div class="titre">
+    nom:
+    <input type="text" [(ngModel)]="_newScenario.nom"/>
+</div><br>
+<div class="titre">
+    mode_scene:
+    <input type="checkbox" id="scene" class="hidden-checkbox" (click)="updateModeScenario('scene')">
+    <label for="scene" class="round-button">Scene</label>
 
+    <input type="checkbox" id="action" class="hidden-checkbox" (click)="updateModeScenario('action')">
+    <label for="action" class="round-button">Action</label>
+</div><br>
 
-<button  (click)="openModal(_addScenarioModalName)">valider</button>
+<div class="titre">
+    couleur du terrain: <input type="text" [(ngModel)]="_newScenario.terrain_couleur"/><br>
+</div><br>
+
+<div class="titre">
+    taille du terrain:
+    <input type="checkbox" id="moyen" class="hidden-checkbox" (click)="updateterrainScenario('moyen')">
+    <label for="moyen" class="round-button">Moyen</label>
+
+    <input type="checkbox" id="grand" class="hidden-checkbox" (click)="updateterrainScenario('grand')">
+    <label for="grand" class="round-button">Grand</label>
+</div><br>
+
+<div class="titre">
+    <input type="checkbox" id="_useT" class="hidden-checkbox" (click)="updateUseZone('true')">
+    <label for="_useT" class="round-button">utiliser les zone</label>
+</div><br>
+
+<div class="titre">
+    <input type="checkbox" id="AZone" class="hidden-checkbox" (click)="updateAfficheZone('true')">
+    <label for="AZone" class="round-button">Afficher les zones du terrain</label>
+</div><br>
+
+<div class="titre">
+    Nombre de zone:
+     <input type="text" [(ngModel)]="_newScenario.zone_nb_zone"/><br>
+</div><br>
+<div class="titre">
+    Nombre de couloir:
+    <input type="text" [(ngModel)]="_newScenario.zone_nb_couloir"/><br>
+</div><br>
+<div class="titre">
+    Epaisseur:
+    <input type="text" [(ngModel)]="_newScenario.zone_epaisseur"/><br>
+</div><br>
+
+<nav class="menu">
+    <ul>
+        <li class="boutton" ><a (click)="openModal(_addScenarioModalName)">valider</a></li>
+    </ul>
+</nav>
 
 <jw-modal id="{{_addScenarioModalName}}" >
     <p class="verif">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>
-    <button  (click)="addScenario(_addScenarioModalName)">oui</button>
-    <button  (click)="resetData(_addScenarioModalName);">non</button>
+    <nav class="menu">
+        <ul>
+            <li class="boutton" ><a  (click)="addScenario(_addScenarioModalName)">oui</a></li>
+            <li class="boutton" ><a  (click)="resetData(_addScenarioModalName);">non</a></li>
+        </ul>
+    </nav>
 </jw-modal>

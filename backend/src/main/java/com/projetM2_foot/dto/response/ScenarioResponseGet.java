@@ -8,10 +8,6 @@ public class ScenarioResponseGet {
     private String terrain_taille;
 
 
-    //feedBack
-    private int feedback_frequence;
-    private int feedback_condition;
-    private String feedback_type;
 
     //zone
     private Boolean zone_use;

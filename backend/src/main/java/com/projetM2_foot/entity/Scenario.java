@@ -1,10 +1,12 @@
 package com.projetM2_foot.entity;
 
 import lombok.*;
+import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,7 +17,8 @@ import java.util.List;
 public class Scenario {
 
     @Id
-    private long id;
+    @GeneratedValue
+    private Long id;
     private String nom;
 
     /** action par action scene par scene */
@@ -27,11 +30,6 @@ public class Scenario {
     private int joueur_nb;
     //private String joueur_icon;
 
-    //feedBack
-    private int feedback_frequence;
-    /** Nombre de visionnage (kr ,krr) */
-    private int feedback_condition;
-    private String feedback_type;
 
     //zone
     private Boolean zone_use;

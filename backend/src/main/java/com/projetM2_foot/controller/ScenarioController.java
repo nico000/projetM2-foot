@@ -39,18 +39,23 @@ public class ScenarioController {
 
     @PostMapping
     public ResponseEntity<ScenarioResponse> createScenario (@RequestBody ScenarioRequestCreate scenarioRequestCreate){
-        //log.info("Creating equipement from {}",scenarioRequestCreate);
         final Scenario scenario = scenarioService.create(scenarioRequestCreate);
         final ScenarioResponse dto = scenarioMapper.ToDto(scenario);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
-    @GetMapping
+    @GetMapping(value = "/test")
     public ResponseEntity<ScenarioResponseAll> getAllScenario(){
         final List<Scenario> scenarioList = scenarioService.getAllScenario();
         final ScenarioResponseAll reponse =scenarioMapper.toGetAll(scenarioList);
 
         return ResponseEntity.ok(reponse);
     }
+
+    @GetMapping
+    public ResponseEntity<List<Scenario>> getAllScenario2(){
+        return new ResponseEntity<>(scenarioService.getAllScenario(), HttpStatus.OK);
+    }
+
 }

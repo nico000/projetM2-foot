@@ -4,6 +4,7 @@ import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.repository.ScenarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class ScenarioService {
         return scenarioRepository.findById(id).orElse(null);
     }
 
+    @Transactional
     public void deleteScenario(Long id){
         // Effacer les entités lié au scénario
         entiteService.deleteByScenario(id);

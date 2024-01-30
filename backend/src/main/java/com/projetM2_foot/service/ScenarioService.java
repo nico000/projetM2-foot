@@ -8,7 +8,6 @@ import com.projetM2_foot.repository.ScenarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,9 +17,8 @@ public class ScenarioService {
     private final ScenarioMapper scenarioMapper;
     private final ScenarioRepository scenarioRepository;
 
-    public Scenario create (ScenarioRequestCreate scenarioRequestCreate){
-        final Scenario scenario = scenarioMapper.ToEntity(scenarioRequestCreate);
-
+    public Scenario create(ScenarioRequestCreate request){
+        final Scenario scenario = scenarioMapper.toEntity(request);
         return scenarioRepository.save(scenario);
     }
 

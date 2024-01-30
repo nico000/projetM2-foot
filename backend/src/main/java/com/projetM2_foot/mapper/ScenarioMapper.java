@@ -1,7 +1,6 @@
 package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.ScenarioRequestCreate;
-import com.projetM2_foot.api.response.ScenarioResponseAll;
 import com.projetM2_foot.api.response.ScenarioResponse;
 import com.projetM2_foot.entity.Scenario;
 import org.springframework.stereotype.Component;
@@ -12,7 +11,7 @@ import java.util.stream.Collectors;
 @Component
 public class ScenarioMapper {
 
-    public Scenario ToEntity (ScenarioRequestCreate scenarioRequestCreate){
+    public Scenario toEntity (ScenarioRequestCreate scenarioRequestCreate){
 
         return Scenario.builder()
                 .name(scenarioRequestCreate.getNom())
@@ -26,7 +25,7 @@ public class ScenarioMapper {
                 .build();
     }
 
-    public ScenarioResponse ToDto (Scenario scenario){
+    public ScenarioResponse toDto (Scenario scenario){
 
         return ScenarioResponse.builder()
                 .id(scenario.getId())
@@ -46,13 +45,11 @@ public class ScenarioMapper {
 
 
 
-    public ScenarioResponseAll toGetAll (List<Scenario> scenarioList){
-        final List<ScenarioResponse> dtos = scenarioList.stream()
-                .map(this::ToDto)
+    public List<ScenarioResponse> toGetAll (List<Scenario> scenarioList){
+
+        return scenarioList.stream()
+                .map(this::toDto)
                 .collect(Collectors.toList());
-        return ScenarioResponseAll.builder()
-                .scenarioResponseList(dtos)
-                .build();
     }
 
 

@@ -4,7 +4,6 @@ package com.projetM2_foot.controller;
 
 import com.projetM2_foot.api.request.ScenarioRequestCreate;
 import com.projetM2_foot.api.response.ScenarioResponse;
-import com.projetM2_foot.api.response.ScenarioResponseAll;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.mapper.ScenarioMapper;
 import com.projetM2_foot.service.ScenarioService;
@@ -49,24 +48,19 @@ public class ScenarioController {
             @RequestBody ScenarioRequestCreate scenarioRequestCreate){
 
         final Scenario scenario = scenarioService.create(scenarioRequestCreate);
-        final ScenarioResponse dto = scenarioMapper.ToDto(scenario);
-
+        final ScenarioResponse dto = scenarioMapper.toDto(scenario);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
-    @GetMapping("/test")
-    public ResponseEntity<List<Scenario>> GetScenario2 (){
-        return new ResponseEntity<>(scenarioService.getAllScenario(), HttpStatus.OK);
-    }
+
 
     @GetMapping
-    public ResponseEntity<List<ScenarioResponse>> GetScenario (){
-        final List<Scenario> listScenario =scenarioService.getAllScenario();
-        final ScenarioResponseAll response =scenarioMapper.toGetAll(listScenario);
-
-        return ResponseEntity.ok(response.getScenarioResponseList());
+    @Operation(
+            summary = "Lire les scénarios",
+            description = "Récupère les scénarios")
+    public ResponseEntity<List<ScenarioResponse>> GetScenarioAll (){
+        final List<Scenario> listScenario = scenarioService.getAllScenario();
+        final List<ScenarioResponse> response = scenarioMapper.toGetAll(listScenario);
+        return ResponseEntity.ok(response);
     }
-
-
-
 
 }

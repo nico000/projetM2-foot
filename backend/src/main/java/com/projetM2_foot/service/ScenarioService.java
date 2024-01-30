@@ -13,12 +13,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ScenarioService {
 
-    private final ScenarioMapper scenarioMapper;
     private final ScenarioRepository scenarioRepository;
 
     /**
      * Créer un scénario
-     * @param entity
+     * @param entity Entité qui doit-être créer
      * @return L'entité nouvellement créer dans la BDD
      */
     public Scenario create(Scenario entity){

@@ -1,6 +1,7 @@
 package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.ScenarioRequestCreate;
+import com.projetM2_foot.api.request.ScenarioRequestUpdate;
 import com.projetM2_foot.api.response.ScenarioResponse;
 import com.projetM2_foot.entity.Scenario;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,21 @@ public class ScenarioMapper {
                 .displayArea(scenarioRequestCreate.getZone_display())
                 .colonArea(scenarioRequestCreate.getZone_nb_zone())
                 .corridorArea(scenarioRequestCreate.getZone_nb_couloir())
+                .build();
+    }
+
+    public Scenario toEntity (ScenarioRequestUpdate request){
+
+        return Scenario.builder()
+                .id(request.getId())
+                .name(request.getNom())
+                .modeScene(request.getMode_scene())
+                .groundColor(request.getTerrain_couleur())
+                .groundWidth(request.getTerrain_taille())
+                .playerNb(request.getJoueur_nb())
+                .displayArea(request.getZone_display())
+                .colonArea(request.getZone_nb_zone())
+                .corridorArea(request.getZone_nb_couloir())
                 .build();
     }
 

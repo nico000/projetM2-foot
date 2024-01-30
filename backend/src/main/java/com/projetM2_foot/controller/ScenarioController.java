@@ -3,11 +3,13 @@ package com.projetM2_foot.controller;
 
 
 import com.projetM2_foot.api.request.ScenarioRequestCreate;
+import com.projetM2_foot.api.request.ScenarioRequestUpdate;
 import com.projetM2_foot.api.response.ScenarioResponse;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.mapper.ScenarioMapper;
 import com.projetM2_foot.service.ScenarioService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 // lombok.extern.slf4j.Slf4j;
@@ -31,24 +33,19 @@ public class ScenarioController {
     public final ScenarioMapper scenarioMapper;
     public final ScenarioService scenarioService;
 
-    @GetMapping("/getScenario")
-    @Operation(
-            summary = "Récupérer un scénario [NON FONCTIONNELLE]",
-            description = "Récupère les détails d'un scénario.")
-    public String getScenario() {
-        log.info("Endpoint appelé : GET /scenario/getScenario");
-        return "Détails du scénario";
-    }
+
 
     @PostMapping
     @Operation(
             summary = "Créer un scénario",
             description = "Créer une situation simple à partir des informations donné")
     public ResponseEntity<ScenarioResponse> createScenario (
-            @RequestBody ScenarioRequestCreate scenarioRequestCreate){
+            @RequestBody ScenarioRequestCreate request){
 
-        final Scenario scenario = scenarioService.create(scenarioRequestCreate);
-        final ScenarioResponse dto = scenarioMapper.toDto(scenario);
+        log.info("Endpoint appelé : POST /scenario/");
+        final Scenario scenario = scenarioMapper.toEntity(request);
+        final Scenario new_scenario = scenarioService.create(scenario);
+        final ScenarioResponse dto = scenarioMapper.toDto(new_scenario);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
@@ -57,10 +54,44 @@ public class ScenarioController {
     @Operation(
             summary = "Lire les scénarios",
             description = "Récupère les scénarios")
-    public ResponseEntity<List<ScenarioResponse>> GetScenarioAll (){
+    public ResponseEntity<List<ScenarioResponse>> getScenarioAll (){
+
+        log.info("Endpoint appelé : GET /scenario/");
         final List<Scenario> listScenario = scenarioService.getAllScenario();
         final List<ScenarioResponse> response = scenarioMapper.toGetAll(listScenario);
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{scenarioId}")
+    @Operation(
+            summary = "Supprime un scénario",
+            description = "Supprime un scénario de la base de donnée par un id de scénario")
+    public ResponseEntity<?> deleteScenario (
+            @Parameter(description = "Id du scénario", example = "12")
+            @PathVariable
+            Long scenarioId
+    ){
+
+        log.info("Endpoint appelé : DELETE /scenario/" + scenarioId);
+        scenarioService.deleteScenario(scenarioId);
+        return ResponseEntity.ok().build();
+    }
+
+
+    @PutMapping
+    @Operation(
+            summary = "Modifie un scénario",
+            description = "Modifie les informations de la base de donnée par un id de scénario")
+    public ResponseEntity<ScenarioResponse> updateScenario (
+            @RequestBody ScenarioRequestUpdate request
+            ){
+
+        log.info("Endpoint appelé : UPDATE /scenario/");
+
+        Scenario scenario = scenarioMapper.toEntity(request);
+        scenario  = scenarioService.updateScenario(scenario);
+        ScenarioResponse dto = scenarioMapper.toDto(scenario);
+        return ResponseEntity.ok(dto);
     }
 
 }

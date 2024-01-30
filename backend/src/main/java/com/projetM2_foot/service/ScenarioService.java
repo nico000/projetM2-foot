@@ -1,6 +1,5 @@
 package com.projetM2_foot.service;
 
-import com.projetM2_foot.api.request.ScenarioRequestCreate;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.mapper.ScenarioMapper;
 //import com.projetM2_foot.repository.ScenarioRepository;
@@ -17,18 +16,29 @@ public class ScenarioService {
     private final ScenarioMapper scenarioMapper;
     private final ScenarioRepository scenarioRepository;
 
-    public Scenario create(ScenarioRequestCreate request){
-        final Scenario scenario = scenarioMapper.toEntity(request);
-        return scenarioRepository.save(scenario);
+    /**
+     * Créer un scénario
+     * @param entity
+     * @return L'entité nouvellement créer dans la BDD
+     */
+    public Scenario create(Scenario entity){
+        return scenarioRepository.save(entity);
     }
 
     public List<Scenario> getAllScenario(){
         return scenarioRepository.findAll();
     }
 
-
     public Scenario getScenario(Long id){
         return scenarioRepository.findById(id).orElse(null);
+    }
+
+    public void deleteScenario(Long id){
+        scenarioRepository.deleteById(id);
+    }
+
+    public Scenario updateScenario(Scenario entity){
+        return scenarioRepository.save(entity);
     }
 
 }

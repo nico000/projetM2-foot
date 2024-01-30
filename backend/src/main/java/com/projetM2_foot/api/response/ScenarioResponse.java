@@ -19,4 +19,32 @@ public class ScenarioResponse {
     private int zone_nb_zone;
     private int zone_nb_couloir;
     private int zone_epaisseur;
+
+
+    // List de déplacement
+    /*
+    deplacements:
+        nb_total_dep,
+        [
+            1 : {
+                nom
+                pos
+                entité {
+                    numero
+                    pos
+                }
+                ..
+            } ,
+            2 : {
+                nom
+                pos
+                entité {
+                    numero
+                    pos
+                }
+                ...
+            }
+        ]
+
+     */
 }

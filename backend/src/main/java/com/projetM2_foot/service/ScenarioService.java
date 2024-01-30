@@ -1,7 +1,6 @@
 package com.projetM2_foot.service;
 
 import com.projetM2_foot.entity.Scenario;
-import com.projetM2_foot.mapper.ScenarioMapper;
 //import com.projetM2_foot.repository.ScenarioRepository;
 import com.projetM2_foot.repository.ScenarioRepository;
 import lombok.RequiredArgsConstructor;

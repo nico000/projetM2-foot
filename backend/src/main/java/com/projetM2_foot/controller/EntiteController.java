@@ -8,6 +8,7 @@ import com.projetM2_foot.entity.Entite;
 import com.projetM2_foot.mapper.EntiteMapper;
 import com.projetM2_foot.service.EntiteService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -17,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/entite")
@@ -55,13 +58,30 @@ public class EntiteController {
     public ResponseEntity<EntiteResponse> createEntite (
             @RequestBody EntiteRequestCreate request){
 
-        log.info("Requête création d'une entité:  {}",request);
+        log.info("Endpoint appelé : POST /entite/");
 
         final Entite entite = entiteMapper.toEntity(request);
         final Entite new_entite =  entiteService.create(entite);
         final EntiteResponse dto = entiteMapper.toDto(new_entite);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+    }
+
+
+    @GetMapping("/{scenarioId}")
+    @Operation(
+            summary = "Récupère plusieurs entités",
+            description = "Récupère les entités lié à un scénario")
+    public ResponseEntity<List<EntiteResponse>> getEntiteByScenario (
+            @Parameter(description = "Id du scénario", example = "12")
+            @PathVariable
+            Long scenarioId){
+
+        log.info("Endpoint appelé : GET /entite/" + scenarioId);
+
+        final List<Entite> listEntite =  entiteService.getByScenario(scenarioId);
+        final List<EntiteResponse> dtos = entiteMapper.toDtoAll(listEntite);
+        return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
 

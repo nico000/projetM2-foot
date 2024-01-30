@@ -2,11 +2,15 @@ package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.EntiteRequestCreate;
 import com.projetM2_foot.api.response.EntiteResponse;
+import com.projetM2_foot.api.response.ScenarioResponse;
 import com.projetM2_foot.entity.Entite;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.service.ScenarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -45,6 +49,12 @@ public class EntiteMapper {
                 .x(scenario.getInitialPosX())
                 .y(scenario.getInitialPosY())
                 .build();
+    }
+
+    public List<EntiteResponse> toDtoAll (List<Entite> listEntity){
+        return listEntity.stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
 }

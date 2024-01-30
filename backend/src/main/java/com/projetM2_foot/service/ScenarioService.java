@@ -12,6 +12,7 @@ import java.util.List;
 public class ScenarioService {
 
     private final ScenarioRepository scenarioRepository;
+    private final EntiteService entiteService;
 
     /**
      * Créer un scénario
@@ -31,6 +32,9 @@ public class ScenarioService {
     }
 
     public void deleteScenario(Long id){
+        // Effacer les entités lié au scénario
+        entiteService.deleteByScenario(id);
+
         scenarioRepository.deleteById(id);
     }
 

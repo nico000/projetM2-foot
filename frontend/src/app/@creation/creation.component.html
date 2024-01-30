@@ -60,8 +60,18 @@
         </td>
 
 
-        <td class="titre colonne2" ><!-- terrain -->
-            
+        <td class="colonne2" ><!-- terrain -->
+            <table class="tableau_terrain">
+                <tr>
+                    <div id="deplacableObject" class="draggable"></div><br><br><br><br><br><br>
+                </tr>
+                <tr *ngFor="let couloir of nb_couloir(_newScenario.zone_nb_couloir)" class="couloir">
+                    <td *ngFor="let zone of nb_couloir(_newScenario.zone_nb_zone)" class="zone">
+
+                    </td>
+                    <!-- Ajoutez d'autres colonnes au besoin -->
+                </tr>
+            </table>
         </td>
     </tr>
 </table>

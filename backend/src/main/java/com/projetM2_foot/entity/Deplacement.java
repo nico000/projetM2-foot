@@ -31,6 +31,10 @@ public class Deplacement {
     @NotNull
     private int numBloc;
 
+    /** [FK] Scenario */
+    @ManyToOne
+    private Scenario scenario;
+
     /** [FK] Entité */
     @ManyToOne
     private Entite entite;

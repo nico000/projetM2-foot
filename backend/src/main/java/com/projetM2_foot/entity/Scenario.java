@@ -25,9 +25,6 @@ public class Scenario {
     @NotNull
     private String name;
 
-
-
-
     // **** DESIGN **** //
     /** Visuel du terrain en 3D (par défaut inactif) */
     private Boolean threeDim = false;

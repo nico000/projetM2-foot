@@ -24,6 +24,10 @@ public class EntiteService {
         return entiteRepository.findByScenarioIdOrderByNumero(id);
     }
 
+    public Entite getEntite(Long id){
+        return entiteRepository.findById(id).orElse(null);
+    }
+
     public void deleteById(Long id){
         entiteRepository.deleteById(id);
     }

@@ -3,6 +3,7 @@ package com.projetM2_foot.controller;
 
 import com.projetM2_foot.api.dto.EntiteDto;
 import com.projetM2_foot.api.request.EntiteRequestCreate;
+import com.projetM2_foot.api.request.EntiteRequestUpdate;
 import com.projetM2_foot.api.response.EntiteResponse;
 import com.projetM2_foot.entity.Entite;
 import com.projetM2_foot.mapper.EntiteMapper;
@@ -67,7 +68,6 @@ public class EntiteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
-
     @GetMapping("/{scenarioId}")
     @Operation(
             summary = "Récupère plusieurs entités",
@@ -84,6 +84,34 @@ public class EntiteController {
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
+    @DeleteMapping("/{entiteId}")
+    @Operation(
+            summary = "Supprime une entité",
+            description = "Supprime de la base de donnée un entité en fonction de son id")
+    public ResponseEntity<?> deleteEntiteById (
+            @Parameter(description = "Id de l'entité", example = "12")
+            @PathVariable
+            Long entiteId){
 
+        log.info("Endpoint appelé : DELETE /entite/" + entiteId);
+
+        entiteService.deleteById(entiteId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PutMapping
+    @Operation(
+            summary = "Modifie une entité",
+            description = "Modifie une entité existante de la base de donnée en une nouvelle entité en fonction du body")
+    public ResponseEntity<?> deleteEntiteById (
+            @RequestBody EntiteRequestUpdate request){
+
+        log.info("Endpoint appelé : UPDATE /entite/");
+
+        final Entite entity = entiteMapper.toEntity(request);
+        final Entite new_entity = entiteService.updateEntite(entity);
+        final EntiteResponse dto = entiteMapper.toDto(new_entity);
+        return ResponseEntity.status(HttpStatus.OK).body(dto);
+    }
 
 }

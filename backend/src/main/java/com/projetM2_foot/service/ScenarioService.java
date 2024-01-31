@@ -36,7 +36,6 @@ public class ScenarioService {
     public void deleteScenario(Long id){
         // Effacer les entités lié au scénario
         entiteService.deleteByScenario(id);
-
         scenarioRepository.deleteById(id);
     }
 

@@ -1,6 +1,7 @@
 package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.EntiteRequestCreate;
+import com.projetM2_foot.api.request.EntiteRequestUpdate;
 import com.projetM2_foot.api.response.EntiteResponse;
 import com.projetM2_foot.api.response.ScenarioResponse;
 import com.projetM2_foot.entity.Entite;
@@ -23,6 +24,20 @@ public class EntiteMapper {
         final Scenario scenario = scenarioService.getScenario(request.getScenario());
 
         return Entite.builder()
+                .scenario(scenario)
+                .type(request.getType())
+                .numero(request.getNumero())
+                .initialPosX(request.getX())
+                .initialPosY(request.getY())
+                .build();
+    }
+
+    public Entite toEntity (EntiteRequestUpdate request){
+
+        final Scenario scenario = scenarioService.getScenario(request.getScenario());
+
+        return Entite.builder()
+                .id(request.getId())
                 .scenario(scenario)
                 .type(request.getType())
                 .numero(request.getNumero())

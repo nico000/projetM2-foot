@@ -1,10 +1,7 @@
 package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.DeplacementRequestCreate;
-import com.projetM2_foot.api.request.ScenarioRequestCreate;
-import com.projetM2_foot.api.request.ScenarioRequestUpdate;
 import com.projetM2_foot.api.response.DeplacementResponse;
-import com.projetM2_foot.api.response.ScenarioResponse;
 import com.projetM2_foot.entity.Deplacement;
 import com.projetM2_foot.entity.Entite;
 import com.projetM2_foot.entity.Scenario;
@@ -13,8 +10,6 @@ import com.projetM2_foot.service.ScenarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor

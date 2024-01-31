@@ -1,7 +1,6 @@
 package com.projetM2_foot.service;
 
 import com.projetM2_foot.entity.Entite;
-import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.repository.EntiteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

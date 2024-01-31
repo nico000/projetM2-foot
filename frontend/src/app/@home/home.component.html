@@ -44,7 +44,13 @@
             <p>Undif</p>
         </td>
         <td class="colonne ecriture">
-            <p>Undif</p>
+            <button (click)="selectScenario(_selectScenarioModalName,scenario)">details</button>
         </td>
     </tr>
 </table>
+
+
+<jw-modal id="{{_selectScenarioModalName}}" >
+    <h1 class="titre">{{_selectedScenario.nom}}</h1>
+    <div *ngFor="let entite of _entiteList" class="info" >{{entite.numero}}</div>
+</jw-modal>

@@ -11,4 +11,6 @@ public interface ScenarioRepository extends CrudRepository<Scenario , Long> {
 
     @Override
     List<Scenario> findAll();
+
+    Scenario findByName(String name);
 }

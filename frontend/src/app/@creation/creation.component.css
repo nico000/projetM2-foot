@@ -63,7 +63,7 @@ nav.menu ul li.boutton:hover a{
 .colonne2{
     width:65%;
 }
-/*front*/
+/*terrain*/
 .draggable {
     position: absolute;
     width: 50px;
@@ -76,16 +76,15 @@ nav.menu ul li.boutton:hover a{
     background: green;
     border: 1px solid black;
     border-collapse: collapse;
-    height: 70px;
+    height: 60px;
 }
 .zone{
     background: green;
     border: 1px solid black;
     border-collapse: collapse;
-    height: 70px;
 }
 .tableau_terrain{
-    padding: 5px;
+    padding: 5%;
     width:100%;
     border: 1px solid black;
     border-collapse: collapse;

@@ -1,5 +1,6 @@
 package com.projetM2_foot.service;
 
+import com.projetM2_foot.api.request.ScenarioRequestCreate;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.repository.ScenarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,10 @@ public class ScenarioService {
 
     public Scenario updateScenario(Scenario entity){
         return scenarioRepository.save(entity);
+    }
+
+    public Scenario getScenarioNom(String nom){
+        return scenarioRepository.findByName(nom);
     }
 
 }

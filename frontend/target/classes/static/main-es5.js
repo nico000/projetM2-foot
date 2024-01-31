@@ -71,7 +71,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1 class=\"presentation\">Ajout d'un Scenario</h1>\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\">Action</label>\n            </div><br>\n            <div class=\"titre\">\n                nombre de joueur: <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain: <input type=\"text\" [(ngModel)]=\"_newScenario.terrain_couleur\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\">Grand</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\">Afficher les zones du terrain</label>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <tr>\n                    <div id=\"deplacableObject\" class=\"draggable\"></div><br><br><br><br><br><br>\n                </tr>\n                <tr *ngFor=\"let couloir of nb_couloir(_newScenario.zone_nb_couloir)\" class=\"couloir\">\n                    <td *ngFor=\"let zone of nb_couloir(_newScenario.zone_nb_zone)\" class=\"zone\">\n\n                    </td>\n                    <!-- Ajoutez d'autres colonnes au besoin -->\n                </tr>\n            </table>\n        </td>\n    </tr>\n</table>\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" ><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" ><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
+    __webpack_exports__["default"] = "<h1 class=\"presentation\">Ajout d'un Scenario</h1>\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\">Action</label>\n            </div><br>\n            <div class=\"titre\">\n                nombre de joueur: <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain: <input type=\"text\" [(ngModel)]=\"_newScenario.terrain_couleur\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\">Grand</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\">Afficher les zones du terrain</label>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <tr>\n                    <div id=\"deplacableObject\" class=\"draggable\"></div><br><br><br><br><br><br>\n                </tr>\n                <tr *ngFor=\"let couloir of nb_couloir(lastCouloir)\" class=\"couloir\">\n                    <td *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\">\n                        <div *ngFor=\"let entite of _entiteList\"  class=\"draggable\"  [style.left.%]=\"entite.y\" [style.top.%]=\"entite.x\">\n                            {{ entite.numero }}</div>\n                    </td>\n                </tr>\n            </table><br>\n            <table>\n                <tr>\n                    <button  (click)=\"addJoueur()\">valider</button>\n                </tr>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" ><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" ><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
     /***/
   },
 
@@ -131,7 +131,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des scénario : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de joueur\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de deplacement\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            Bouton\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.joueur_nb}}\n        </td>\n        <td class=\"colonne ecriture\">\n            <p>Undif</p>\n        </td>\n        <td class=\"colonne ecriture\">\n            <p>Undif</p>\n        </td>\n    </tr>\n</table>\n";
+    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des scénario : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de joueur\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de deplacement\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            Bouton\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.joueur_nb}}\n        </td>\n        <td class=\"colonne ecriture\">\n            <p>Undif</p>\n        </td>\n        <td class=\"colonne ecriture\">\n            <button (click)=\"selectScenario(_selectScenarioModalName,scenario)\">details</button>\n        </td>\n    </tr>\n</table>\n\n\n<jw-modal id=\"{{_selectScenarioModalName}}\" >\n    <h1 class=\"titre\">{{_selectedScenario.nom}}</h1>\n    <div *ngFor=\"let entite of _entiteList\" class=\"info\" >{{entite.numero}}</div>\n</jw-modal>";
     /***/
   },
 
@@ -848,6 +848,46 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/@creation/beans/Entite.ts":
+  /*!*******************************************!*\
+    !*** ./src/app/@creation/beans/Entite.ts ***!
+    \*******************************************/
+
+  /*! exports provided: Entite */
+
+  /***/
+  function srcAppCreationBeansEntiteTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Entite", function () {
+      return Entite;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var Entite = /*#__PURE__*/_createClass(function Entite() {
+      _classCallCheck(this, Entite);
+
+      this.id = 0.0;
+      this.scenario = 0.0;
+      this.type = 0.0;
+      this.numero = 0.0;
+      this.x = 0.0;
+      this.y = 0.0;
+    });
+    /***/
+
+  },
+
+  /***/
   "./src/app/@creation/beans/Scenario.ts":
   /*!*********************************************!*\
     !*** ./src/app/@creation/beans/Scenario.ts ***!
@@ -909,7 +949,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".presentation{\n    font-size: 200%;\n    color: white;\n    text-align: center;\n}\n\n.verif{\n    font-size: 150%;\n    color: red;\n    text-align: center;\n}\n\n.titre{\n    font-size: 130%;\n    color: mediumblue;\n    text-align: center;\n}\n\n.round-button {\n    display: inline-block;\n    cursor: pointer;\n    padding: 10px;\n    border: 2px solid white;\n    border-radius: 50px;\n    font-size: 16px;\n    text-align: center;\n    color: white;\n    transition: background-color 0.3s;\n}\n\n.round-button:hover {\n    background-color: #3498db;\n    color: #fff;\n}\n\n.hidden-checkbox {\n    display: none;\n}\n\nnav.menu ul  .boutton{\n    display: inline-block;\n    width: 80%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: green;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:30px;\n    justify-content: center;\n    border: 2px solid white;\n\n}\n\nnav.menu ul li.boutton:hover a{\n    color: lightgreen;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.tableau{\n    padding: 5px;\n    width:100%;\n}\n\n.colonne{\n    width:35%;\n}\n\n.colonne2{\n    width:65%;\n}\n\n/*front*/\n\n.draggable {\n    position: absolute;\n    width: 50px;\n    height: 50px;\n    background-color: #ffeb3b; /* Jaune */\n    border-radius: 50%;\n    cursor: -webkit-grab;\n    cursor: grab;\n}\n\n.couloir{\n    background: green;\n    border: 1px solid black;\n    border-collapse: collapse;\n    height: 70px;\n}\n\n.zone{\n    background: green;\n    border: 1px solid black;\n    border-collapse: collapse;\n    height: 70px;\n}\n\n.tableau_terrain{\n    padding: 5px;\n    width:100%;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGNyZWF0aW9uL2NyZWF0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsWUFBWTtJQUNaLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLGVBQWU7SUFDZixVQUFVO0lBQ1Ysa0JBQWtCO0FBQ3RCOztBQUNBO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsZUFBZTtJQUNmLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLGlDQUFpQztBQUNyQzs7QUFDQTtJQUNJLHlCQUF5QjtJQUN6QixXQUFXO0FBQ2Y7O0FBRUE7SUFDSSxhQUFhO0FBQ2pCOztBQUNBO0lBQ0kscUJBQXFCO0lBQ3JCLFVBQVU7QUFDZDs7QUFDQTtJQUNJLFlBQVk7SUFDWix1QkFBdUI7SUFDdkIscUJBQXFCO0lBQ3JCLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsY0FBYztJQUNkLHVCQUF1QjtJQUN2Qix1QkFBdUI7O0FBRTNCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEI7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osVUFBVTtBQUNkOztBQUNBO0lBQ0ksU0FBUztBQUNiOztBQUNBO0lBQ0ksU0FBUztBQUNiOztBQUNBLFFBQVE7O0FBQ1I7SUFDSSxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFlBQVk7SUFDWix5QkFBeUIsRUFBRSxVQUFVO0lBQ3JDLGtCQUFrQjtJQUNsQixvQkFBWTtJQUFaLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsdUJBQXVCO0lBQ3ZCLHlCQUF5QjtJQUN6QixZQUFZO0FBQ2hCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2Qix5QkFBeUI7SUFDekIsWUFBWTtBQUNoQjs7QUFDQTtJQUNJLFlBQVk7SUFDWixVQUFVO0lBQ1YsdUJBQXVCO0lBQ3ZCLHlCQUF5QjtBQUM3QiIsImZpbGUiOiJzcmMvYXBwL0BjcmVhdGlvbi9jcmVhdGlvbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByZXNlbnRhdGlvbntcbiAgICBmb250LXNpemU6IDIwMCU7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLnZlcmlme1xuICAgIGZvbnQtc2l6ZTogMTUwJTtcbiAgICBjb2xvcjogcmVkO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi50aXRyZXtcbiAgICBmb250LXNpemU6IDEzMCU7XG4gICAgY29sb3I6IG1lZGl1bWJsdWU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLnJvdW5kLWJ1dHRvbiB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIGJvcmRlcjogMnB4IHNvbGlkIHdoaXRlO1xuICAgIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gICAgZm9udC1zaXplOiAxNnB4O1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjNzO1xufVxuLnJvdW5kLWJ1dHRvbjpob3ZlciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzM0OThkYjtcbiAgICBjb2xvcjogI2ZmZjtcbn1cblxuLmhpZGRlbi1jaGVja2JveCB7XG4gICAgZGlzcGxheTogbm9uZTtcbn1cbm5hdi5tZW51IHVsICAuYm91dHRvbntcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgd2lkdGg6IDgwJTtcbn1cbm5hdi5tZW51IHVsIGxpLmJvdXR0b24gYXtcbiAgICBjb2xvciA6QXp1cmU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZvbnQtc2l6ZTozMHB4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGJvcmRlcjogMnB4IHNvbGlkIHdoaXRlO1xuXG59XG5uYXYubWVudSB1bCBsaS5ib3V0dG9uOmhvdmVyIGF7XG4gICAgY29sb3I6IGxpZ2h0Z3JlZW47XG4gICAgYmFja2dyb3VuZC1jb2xvcjogQXp1cmU7XG4gICAgdHJhbnNpdGlvbjogMC41cyBhbGw7XG59XG4udGFibGVhdXtcbiAgICBwYWRkaW5nOiA1cHg7XG4gICAgd2lkdGg6MTAwJTtcbn1cbi5jb2xvbm5le1xuICAgIHdpZHRoOjM1JTtcbn1cbi5jb2xvbm5lMntcbiAgICB3aWR0aDo2NSU7XG59XG4vKmZyb250Ki9cbi5kcmFnZ2FibGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB3aWR0aDogNTBweDtcbiAgICBoZWlnaHQ6IDUwcHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZWIzYjsgLyogSmF1bmUgKi9cbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgY3Vyc29yOiBncmFiO1xufVxuLmNvdWxvaXJ7XG4gICAgYmFja2dyb3VuZDogZ3JlZW47XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbiAgICBoZWlnaHQ6IDcwcHg7XG59XG4uem9uZXtcbiAgICBiYWNrZ3JvdW5kOiBncmVlbjtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICAgIGhlaWdodDogNzBweDtcbn1cbi50YWJsZWF1X3RlcnJhaW57XG4gICAgcGFkZGluZzogNXB4O1xuICAgIHdpZHRoOjEwMCU7XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cblxuIl19 */";
+    __webpack_exports__["default"] = ".presentation{\n    font-size: 200%;\n    color: white;\n    text-align: center;\n}\n\n.verif{\n    font-size: 150%;\n    color: red;\n    text-align: center;\n}\n\n.titre{\n    font-size: 130%;\n    color: mediumblue;\n    text-align: center;\n}\n\n.round-button {\n    display: inline-block;\n    cursor: pointer;\n    padding: 10px;\n    border: 2px solid white;\n    border-radius: 50px;\n    font-size: 16px;\n    text-align: center;\n    color: white;\n    transition: background-color 0.3s;\n}\n\n.round-button:hover {\n    background-color: #3498db;\n    color: #fff;\n}\n\n.hidden-checkbox {\n    display: none;\n}\n\nnav.menu ul  .boutton{\n    display: inline-block;\n    width: 80%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: green;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:30px;\n    justify-content: center;\n    border: 2px solid white;\n\n}\n\nnav.menu ul li.boutton:hover a{\n    color: lightgreen;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.tableau{\n    padding: 5px;\n    width:100%;\n}\n\n.colonne{\n    width:35%;\n}\n\n.colonne2{\n    width:65%;\n}\n\n/*terrain*/\n\n.draggable {\n    position: absolute;\n    width: 50px;\n    height: 50px;\n    background-color: #ffeb3b; /* Jaune */\n    border-radius: 50%;\n    cursor: -webkit-grab;\n    cursor: grab;\n}\n\n.couloir{\n    background: green;\n    border: 1px solid black;\n    border-collapse: collapse;\n    height: 60px;\n}\n\n.zone{\n    background: green;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n.tableau_terrain{\n    padding: 5%;\n    width:100%;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGNyZWF0aW9uL2NyZWF0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsWUFBWTtJQUNaLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLGVBQWU7SUFDZixVQUFVO0lBQ1Ysa0JBQWtCO0FBQ3RCOztBQUNBO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsZUFBZTtJQUNmLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLGlDQUFpQztBQUNyQzs7QUFDQTtJQUNJLHlCQUF5QjtJQUN6QixXQUFXO0FBQ2Y7O0FBRUE7SUFDSSxhQUFhO0FBQ2pCOztBQUNBO0lBQ0kscUJBQXFCO0lBQ3JCLFVBQVU7QUFDZDs7QUFDQTtJQUNJLFlBQVk7SUFDWix1QkFBdUI7SUFDdkIscUJBQXFCO0lBQ3JCLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsY0FBYztJQUNkLHVCQUF1QjtJQUN2Qix1QkFBdUI7O0FBRTNCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEI7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osVUFBVTtBQUNkOztBQUNBO0lBQ0ksU0FBUztBQUNiOztBQUNBO0lBQ0ksU0FBUztBQUNiOztBQUNBLFVBQVU7O0FBQ1Y7SUFDSSxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFlBQVk7SUFDWix5QkFBeUIsRUFBRSxVQUFVO0lBQ3JDLGtCQUFrQjtJQUNsQixvQkFBWTtJQUFaLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsdUJBQXVCO0lBQ3ZCLHlCQUF5QjtJQUN6QixZQUFZO0FBQ2hCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2Qix5QkFBeUI7QUFDN0I7O0FBQ0E7SUFDSSxXQUFXO0lBQ1gsVUFBVTtJQUNWLHVCQUF1QjtJQUN2Qix5QkFBeUI7QUFDN0IiLCJmaWxlIjoic3JjL2FwcC9AY3JlYXRpb24vY3JlYXRpb24uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5wcmVzZW50YXRpb257XG4gICAgZm9udC1zaXplOiAyMDAlO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi52ZXJpZntcbiAgICBmb250LXNpemU6IDE1MCU7XG4gICAgY29sb3I6IHJlZDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4udGl0cmV7XG4gICAgZm9udC1zaXplOiAxMzAlO1xuICAgIGNvbG9yOiBtZWRpdW1ibHVlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5yb3VuZC1idXR0b24ge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICBib3JkZXI6IDJweCBzb2xpZCB3aGl0ZTtcbiAgICBib3JkZXItcmFkaXVzOiA1MHB4O1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcztcbn1cbi5yb3VuZC1idXR0b246aG92ZXIge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMzNDk4ZGI7XG4gICAgY29sb3I6ICNmZmY7XG59XG5cbi5oaWRkZW4tY2hlY2tib3gge1xuICAgIGRpc3BsYXk6IG5vbmU7XG59XG5uYXYubWVudSB1bCAgLmJvdXR0b257XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHdpZHRoOiA4MCU7XG59XG5uYXYubWVudSB1bCBsaS5ib3V0dG9uIGF7XG4gICAgY29sb3IgOkF6dXJlO1xuICAgIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgICB0ZXh0LWFsaWduOmNlbnRlciA7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmb250LXNpemU6MzBweDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBib3JkZXI6IDJweCBzb2xpZCB3aGl0ZTtcblxufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICAgIGNvbG9yOiBsaWdodGdyZWVuO1xuICAgIGJhY2tncm91bmQtY29sb3I6IEF6dXJlO1xuICAgIHRyYW5zaXRpb246IDAuNXMgYWxsO1xufVxuLnRhYmxlYXV7XG4gICAgcGFkZGluZzogNXB4O1xuICAgIHdpZHRoOjEwMCU7XG59XG4uY29sb25uZXtcbiAgICB3aWR0aDozNSU7XG59XG4uY29sb25uZTJ7XG4gICAgd2lkdGg6NjUlO1xufVxuLyp0ZXJyYWluKi9cbi5kcmFnZ2FibGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB3aWR0aDogNTBweDtcbiAgICBoZWlnaHQ6IDUwcHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZWIzYjsgLyogSmF1bmUgKi9cbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgY3Vyc29yOiBncmFiO1xufVxuLmNvdWxvaXJ7XG4gICAgYmFja2dyb3VuZDogZ3JlZW47XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbiAgICBoZWlnaHQ6IDYwcHg7XG59XG4uem9uZXtcbiAgICBiYWNrZ3JvdW5kOiBncmVlbjtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xufVxuLnRhYmxlYXVfdGVycmFpbntcbiAgICBwYWRkaW5nOiA1JTtcbiAgICB3aWR0aDoxMDAlO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG59XG5cbiJdfQ== */";
     /***/
   },
 
@@ -962,6 +1002,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _creation_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./creation.service */
     "./src/app/@creation/creation.service.ts");
+    /* harmony import */
+
+
+    var _beans_Entite__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./beans/Entite */
+    "./src/app/@creation/beans/Entite.ts");
 
     var CreationComponent = /*#__PURE__*/function () {
       function CreationComponent(_creationService, _modalService) {
@@ -970,7 +1016,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this._creationService = _creationService;
         this._modalService = _modalService;
         this._newScenario = new _beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"]();
+        this._newEntite = new _beans_Entite__WEBPACK_IMPORTED_MODULE_5__["Entite"]();
+        this.numero = 0;
         this._addScenarioModalName = "addScenarioModal";
+        this.LastScenario = new _beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"](); //deplacemnt joueur
+
         this.isDragging = false;
         this.offsetX = 0;
         this.offsetY = 0; // Obtenez une référence vers l'élément du DOM
@@ -983,11 +1033,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function addScenario(modal) {
           var _this = this;
 
+          this.numero = 0;
+          this.lastNom = this._newScenario.nom;
+          this.lastCouloir = this._newScenario.zone_nb_couloir;
+          this.lastZone = this._newScenario.zone_nb_zone;
+
           this._creationService.addScenario(this._newScenario).subscribe(function (res) {
             _this._scenarioList.push(res);
           });
 
           this.resetData(modal);
+          this.objectInit();
         }
       }, {
         key: "openModal",
@@ -1041,8 +1097,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
         }
       }, {
-        key: "ngAfterViewInit",
-        value: function ngAfterViewInit() {
+        key: "objectInit",
+        value: function objectInit() {
           // Après l'initialisation de la vue, obtenez une référence vers l'élément du DOM
           this.draggableObject = document.getElementById('deplacableObject');
           this.addEventListeners();
@@ -1073,7 +1129,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (this.draggableObject) {
             this.isDragging = true;
             this.offsetX = event.clientX - this.draggableObject.getBoundingClientRect().left;
-            this.offsetY = event.clientY - this.draggableObject.getBoundingClientRect().top;
+            this.offsetY = event.clientY - this.draggableObject.getBoundingClientRect().top; // Stocker la position de départ en pixels
+
+            this.initialLeft = this.draggableObject.offsetLeft;
+            this.initialTop = this.draggableObject.offsetTop;
             this.draggableObject.style.cursor = 'grabbing';
           }
         }
@@ -1093,8 +1152,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (this.isDragging && this.draggableObject) {
             this.isDragging = false;
             this.draggableObject.style.cursor = 'grab'; // Appeler la fonction add lorsque le déplacement est terminé
-
-            this.add();
+            //this.addJoueur();
           }
         }
       }, {
@@ -1104,13 +1162,82 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.isDragging = false;
             this.draggableObject.style.cursor = 'grab';
           }
+        } //recupere l'id du dernier scenario ajouter
+
+      }, {
+        key: "getScenarioName",
+        value: function getScenarioName(nom) {
+          var _this3 = this;
+
+          return new Promise(function (resolve, reject) {
+            _this3._creationService.getScenarioNom(nom).subscribe(function (res) {
+              _this3.LastScenario = res; //console.log("last scenario nom:", this.lastNom, " id :", this.LastScenario.id);
+
+              _this3._creationService.getEntiteList(_this3.LastScenario.id).subscribe(function (res) {
+                return _this3._entiteList = res;
+              });
+
+              resolve();
+            }, function (error) {
+              reject(error);
+            });
+          });
         }
       }, {
-        key: "add",
-        value: function add() {
-          // Ajoutez ici la logique de votre fonction add
-          // Par exemple, vous pouvez enregistrer les coordonnées finales du jeton ou effectuer d'autres actions.
-          console.log("Objet déplacé. Fonction 'add' appelée.");
+        key: "addJoueur",
+        value: function addJoueur() {
+          var _this4 = this;
+
+          console.log("Objet déplacé. Fonction 'add' appelée."); //recuperation position jeton
+
+          if (this.draggableObject) {
+            // Récupérer les positions finales du jeton
+            var rect = this.draggableObject.getBoundingClientRect();
+            var finalLeft = this.draggableObject.offsetLeft;
+            var finalTop = this.draggableObject.offsetTop; // Afficher les positions finales dans la console
+
+            console.log('Position finale - Left:', finalLeft, 'Top:', finalTop); // Récupérer les dimensions de la page
+
+            var pageWidth = window.innerWidth;
+            var pageHeight = window.innerHeight; // Calculer les positions finales en pourcentage par rapport à la page
+
+            var leftPercentage = finalLeft / pageWidth * 100;
+            var topPercentage = finalTop / pageHeight * 100; // Afficher les positions finales en pourcentage dans la console
+
+            console.log('Position finale en pourcentage - Left:', leftPercentage, 'Top:', topPercentage); // Ajouter joueur dans la bdd
+
+            this.numero += 1;
+            this.getScenarioName(this.lastNom).then(function () {
+              _this4._newEntite.scenario = _this4.LastScenario.id;
+              _this4._newEntite.numero = _this4.numero;
+              _this4._newEntite.type = 1;
+              _this4._newEntite.y = leftPercentage;
+              _this4._newEntite.x = topPercentage;
+
+              _this4._creationService.addEntite(_this4._newEntite).subscribe(function (res) {
+                _this4._entiteList.push(res);
+              });
+            })["catch"](function (error) {
+              console.error('Une erreur s\'est produite lors de la récupération du scénario :', error); // Gérer l'erreur ici si nécessaire
+            }); // Réinitialiser la position du jeton à sa place initiale (0%)
+
+            this.draggableObject.style.left = "".concat(this.initialLeft, "px");
+            this.draggableObject.style.top = "".concat(this.initialTop, "px");
+          }
+        } //Afficher le joueur
+
+      }, {
+        key: "tempngOnInit",
+        value: function tempngOnInit() {
+          var _this5 = this;
+
+          this.getScenarioName(this.lastNom).then(function () {
+            _this5._creationService.getEntiteList(_this5.LastScenario.id).subscribe(function (res) {
+              return _this5._entiteList = res;
+            });
+          })["catch"](function (error) {
+            console.error('Une erreur s\'est produite lors de la récupération du scénario :', error); // Gérer l'erreur ici si nécessaire
+          });
         }
       }]);
 
@@ -1186,6 +1313,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "addScenario",
         value: function addScenario(scenario) {
           return this._http.post("/scenario", scenario);
+        }
+      }, {
+        key: "getScenarioNom",
+        value: function getScenarioNom(nom) {
+          return this._http.get("/scenario/nom?name=".concat(nom));
+        }
+      }, {
+        key: "addEntite",
+        value: function addEntite(entite) {
+          return this._http.post("/entite", entite);
+        }
+      }, {
+        key: "getEntiteList",
+        value: function getEntiteList(id) {
+          return this._http.get('/entite/' + id);
         }
       }]);
 
@@ -1366,7 +1508,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n.presentation{\n  font-size: 200%;\n  color: white;\n  text-align: center;\n}\n.tableau{\n  padding: 5px;\n  border: 1px solid black;\n  border-collapse: collapse;\n  width:100%;\n}\n.colonne{\n  width:10%;\n}\n.colonne2{\n  width:30%;\n}\n.titre{\n  font-size: 150%;\n  color: mediumblue;\n  text-align: center;\n}\n.ecriture{\n  font-size: 120%;\n  text-align: center;\n}\n.contient{\n  font-size: 50%;\n  width: 50%;\n}\nnav.menu ul  .boutton{\n  display: inline-block;\n  text-align:center ;\n  width: 20%;\n  margin: auto;\n}\nnav.menu ul li.boutton a{\n  color :Azure;\n  background-color: green;\n  text-decoration: none;\n  text-align: center;\n  display: flex;\n  font-size:35px;\n  justify-content: center;\n}\nnav.menu ul li.boutton:hover a{\n  color: green;\n  background-color: Azure;\n  transition: 0.5s all;\n}\nnav.menu ul {\n  display: flex;\n  justify-content: center; /* Centre horizontalement */\n}\n\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhvbWUvaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxZQUFZO0VBQ1osdUJBQXVCO0VBQ3ZCLHlCQUF5QjtFQUN6QixVQUFVO0FBQ1o7QUFFQTtFQUNFLFNBQVM7QUFDWDtBQUNBO0VBQ0UsU0FBUztBQUNYO0FBRUE7RUFDRSxlQUFlO0VBQ2YsaUJBQWlCO0VBQ2pCLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0UsY0FBYztFQUNkLFVBQVU7QUFDWjtBQUNBO0VBQ0UscUJBQXFCO0VBQ3JCLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osdUJBQXVCO0VBQ3ZCLHFCQUFxQjtFQUNyQixrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLGNBQWM7RUFDZCx1QkFBdUI7QUFDekI7QUFDQTtFQUNFLFlBQVk7RUFDWix1QkFBdUI7RUFDdkIsb0JBQW9CO0FBQ3RCO0FBQ0E7RUFDRSxhQUFhO0VBQ2IsdUJBQXVCLEVBQUUsMkJBQTJCO0FBQ3REIiwiZmlsZSI6InNyYy9hcHAvQGhvbWUvaG9tZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4ucHJlc2VudGF0aW9ue1xuICBmb250LXNpemU6IDIwMCU7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLnRhYmxlYXV7XG4gIHBhZGRpbmc6IDVweDtcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gIHdpZHRoOjEwMCU7XG59XG5cbi5jb2xvbm5le1xuICB3aWR0aDoxMCU7XG59XG4uY29sb25uZTJ7XG4gIHdpZHRoOjMwJTtcbn1cblxuLnRpdHJle1xuICBmb250LXNpemU6IDE1MCU7XG4gIGNvbG9yOiBtZWRpdW1ibHVlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5lY3JpdHVyZXtcbiAgZm9udC1zaXplOiAxMjAlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5jb250aWVudHtcbiAgZm9udC1zaXplOiA1MCU7XG4gIHdpZHRoOiA1MCU7XG59XG5uYXYubWVudSB1bCAgLmJvdXR0b257XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICB3aWR0aDogMjAlO1xuICBtYXJnaW46IGF1dG87XG59XG5uYXYubWVudSB1bCBsaS5ib3V0dG9uIGF7XG4gIGNvbG9yIDpBenVyZTtcbiAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmb250LXNpemU6MzVweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5uYXYubWVudSB1bCBsaS5ib3V0dG9uOmhvdmVyIGF7XG4gIGNvbG9yOiBncmVlbjtcbiAgYmFja2dyb3VuZC1jb2xvcjogQXp1cmU7XG4gIHRyYW5zaXRpb246IDAuNXMgYWxsO1xufVxubmF2Lm1lbnUgdWwge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsgLyogQ2VudHJlIGhvcml6b250YWxlbWVudCAqL1xufVxuXG5cblxuIl19 */";
+    __webpack_exports__["default"] = "\n.presentation{\n  font-size: 200%;\n  color: white;\n  text-align: center;\n}\n.tableau{\n  padding: 5px;\n  border: 1px solid black;\n  border-collapse: collapse;\n  width:100%;\n}\n.colonne{\n  width:10%;\n}\n.colonne2{\n  width:30%;\n}\n.titre{\n  font-size: 150%;\n  color: mediumblue;\n  text-align: center;\n}\n.ecriture{\n  font-size: 120%;\n  text-align: center;\n}\n.contient{\n  font-size: 50%;\n  width: 50%;\n}\nnav.menu ul  .boutton{\n  display: inline-block;\n  text-align:center ;\n  width: 20%;\n  margin: auto;\n}\nnav.menu ul li.boutton a{\n  color :Azure;\n  background-color: green;\n  text-decoration: none;\n  text-align: center;\n  display: flex;\n  font-size:35px;\n  justify-content: center;\n}\nnav.menu ul li.boutton:hover a{\n  color: green;\n  background-color: Azure;\n  transition: 0.5s all;\n}\nnav.menu ul {\n  display: flex;\n  justify-content: center; /* Centre horizontalement */\n}\n.categorie{\n  font-size: 150%;\n  color: green;\n  text-align: center;\n}\n.info {\n  font-size: 130%;\n  text-align: center;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhvbWUvaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxZQUFZO0VBQ1osdUJBQXVCO0VBQ3ZCLHlCQUF5QjtFQUN6QixVQUFVO0FBQ1o7QUFFQTtFQUNFLFNBQVM7QUFDWDtBQUNBO0VBQ0UsU0FBUztBQUNYO0FBRUE7RUFDRSxlQUFlO0VBQ2YsaUJBQWlCO0VBQ2pCLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0UsY0FBYztFQUNkLFVBQVU7QUFDWjtBQUNBO0VBQ0UscUJBQXFCO0VBQ3JCLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osdUJBQXVCO0VBQ3ZCLHFCQUFxQjtFQUNyQixrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLGNBQWM7RUFDZCx1QkFBdUI7QUFDekI7QUFDQTtFQUNFLFlBQVk7RUFDWix1QkFBdUI7RUFDdkIsb0JBQW9CO0FBQ3RCO0FBQ0E7RUFDRSxhQUFhO0VBQ2IsdUJBQXVCLEVBQUUsMkJBQTJCO0FBQ3REO0FBRUE7RUFDRSxlQUFlO0VBQ2YsWUFBWTtFQUNaLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQiIsImZpbGUiOiJzcmMvYXBwL0Bob21lL2hvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLnByZXNlbnRhdGlvbntcbiAgZm9udC1zaXplOiAyMDAlO1xuICBjb2xvcjogd2hpdGU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi50YWJsZWF1e1xuICBwYWRkaW5nOiA1cHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICB3aWR0aDoxMDAlO1xufVxuXG4uY29sb25uZXtcbiAgd2lkdGg6MTAlO1xufVxuLmNvbG9ubmUye1xuICB3aWR0aDozMCU7XG59XG5cbi50aXRyZXtcbiAgZm9udC1zaXplOiAxNTAlO1xuICBjb2xvcjogbWVkaXVtYmx1ZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uZWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uY29udGllbnR7XG4gIGZvbnQtc2l6ZTogNTAlO1xuICB3aWR0aDogNTAlO1xufVxubmF2Lm1lbnUgdWwgIC5ib3V0dG9ue1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgd2lkdGg6IDIwJTtcbiAgbWFyZ2luOiBhdXRvO1xufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbiBhe1xuICBjb2xvciA6QXp1cmU7XG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgZGlzcGxheTogZmxleDtcbiAgZm9udC1zaXplOjM1cHg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICBjb2xvcjogZ3JlZW47XG4gIGJhY2tncm91bmQtY29sb3I6IEF6dXJlO1xuICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcbn1cbm5hdi5tZW51IHVsIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7IC8qIENlbnRyZSBob3Jpem9udGFsZW1lbnQgKi9cbn1cblxuLmNhdGVnb3JpZXtcbiAgZm9udC1zaXplOiAxNTAlO1xuICBjb2xvcjogZ3JlZW47XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5pbmZvIHtcbiAgZm9udC1zaXplOiAxMzAlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbiJdfQ== */";
     /***/
   },
 
@@ -1427,6 +1569,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this._homeService = _homeService;
         this._modalService = _modalService;
         this._selectedScenario = new _creation_beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"]();
+        this._selectedScenarioEntite = new _creation_beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"]();
         this._isFiltering = false;
         this._selectScenarioModalName = "selectScenarioModal";
       }
@@ -1434,10 +1577,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(HomeComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this3 = this;
+          var _this6 = this;
 
           this._homeService.getScenarioList().subscribe(function (res) {
-            return _this3._scenarioList = res;
+            return _this6._scenarioList = res;
           });
         }
       }, {
@@ -1461,12 +1604,48 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "resetFilter",
         value: function resetFilter() {
-          var _this4 = this;
+          var _this7 = this;
 
           this._homeService.getScenarioList().subscribe(function (res) {
-            _this4._scenarioList = res;
-            _this4._isFiltering = false;
+            _this7._scenarioList = res;
+            _this7._isFiltering = false;
           });
+        }
+      }, {
+        key: "getScenarioName",
+        value: function getScenarioName(nom) {
+          var _this8 = this;
+
+          return new Promise(function (resolve, reject) {
+            _this8._homeService.getScenarioNom(nom).subscribe(function (res) {
+              _this8._selectedScenarioEntite = res; //console.log("last scenario nom:", this.lastNom, " id :", this.LastScenario.id);
+
+              resolve();
+            }, function (error) {
+              reject(error);
+            });
+          });
+        }
+      }, {
+        key: "genEntite",
+        value: function genEntite(nom) {
+          var _this9 = this;
+
+          this.getScenarioName(nom).then(function () {
+            _this9._homeService.getEntiteList(_this9._selectedScenarioEntite.id).subscribe(function (res) {
+              return _this9._entiteList = res;
+            });
+          })["catch"](function (error) {
+            console.error('Une erreur s\'est produite lors de la récupération du scénario :', error); // Gérer l'erreur ici si nécessaire
+          });
+        }
+      }, {
+        key: "selectScenario",
+        value: function selectScenario(modal, scenario) {
+          this._modalService.open(modal);
+
+          this._selectedScenario = scenario;
+          this.genEntite(scenario.nom);
         }
       }]);
 
@@ -1542,6 +1721,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getScenarioList",
         value: function getScenarioList() {
           return this._http.get("/scenario");
+        }
+      }, {
+        key: "getEntiteList",
+        value: function getEntiteList(id) {
+          return this._http.get('/entite/' + id);
+        }
+      }, {
+        key: "getScenarioNom",
+        value: function getScenarioNom(nom) {
+          return this._http.get("/scenario/nom?name=".concat(nom));
         }
       }]);
 
@@ -1628,7 +1817,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ModalComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this5 = this;
+          var _this10 = this;
 
           // ensure id attribute exists
           if (!this.id) {
@@ -1641,7 +1830,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.element.addEventListener('click', function (el) {
             if (el.target.className === 'jw-modal') {
-              _this5.close();
+              _this10.close();
             }
           }); // add self (this modal instance) to the modal service so it's accessible from controllers
 

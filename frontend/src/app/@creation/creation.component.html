@@ -65,16 +65,23 @@
                 <tr>
                     <div id="deplacableObject" class="draggable"></div><br><br><br><br><br><br>
                 </tr>
-                <tr *ngFor="let couloir of nb_couloir(_newScenario.zone_nb_couloir)" class="couloir">
-                    <td *ngFor="let zone of nb_couloir(_newScenario.zone_nb_zone)" class="zone">
-
+                <tr *ngFor="let couloir of nb_couloir(lastCouloir)" class="couloir">
+                    <td *ngFor="let zone of nb_couloir(lastZone)" class="zone">
+                        <div *ngFor="let entite of _entiteList"  class="draggable"  [style.left.%]="entite.y" [style.top.%]="entite.x">
+                            {{ entite.numero }}</div>
                     </td>
-                    <!-- Ajoutez d'autres colonnes au besoin -->
+                </tr>
+            </table><br>
+            <table>
+                <tr>
+                    <button  (click)="addJoueur()">valider</button>
                 </tr>
             </table>
         </td>
     </tr>
 </table>
+
+
 
 <jw-modal id="{{_addScenarioModalName}}" >
     <p class="verif">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>

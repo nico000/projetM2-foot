@@ -58,5 +58,13 @@ nav.menu ul {
   justify-content: center; /* Centre horizontalement */
 }
 
-
+.categorie{
+  font-size: 150%;
+  color: green;
+  text-align: center;
+}
+.info {
+  font-size: 130%;
+  text-align: center;
+}
 

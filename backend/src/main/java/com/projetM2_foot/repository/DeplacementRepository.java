@@ -12,4 +12,5 @@ public interface DeplacementRepository extends CrudRepository<Deplacement, Long>
 
     List<Deplacement> findByScenarioId(Long scenario);
 
+    void deleteByEntiteId(Long entite);
 }

@@ -14,6 +14,7 @@ public class EntiteService {
 
     @Autowired
     private final EntiteRepository entiteRepository;
+    private final DeplacementService deplacementService;
 
     public Entite create(Entite entity){
         return entiteRepository.save(entity);
@@ -28,10 +29,13 @@ public class EntiteService {
     }
 
     public void deleteById(Long id){
+        deplacementService.deleteByEntite(id);
         entiteRepository.deleteById(id);
     }
 
     public void deleteByScenario(Long scenario){
+        final List<Entite> entity = entiteRepository.findByScenarioIdOrderByNumero(scenario);
+        for(Entite e : entity) deplacementService.deleteByEntite(e.getId());
         entiteRepository.deleteByScenarioId(scenario);
     }
 

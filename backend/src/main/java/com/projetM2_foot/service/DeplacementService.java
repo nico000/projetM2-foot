@@ -24,5 +24,9 @@ public class DeplacementService {
         return deplacementRepository.findByScenarioId(scenario);
     }
 
+    public void deleteByEntite(Long entite){
+
+        deplacementRepository.deleteByEntiteId(entite);
+    }
 
 }

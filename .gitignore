@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,angular,intellij,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,angular,intellij,visualstudiocode
 
+frontend/target/
+backend/target/
+
 ### Angular ###
 ## Angular ##
 # compiled output
@@ -87,6 +90,8 @@ cmake-build-*/
 
 # IntelliJ
 out/
+
+
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

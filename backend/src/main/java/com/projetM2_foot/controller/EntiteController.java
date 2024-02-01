@@ -77,7 +77,6 @@ public class EntiteController {
             @PathVariable
             Long scenarioId){
 
-        log.info("Endpoint appelé : Get /entite/");
         log.info("Endpoint appelé : GET /entite/" + scenarioId);
 
         final List<Entite> listEntite =  entiteService.getByScenario(scenarioId);

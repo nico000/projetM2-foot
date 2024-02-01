@@ -11,6 +11,6 @@ public class EntiteResponse {
     private Long scenario;
     private int type;
     private int numero;
-    private int x;
-    private int y;
+    private float x;
+    private float y;
 }

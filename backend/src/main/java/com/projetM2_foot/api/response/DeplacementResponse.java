@@ -15,9 +15,9 @@ public class DeplacementResponse {
     private int numScene;
     private int numBloc;
 
-    private int startPosX;
-    private int startPosY;
-    private int endPosX;
-    private int endPosY;
+    private float startPosX;
+    private float startPosY;
+    private float endPosX;
+    private float endPosY;
 
 }

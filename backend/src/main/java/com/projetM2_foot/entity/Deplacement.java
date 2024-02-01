@@ -39,12 +39,12 @@ public class Deplacement {
     @ManyToOne
     private Entite entite;
     /** Position X de début */
-    private int startPosX;
+    private float startPosX;
     /** Position Y de début */
-    private int startPosY;
+    private float startPosY;
     /** Position X de fin */
-    private int endPosX;
+    private float endPosX;
     /** Position Y de fin */
-    private int endPosY;
+    private float endPosY;
 
 }

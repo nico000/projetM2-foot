@@ -38,10 +38,10 @@ public class Entite {
 
     /** Position initial coordonnées X */
     @NotNull
-    private int initialPosX;
+    private float initialPosX;
 
     /** Position initial coordonnées Y */
     @NotNull
-    private int initialPosY;
+    private float initialPosY;
 
 }

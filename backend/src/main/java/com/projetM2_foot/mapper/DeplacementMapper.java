@@ -2,6 +2,7 @@ package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.DeplacementRequestCreate;
 import com.projetM2_foot.api.response.DeplacementResponse;
+import com.projetM2_foot.api.response.EntiteResponse;
 import com.projetM2_foot.entity.Deplacement;
 import com.projetM2_foot.entity.Entite;
 import com.projetM2_foot.entity.Scenario;
@@ -9,6 +10,9 @@ import com.projetM2_foot.service.EntiteService;
 import com.projetM2_foot.service.ScenarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -52,6 +56,12 @@ public class DeplacementMapper {
                 .endPosX(entity.getEndPosX())
                 .endPosY(entity.getEndPosY())
                 .build();
+    }
+
+    public List<DeplacementResponse> toDtoAll (List<Deplacement> listEntity){
+        return listEntity.stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
 }

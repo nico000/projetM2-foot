@@ -45,13 +45,8 @@ public class DeplacementService {
             if(!entityToSupp.isEmpty()){
                 deplacementRepository.deleteById(entityToSupp.get(0).getId());
             }
-
         }
-       // deplacementRepository.deleteTopByScenarioIdAndOrderByNumActionDesc(scenario , PageRequest.of(0, 1));
-
-     //
-
-
     }
+
 
 }

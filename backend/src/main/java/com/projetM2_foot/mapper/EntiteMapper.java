@@ -3,13 +3,13 @@ package com.projetM2_foot.mapper;
 import com.projetM2_foot.api.request.EntiteRequestCreate;
 import com.projetM2_foot.api.request.EntiteRequestUpdate;
 import com.projetM2_foot.api.response.EntiteResponse;
-import com.projetM2_foot.api.response.ScenarioResponse;
 import com.projetM2_foot.entity.Entite;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.service.ScenarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +29,7 @@ public class EntiteMapper {
                 .numero(request.getNumero())
                 .initialPosX(request.getX())
                 .initialPosY(request.getY())
+                .createDate(new Date())
                 .build();
     }
 
@@ -43,6 +44,7 @@ public class EntiteMapper {
                 .numero(request.getNumero())
                 .initialPosX(request.getX())
                 .initialPosY(request.getY())
+                .createDate(new Date())
                 .build();
     }
 

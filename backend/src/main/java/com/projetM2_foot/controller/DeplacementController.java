@@ -60,5 +60,14 @@ public class DeplacementController {
         return ResponseEntity.ok(dtos);
     }
 
+    @DeleteMapping("/last/{scenarioId}")
+    public ResponseEntity<?> deleteLast(
+            @PathVariable Long scenarioId
+    ){
+        log.info("Endpoint appelé : DELETE /last/" + scenarioId);
+        deplacementService.deleteLast(scenarioId);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

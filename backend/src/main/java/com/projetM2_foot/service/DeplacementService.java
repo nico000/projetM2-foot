@@ -5,7 +5,6 @@ import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.repository.DeplacementRepository;
 import com.projetM2_foot.repository.ScenarioRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

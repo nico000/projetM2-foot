@@ -36,11 +36,11 @@ public class EntiteDto {
             description = "Position initial X de l'entité",
             example = "5"
     )
-    private int x;
+    private float x;
 
     @Schema(
             description = "Position initial Y de l'entité",
             example = "3"
     )
-    private int y;
+    private float y;
 }

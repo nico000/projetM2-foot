@@ -10,6 +10,9 @@ import com.projetM2_foot.service.ScenarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Component
 @AllArgsConstructor
@@ -52,6 +55,12 @@ public class DeplacementMapper {
                 .endPosX(entity.getEndPosX())
                 .endPosY(entity.getEndPosY())
                 .build();
+    }
+
+    public List<DeplacementResponse> toDtoAll (List<Deplacement> listEntity){
+        return listEntity.stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
 }

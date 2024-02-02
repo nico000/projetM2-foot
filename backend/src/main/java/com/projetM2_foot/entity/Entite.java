@@ -2,11 +2,9 @@ package com.projetM2_foot.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -38,10 +36,14 @@ public class Entite {
 
     /** Position initial coordonnées X */
     @NotNull
-    private int initialPosX;
+    private float initialPosX;
 
     /** Position initial coordonnées Y */
     @NotNull
-    private int initialPosY;
+    private float initialPosY;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "createDate")
+    private Date createDate;
 
 }

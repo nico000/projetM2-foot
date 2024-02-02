@@ -77,7 +77,6 @@ public class EntiteController {
             @PathVariable
             Long scenarioId){
 
-        log.info("Endpoint appelé : Get /entite/");
         log.info("Endpoint appelé : GET /entite/" + scenarioId);
 
         final List<Entite> listEntite =  entiteService.getByScenario(scenarioId);
@@ -97,6 +96,21 @@ public class EntiteController {
         log.info("Endpoint appelé : DELETE /entite/" + entiteId);
 
         entiteService.deleteById(entiteId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @DeleteMapping("/last/{scenarioId}")
+    @Operation(
+            summary = "Supprime l'entité la plus récente",
+            description = "Supprime de la base de donnée une entité en fonction du scénario et de la date la plus récente")
+    public ResponseEntity<?> deleteLastEntiteByScenario (
+            @Parameter(description = "Id de l'entité", example = "12")
+            @PathVariable
+            Long scenarioId){
+
+        log.info("Endpoint appelé : DELETE /entite/last/" + scenarioId);
+
+        entiteService.deleteLastEntite(scenarioId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

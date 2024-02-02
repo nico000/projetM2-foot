@@ -58,6 +58,7 @@ export class HomeComponent {
         )
     }
 
+    //detail
     private getScenarioName(nom: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this._homeService.getScenarioNom(nom).subscribe(
@@ -89,6 +90,16 @@ export class HomeComponent {
         this._modalService.open(modal);
         this._selectedScenario =scenario;
         this.genEntite(scenario.nom);
+    }
+
+    //delete scenario
+    delScenario(scenario:Scenario): void{
+        this._homeService.DelScenario(scenario.id).subscribe(
+            ()=>this._homeService.getScenarioList().subscribe(
+                res  =>
+                    this._scenarioList = res
+            )
+        );
     }
 
 

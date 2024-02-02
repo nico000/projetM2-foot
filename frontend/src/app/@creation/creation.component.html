@@ -62,19 +62,51 @@
 
         <td class="colonne2" ><!-- terrain -->
             <table class="tableau_terrain">
+                <div class="mode">Ajout des entités</div>
                 <tr>
-                    <div id="deplacableObject" class="draggable"></div><br><br><br><br><br><br>
-                </tr>
-                <tr *ngFor="let couloir of nb_couloir(lastCouloir)" class="couloir">
+                    <td class="barreOutils">
+                        <div class="Ecriture">retour</div>
+                    </td>
+                    <td class="barreOutils">
+                        <div class="Ecriture">joueur :</div>
+                    </td>
+                    <td class="barreOutils">
+                        <div id="deplacableObject" class="draggable joueur"></div>
+                    </td>
+                    <td class="barreOutils">
+                        <div class="Ecriture">ballon :</div>
+                    </td>
+                    <td class="barreOutils">
+                        <div id="ballondeplacableObject" class="draggable ballon"></div>
+                    </td>
+                    <td class="barreOutils">
+                        <div class="Ecriture">fin</div>
+                    </td>
+                    <br><br><br><br><br>
+                </tr></table><br>
+            <table class="tableau_terrain">
+                <tr *ngFor="let couloir of nb_couloir(lastCouloir); let odd = odd" class="couloir"
+                    [ngStyle]="{'background-color': odd ? 'lightgreen' : 'inherit'}" >
                     <td *ngFor="let zone of nb_couloir(lastZone)" class="zone">
-                        <div *ngFor="let entite of _entiteList"  class="draggable"  [style.left.%]="entite.y" [style.top.%]="entite.x">
-                            {{ entite.numero }}</div>
+                        <div *ngFor="let entite of _entiteList" class="draggable" [style.left.%]="entite.y" [style.top.%]="entite.x"
+                             (mousedown)="Entite_onMouseDown($event, entite)"
+                             (mousemove)="Entite_onMouseMove($event)"
+                             (mouseup)="Entite_onMouseUp()"
+                             draggable="true">
+                            <p class="joueur numEcriture" *ngIf="entite.type==1">
+                                {{ entite.numero }}
+                            </p>
+                            <p class="ballon numEcriture" *ngIf="entite.type==0">
+                                {{ entite.numero }}
+                            </p>
+                        </div>
                     </td>
                 </tr>
             </table><br>
             <table>
                 <tr>
-                    <button  (click)="addJoueur()">valider</button>
+                    <button  (click)="addJoueur()" class="boutton">ajouter joueur</button>
+                    <button  (click)="addBallon()" class="boutton">ajouter ballon</button>
                 </tr>
             </table>
         </td>
@@ -87,8 +119,8 @@
     <p class="verif">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>
     <nav class="menu">
         <ul>
-            <li class="boutton" ><a  (click)="addScenario(_addScenarioModalName)">oui</a></li>
-            <li class="boutton" ><a  (click)="resetData(_addScenarioModalName);">non</a></li>
+            <li class="boutton" style="width: 50%"><a  (click)="addScenario(_addScenarioModalName)">oui</a></li>
+            <li class="boutton" style="width: 50%"><a  (click)="resetData(_addScenarioModalName);">non</a></li>
         </ul>
     </nav>
 </jw-modal>

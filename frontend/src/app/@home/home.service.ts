@@ -24,4 +24,8 @@ export class HomeService {
         return this._http.get<Scenario>(`/scenario/nom?name=${nom}`);
     }
 
+    public DelScenario(id:Number): Observable<any> {
+        return this._http.delete('/scenario/'+id)
+    }
+
 }

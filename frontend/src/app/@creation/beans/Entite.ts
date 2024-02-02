@@ -3,6 +3,6 @@ export class Entite{
     public scenario:Number=0.0;
     public type:Number=0.0;
     public numero:Number=0.0;
-    public x:Number=0.0;
-    public y:Number=0.0
+    public x:number=0.0;
+    public y:number=0.0
 }

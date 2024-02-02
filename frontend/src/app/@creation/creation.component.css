@@ -37,6 +37,7 @@ nav.menu ul  .boutton{
     display: inline-block;
     width: 80%;
 }
+
 nav.menu ul li.boutton a{
     color :Azure;
     background-color: green;
@@ -68,9 +69,34 @@ nav.menu ul li.boutton:hover a{
     position: absolute;
     width: 50px;
     height: 50px;
-    background-color: #ffeb3b; /* Jaune */
     border-radius: 50%;
     cursor: grab;
+    overflow: hidden;
+    margin: auto;
+    align-items: center;
+}
+.barreOutils{
+    text-align:center ;
+    align-content: center;
+    width:16.5%;
+}
+.Ecriture{
+    font-size: 120%;
+    color: white;
+    text-align: center;
+}
+.numEcriture{
+    font-size: 120%;
+    color: black;
+    text-align: center;
+}
+.joueur{
+    background-color: #ffeb3b;
+}
+.ballon {
+    background-color:white;
+    width: 25px;
+    height: 25px;
 }
 .couloir{
     background: green;
@@ -88,5 +114,10 @@ nav.menu ul li.boutton:hover a{
     width:100%;
     border: 1px solid black;
     border-collapse: collapse;
+}
+.mode{
+    font-size: 130%;
+    color: white;
+    text-align: center;
 }
 

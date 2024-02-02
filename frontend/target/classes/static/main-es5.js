@@ -71,7 +71,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1 class=\"presentation\">Ajout d'un Scenario</h1>\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\">Action</label>\n            </div><br>\n            <div class=\"titre\">\n                nombre de joueur: <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain: <input type=\"text\" [(ngModel)]=\"_newScenario.terrain_couleur\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\">Grand</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\">Afficher les zones du terrain</label>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <tr>\n                    <div id=\"deplacableObject\" class=\"draggable\"></div><br><br><br><br><br><br>\n                </tr>\n                <tr *ngFor=\"let couloir of nb_couloir(lastCouloir)\" class=\"couloir\">\n                    <td *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\">\n                        <div *ngFor=\"let entite of _entiteList\"  class=\"draggable\"  [style.left.%]=\"entite.y\" [style.top.%]=\"entite.x\">\n                            {{ entite.numero }}</div>\n                    </td>\n                </tr>\n            </table><br>\n            <table>\n                <tr>\n                    <button  (click)=\"addJoueur()\">valider</button>\n                </tr>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" ><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" ><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
+    __webpack_exports__["default"] = "<h1 class=\"presentation\">Ajout d'un Scenario</h1>\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\">Action</label>\n            </div><br>\n            <div class=\"titre\">\n                nombre de joueur: <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain: <input type=\"text\" [(ngModel)]=\"_newScenario.terrain_couleur\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\">Grand</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\">Afficher les zones du terrain</label>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <div class=\"mode\">Ajout des entités</div>\n                <tr>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">retour</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">joueur :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"deplacableObject\" class=\"draggable joueur\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">ballon :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"ballondeplacableObject\" class=\"draggable ballon\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">fin</div>\n                    </td>\n                    <br><br><br><br><br>\n                </tr></table><br>\n            <table class=\"tableau_terrain\">\n                <tr *ngFor=\"let couloir of nb_couloir(lastCouloir); let odd = odd\" class=\"couloir\"\n                    [ngStyle]=\"{'background-color': odd ? 'lightgreen' : 'inherit'}\" >\n                    <td *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\">\n                        <div *ngFor=\"let entite of _entiteList\" class=\"draggable\" [style.left.%]=\"entite.y\" [style.top.%]=\"entite.x\"\n                             (mousedown)=\"Entite_onMouseDown($event, entite)\"\n                             (mousemove)=\"Entite_onMouseMove($event)\"\n                             (mouseup)=\"Entite_onMouseUp()\"\n                             draggable=\"true\">\n                            <p class=\"joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                {{ entite.numero }}\n                            </p>\n                            <p class=\"ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                {{ entite.numero }}\n                            </p>\n                        </div>\n                    </td>\n                </tr>\n            </table><br>\n            <table>\n                <tr>\n                    <button  (click)=\"addJoueur()\" class=\"boutton\">ajouter joueur</button>\n                    <button  (click)=\"addBallon()\" class=\"boutton\">ajouter ballon</button>\n                </tr>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
     /***/
   },
 
@@ -131,7 +131,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des scénario : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de joueur\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de deplacement\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            Bouton\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.joueur_nb}}\n        </td>\n        <td class=\"colonne ecriture\">\n            <p>Undif</p>\n        </td>\n        <td class=\"colonne ecriture\">\n            <button (click)=\"selectScenario(_selectScenarioModalName,scenario)\">details</button>\n        </td>\n    </tr>\n</table>\n\n\n<jw-modal id=\"{{_selectScenarioModalName}}\" >\n    <h1 class=\"titre\">{{_selectedScenario.nom}}</h1>\n    <div *ngFor=\"let entite of _entiteList\" class=\"info\" >{{entite.numero}}</div>\n</jw-modal>";
+    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des scénario : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de joueur\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de deplacement\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            Bouton\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.joueur_nb}}\n        </td>\n        <td class=\"colonne ecriture\">\n            <p>Undif</p>\n        </td>\n        <td class=\"colonne ecriture\">\n            <button (click)=\"selectScenario(_selectScenarioModalName,scenario)\">details</button>\n            <button (click)=\"delScenario(scenario)\">Supprimer</button>\n        </td>\n    </tr>\n</table>\n\n\n<jw-modal id=\"{{_selectScenarioModalName}}\" >\n    <h1 class=\"titre\">{{_selectedScenario.nom}}</h1>\n    <div *ngFor=\"let entite of _entiteList\" class=\"info\" >{{entite.numero}}</div>\n</jw-modal>";
     /***/
   },
 
@@ -949,7 +949,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".presentation{\n    font-size: 200%;\n    color: white;\n    text-align: center;\n}\n\n.verif{\n    font-size: 150%;\n    color: red;\n    text-align: center;\n}\n\n.titre{\n    font-size: 130%;\n    color: mediumblue;\n    text-align: center;\n}\n\n.round-button {\n    display: inline-block;\n    cursor: pointer;\n    padding: 10px;\n    border: 2px solid white;\n    border-radius: 50px;\n    font-size: 16px;\n    text-align: center;\n    color: white;\n    transition: background-color 0.3s;\n}\n\n.round-button:hover {\n    background-color: #3498db;\n    color: #fff;\n}\n\n.hidden-checkbox {\n    display: none;\n}\n\nnav.menu ul  .boutton{\n    display: inline-block;\n    width: 80%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: green;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:30px;\n    justify-content: center;\n    border: 2px solid white;\n\n}\n\nnav.menu ul li.boutton:hover a{\n    color: lightgreen;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.tableau{\n    padding: 5px;\n    width:100%;\n}\n\n.colonne{\n    width:35%;\n}\n\n.colonne2{\n    width:65%;\n}\n\n/*terrain*/\n\n.draggable {\n    position: absolute;\n    width: 50px;\n    height: 50px;\n    background-color: #ffeb3b; /* Jaune */\n    border-radius: 50%;\n    cursor: -webkit-grab;\n    cursor: grab;\n}\n\n.couloir{\n    background: green;\n    border: 1px solid black;\n    border-collapse: collapse;\n    height: 60px;\n}\n\n.zone{\n    background: green;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n.tableau_terrain{\n    padding: 5%;\n    width:100%;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGNyZWF0aW9uL2NyZWF0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsWUFBWTtJQUNaLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLGVBQWU7SUFDZixVQUFVO0lBQ1Ysa0JBQWtCO0FBQ3RCOztBQUNBO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsZUFBZTtJQUNmLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLGlDQUFpQztBQUNyQzs7QUFDQTtJQUNJLHlCQUF5QjtJQUN6QixXQUFXO0FBQ2Y7O0FBRUE7SUFDSSxhQUFhO0FBQ2pCOztBQUNBO0lBQ0kscUJBQXFCO0lBQ3JCLFVBQVU7QUFDZDs7QUFDQTtJQUNJLFlBQVk7SUFDWix1QkFBdUI7SUFDdkIscUJBQXFCO0lBQ3JCLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsY0FBYztJQUNkLHVCQUF1QjtJQUN2Qix1QkFBdUI7O0FBRTNCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEI7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osVUFBVTtBQUNkOztBQUNBO0lBQ0ksU0FBUztBQUNiOztBQUNBO0lBQ0ksU0FBUztBQUNiOztBQUNBLFVBQVU7O0FBQ1Y7SUFDSSxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFlBQVk7SUFDWix5QkFBeUIsRUFBRSxVQUFVO0lBQ3JDLGtCQUFrQjtJQUNsQixvQkFBWTtJQUFaLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsdUJBQXVCO0lBQ3ZCLHlCQUF5QjtJQUN6QixZQUFZO0FBQ2hCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2Qix5QkFBeUI7QUFDN0I7O0FBQ0E7SUFDSSxXQUFXO0lBQ1gsVUFBVTtJQUNWLHVCQUF1QjtJQUN2Qix5QkFBeUI7QUFDN0IiLCJmaWxlIjoic3JjL2FwcC9AY3JlYXRpb24vY3JlYXRpb24uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5wcmVzZW50YXRpb257XG4gICAgZm9udC1zaXplOiAyMDAlO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi52ZXJpZntcbiAgICBmb250LXNpemU6IDE1MCU7XG4gICAgY29sb3I6IHJlZDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4udGl0cmV7XG4gICAgZm9udC1zaXplOiAxMzAlO1xuICAgIGNvbG9yOiBtZWRpdW1ibHVlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5yb3VuZC1idXR0b24ge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICBib3JkZXI6IDJweCBzb2xpZCB3aGl0ZTtcbiAgICBib3JkZXItcmFkaXVzOiA1MHB4O1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcztcbn1cbi5yb3VuZC1idXR0b246aG92ZXIge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMzNDk4ZGI7XG4gICAgY29sb3I6ICNmZmY7XG59XG5cbi5oaWRkZW4tY2hlY2tib3gge1xuICAgIGRpc3BsYXk6IG5vbmU7XG59XG5uYXYubWVudSB1bCAgLmJvdXR0b257XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHdpZHRoOiA4MCU7XG59XG5uYXYubWVudSB1bCBsaS5ib3V0dG9uIGF7XG4gICAgY29sb3IgOkF6dXJlO1xuICAgIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgICB0ZXh0LWFsaWduOmNlbnRlciA7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmb250LXNpemU6MzBweDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBib3JkZXI6IDJweCBzb2xpZCB3aGl0ZTtcblxufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICAgIGNvbG9yOiBsaWdodGdyZWVuO1xuICAgIGJhY2tncm91bmQtY29sb3I6IEF6dXJlO1xuICAgIHRyYW5zaXRpb246IDAuNXMgYWxsO1xufVxuLnRhYmxlYXV7XG4gICAgcGFkZGluZzogNXB4O1xuICAgIHdpZHRoOjEwMCU7XG59XG4uY29sb25uZXtcbiAgICB3aWR0aDozNSU7XG59XG4uY29sb25uZTJ7XG4gICAgd2lkdGg6NjUlO1xufVxuLyp0ZXJyYWluKi9cbi5kcmFnZ2FibGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB3aWR0aDogNTBweDtcbiAgICBoZWlnaHQ6IDUwcHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZWIzYjsgLyogSmF1bmUgKi9cbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgY3Vyc29yOiBncmFiO1xufVxuLmNvdWxvaXJ7XG4gICAgYmFja2dyb3VuZDogZ3JlZW47XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbiAgICBoZWlnaHQ6IDYwcHg7XG59XG4uem9uZXtcbiAgICBiYWNrZ3JvdW5kOiBncmVlbjtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xufVxuLnRhYmxlYXVfdGVycmFpbntcbiAgICBwYWRkaW5nOiA1JTtcbiAgICB3aWR0aDoxMDAlO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG59XG5cbiJdfQ== */";
+    __webpack_exports__["default"] = ".presentation{\n    font-size: 200%;\n    color: white;\n    text-align: center;\n}\n\n.verif{\n    font-size: 150%;\n    color: red;\n    text-align: center;\n}\n\n.titre{\n    font-size: 130%;\n    color: mediumblue;\n    text-align: center;\n}\n\n.round-button {\n    display: inline-block;\n    cursor: pointer;\n    padding: 10px;\n    border: 2px solid white;\n    border-radius: 50px;\n    font-size: 16px;\n    text-align: center;\n    color: white;\n    transition: background-color 0.3s;\n}\n\n.round-button:hover {\n    background-color: #3498db;\n    color: #fff;\n}\n\n.hidden-checkbox {\n    display: none;\n}\n\nnav.menu ul  .boutton{\n    display: inline-block;\n    width: 80%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: green;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:30px;\n    justify-content: center;\n    border: 2px solid white;\n\n}\n\nnav.menu ul li.boutton:hover a{\n    color: lightgreen;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.tableau{\n    padding: 5px;\n    width:100%;\n}\n\n.colonne{\n    width:35%;\n}\n\n.colonne2{\n    width:65%;\n}\n\n/*terrain*/\n\n.draggable {\n    position: absolute;\n    width: 50px;\n    height: 50px;\n    border-radius: 50%;\n    cursor: -webkit-grab;\n    cursor: grab;\n    overflow: hidden;\n    margin: auto;\n    align-items: center;\n}\n\n.barreOutils{\n    text-align:center ;\n    align-content: center;\n    width:16.5%;\n}\n\n.Ecriture{\n    font-size: 120%;\n    color: white;\n    text-align: center;\n}\n\n.numEcriture{\n    font-size: 120%;\n    color: black;\n    text-align: center;\n}\n\n.joueur{\n    background-color: #ffeb3b;\n}\n\n.ballon {\n    background-color:white;\n    width: 25px;\n    height: 25px;\n}\n\n.couloir{\n    background: green;\n    border: 1px solid black;\n    border-collapse: collapse;\n    height: 60px;\n}\n\n.zone{\n    background: green;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n.tableau_terrain{\n    padding: 5%;\n    width:100%;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n.mode{\n    font-size: 130%;\n    color: white;\n    text-align: center;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGNyZWF0aW9uL2NyZWF0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsWUFBWTtJQUNaLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLGVBQWU7SUFDZixVQUFVO0lBQ1Ysa0JBQWtCO0FBQ3RCOztBQUNBO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsZUFBZTtJQUNmLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLGlDQUFpQztBQUNyQzs7QUFDQTtJQUNJLHlCQUF5QjtJQUN6QixXQUFXO0FBQ2Y7O0FBRUE7SUFDSSxhQUFhO0FBQ2pCOztBQUNBO0lBQ0kscUJBQXFCO0lBQ3JCLFVBQVU7QUFDZDs7QUFFQTtJQUNJLFlBQVk7SUFDWix1QkFBdUI7SUFDdkIscUJBQXFCO0lBQ3JCLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsY0FBYztJQUNkLHVCQUF1QjtJQUN2Qix1QkFBdUI7O0FBRTNCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2QixvQkFBb0I7QUFDeEI7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osVUFBVTtBQUNkOztBQUNBO0lBQ0ksU0FBUztBQUNiOztBQUNBO0lBQ0ksU0FBUztBQUNiOztBQUNBLFVBQVU7O0FBQ1Y7SUFDSSxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsb0JBQVk7SUFBWixZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLFlBQVk7SUFDWixtQkFBbUI7QUFDdkI7O0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIscUJBQXFCO0lBQ3JCLFdBQVc7QUFDZjs7QUFDQTtJQUNJLGVBQWU7SUFDZixZQUFZO0lBQ1osa0JBQWtCO0FBQ3RCOztBQUNBO0lBQ0ksZUFBZTtJQUNmLFlBQVk7SUFDWixrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSx5QkFBeUI7QUFDN0I7O0FBQ0E7SUFDSSxzQkFBc0I7SUFDdEIsV0FBVztJQUNYLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsdUJBQXVCO0lBQ3ZCLHlCQUF5QjtJQUN6QixZQUFZO0FBQ2hCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLHVCQUF1QjtJQUN2Qix5QkFBeUI7QUFDN0I7O0FBQ0E7SUFDSSxXQUFXO0lBQ1gsVUFBVTtJQUNWLHVCQUF1QjtJQUN2Qix5QkFBeUI7QUFDN0I7O0FBQ0E7SUFDSSxlQUFlO0lBQ2YsWUFBWTtJQUNaLGtCQUFrQjtBQUN0QiIsImZpbGUiOiJzcmMvYXBwL0BjcmVhdGlvbi9jcmVhdGlvbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByZXNlbnRhdGlvbntcbiAgICBmb250LXNpemU6IDIwMCU7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLnZlcmlme1xuICAgIGZvbnQtc2l6ZTogMTUwJTtcbiAgICBjb2xvcjogcmVkO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi50aXRyZXtcbiAgICBmb250LXNpemU6IDEzMCU7XG4gICAgY29sb3I6IG1lZGl1bWJsdWU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLnJvdW5kLWJ1dHRvbiB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIGJvcmRlcjogMnB4IHNvbGlkIHdoaXRlO1xuICAgIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gICAgZm9udC1zaXplOiAxNnB4O1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjNzO1xufVxuLnJvdW5kLWJ1dHRvbjpob3ZlciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzM0OThkYjtcbiAgICBjb2xvcjogI2ZmZjtcbn1cblxuLmhpZGRlbi1jaGVja2JveCB7XG4gICAgZGlzcGxheTogbm9uZTtcbn1cbm5hdi5tZW51IHVsICAuYm91dHRvbntcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgd2lkdGg6IDgwJTtcbn1cblxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbiBhe1xuICAgIGNvbG9yIDpBenVyZTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBncmVlbjtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZm9udC1zaXplOjMwcHg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG5cbn1cbm5hdi5tZW51IHVsIGxpLmJvdXR0b246aG92ZXIgYXtcbiAgICBjb2xvcjogbGlnaHRncmVlbjtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBBenVyZTtcbiAgICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcbn1cbi50YWJsZWF1e1xuICAgIHBhZGRpbmc6IDVweDtcbiAgICB3aWR0aDoxMDAlO1xufVxuLmNvbG9ubmV7XG4gICAgd2lkdGg6MzUlO1xufVxuLmNvbG9ubmUye1xuICAgIHdpZHRoOjY1JTtcbn1cbi8qdGVycmFpbiovXG4uZHJhZ2dhYmxlIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgd2lkdGg6IDUwcHg7XG4gICAgaGVpZ2h0OiA1MHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgICBjdXJzb3I6IGdyYWI7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgICBtYXJnaW46IGF1dG87XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5iYXJyZU91dGlsc3tcbiAgICB0ZXh0LWFsaWduOmNlbnRlciA7XG4gICAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICAgIHdpZHRoOjE2LjUlO1xufVxuLkVjcml0dXJle1xuICAgIGZvbnQtc2l6ZTogMTIwJTtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLm51bUVjcml0dXJle1xuICAgIGZvbnQtc2l6ZTogMTIwJTtcbiAgICBjb2xvcjogYmxhY2s7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmpvdWV1cntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZlYjNiO1xufVxuLmJhbGxvbiB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjp3aGl0ZTtcbiAgICB3aWR0aDogMjVweDtcbiAgICBoZWlnaHQ6IDI1cHg7XG59XG4uY291bG9pcntcbiAgICBiYWNrZ3JvdW5kOiBncmVlbjtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICAgIGhlaWdodDogNjBweDtcbn1cbi56b25le1xuICAgIGJhY2tncm91bmQ6IGdyZWVuO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG59XG4udGFibGVhdV90ZXJyYWlue1xuICAgIHBhZGRpbmc6IDUlO1xuICAgIHdpZHRoOjEwMCU7XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi5tb2Rle1xuICAgIGZvbnQtc2l6ZTogMTMwJTtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4iXX0= */";
     /***/
   },
 
@@ -1023,9 +1023,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.isDragging = false;
         this.offsetX = 0;
-        this.offsetY = 0; // Obtenez une référence vers l'élément du DOM
+        this.offsetY = 0; // variables pour stocker la position de départ du joueur
+
+        this.initialLeft = -1;
+        this.initialTop = -1; //deplacemnt ballon
+
+        this.ballon_isDragging = false;
+        this.ballon_offsetX = 0;
+        this.ballon_offsetY = 0;
+        this.ballon_initialLeft = -1;
+        this.ballon_initialTop = -1; //objet
 
         this.draggableObject = null;
+        this.ballon_draggableObject = null; //deplacement
+
+        this.Entite_isDragging = false;
+        this.Entite_offsetX = 0;
+        this.Entite_offsetY = 0;
+        this.Entite_draggableObject = null;
       }
 
       _createClass(CreationComponent, [{
@@ -1099,28 +1114,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "objectInit",
         value: function objectInit() {
-          // Après l'initialisation de la vue, obtenez une référence vers l'élément du DOM
+          // daplacement joueur
           this.draggableObject = document.getElementById('deplacableObject');
-          this.addEventListeners();
+          this.ballon_draggableObject = document.getElementById('ballondeplacableObject');
+          this.initialLeft = -1;
+          this.initialTop = -1;
+          this.ballon_initialLeft = -1;
+          this.ballon_initialTop = -1; //this.addEventListeners();
+          //this.ballon_addEventListeners();
+
+          this.addEventListeners(this.draggableObject, this.onMouseDown.bind(this), this.onMouseMove.bind(this), this.onMouseUp.bind(this), this.onMouseLeave.bind(this));
+          this.addEventListeners(this.ballon_draggableObject, this.ballon_onMouseDown.bind(this), this.ballon_onMouseMove.bind(this), this.ballon_onMouseUp.bind(this), this.ballon_onMouseLeave.bind(this));
         }
       }, {
         key: "addEventListeners",
-        value: function addEventListeners() {
-          var _this2 = this;
-
-          if (this.draggableObject) {
-            this.draggableObject.addEventListener('mousedown', function (e) {
-              return _this2.onMouseDown(e);
-            });
-            document.addEventListener('mousemove', function (e) {
-              return _this2.onMouseMove(e);
-            });
-            document.addEventListener('mouseup', function () {
-              return _this2.onMouseUp();
-            });
-            document.addEventListener('mouseleave', function () {
-              return _this2.onMouseLeave();
-            });
+        value: function addEventListeners(element, onMouseDown, onMouseMove, onMouseUp, onMouseLeave) {
+          if (element) {
+            element.addEventListener('mousedown', onMouseDown);
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+            document.addEventListener('mouseleave', onMouseLeave);
           }
         }
       }, {
@@ -1131,9 +1144,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.offsetX = event.clientX - this.draggableObject.getBoundingClientRect().left;
             this.offsetY = event.clientY - this.draggableObject.getBoundingClientRect().top; // Stocker la position de départ en pixels
 
-            this.initialLeft = this.draggableObject.offsetLeft;
-            this.initialTop = this.draggableObject.offsetTop;
+            if (this.initialLeft == -1) {
+              this.initialLeft = this.draggableObject.offsetLeft;
+              this.initialTop = this.draggableObject.offsetTop;
+            }
+
             this.draggableObject.style.cursor = 'grabbing';
+          }
+        }
+      }, {
+        key: "ballon_onMouseDown",
+        value: function ballon_onMouseDown(event) {
+          if (this.ballon_draggableObject) {
+            this.ballon_isDragging = true;
+            this.ballon_offsetX = event.clientX - this.ballon_draggableObject.getBoundingClientRect().left;
+            this.ballon_offsetY = event.clientY - this.ballon_draggableObject.getBoundingClientRect().top;
+
+            if (this.ballon_initialLeft == -1) {
+              this.ballon_initialLeft = this.ballon_draggableObject.offsetLeft;
+              this.ballon_initialTop = this.ballon_draggableObject.offsetTop;
+            }
+
+            this.ballon_draggableObject.style.cursor = 'grabbing';
           }
         }
       }, {
@@ -1147,12 +1179,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
         }
       }, {
+        key: "ballon_onMouseMove",
+        value: function ballon_onMouseMove(event) {
+          if (this.ballon_isDragging && this.ballon_draggableObject) {
+            var x = event.clientX - this.ballon_offsetX;
+            var y = event.clientY - this.ballon_offsetY;
+            this.ballon_draggableObject.style.left = "".concat(x, "px");
+            this.ballon_draggableObject.style.top = "".concat(y, "px");
+          }
+        }
+      }, {
         key: "onMouseUp",
         value: function onMouseUp() {
           if (this.isDragging && this.draggableObject) {
             this.isDragging = false;
-            this.draggableObject.style.cursor = 'grab'; // Appeler la fonction add lorsque le déplacement est terminé
-            //this.addJoueur();
+            this.draggableObject.style.cursor = 'grab';
+          }
+        }
+      }, {
+        key: "ballon_onMouseUp",
+        value: function ballon_onMouseUp() {
+          if (this.ballon_isDragging && this.ballon_draggableObject) {
+            this.ballon_isDragging = false;
+            this.ballon_draggableObject.style.cursor = 'grab';
           }
         }
       }, {
@@ -1162,19 +1211,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.isDragging = false;
             this.draggableObject.style.cursor = 'grab';
           }
+
+          if (this.ballon_isDragging && this.ballon_draggableObject) {
+            this.ballon_isDragging = false;
+            this.ballon_draggableObject.style.cursor = 'grab';
+          }
+        }
+      }, {
+        key: "ballon_onMouseLeave",
+        value: function ballon_onMouseLeave() {
+          if (this.ballon_isDragging && this.ballon_draggableObject) {
+            this.ballon_isDragging = false;
+            this.ballon_draggableObject.style.cursor = 'grab';
+          }
         } //recupere l'id du dernier scenario ajouter
 
       }, {
         key: "getScenarioName",
         value: function getScenarioName(nom) {
-          var _this3 = this;
+          var _this2 = this;
 
           return new Promise(function (resolve, reject) {
-            _this3._creationService.getScenarioNom(nom).subscribe(function (res) {
-              _this3.LastScenario = res; //console.log("last scenario nom:", this.lastNom, " id :", this.LastScenario.id);
+            _this2._creationService.getScenarioNom(nom).subscribe(function (res) {
+              _this2.LastScenario = res; //console.log("last scenario nom:", this.lastNom, " id :", this.LastScenario.id);
 
-              _this3._creationService.getEntiteList(_this3.LastScenario.id).subscribe(function (res) {
-                return _this3._entiteList = res;
+              _this2._creationService.getEntiteList(_this2.LastScenario.id).subscribe(function (res) {
+                return _this2._entiteList = res;
               });
 
               resolve();
@@ -1182,11 +1244,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               reject(error);
             });
           });
-        }
+        } //ajout joueur
+
       }, {
         key: "addJoueur",
         value: function addJoueur() {
-          var _this4 = this;
+          var _this3 = this;
 
           console.log("Objet déplacé. Fonction 'add' appelée."); //recuperation position jeton
 
@@ -1208,9 +1271,51 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             this.numero += 1;
             this.getScenarioName(this.lastNom).then(function () {
+              _this3._newEntite.scenario = _this3.LastScenario.id;
+              _this3._newEntite.numero = _this3.numero;
+              _this3._newEntite.type = 1;
+              _this3._newEntite.y = leftPercentage;
+              _this3._newEntite.x = topPercentage;
+
+              _this3._creationService.addEntite(_this3._newEntite).subscribe(function (res) {
+                _this3._entiteList.push(res);
+              });
+            })["catch"](function (error) {
+              console.error('Une erreur s\'est produite lors de la récupération du scénario :', error); // Gérer l'erreur ici si nécessaire
+            }); // Réinitialiser la position du joueur à sa place initiale (0%)
+
+            this.draggableObject.style.left = "".concat(this.initialLeft, "px");
+            this.draggableObject.style.top = "".concat(this.initialTop, "px");
+          }
+        } //ajout ballon
+
+      }, {
+        key: "addBallon",
+        value: function addBallon() {
+          var _this4 = this;
+
+          console.log("Objet déplacé. Fonction 'add' appelée."); //recuperation position jeton
+
+          if (this.ballon_draggableObject) {
+            // Récupérer les positions finales du jeton
+            var rect = this.ballon_draggableObject.getBoundingClientRect();
+            var finalLeft = this.ballon_draggableObject.offsetLeft;
+            var finalTop = this.ballon_draggableObject.offsetTop; // Afficher les positions finales dans la console
+
+            console.log('Position finale - Left:', finalLeft, 'Top:', finalTop); // Récupérer les dimensions de la page
+
+            var pageWidth = window.innerWidth;
+            var pageHeight = window.innerHeight; // Calculer les positions finales en pourcentage par rapport à la page
+
+            var leftPercentage = finalLeft / pageWidth * 100;
+            var topPercentage = finalTop / pageHeight * 100; // Afficher les positions finales en pourcentage dans la console
+
+            console.log('Position finale en pourcentage - Left:', leftPercentage, 'Top:', topPercentage); // Ajouter joueur dans la bdd
+
+            this.getScenarioName(this.lastNom).then(function () {
               _this4._newEntite.scenario = _this4.LastScenario.id;
-              _this4._newEntite.numero = _this4.numero;
-              _this4._newEntite.type = 1;
+              _this4._newEntite.numero = 0;
+              _this4._newEntite.type = 0;
               _this4._newEntite.y = leftPercentage;
               _this4._newEntite.x = topPercentage;
 
@@ -1219,25 +1324,42 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               });
             })["catch"](function (error) {
               console.error('Une erreur s\'est produite lors de la récupération du scénario :', error); // Gérer l'erreur ici si nécessaire
-            }); // Réinitialiser la position du jeton à sa place initiale (0%)
+            }); // Réinitialiser la position du ballon à sa place initiale (0%)
 
-            this.draggableObject.style.left = "".concat(this.initialLeft, "px");
-            this.draggableObject.style.top = "".concat(this.initialTop, "px");
+            this.ballon_draggableObject.style.left = "".concat(this.ballon_initialLeft, "px");
+            this.ballon_draggableObject.style.top = "".concat(this.ballon_initialTop, "px");
           }
-        } //Afficher le joueur
-
+        }
       }, {
-        key: "tempngOnInit",
-        value: function tempngOnInit() {
-          var _this5 = this;
-
-          this.getScenarioName(this.lastNom).then(function () {
-            _this5._creationService.getEntiteList(_this5.LastScenario.id).subscribe(function (res) {
-              return _this5._entiteList = res;
-            });
-          })["catch"](function (error) {
-            console.error('Une erreur s\'est produite lors de la récupération du scénario :', error); // Gérer l'erreur ici si nécessaire
-          });
+        key: "Entite_onMouseDown",
+        value: function Entite_onMouseDown(event, entite) {
+          this.Entite_draggableObject = event.target;
+          console.log('Entite_onMouseDown called');
+          this.Entite_isDragging = true;
+          var boundingRect = this.Entite_draggableObject.getBoundingClientRect();
+          this.Entite_offsetX = event.clientX - boundingRect.left;
+          this.Entite_offsetY = event.clientY - boundingRect.top;
+          this.Entite_draggableObject.style.cursor = 'grabbing';
+        }
+      }, {
+        key: "Entite_onMouseMove",
+        value: function Entite_onMouseMove(event) {
+          if (this.Entite_isDragging) {
+            console.log('Entite_onMouseDown called2');
+            var x = event.clientX - this.Entite_offsetX;
+            var y = event.clientY - this.Entite_offsetY;
+            this.Entite_draggableObject.style.left = "".concat(x, "px");
+            this.Entite_draggableObject.style.top = "".concat(y, "px");
+          }
+        }
+      }, {
+        key: "Entite_onMouseUp",
+        value: function Entite_onMouseUp() {
+          if (this.Entite_isDragging) {
+            this.Entite_isDragging = false;
+            this.Entite_draggableObject = null;
+            this.Entite_draggableObject.style.cursor = 'grab';
+          }
         }
       }]);
 
@@ -1577,10 +1699,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(HomeComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this6 = this;
+          var _this5 = this;
 
           this._homeService.getScenarioList().subscribe(function (res) {
-            return _this6._scenarioList = res;
+            return _this5._scenarioList = res;
           });
         }
       }, {
@@ -1604,21 +1726,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "resetFilter",
         value: function resetFilter() {
-          var _this7 = this;
+          var _this6 = this;
 
           this._homeService.getScenarioList().subscribe(function (res) {
-            _this7._scenarioList = res;
-            _this7._isFiltering = false;
+            _this6._scenarioList = res;
+            _this6._isFiltering = false;
           });
-        }
+        } //detail
+
       }, {
         key: "getScenarioName",
         value: function getScenarioName(nom) {
-          var _this8 = this;
+          var _this7 = this;
 
           return new Promise(function (resolve, reject) {
-            _this8._homeService.getScenarioNom(nom).subscribe(function (res) {
-              _this8._selectedScenarioEntite = res; //console.log("last scenario nom:", this.lastNom, " id :", this.LastScenario.id);
+            _this7._homeService.getScenarioNom(nom).subscribe(function (res) {
+              _this7._selectedScenarioEntite = res; //console.log("last scenario nom:", this.lastNom, " id :", this.LastScenario.id);
 
               resolve();
             }, function (error) {
@@ -1629,11 +1752,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "genEntite",
         value: function genEntite(nom) {
-          var _this9 = this;
+          var _this8 = this;
 
           this.getScenarioName(nom).then(function () {
-            _this9._homeService.getEntiteList(_this9._selectedScenarioEntite.id).subscribe(function (res) {
-              return _this9._entiteList = res;
+            _this8._homeService.getEntiteList(_this8._selectedScenarioEntite.id).subscribe(function (res) {
+              return _this8._entiteList = res;
             });
           })["catch"](function (error) {
             console.error('Une erreur s\'est produite lors de la récupération du scénario :', error); // Gérer l'erreur ici si nécessaire
@@ -1646,6 +1769,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this._selectedScenario = scenario;
           this.genEntite(scenario.nom);
+        } //delete scenario
+
+      }, {
+        key: "delScenario",
+        value: function delScenario(scenario) {
+          var _this9 = this;
+
+          this._homeService.DelScenario(scenario.id).subscribe(function () {
+            return _this9._homeService.getScenarioList().subscribe(function (res) {
+              return _this9._scenarioList = res;
+            });
+          });
         }
       }]);
 
@@ -1731,6 +1866,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getScenarioNom",
         value: function getScenarioNom(nom) {
           return this._http.get("/scenario/nom?name=".concat(nom));
+        }
+      }, {
+        key: "DelScenario",
+        value: function DelScenario(id) {
+          return this._http["delete"]('/scenario/' + id);
         }
       }]);
 

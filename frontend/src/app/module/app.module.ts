@@ -16,7 +16,7 @@ import {ResultatComponent} from "../@resultat/resultat.component";
 import {CreationService} from "../@creation/creation.service";
 import {ResultatService} from "../@resultat/resultat.service";
 import {FormsModule} from "@angular/forms";
-
+//import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -36,7 +36,8 @@ import {FormsModule} from "@angular/forms";
         AppRoutingModule,
         FormsModule,
         NgbModule,
-        CommonModule
+        CommonModule,
+        //DragDropModule
     ],
   providers: [
       HomeService,

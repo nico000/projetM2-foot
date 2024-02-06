@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h1 class=\"presentation\">Ajout d'un Scenario</h1>\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\">Action</label>\n            </div><br>\n            <div class=\"titre\">\n                nombre de joueur: <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain: <input type=\"text\" [(ngModel)]=\"_newScenario.terrain_couleur\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\">Grand</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\">Afficher les zones du terrain</label>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <div class=\"mode\">Ajout des entités</div>\n                <tr>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">retour</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">joueur :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"deplacableObject\" class=\"draggable joueur\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">ballon :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"ballondeplacableObject\" class=\"draggable ballon\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">fin</div>\n                    </td>\n                    <br><br><br><br><br>\n                </tr></table><br>\n            <table class=\"tableau_terrain\">\n                <tr *ngFor=\"let couloir of nb_couloir(lastCouloir); let odd = odd\" class=\"couloir\"\n                    [ngStyle]=\"{'background-color': odd ? 'lightgreen' : 'inherit'}\" >\n                    <td *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\">\n                        <div *ngFor=\"let entite of _entiteList\" class=\"draggable\" [style.left.%]=\"entite.y\" [style.top.%]=\"entite.x\"\n                             (mousedown)=\"Entite_onMouseDown($event, entite)\"\n                             (mousemove)=\"Entite_onMouseMove($event)\"\n                             (mouseup)=\"Entite_onMouseUp()\"\n                             draggable=\"true\">\n                            <p class=\"joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                {{ entite.numero }}\n                            </p>\n                            <p class=\"ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                {{ entite.numero }}\n                            </p>\n                        </div>\n                    </td>\n                </tr>\n            </table><br>\n            <table>\n                <tr>\n                    <button  (click)=\"addJoueur()\" class=\"boutton\">ajouter joueur</button>\n                    <button  (click)=\"addBallon()\" class=\"boutton\">ajouter ballon</button>\n                </tr>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>");
+/* harmony default export */ __webpack_exports__["default"] = ("<h1 class=\"presentation\">Ajout d'un Scenario</h1>\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\">Action</label>\n            </div><br>\n            <div class=\"titre\">\n                nombre de joueur: <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain: <input type=\"text\" [(ngModel)]=\"_newScenario.terrain_couleur\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\">Grand</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\">Afficher les zones du terrain</label>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <div class=\"mode\">Ajout des entités</div>\n                <tr>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">retour</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">joueur :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"deplacableObject\" class=\"draggable joueur\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">ballon :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"ballondeplacableObject\" class=\"draggable ballon\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">fin</div>\n                    </td>\n                    <br><br><br><br><br>\n                </tr></table><br>\n            <table  class=\"tableau_terrain\">\n                <tr  *ngFor=\"let couloir of nb_couloir(lastCouloir); let odd = odd\" class=\"couloir\">\n                    <td  *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\" (click)=\"addDeplacement($event)\">\n                        <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                             [style.left.%]=\"entite.y\" [style.top.%]=\"entite.x\"\n                              (click)=\"selectEntite(entite)\">\n                            <div class=\" joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                            <div class=\" ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                </tr>\n            </table><br>\n            <table>\n                <tr>\n                    <button  (click)=\"addJoueur()\" class=\"boutton\">ajouter joueur</button>\n                    <button  (click)=\"addBallon()\" class=\"boutton\">ajouter ballon</button>\n                    <button  (click)=\"passEntite()\" class=\"boutton\">fin placement</button>\n                </tr>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>");
 
 /***/ }),
 
@@ -511,6 +511,10 @@ let CreationComponent = class CreationComponent {
         this.numero = 0;
         this._addScenarioModalName = "addScenarioModal";
         this.LastScenario = new _beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"]();
+        this.is_placement = false;
+        this.is_deplacement = false;
+        this._selectEntite = false;
+        this._entiteSelect = null;
         //deplacemnt joueur
         this.isDragging = false;
         this.offsetX = 0;
@@ -527,11 +531,6 @@ let CreationComponent = class CreationComponent {
         //objet
         this.draggableObject = null;
         this.ballon_draggableObject = null;
-        //deplacement
-        this.Entite_isDragging = false;
-        this.Entite_offsetX = 0;
-        this.Entite_offsetY = 0;
-        this.Entite_draggableObject = null;
     }
     addScenario(modal) {
         this.numero = 0;
@@ -543,6 +542,7 @@ let CreationComponent = class CreationComponent {
         });
         this.resetData(modal);
         this.objectInit();
+        this.is_placement = true;
     }
     openModal(modal) {
         this._modalService.open(modal);
@@ -639,19 +639,19 @@ let CreationComponent = class CreationComponent {
             this.ballon_draggableObject.style.top = `${y}px`;
         }
     }
-    onMouseUp() {
+    onMouseUp(event) {
         if (this.isDragging && this.draggableObject) {
             this.isDragging = false;
             this.draggableObject.style.cursor = 'grab';
         }
     }
-    ballon_onMouseUp() {
+    ballon_onMouseUp(event) {
         if (this.ballon_isDragging && this.ballon_draggableObject) {
             this.ballon_isDragging = false;
             this.ballon_draggableObject.style.cursor = 'grab';
         }
     }
-    onMouseLeave() {
+    onMouseLeave(event) {
         if (this.isDragging && this.draggableObject) {
             this.isDragging = false;
             this.draggableObject.style.cursor = 'grab';
@@ -661,7 +661,7 @@ let CreationComponent = class CreationComponent {
             this.ballon_draggableObject.style.cursor = 'grab';
         }
     }
-    ballon_onMouseLeave() {
+    ballon_onMouseLeave(event) {
         if (this.ballon_isDragging && this.ballon_draggableObject) {
             this.ballon_isDragging = false;
             this.ballon_draggableObject.style.cursor = 'grab';
@@ -673,7 +673,9 @@ let CreationComponent = class CreationComponent {
             this._creationService.getScenarioNom(nom).subscribe(res => {
                 this.LastScenario = res;
                 //console.log("last scenario nom:", this.lastNom, " id :", this.LastScenario.id);
-                this._creationService.getEntiteList(this.LastScenario.id).subscribe(res => this._entiteList = res);
+                this._creationService.getEntiteList(this.LastScenario.id).subscribe(res => {
+                    this._entiteList = res;
+                });
                 resolve();
             }, error => {
                 reject(error);
@@ -690,7 +692,7 @@ let CreationComponent = class CreationComponent {
             const finalLeft = this.draggableObject.offsetLeft;
             const finalTop = this.draggableObject.offsetTop;
             // Afficher les positions finales dans la console
-            console.log('Position finale - Left:', finalLeft, 'Top:', finalTop);
+            console.log('joueur Position finale - Left:', finalLeft, 'Top:', finalTop);
             // Récupérer les dimensions de la page
             const pageWidth = window.innerWidth;
             const pageHeight = window.innerHeight;
@@ -709,6 +711,8 @@ let CreationComponent = class CreationComponent {
                 this._newEntite.x = topPercentage;
                 this._creationService.addEntite(this._newEntite).subscribe(res => {
                     this._entiteList.push(res);
+                    //const Entite_draggableObject:HTMLDivElement = document.getElementById(res.id+'_deplacableObject') as HTMLDivElement;
+                    //this.addEventListeners(Entite_draggableObject, this.entite_onMouseDown.bind(this), this.entite_onMouseMove.bind(this), this.entite_onMouseUp.bind(this), this.entite_onMouseLeave.bind(this));
                 });
             }).catch(error => {
                 console.error('Une erreur s\'est produite lors de la récupération du scénario :', error);
@@ -729,7 +733,7 @@ let CreationComponent = class CreationComponent {
             const finalLeft = this.ballon_draggableObject.offsetLeft;
             const finalTop = this.ballon_draggableObject.offsetTop;
             // Afficher les positions finales dans la console
-            console.log('Position finale - Left:', finalLeft, 'Top:', finalTop);
+            console.log('ballon Position finale - Left:', finalLeft, 'Top:', finalTop);
             // Récupérer les dimensions de la page
             const pageWidth = window.innerWidth;
             const pageHeight = window.innerHeight;
@@ -757,29 +761,23 @@ let CreationComponent = class CreationComponent {
             this.ballon_draggableObject.style.top = `${this.ballon_initialTop}px`;
         }
     }
-    Entite_onMouseDown(event, entite) {
-        this.Entite_draggableObject = event.target;
-        console.log('Entite_onMouseDown called');
-        this.Entite_isDragging = true;
-        const boundingRect = this.Entite_draggableObject.getBoundingClientRect();
-        this.Entite_offsetX = event.clientX - boundingRect.left;
-        this.Entite_offsetY = event.clientY - boundingRect.top;
-        this.Entite_draggableObject.style.cursor = 'grabbing';
+    passEntite() {
+        this.is_deplacement = true;
+        this.is_placement = false;
     }
-    Entite_onMouseMove(event) {
-        if (this.Entite_isDragging) {
-            console.log('Entite_onMouseDown called2');
-            const x = event.clientX - this.Entite_offsetX;
-            const y = event.clientY - this.Entite_offsetY;
-            this.Entite_draggableObject.style.left = `${x}px`;
-            this.Entite_draggableObject.style.top = `${y}px`;
+    selectEntite(entite) {
+        this._entiteSelect = entite;
+        this._selectEntite = true;
+        console.log("select ", this._selectEntite, this._entiteSelect.id);
+    }
+    isEntiteSelect(entite) {
+        if (this._selectEntite == true && entite.id == this._entiteSelect.id) {
+            return true;
         }
+        return false;
     }
-    Entite_onMouseUp() {
-        if (this.Entite_isDragging) {
-            this.Entite_isDragging = false;
-            this.Entite_draggableObject = null;
-            this.Entite_draggableObject.style.cursor = 'grab';
+    addDeplacement(event) {
+        if (this._selectEntite == true) {
         }
     }
 };
@@ -1380,6 +1378,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+//import {DragDropModule} from '@angular/cdk/drag-drop';
 let AppModule = class AppModule {
 };
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1399,7 +1398,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_17__["FormsModule"],
             _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_10__["NgbModule"],
-            _angular_common__WEBPACK_IMPORTED_MODULE_11__["CommonModule"]
+            _angular_common__WEBPACK_IMPORTED_MODULE_11__["CommonModule"],
         ],
         providers: [
             _home_home_service__WEBPACK_IMPORTED_MODULE_6__["HomeService"],

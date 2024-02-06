@@ -1,7 +1,7 @@
 package com.projetM2_foot.mapper;
 
-import com.projetM2_foot.api.request.ScenarioRequestCreate;
-import com.projetM2_foot.api.request.ScenarioRequestUpdate;
+import com.projetM2_foot.api.request.scenario.ScenarioRequestCreate;
+import com.projetM2_foot.api.request.scenario.ScenarioRequestUpdate;
 import com.projetM2_foot.api.response.ScenarioResponse;
 import com.projetM2_foot.entity.Scenario;
 import org.springframework.stereotype.Component;

@@ -1,9 +1,10 @@
 package com.projetM2_foot.service;
 
-import com.projetM2_foot.api.request.ScenarioRequestCreate;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.repository.ScenarioRepository;
+
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,7 +45,7 @@ public class ScenarioService {
         return scenarioRepository.save(entity);
     }
 
-    public Scenario getScenarioNom(String nom){
+    public Scenario getScenarioByName(String nom){
         return scenarioRepository.findByName(nom);
     }
 

@@ -1,10 +1,13 @@
-package com.projetM2_foot.api.request;
+package com.projetM2_foot.api.request.scenario;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
 @Data
 @Builder
-public class ScenarioRequestCreate {
+public class ScenarioRequestUpdate {
+
+    private Long id;
 
     private String nom;
     private String mode_scene;

@@ -2,9 +2,9 @@ package com.projetM2_foot.controller;
 
 
 
-import com.projetM2_foot.api.request.ScenarioRequestCreate;
+import com.projetM2_foot.api.request.scenario.ScenarioRequestCreate;
+import com.projetM2_foot.api.request.scenario.ScenarioRequestUpdate;
 import com.projetM2_foot.api.response.*;
-import com.projetM2_foot.api.request.*;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.mapper.ScenarioMapper;
 import com.projetM2_foot.service.ScenarioService;

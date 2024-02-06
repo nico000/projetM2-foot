@@ -1,4 +1,4 @@
-package com.projetM2_foot.api.request;
+package com.projetM2_foot.api.request.entite;
 
 import lombok.Builder;
 import lombok.Data;

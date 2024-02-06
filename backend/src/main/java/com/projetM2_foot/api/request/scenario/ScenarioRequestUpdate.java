@@ -1,14 +1,14 @@
-package com.projetM2_foot.api.request;
+package com.projetM2_foot.api.request.scenario;
 
-import lombok.*;
-
-import javax.validation.constraints.NotNull;
+import lombok.Builder;
+import lombok.Data;
 
 @Data
 @Builder
-public class ScenarioRequestCreate {
+public class ScenarioRequestUpdate {
 
-    @NotNull
+    private Long id;
+
     private String nom;
     private String mode_scene;
     private String terrain_couleur;

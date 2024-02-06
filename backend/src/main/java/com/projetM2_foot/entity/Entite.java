@@ -12,14 +12,23 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "entite")
 public class Entite {
+
+    /*
+     Convention de nommage :
+     Entite - ent
+     Foreign key - fk
+     */
 
     @Id
     @GeneratedValue
+    @Column(name = "ent_id")
     private Long id;
 
     /** Scenario auxquel il est rattaché */
     @ManyToOne
+    @JoinColumn(name = "ent_fk_sce")
     private Scenario scenario;
 
     /** Type d'entité :
@@ -28,22 +37,26 @@ public class Entite {
      * 2 -> objet
      */
     @NotNull
+    @Column(name = "ent_type")
     private int type;
 
     /** Numero que porte un joueur (par défaut 0 si entité n'est pas un joueur) */
     @NotNull
+    @Column(name = "ent_numero")
     private int numero = 0;
 
     /** Position initial coordonnées X */
     @NotNull
+    @Column(name = "ent_x")
     private float initialPosX;
 
     /** Position initial coordonnées Y */
     @NotNull
+    @Column(name = "ent_y")
     private float initialPosY;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createDate")
+    @Column(name = "ent_create_date")
     private Date createDate;
 
 }

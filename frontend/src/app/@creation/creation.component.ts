@@ -369,6 +369,8 @@ export class CreationComponent {
         if (this._selectEntite==false){
             this._entiteSelect=entite;
             this._selectEntite=true;
+            this._newDeplacement.startPosX=entite.x;
+            this._newDeplacement.startPosY=entite.y;
         }else{
             this._entiteSelect=null;
             this._selectEntite=false;
@@ -400,23 +402,19 @@ export class CreationComponent {
             // Mettre à jour les coordonnées de l'entité sélectionnée
             this._entiteSelect.y = percentX;
             this._entiteSelect.x = percentY;
+            console.log('deplacement finale en pourcentage - Left:', percentX, 'Top:', percentY);
             this._entiteList.forEach(entite => {
                 if (entite.id == this._entiteSelect.id) {
-
+                    this._newDeplacement.scenario=entite.scenario;
                     this._newDeplacement.entite=entite.id;
                     this._newDeplacement.numAction=this.numAction;
                     this._newDeplacement.numScene=1;
                     this._newDeplacement.numBloc=1;
-                    this._newDeplacement.startPosX=entite.x;
-                    this._newDeplacement.startPosY=entite.y;
                     entite.y = percentX;
                     entite.x = percentY;
-                    this._newDeplacement.endPosX=entite.x;
-                    this._newDeplacement.endPosY=entite.y;
+                    this._newDeplacement.endPosX=percentY;
+                    this._newDeplacement.endPosY=percentX;
                     this._creationService.addDeplacement(this._newDeplacement).subscribe(
-                        res => {
-                            this._deplacementList.push(res);
-                        }
                     )
                 }
             });

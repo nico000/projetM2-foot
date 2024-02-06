@@ -21,7 +21,7 @@ export class HomeService {
     }
 
     public getScenarioNom(nom:string): Observable<Scenario> {
-        return this._http.get<Scenario>(`/scenario/nom?name=${nom}`);
+        return this._http.get<Scenario>(`/scenario?nom=${nom}`);
     }
 
     public DelScenario(id:Number): Observable<any> {

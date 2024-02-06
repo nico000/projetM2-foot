@@ -1,5 +1,5 @@
 export class Deplacement{
-    public id:Number=0.0;
+    public scenario:Number=0.0;
     public entite:Number=0.0;
 
     public numAction:Number=0.0;

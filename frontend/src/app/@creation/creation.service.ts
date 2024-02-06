@@ -16,7 +16,7 @@ export class CreationService {
     }
 
     public getScenarioNom(nom:string): Observable<Scenario> {
-        return this._http.get<Scenario>(`/scenario/nom?name=${nom}`);
+        return this._http.get<Scenario>(`/scenario?nom=${nom}`);
     }
 
     public addEntite (entite:Entite): Observable<Entite>{

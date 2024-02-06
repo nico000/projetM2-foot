@@ -876,7 +876,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var Deplacement = /*#__PURE__*/_createClass(function Deplacement() {
       _classCallCheck(this, Deplacement);
 
-      this.id = 0.0;
+      this.scenario = 0.0;
       this.entite = 0.0;
       this.numAction = 0.0;
       this.numScene = 0.0;
@@ -1396,6 +1396,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (this._selectEntite == false) {
             this._entiteSelect = entite;
             this._selectEntite = true;
+            this._newDeplacement.startPosX = entite.x;
+            this._newDeplacement.startPosY = entite.y;
           } else {
             this._entiteSelect = null;
             this._selectEntite = false;
@@ -1430,23 +1432,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             this._entiteSelect.y = percentX;
             this._entiteSelect.x = percentY;
+            console.log('deplacement finale en pourcentage - Left:', percentX, 'Top:', percentY);
 
             this._entiteList.forEach(function (entite) {
               if (entite.id == _this5._entiteSelect.id) {
+                _this5._newDeplacement.scenario = entite.scenario;
                 _this5._newDeplacement.entite = entite.id;
                 _this5._newDeplacement.numAction = _this5.numAction;
                 _this5._newDeplacement.numScene = 1;
                 _this5._newDeplacement.numBloc = 1;
-                _this5._newDeplacement.startPosX = entite.x;
-                _this5._newDeplacement.startPosY = entite.y;
                 entite.y = percentX;
                 entite.x = percentY;
-                _this5._newDeplacement.endPosX = entite.x;
-                _this5._newDeplacement.endPosY = entite.y;
+                _this5._newDeplacement.endPosX = percentY;
+                _this5._newDeplacement.endPosY = percentX;
 
-                _this5._creationService.addDeplacement(_this5._newDeplacement).subscribe(function (res) {
-                  _this5._deplacementList.push(res);
-                });
+                _this5._creationService.addDeplacement(_this5._newDeplacement).subscribe();
               }
             });
 
@@ -1532,7 +1532,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getScenarioNom",
         value: function getScenarioNom(nom) {
-          return this._http.get("/scenario/nom?name=".concat(nom));
+          return this._http.get("/scenario?nom=".concat(nom));
         }
       }, {
         key: "addEntite",
@@ -1963,7 +1963,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getScenarioNom",
         value: function getScenarioNom(nom) {
-          return this._http.get("/scenario/nom?name=".concat(nom));
+          return this._http.get("/scenario?nom=".concat(nom));
         }
       }, {
         key: "DelScenario",

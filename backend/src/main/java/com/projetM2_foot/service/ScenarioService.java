@@ -44,7 +44,7 @@ public class ScenarioService {
         return scenarioRepository.save(entity);
     }
 
-    public Scenario getScenarioNom(String nom){
+    public Scenario getScenarioByName(String nom){
         return scenarioRepository.findByName(nom);
     }
 

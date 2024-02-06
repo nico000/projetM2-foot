@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -39,7 +40,7 @@ public class ScenarioController {
             summary = "Créer un scénario",
             description = "Créer une situation simple à partir des informations donné")
     public ResponseEntity<ScenarioResponse> createScenario (
-            @RequestBody ScenarioRequestCreate request){
+            @Valid @RequestBody ScenarioRequestCreate request){
 
         log.info("Endpoint appelé : POST /scenario/");
         final Scenario scenario = scenarioMapper.toEntity(request);
@@ -61,17 +62,17 @@ public class ScenarioController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/{scenarioId}")
+    @DeleteMapping("/{scenario}")
     @Operation(
             summary = "Supprime un scénario",
             description = "Supprime un scénario de la base de donnée par un id de scénario")
     public ResponseEntity<?> deleteScenario (
             @PathVariable
-            Long scenarioId
+            Long scenario
     ){
 
-        log.info("Endpoint appelé : DELETE /scenario/" + scenarioId);
-        scenarioService.deleteScenario(scenarioId);
+        log.info("Endpoint appelé : DELETE /scenario/" + scenario);
+        scenarioService.deleteScenario(scenario);
         return ResponseEntity.ok().build();
     }
 
@@ -93,10 +94,12 @@ public class ScenarioController {
     }
 
 
-    @GetMapping("/nom")
-    public ResponseEntity<ScenarioResponse> getScenarioNom (String name){
+    @GetMapping(params = "nom")
+    public ResponseEntity<ScenarioResponse> getScenarioNom (@RequestParam String nom){
 
-        final Scenario scenario = scenarioService.getScenarioNom(name);
+        log.info("Endpoint appelé : GET /scenario?nom="+nom);
+
+        final Scenario scenario = scenarioService.getScenarioByName(nom);
         final ScenarioResponse response = scenarioMapper.toDto(scenario);
 
         return ResponseEntity.ok(response);

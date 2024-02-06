@@ -4,6 +4,7 @@ import {ModalService} from "../@modal/modal.service";
 import {CreationService} from "./creation.service"
 import {tap} from "rxjs/operators";
 import {Entite} from "./beans/Entite";
+import {Deplacement} from "./beans/Deplacement";
 
 
 
@@ -34,6 +35,10 @@ export class CreationComponent {
     protected _selectEntite:boolean=false;
     protected _entiteSelect:Entite=null;
 
+    protected _newDeplacement: Deplacement = new Deplacement();
+    protected numAction:number = 0;
+    protected _deplacementList: Deplacement[];
+
     constructor(private _creationService: CreationService,
                 private _modalService: ModalService) {
     }
@@ -52,6 +57,7 @@ export class CreationComponent {
         this.resetData(modal);
         this.objectInit();
         this.is_placement=true;
+        this.numAction=0.0;
     }
 
 
@@ -360,8 +366,13 @@ export class CreationComponent {
     }
 
     selectEntite(entite:Entite){
-        this._entiteSelect=entite;
-        this._selectEntite=true;
+        if (this._selectEntite==false){
+            this._entiteSelect=entite;
+            this._selectEntite=true;
+        }else{
+            this._entiteSelect=null;
+            this._selectEntite=false;
+        }
         console.log("select ",this._selectEntite,this._entiteSelect.id)
     }
 
@@ -373,27 +384,42 @@ export class CreationComponent {
     }
 
     addDeplacement(event: MouseEvent){
-        if(this._selectEntite==true ){
-            const finalLeft = event.clientX;
-            const finalTop = event.clientY;
+        event.preventDefault();
+        if(this._selectEntite==true && this.is_deplacement){
 
-            // Afficher les positions finales dans la console
-            console.log('deplacement Position finale - Left:', finalLeft, 'Top:', finalTop);
+            const offsetX = event.clientX;
+            const offsetY = event.clientY;
 
-            // Récupérer les dimensions de la page
-            const pageWidth = window.innerWidth;
-            const pageHeight = window.innerHeight;
+            const parentWidth = window.innerWidth;
+            const parentHeight = window.innerHeight;
 
-            // Calculer les positions finales en pourcentage par rapport à la page
-            const leftPercentage = (finalLeft / pageWidth) * 100;
-            const topPercentage = (finalTop / pageHeight) * 100;
+            const percentX = (offsetX / parentWidth) * 100;
+            const percentY = (offsetY / parentHeight) * 100;
 
-            // Afficher les positions finales en pourcentage dans la console
-            console.log('Position finale en pourcentage - Left:', leftPercentage, 'Top:', topPercentage);
+            this.numAction +=  1;
+            // Mettre à jour les coordonnées de l'entité sélectionnée
+            this._entiteSelect.y = percentX;
+            this._entiteSelect.x = percentY;
+            this._entiteList.forEach(entite => {
+                if (entite.id == this._entiteSelect.id) {
 
-            this._entiteSelect.x=leftPercentage;
-            this._entiteSelect.y=topPercentage;
-
+                    this._newDeplacement.entite=entite.id;
+                    this._newDeplacement.numAction=this.numAction;
+                    this._newDeplacement.numScene=1;
+                    this._newDeplacement.numBloc=1;
+                    this._newDeplacement.startPosX=entite.x;
+                    this._newDeplacement.startPosY=entite.y;
+                    entite.y = percentX;
+                    entite.x = percentY;
+                    this._newDeplacement.endPosX=entite.x;
+                    this._newDeplacement.endPosY=entite.y;
+                    this._creationService.addDeplacement(this._newDeplacement).subscribe(
+                        res => {
+                            this._deplacementList.push(res);
+                        }
+                    )
+                }
+            });
             this._entiteSelect=null;
             this._selectEntite=false;
         }

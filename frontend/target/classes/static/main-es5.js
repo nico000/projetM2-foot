@@ -71,7 +71,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1 class=\"presentation\">Ajout d'un Scenario</h1>\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\">Action</label>\n            </div><br>\n            <div class=\"titre\">\n                nombre de joueur: <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain: <input type=\"text\" [(ngModel)]=\"_newScenario.terrain_couleur\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\">Grand</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\">Afficher les zones du terrain</label>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <div class=\"mode\">Ajout des entités</div>\n                <tr>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">retour</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">joueur :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"deplacableObject\" class=\"draggable joueur\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">ballon :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"ballondeplacableObject\" class=\"draggable ballon\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">fin</div>\n                    </td>\n                    <br><br><br><br><br>\n                </tr></table><br>\n            <table  class=\"tableau_terrain\">\n                <tr  *ngFor=\"let couloir of nb_couloir(lastCouloir); let odd = odd\" class=\"couloir\">\n                    <td  *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\" (click)=\"addDeplacement($event)\">\n                        <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                             [style.left.%]=\"entite.y\" [style.top.%]=\"entite.x\"\n                              (click)=\"selectEntite(entite)\">\n                            <div class=\" joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                            <div class=\" ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                </tr>\n            </table><br>\n            <table>\n                <tr>\n                    <button  (click)=\"addJoueur()\" class=\"boutton\">ajouter joueur</button>\n                    <button  (click)=\"addBallon()\" class=\"boutton\">ajouter ballon</button>\n                    <button  (click)=\"passEntite()\" class=\"boutton\">fin placement</button>\n                </tr>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
+    __webpack_exports__["default"] = "<table class=\"tableau\" >\n    <h1 class=\"presentation\">Ajout d'un Scenario</h1>\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\">Action</label>\n            </div><br>\n            <div class=\"titre\">\n                nombre de joueur: <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain: <input type=\"text\" [(ngModel)]=\"_newScenario.terrain_couleur\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\">Grand</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\">Afficher les zones du terrain</label>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <div class=\"mode\">Ajout des entités</div>\n                <tr>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">retour</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">joueur :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"deplacableObject\" class=\"draggable joueur\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">ballon :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"ballondeplacableObject\" class=\"draggable ballon\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">fin</div>\n                    </td>\n                    <br><br><br><br><br>\n                </tr></table><br>\n            <table  class=\"tableau_terrain\" (click)=\"addDeplacement($event)\">\n                <tr  *ngFor=\"let couloir of nb_couloir(lastCouloir); let odd = odd\" class=\"couloir\">\n                    <td  *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\" >\n                        <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                             [style.left.%]=\"entite.y\" [style.top.%]=\"entite.x\"\n                              (contextmenu)=\"selectEntite(entite)\">\n                            <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                            <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                </tr>\n            </table><br>\n            <table>\n                <tr>\n                    <button  (click)=\"addJoueur()\" class=\"boutton\">ajouter joueur</button>\n                    <button  (click)=\"addBallon()\" class=\"boutton\">ajouter ballon</button>\n                    <button  (click)=\"passEntite()\" class=\"boutton\">fin placement</button>\n                </tr>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
     /***/
   },
 
@@ -848,6 +848,49 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/@creation/beans/Deplacement.ts":
+  /*!************************************************!*\
+    !*** ./src/app/@creation/beans/Deplacement.ts ***!
+    \************************************************/
+
+  /*! exports provided: Deplacement */
+
+  /***/
+  function srcAppCreationBeansDeplacementTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Deplacement", function () {
+      return Deplacement;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var Deplacement = /*#__PURE__*/_createClass(function Deplacement() {
+      _classCallCheck(this, Deplacement);
+
+      this.id = 0.0;
+      this.entite = 0.0;
+      this.numAction = 0.0;
+      this.numScene = 0.0;
+      this.numBloc = 0.0;
+      this.startPosX = 0.0;
+      this.startPosY = 0.0;
+      this.endPosX = 0.0;
+      this.endPosY = 0.0;
+    });
+    /***/
+
+  },
+
+  /***/
   "./src/app/@creation/beans/Entite.ts":
   /*!*******************************************!*\
     !*** ./src/app/@creation/beans/Entite.ts ***!
@@ -1008,6 +1051,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _beans_Entite__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./beans/Entite */
     "./src/app/@creation/beans/Entite.ts");
+    /* harmony import */
+
+
+    var _beans_Deplacement__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./beans/Deplacement */
+    "./src/app/@creation/beans/Deplacement.ts");
 
     var CreationComponent = /*#__PURE__*/function () {
       function CreationComponent(_creationService, _modalService) {
@@ -1023,7 +1072,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.is_placement = false;
         this.is_deplacement = false;
         this._selectEntite = false;
-        this._entiteSelect = null; //deplacemnt joueur
+        this._entiteSelect = null;
+        this._newDeplacement = new _beans_Deplacement__WEBPACK_IMPORTED_MODULE_6__["Deplacement"]();
+        this.numAction = 0; //deplacemnt joueur
 
         this.isDragging = false;
         this.offsetX = 0;
@@ -1059,6 +1110,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.resetData(modal);
           this.objectInit();
           this.is_placement = true;
+          this.numAction = 0.0;
         }
       }, {
         key: "openModal",
@@ -1341,8 +1393,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "selectEntite",
         value: function selectEntite(entite) {
-          this._entiteSelect = entite;
-          this._selectEntite = true;
+          if (this._selectEntite == false) {
+            this._entiteSelect = entite;
+            this._selectEntite = true;
+          } else {
+            this._entiteSelect = null;
+            this._selectEntite = false;
+          }
+
           console.log("select ", this._selectEntite, this._entiteSelect.id);
         }
       }, {
@@ -1357,7 +1415,44 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addDeplacement",
         value: function addDeplacement(event) {
-          if (this._selectEntite == true) {}
+          var _this5 = this;
+
+          event.preventDefault();
+
+          if (this._selectEntite == true && this.is_deplacement) {
+            var offsetX = event.clientX;
+            var offsetY = event.clientY;
+            var parentWidth = window.innerWidth;
+            var parentHeight = window.innerHeight;
+            var percentX = offsetX / parentWidth * 100;
+            var percentY = offsetY / parentHeight * 100;
+            this.numAction += 1; // Mettre à jour les coordonnées de l'entité sélectionnée
+
+            this._entiteSelect.y = percentX;
+            this._entiteSelect.x = percentY;
+
+            this._entiteList.forEach(function (entite) {
+              if (entite.id == _this5._entiteSelect.id) {
+                _this5._newDeplacement.entite = entite.id;
+                _this5._newDeplacement.numAction = _this5.numAction;
+                _this5._newDeplacement.numScene = 1;
+                _this5._newDeplacement.numBloc = 1;
+                _this5._newDeplacement.startPosX = entite.x;
+                _this5._newDeplacement.startPosY = entite.y;
+                entite.y = percentX;
+                entite.x = percentY;
+                _this5._newDeplacement.endPosX = entite.x;
+                _this5._newDeplacement.endPosY = entite.y;
+
+                _this5._creationService.addDeplacement(_this5._newDeplacement).subscribe(function (res) {
+                  _this5._deplacementList.push(res);
+                });
+              }
+            });
+
+            this._entiteSelect = null;
+            this._selectEntite = false;
+          }
         }
       }]);
 
@@ -1448,6 +1543,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getEntiteList",
         value: function getEntiteList(id) {
           return this._http.get('/entite/' + id);
+        }
+      }, {
+        key: "addDeplacement",
+        value: function addDeplacement(deplacement) {
+          return this._http.post("/deplacement", deplacement);
         }
       }]);
 
@@ -1697,10 +1797,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(HomeComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this5 = this;
+          var _this6 = this;
 
           this._homeService.getScenarioList().subscribe(function (res) {
-            return _this5._scenarioList = res;
+            return _this6._scenarioList = res;
           });
         }
       }, {
@@ -1724,22 +1824,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "resetFilter",
         value: function resetFilter() {
-          var _this6 = this;
+          var _this7 = this;
 
           this._homeService.getScenarioList().subscribe(function (res) {
-            _this6._scenarioList = res;
-            _this6._isFiltering = false;
+            _this7._scenarioList = res;
+            _this7._isFiltering = false;
           });
         } //detail
 
       }, {
         key: "getScenarioName",
         value: function getScenarioName(nom) {
-          var _this7 = this;
+          var _this8 = this;
 
           return new Promise(function (resolve, reject) {
-            _this7._homeService.getScenarioNom(nom).subscribe(function (res) {
-              _this7._selectedScenarioEntite = res; //console.log("last scenario nom:", this.lastNom, " id :", this.LastScenario.id);
+            _this8._homeService.getScenarioNom(nom).subscribe(function (res) {
+              _this8._selectedScenarioEntite = res; //console.log("last scenario nom:", this.lastNom, " id :", this.LastScenario.id);
 
               resolve();
             }, function (error) {
@@ -1750,11 +1850,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "genEntite",
         value: function genEntite(nom) {
-          var _this8 = this;
+          var _this9 = this;
 
           this.getScenarioName(nom).then(function () {
-            _this8._homeService.getEntiteList(_this8._selectedScenarioEntite.id).subscribe(function (res) {
-              return _this8._entiteList = res;
+            _this9._homeService.getEntiteList(_this9._selectedScenarioEntite.id).subscribe(function (res) {
+              return _this9._entiteList = res;
             });
           })["catch"](function (error) {
             console.error('Une erreur s\'est produite lors de la récupération du scénario :', error); // Gérer l'erreur ici si nécessaire
@@ -1772,11 +1872,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "delScenario",
         value: function delScenario(scenario) {
-          var _this9 = this;
+          var _this10 = this;
 
           this._homeService.DelScenario(scenario.id).subscribe(function () {
-            return _this9._homeService.getScenarioList().subscribe(function (res) {
-              return _this9._scenarioList = res;
+            return _this10._homeService.getScenarioList().subscribe(function (res) {
+              return _this10._scenarioList = res;
             });
           });
         }
@@ -1955,7 +2055,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ModalComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this10 = this;
+          var _this11 = this;
 
           // ensure id attribute exists
           if (!this.id) {
@@ -1968,7 +2068,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.element.addEventListener('click', function (el) {
             if (el.target.className === 'jw-modal') {
-              _this10.close();
+              _this11.close();
             }
           }); // add self (this modal instance) to the modal service so it's accessible from controllers
 

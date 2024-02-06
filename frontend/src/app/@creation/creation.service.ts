@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Scenario} from "./beans/Scenario";
 import {Observable} from "rxjs";
 import {Entite} from "./beans/Entite";
-
+import {Deplacement} from "./beans/Deplacement";
 
 @Injectable()
 export class CreationService {
@@ -27,5 +27,8 @@ export class CreationService {
         return this._http.get<Entite[]>('/entite/'+id);
     }
 
+    public addDeplacement (deplacement:Deplacement): Observable<Deplacement>{
+        return this._http.post<Deplacement>("/deplacement",deplacement)
+    }
 
 }

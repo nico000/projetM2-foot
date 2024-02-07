@@ -3,8 +3,6 @@ package com.projetM2_foot.api.response;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Column;
-
 @Data
 @Builder
 public class ExperienceResponse {

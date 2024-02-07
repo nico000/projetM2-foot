@@ -1,4 +1,4 @@
-package com.projetM2_foot.api.request.deplacement;
+package com.projetM2_foot.api.request;
 
 import lombok.Builder;
 import lombok.Data;

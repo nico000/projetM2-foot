@@ -1,7 +1,7 @@
 package com.projetM2_foot.controller;
 
 
-import com.projetM2_foot.api.request.deplacement.DeplacementRequestCreate;
+import com.projetM2_foot.api.request.DeplacementRequestCreate;
 import com.projetM2_foot.api.response.DeplacementResponse;
 import com.projetM2_foot.entity.Deplacement;
 import com.projetM2_foot.mapper.DeplacementMapper;

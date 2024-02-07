@@ -2,10 +2,7 @@ package com.projetM2_foot.service;
 
 
 import com.projetM2_foot.entity.Examen;
-import com.projetM2_foot.entity.Experience;
-import com.projetM2_foot.mapper.ExamenMapper;
 import com.projetM2_foot.repository.ExamenRepository;
-import com.projetM2_foot.repository.ExperienceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

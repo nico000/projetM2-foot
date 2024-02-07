@@ -2,17 +2,12 @@ package com.projetM2_foot.controller;
 
 
 import com.projetM2_foot.api.request.ExamenRequestCreate;
-import com.projetM2_foot.api.request.ExperienceRequestCreate;
 import com.projetM2_foot.api.response.ExamenResponse;
-import com.projetM2_foot.api.response.ExperienceResponse;
 import com.projetM2_foot.entity.Examen;
-import com.projetM2_foot.entity.Experience;
 import com.projetM2_foot.mapper.ExamenMapper;
 import com.projetM2_foot.mapper.ExperienceMapper;
 import com.projetM2_foot.repository.ExamenRepository;
-import com.projetM2_foot.repository.ExperienceRepository;
 import com.projetM2_foot.service.ExamenService;
-import com.projetM2_foot.service.ExperienceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/examen")

@@ -1,14 +1,10 @@
 package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.ExamenRequestCreate;
-import com.projetM2_foot.api.request.ExperienceRequestCreate;
 import com.projetM2_foot.api.response.ExamenResponse;
-import com.projetM2_foot.api.response.ExperienceResponse;
 import com.projetM2_foot.entity.Examen;
 import com.projetM2_foot.entity.Experience;
-import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.service.ExperienceService;
-import com.projetM2_foot.service.ScenarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

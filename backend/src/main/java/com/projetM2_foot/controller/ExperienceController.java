@@ -1,7 +1,7 @@
 package com.projetM2_foot.controller;
 
 
-import com.projetM2_foot.api.request.experience.ExperienceRequestCreate;
+import com.projetM2_foot.api.request.ExperienceRequestCreate;
 import com.projetM2_foot.api.response.ExperienceResponse;
 import com.projetM2_foot.entity.Experience;
 import com.projetM2_foot.mapper.ExperienceMapper;

@@ -1,7 +1,7 @@
 <table class="tableau" >
-    <h1 class="presentation">Ajout d'un Scenario</h1>
     <tr>
         <td class=" colonne" > <!-- parametre  -->
+            <h1 class="presentation">Ajout d'un Scenario</h1>
             <div class="titre">
                 nom:
                 <input type="text" [(ngModel)]="_newScenario.nom"/>
@@ -9,36 +9,41 @@
             <div class="titre">
                 mode_scene:
                 <input type="checkbox" id="scene" class="hidden-checkbox" (click)="updateModeScenario('scene')">
-                <label for="scene" class="round-button">Scene</label>
+                <label for="scene" class="round-button"   [style.background-color]="_newScenario.mode_scene === 'scene' ? '#3498db' : 'initial'">Scene</label>
 
                 <input type="checkbox" id="action" class="hidden-checkbox" (click)="updateModeScenario('action')">
-                <label for="action" class="round-button">Action</label>
+                <label for="action" class="round-button"  [style.background-color]="_newScenario.mode_scene === 'action' ? '#3498db' : 'initial'">Action</label>
             </div><br>
             <div class="titre">
                 nombre de joueur: <input type="text" [(ngModel)]="_newScenario.joueur_nb"/><br>
             </div><br>
 
             <div class="titre">
-                couleur du terrain: <input type="text" [(ngModel)]="_newScenario.terrain_couleur"/><br>
+                couleur du terrain:
+                <input type="checkbox" id="couleurV" class="hidden-checkbox" (click)="updateCouleur('vert')">
+                <label for="couleurV" class="round-button" [style.background-color]="_newScenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'">Vert</label>
+
+                <input type="checkbox" id="couleurB" class="hidden-checkbox" (click)="updateCouleur('blanc')">
+                <label for="couleurB" class="round-button" [style.background-color]="_newScenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'">Blanc</label>
             </div><br>
 
             <div class="titre">
                 taille du terrain:
                 <input type="checkbox" id="moyen" class="hidden-checkbox" (click)="updateterrainScenario('moyen')">
-                <label for="moyen" class="round-button">Moyen</label>
+                <label for="moyen" class="round-button" [style.background-color]="_newScenario.terrain_taille === 'moyen' ? '#3498db' : 'initial'">Moyen</label>
 
                 <input type="checkbox" id="grand" class="hidden-checkbox" (click)="updateterrainScenario('grand')">
-                <label for="grand" class="round-button">Grand</label>
+                <label for="grand" class="round-button" [style.background-color]="_newScenario.terrain_taille === 'grand' ? '#3498db' : 'initial'">Grand</label>
             </div><br>
 
             <div class="titre">
                 <input type="checkbox" id="_useT" class="hidden-checkbox" (click)="updateUseZone('true')">
-                <label for="_useT" class="round-button">utiliser les zone</label>
+                <label for="_useT" class="round-button" [style.background-color]="_newScenario.zone_use === true ? '#3498db' : 'initial'">utiliser les zone</label>
             </div><br>
 
             <div class="titre">
                 <input type="checkbox" id="AZone" class="hidden-checkbox" (click)="updateAfficheZone('true')">
-                <label for="AZone" class="round-button">Afficher les zones du terrain</label>
+                <label for="AZone" class="round-button" [style.background-color]="_newScenario.zone_display === true ? '#3498db' : 'initial'">Afficher les zones du terrain</label>
             </div><br>
 
             <div class="titre">
@@ -61,10 +66,12 @@
 
         <td class="colonne2" ><!-- terrain -->
             <table class="tableau_terrain">
-                <div class="mode">Ajout des entités</div>
+                <div *ngIf="is_placement" class="mode">Ajout des entités</div>
+                <div *ngIf="is_deplacement" class="mode">Ajout des deplacement</div>
                 <tr>
                     <td class="barreOutils">
-                        <div class="Ecriture">retour</div>
+                        <div *ngIf="is_placement" class="Ecriture"><button (click)="delEntite()" class="boutton">retour placement</button></div>
+                        <div *ngIf="is_deplacement" class="Ecriture"><button (click)="delDeplacement()" class="boutton">retour deplacement</button></div>
                     </td>
                     <td class="barreOutils">
                         <div class="Ecriture">joueur :</div>
@@ -79,13 +86,15 @@
                         <div id="ballondeplacableObject" class="draggable ballon"></div>
                     </td>
                     <td class="barreOutils">
-                        <div class="Ecriture">fin</div>
+                        <div *ngIf="is_placement" class="Ecriture"><button  (click)="passEntite()" class="boutton">fin placement</button></div>
+                        <div *ngIf="is_deplacement" class="Ecriture"><button  (click)="passDeplacement()" class="boutton">fin deplacement</button></div>
                     </td>
                     <br><br><br><br><br>
                 </tr></table><br>
-            <table  class="tableau_terrain" (click)="addDeplacement($event)">
+            <table  class="tableau_terrain tabter" (click)="addDeplacement($event)">
                 <tr  *ngFor="let couloir of nb_couloir(lastCouloir); let odd = odd" class="couloir">
-                    <td  *ngFor="let zone of nb_couloir(lastZone)" class="zone" >
+                    <td  *ngFor="let zone of nb_couloir(lastZone)" class="zone"
+                         [style.background-color]="lastCouleur === 'blanc' ? 'white' : 'initial'">
                         <div  *ngFor="let entite of _entiteList" class="draggable"
                              [style.left.%]="entite.y" [style.top.%]="entite.x"
                               (contextmenu)="selectEntite(entite)">
@@ -104,11 +113,20 @@
                 </tr>
             </table><br>
             <table>
-                <tr>
-                    <button  (click)="addJoueur()" class="boutton">ajouter joueur</button>
-                    <button  (click)="addBallon()" class="boutton">ajouter ballon</button>
-                    <button  (click)="passEntite()" class="boutton">fin placement</button>
-                </tr>
+                <td class="colonne">
+                    <nav class="menu">
+                        <ul>
+                            <li class="boutton" ><a *ngIf="is_placement" (click)="addJoueur()">ajouter joueur</a></li>
+                        </ul>
+                    </nav>
+                </td>
+                <td class="colonne">
+                    <nav class="menu">
+                        <ul>
+                            <li class="boutton" ><a *ngIf="is_placement" (click)="addBallon()">ajouter ballon</a></li>
+                        </ul>
+                    </nav>
+                </td>
             </table>
         </td>
     </tr>

@@ -31,4 +31,12 @@ export class CreationService {
         return this._http.post<Deplacement>("/deplacement",deplacement)
     }
 
+    public DelEntite(id:Number): Observable<any> {
+        return this._http.delete('/entite/last/'+id)
+    }
+
+    public DelDeplacement(id:Number): Observable<any> {
+        return this._http.delete('/deplacement/last/'+id)
+    }
+
 }

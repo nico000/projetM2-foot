@@ -33,6 +33,13 @@
 .hidden-checkbox {
     display: none;
 }
+nav.menu ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
 nav.menu ul  .boutton{
     display: inline-block;
     width: 80%;
@@ -43,7 +50,7 @@ nav.menu ul li.boutton a{
     background-color: green;
     text-decoration: none;
     text-align:center ;
-    display: flex;
+    display: block;
     font-size:30px;
     justify-content: center;
     border: 2px solid white;
@@ -63,6 +70,7 @@ nav.menu ul li.boutton:hover a{
 }
 .colonne2{
     width:65%;
+    vertical-align: top;
 }
 /*terrain*/
 .draggable {
@@ -99,13 +107,12 @@ nav.menu ul li.boutton:hover a{
     height: 25px;
 }
 .couloir{
-    background: green;
+    background: forestgreen;
     border: 1px solid black;
     border-collapse: collapse;
-    height: 60px;
 }
 .zone{
-    background: green;
+    background: forestgreen;
     border: 1px solid black;
     border-collapse: collapse;
 }
@@ -114,6 +121,10 @@ nav.menu ul li.boutton:hover a{
     width:100%;
     border: 1px solid black;
     border-collapse: collapse;
+}
+.tabter{
+    border: 1px solid white;
+    height: 40vh;
 }
 .mode{
     font-size: 130%;

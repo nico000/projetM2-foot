@@ -29,6 +29,7 @@ export class CreationComponent {
     protected lastNom: string;
     protected lastCouloir: Number;
     protected lastZone: Number;
+    protected lastCouleur:String;
 
     protected is_placement : boolean =false;
     protected is_deplacement : boolean=false;
@@ -46,6 +47,8 @@ export class CreationComponent {
     addScenario(modal: string): void {
         this.numero = 0;
         this.lastNom = this._newScenario.nom;
+        this.lastCouleur = this._newScenario.terrain_couleur;
+        console.log(this.lastCouleur);
         this.lastCouloir = this._newScenario.zone_nb_couloir;
         this.lastZone = this._newScenario.zone_nb_zone;
 
@@ -57,7 +60,15 @@ export class CreationComponent {
         this.resetData(modal);
         this.objectInit();
         this.is_placement=true;
+        this.is_deplacement=false;
         this.numAction=0.0;
+    }
+
+    isBlanc(){
+        if (this.lastCouleur="blanc"){
+            return true
+        }
+        return false;
     }
 
 
@@ -72,6 +83,10 @@ export class CreationComponent {
 
     updateModeScenario(nom: string) {
         this._newScenario.mode_scene = nom;
+    }
+
+    updateCouleur(nom: string) {
+        this._newScenario.terrain_couleur = nom;
     }
 
     updateterrainScenario(nom: string) {
@@ -121,6 +136,8 @@ export class CreationComponent {
     private draggableObject: HTMLDivElement | null = null;
     private ballon_draggableObject: HTMLDivElement | null = null;
 
+    private scroll:number=0;
+
 
     objectInit() {
         // daplacement joueur
@@ -137,6 +154,7 @@ export class CreationComponent {
         //this.ballon_addEventListeners();
         this.addEventListeners(this.draggableObject, this.onMouseDown.bind(this), this.onMouseMove.bind(this), this.onMouseUp.bind(this), this.onMouseLeave.bind(this));
         this.addEventListeners(this.ballon_draggableObject, this.ballon_onMouseDown.bind(this), this.ballon_onMouseMove.bind(this), this.ballon_onMouseUp.bind(this), this.ballon_onMouseLeave.bind(this));
+        this.addScrollListener();
     }
 
 
@@ -147,6 +165,14 @@ export class CreationComponent {
             document.addEventListener('mouseup', onMouseUp);
             document.addEventListener('mouseleave', onMouseLeave);
         }
+    }
+
+    private addScrollListener() {
+        window.addEventListener('scroll', () => this.onScroll());
+    }
+    private onScroll() {
+        const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        this.scroll=scrollPercentage;
     }
 
     private onMouseDown(event: MouseEvent) {
@@ -195,7 +221,7 @@ export class CreationComponent {
     private ballon_onMouseMove(event: MouseEvent) {
         if (this.ballon_isDragging && this.ballon_draggableObject) {
             const x = event.clientX - this.ballon_offsetX;
-            const y = event.clientY - this.ballon_offsetY;
+            const y = event.clientY - this.ballon_offsetY ;
 
             this.ballon_draggableObject.style.left = `${x}px`;
             this.ballon_draggableObject.style.top = `${y}px`;
@@ -422,5 +448,38 @@ export class CreationComponent {
             this._selectEntite=false;
         }
     }
+
+    passDeplacement(){
+        window.location.reload();
+        this.is_deplacement=false;
+    }
+
+    delEntite(){
+        this.getScenarioName(this.lastNom).then(() => {
+            this._creationService.DelEntite(this.LastScenario.id).subscribe();
+            this.numero -= 1;
+            this._creationService.getEntiteList(this.LastScenario.id).subscribe(
+                res => {
+                    this._entiteList = res;
+                }
+            )
+
+        }).catch(error => {
+            console.error('Une erreur s\'est produite lors de la récupération du scénario :', error);
+            // Gérer l'erreur ici si nécessaire
+        });
+    }
+
+    delDeplacement(){
+        this.getScenarioName(this.lastNom).then(() => {
+            this._creationService.DelDeplacement(this.LastScenario.id).subscribe();
+            this.numAction -= 1;
+        }).catch(error => {
+            console.error('Une erreur s\'est produite lors de la récupération du scénario :', error);
+            // Gérer l'erreur ici si nécessaire
+        });
+    }
+
+
 
 }

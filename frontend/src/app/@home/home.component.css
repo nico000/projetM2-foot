@@ -57,10 +57,17 @@ nav.menu ul {
   display: flex;
   justify-content: center; /* Centre horizontalement */
 }
-
+.container{
+  width: 100%;
+}
 .categorie{
   font-size: 150%;
   color: limegreen;
+  text-align: center;
+}
+.Ecriture{
+  font-size: 120%;
+  color: white;
   text-align: center;
 }
 .info {
@@ -93,11 +100,7 @@ nav.menu ul {
   align-content: center;
   width:16.5%;
 }
-.Ecriture{
-  font-size: 120%;
-  color: white;
-  text-align: center;
-}
+
 .numEcriture{
   font-size: 120%;
   color: black;

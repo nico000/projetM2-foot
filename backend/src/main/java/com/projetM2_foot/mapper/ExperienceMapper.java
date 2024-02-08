@@ -1,6 +1,6 @@
 package com.projetM2_foot.mapper;
 
-import com.projetM2_foot.api.request.experience.ExperienceRequestCreate;
+import com.projetM2_foot.api.request.ExperienceRequestCreate;
 import com.projetM2_foot.api.response.ExperienceResponse;
 import com.projetM2_foot.entity.Experience;
 import com.projetM2_foot.entity.Scenario;
@@ -29,6 +29,11 @@ public class ExperienceMapper {
                 .typeFeedback(request.getTypeFeedback())
                 .freqFeedback(request.getFreqFeedback())
                 .visuFeedback(request.getVisuFeedback())
+                .colonArea(request.getColonArea())
+                .corridorArea(request.getCorridorArea())
+                .modeScene(request.getModeScene())
+                .displayArea(request.getDisplayArea())
+                .groundColor(request.getGroundColor())
                 .build();
     }
 
@@ -41,6 +46,11 @@ public class ExperienceMapper {
                 .typeFeedback(entity.getTypeFeedback())
                 .freqFeedback(entity.getFreqFeedback())
                 .visuFeedback(entity.getVisuFeedback())
+                .colonArea(entity.getColonArea())
+                .corridorArea(entity.getCorridorArea())
+                .displayArea(entity.getDisplayArea())
+                .modeScene(entity.getModeScene())
+                .groundColor(entity.getGroundColor())
                 .build();
     }
 

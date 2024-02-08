@@ -2,8 +2,8 @@ package com.projetM2_foot.controller;
 
 
 import com.projetM2_foot.api.dto.EntiteDto;
-import com.projetM2_foot.api.request.entite.EntiteRequestCreate;
-import com.projetM2_foot.api.request.entite.EntiteRequestUpdate;
+import com.projetM2_foot.api.request.EntiteRequestCreate;
+import com.projetM2_foot.api.request.EntiteRequestUpdate;
 import com.projetM2_foot.api.response.EntiteResponse;
 import com.projetM2_foot.entity.Entite;
 import com.projetM2_foot.mapper.EntiteMapper;

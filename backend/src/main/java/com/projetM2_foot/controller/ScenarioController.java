@@ -1,9 +1,8 @@
 package com.projetM2_foot.controller;
 
 
-
-import com.projetM2_foot.api.request.scenario.ScenarioRequestCreate;
-import com.projetM2_foot.api.request.scenario.ScenarioRequestUpdate;
+import com.projetM2_foot.api.request.ScenarioRequestCreate;
+import com.projetM2_foot.api.request.ScenarioRequestUpdate;
 import com.projetM2_foot.api.response.*;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.mapper.ScenarioMapper;
@@ -52,8 +51,9 @@ public class ScenarioController {
 
     @GetMapping
     @Operation(
-            summary = "Lire les scénarios",
-            description = "Récupère les scénarios")
+        summary = "Lire les scénarios",
+        description = "Récupère les scénarios"
+    )
     public ResponseEntity<List<ScenarioResponse>> getScenarioAll (){
 
         log.info("Endpoint appelé : GET /scenario/");

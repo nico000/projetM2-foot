@@ -14,9 +14,6 @@
                 <input type="checkbox" id="action" class="hidden-checkbox" (click)="updateModeScenario('action')">
                 <label for="action" class="round-button"  [style.background-color]="_newScenario.mode_scene === 'action' ? '#3498db' : 'initial'">Action</label>
             </div><br>
-            <div class="titre">
-                nombre de joueur: <input type="text" [(ngModel)]="_newScenario.joueur_nb"/><br>
-            </div><br>
 
             <div class="titre">
                 couleur du terrain:
@@ -35,7 +32,7 @@
                 <input type="checkbox" id="grand" class="hidden-checkbox" (click)="updateterrainScenario('grand')">
                 <label for="grand" class="round-button" [style.background-color]="_newScenario.terrain_taille === 'grand' ? '#3498db' : 'initial'">Grand</label>
             </div><br>
-
+            <!--
             <div class="titre">
                 <input type="checkbox" id="_useT" class="hidden-checkbox" (click)="updateUseZone('true')">
                 <label for="_useT" class="round-button" [style.background-color]="_newScenario.zone_use === true ? '#3498db' : 'initial'">utiliser les zone</label>
@@ -44,6 +41,10 @@
             <div class="titre">
                 <input type="checkbox" id="AZone" class="hidden-checkbox" (click)="updateAfficheZone('true')">
                 <label for="AZone" class="round-button" [style.background-color]="_newScenario.zone_display === true ? '#3498db' : 'initial'">Afficher les zones du terrain</label>
+            </div><br>-->
+            <div class="titre">
+                Nombre de joueur:
+                <input type="text" [(ngModel)]="_newScenario.joueur_nb"/><br>
             </div><br>
 
             <div class="titre">

@@ -24,7 +24,6 @@ export class HomeComponent {
 
 
 
-
     constructor(private _homeService: HomeService,
                 private _modalService: ModalService) {}
 
@@ -100,6 +99,10 @@ export class HomeComponent {
                     this._scenarioList = res
             )
         );
+    }
+
+    nb_couloir(nombreDeCouloirs: number): number[] {
+        return Array.from({length: nombreDeCouloirs}, (_, index) => index + 1);
     }
 
 

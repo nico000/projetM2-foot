@@ -51,6 +51,7 @@ export class CreationComponent {
         console.log(this.lastCouleur);
         this.lastCouloir = this._newScenario.zone_nb_couloir;
         this.lastZone = this._newScenario.zone_nb_zone;
+        this._newScenario.joueur_nb=0;
 
         this._creationService.addScenario(this._newScenario).subscribe(
             res => {

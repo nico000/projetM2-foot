@@ -1,5 +1,5 @@
 .presentation{
-    font-size: 200%;
+    font-size:180%;
     color: white;
     text-align: center;
 }
@@ -10,7 +10,7 @@
     text-align: center;
 }
 .titre{
-    font-size: 130%;
+    font-size: 120%;
     color: mediumblue;
     text-align: center;
 }
@@ -20,7 +20,7 @@
     padding: 10px;
     border: 2px solid white;
     border-radius: 50px;
-    font-size: 16px;
+    font-size: 15px;
     text-align: center;
     color: white;
     transition: background-color 0.3s;
@@ -127,7 +127,7 @@ nav.menu ul li.boutton:hover a{
     height: 40vh;
 }
 .mode{
-    font-size: 130%;
+    font-size: 100%;
     color: white;
     text-align: center;
 }

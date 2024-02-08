@@ -60,11 +60,74 @@ nav.menu ul {
 
 .categorie{
   font-size: 150%;
-  color: green;
+  color: limegreen;
   text-align: center;
 }
 .info {
   font-size: 130%;
   text-align: center;
 }
+.colonne_terrain{
+  width:35%;
+}
+.colonne_terrain2{
+  width:65%;
+}
+.tableau_joueur{
+  width:100%;
+}
 
+/*terrain*/
+.draggable {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: grab;
+  overflow: hidden;
+  margin: auto;
+  align-items: center;
+}
+.barreOutils{
+  text-align:center ;
+  align-content: center;
+  width:16.5%;
+}
+.Ecriture{
+  font-size: 120%;
+  color: white;
+  text-align: center;
+}
+.numEcriture{
+  font-size: 120%;
+  color: black;
+  text-align: center;
+}
+.joueur{
+  background-color: #ffeb3b;
+}
+.ballon {
+  background-color:white;
+  width: 25px;
+  height: 25px;
+}
+.couloir{
+  background: forestgreen;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.zone{
+  background: forestgreen;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.tableau_terrain{
+  padding: 5%;
+  width:100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.tabter{
+  border: 1px solid white;
+  height: 40vh;
+}

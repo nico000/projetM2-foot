@@ -31,14 +31,7 @@ public class Deplacement {
     @NotNull
     @Column(name = "dep_action")
     private int numAction;
-    /** Numero de la scene */
-    @NotNull
-    @Column(name = "dep_scene")
-    private int numScene;
-    /** Numero du bloc */
-    @NotNull
-    @Column(name = "dep_bloc")
-    private int numBloc;
+
 
     /** [FK] Scenario */
     @ManyToOne(fetch=FetchType.LAZY)

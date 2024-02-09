@@ -20,7 +20,7 @@ public interface DeplacementRepository extends CrudRepository<Deplacement, Long>
 
 
 
-    @Query("SELECT e FROM Deplacement e WHERE e.scenario = :scenarioId ORDER BY e.numBloc DESC, e.numScene DESC, e.numAction DESC")
+    @Query("SELECT e FROM Deplacement e WHERE e.scenario = :scenarioId ORDER BY e.numAction DESC")
     List<Deplacement> deleteLast(@Param("scenarioId") Scenario scenarioId , Pageable pageable);
 
   //  @Transactional

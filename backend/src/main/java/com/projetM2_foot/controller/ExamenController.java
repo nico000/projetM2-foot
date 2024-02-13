@@ -93,19 +93,36 @@ public class ExamenController {
             description = "On lie un id d'examen et un id "
     )
     public ResponseEntity<ExamenResponse> addExperience(
-            @RequestParam Long id,
+            @RequestParam(required = false) Long id,
+            @RequestParam(required = false) String name,
             @RequestBody ExperienceRequestCreate request
     ){
-        // préparer request body experience
-        final Experience entity_exp = experienceMapper.toEntity(request);
-        // save expérience
-        final Experience entity_save = experienceService.create(entity_exp);
-        // créer l'examen avec ajout
-        final Examen entity_exa = examenService.addExp(id,entity_save);
-        // creer response
-        final ExamenResponse dto = examenMapper.toDto(entity_exa);
-        return ResponseEntity.ok().body(dto);
 
+        if(name == null && id == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        else {
+
+
+            // préparer request body experience
+            final Experience entity_exp = experienceMapper.toEntity(request);
+            // save expérience
+            final Experience entity_save = experienceService.create(entity_exp);
+            // créer l'examen avec ajout
+
+
+            final Examen entity_exa;
+
+            if(id != null){
+                entity_exa = examenService.addExp(id, entity_save);
+            }
+            else{
+                entity_exa = examenService.addExp(name, entity_save);
+            }
+            // creer response
+            final ExamenResponse dto = examenMapper.toDto(entity_exa);
+            return ResponseEntity.ok().body(dto);
+        }
     }
 
 

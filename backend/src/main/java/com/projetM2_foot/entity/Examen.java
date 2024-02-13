@@ -27,10 +27,10 @@ public class Examen {
             inverseJoinColumns = @JoinColumn(name = "exp_id"))
     Set<Experience> experienceSet;
 
-    @Column(name = "exp_name")
+    @Column(name = "exa_name")
     private String name;
 
-    @Column(name = "exp_mode")
+    @Column(name = "exa_mode")
     private String mode;
 
 }

@@ -27,6 +27,8 @@ public class ExamenService {
         return examenRepository.findById(id).orElse(null);
     }
 
+    public Examen getByName(String name) { return examenRepository.findByName(name);}
+
     public List<Examen> getAll(){ return examenRepository.findAll();}
 
     public Examen addExp(Long id , Experience exp){
@@ -38,6 +40,14 @@ public class ExamenService {
 
         return examenRepository.save(exa);
 
+    }
+
+    public Examen addExp(String name , Experience exp){
+
+        Examen exa = examenRepository.findByName(name);
+        assert exa != null;
+        exa.getExperienceSet().add(exp);
+        return examenRepository.save(exa);
     }
 
 

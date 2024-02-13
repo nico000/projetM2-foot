@@ -103,14 +103,11 @@ public class ExamenController {
         }
         else {
 
-
             // préparer request body experience
             final Experience entity_exp = experienceMapper.toEntity(request);
             // save expérience
             final Experience entity_save = experienceService.create(entity_exp);
             // créer l'examen avec ajout
-
-
             final Examen entity_exa;
 
             if(id != null){

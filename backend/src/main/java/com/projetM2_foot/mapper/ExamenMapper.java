@@ -8,6 +8,7 @@ import com.projetM2_foot.service.ExperienceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,12 +23,11 @@ public class ExamenMapper {
 
     public Examen toEntity (ExamenRequestCreate request){
 
-        Set<Experience> set = request.getExperienceSet().stream().map(experienceService::getById).collect(Collectors.toSet());
+        //Set<Experience> set = request.getExperienceSet().stream().map(experienceService::getById).collect(Collectors.toSet());
 
         return Examen.builder()
                 .name(request.getName())
                 .mode(request.getMode())
-                .experienceSet(set)
                 .build();
     }
 
@@ -38,7 +38,8 @@ public class ExamenMapper {
                 .id(entity.getId())
                 .name(entity.getName())
                 .mode(entity.getMode())
-                .experienceSet(entity.getExperienceSet().stream().map(Experience::getId).collect(Collectors.toList()))
+            //    .experienceSet(entity.getExperienceSet().stream().map(Experience::getId).collect(Collectors.toList()))
+            //    .experienceSet(Long.emptySet())
                 .build();
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 public class ExamenRequestCreate {
 
-    List<Long> experienceSet;
+   // List<Long> experienceSet;
     private String name;
     private String mode;
 }

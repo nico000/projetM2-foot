@@ -26,7 +26,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Tag(
-        name = "Examen",
+        name = "Examen.ts",
         description = "Gestion des differents examens"
 )
 public class ExamenController {
@@ -48,7 +48,7 @@ public class ExamenController {
         log.info("Endpoint appelé : POST /examen");
         final Examen entity = examenMapper.toEntity(request);
 
-       // log.info("Examen : "+ entity.getExperienceSet().stream().map(experienceMapper::toDto).collect(Collectors.toList()));
+       // log.info("Examen.ts : "+ entity.getExperienceSet().stream().map(experienceMapper::toDto).collect(Collectors.toList()));
         final Examen new_entity =  examenService.create(entity);
 
         final ExamenResponse dto = examenMapper.toDto(new_entity);

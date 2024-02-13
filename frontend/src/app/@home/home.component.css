@@ -12,7 +12,7 @@
 }
 
 .colonne{
-  width:10%;
+  width:20%;
 }
 .colonne2{
   width:30%;
@@ -36,9 +36,10 @@
 nav.menu ul  .boutton{
   display: inline-block;
   text-align:center ;
-  width: 20%;
+  width: 19%;
   margin: auto;
 }
+
 nav.menu ul li.boutton a{
   color :Azure;
   background-color: green;
@@ -75,10 +76,10 @@ nav.menu ul {
   text-align: center;
 }
 .colonne_terrain{
-  width:35%;
+  width:10%;
 }
 .colonne_terrain2{
-  width:65%;
+  width:90%;
 }
 .tableau_joueur{
   width:100%;
@@ -133,4 +134,59 @@ nav.menu ul {
 .tabter{
   border: 1px solid white;
   height: 40vh;
+}
+/* Style du conteneur de la case à cocher */
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  margin-right: 5px;
+}
+/* Cacher la case à cocher par défaut */
+.checkbox-container input {
+  display: none;
+}
+/* Style de l'apparence personnalisée de la case à cocher */
+.checkbox-custom {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border-radius: 3px;
+}
+/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */
+.checkbox-custom::after {
+  content: "\2713";
+  font-size: 16px;
+  color: white;
+  position: absolute;
+  opacity: 0; /* Par défaut, le symbole de coche est invisible */
+}
+/* Style de la case à cocher lorsque elle est cochée */
+.checkbox-container input:checked + .checkbox-custom {
+  background-color: #2196F3;
+}
+/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */
+.checkbox-container input:checked + .checkbox-custom::after {
+  opacity: 1;
+}
+
+.round-button {
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 50px;
+  font-size: 15px;
+  text-align: center;
+  color: white;
+  transition: background-color 0.3s;
+}
+.round-button:hover {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.hidden-checkbox {
+  display: none;
 }

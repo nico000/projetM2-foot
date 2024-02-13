@@ -139,11 +139,35 @@ export class CreationComponent {
 
     private scroll:number=0;
 
+    // recuperer position du tableau
+    protected tableau: HTMLTableElement | null = null;
+    protected tabTop:number=0.0;
+    protected tabLeft:number=0.0;
+
+
+    getPositionPercentage(element: HTMLTableElement | null): { top: number, left: number } {
+        console.log("fonction get");
+        if (!element) return { top: 0, left: 0 };
+
+        const rect = element.getBoundingClientRect();
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+
+        console.log("fonction get top :",(rect.top / windowHeight) * 100,"left :",(rect.left / windowWidth) * 100);
+        return {
+            top: (rect.top / windowHeight) * 100,
+            left: (rect.left / windowWidth) * 100
+        };
+    }
+
+    protected positionPercentage = this.getPositionPercentage(this.tableau);
+
 
     objectInit() {
         // daplacement joueur
         this.draggableObject = document.getElementById('deplacableObject') as HTMLDivElement;
         this.ballon_draggableObject = document.getElementById('ballondeplacableObject') as HTMLDivElement;
+        this.tableau =document.getElementById('tableau_terrain')as HTMLTableElement;
 
         this.initialLeft = -1;
         this.initialTop = -1;
@@ -304,11 +328,20 @@ export class CreationComponent {
             const pageHeight = window.innerHeight;
 
             // Calculer les positions finales en pourcentage par rapport à la page
-            const leftPercentage = (finalLeft / pageWidth) * 100;
-            const topPercentage = (finalTop / pageHeight) * 100;
+            let leftPercentage = (finalLeft / pageWidth) * 100;
+            let topPercentage = (finalTop / pageHeight) * 100;
+
+            //recup position tableau
+            this.positionPercentage = this.getPositionPercentage(this.tableau);
+
+            this.tabLeft=this.positionPercentage.left;
+            this.tabTop=this.positionPercentage.top;
+            leftPercentage=leftPercentage-this.tabLeft;
+            topPercentage=topPercentage-this.tabTop;
 
             // Afficher les positions finales en pourcentage dans la console
             console.log('Position finale en pourcentage - Left:', leftPercentage, 'Top:', topPercentage);
+
 
             // Ajouter joueur dans la bdd
             this.numero += 1;
@@ -356,8 +389,16 @@ export class CreationComponent {
             const pageHeight = window.innerHeight;
 
             // Calculer les positions finales en pourcentage par rapport à la page
-            const leftPercentage = (finalLeft / pageWidth) * 100;
-            const topPercentage = (finalTop / pageHeight) * 100;
+            let leftPercentage = (finalLeft / pageWidth) * 100;
+            let topPercentage = (finalTop / pageHeight) * 100;
+
+            //recup position tableau
+            this.positionPercentage = this.getPositionPercentage(this.tableau);
+
+            this.tabLeft=this.positionPercentage.left;
+            this.tabTop=this.positionPercentage.top;
+            leftPercentage=leftPercentage-this.tabLeft;
+            topPercentage=topPercentage-this.tabTop;
 
             // Afficher les positions finales en pourcentage dans la console
             console.log('Position finale en pourcentage - Left:', leftPercentage, 'Top:', topPercentage);
@@ -480,7 +521,5 @@ export class CreationComponent {
             // Gérer l'erreur ici si nécessaire
         });
     }
-
-
 
 }

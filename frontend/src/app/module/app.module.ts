@@ -16,6 +16,8 @@ import {ResultatComponent} from "../@resultat/resultat.component";
 import {CreationService} from "../@creation/creation.service";
 import {ResultatService} from "../@resultat/resultat.service";
 import {FormsModule} from "@angular/forms";
+import {SerieComponent} from "../@serie/serie.component";
+import {SerieService} from "../@serie/serie.service";
 //import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
@@ -28,7 +30,8 @@ import {FormsModule} from "@angular/forms";
       CreationComponent,
       ResultatComponent,
       FooterComponent,
-      ModalComponent
+      ModalComponent,
+      SerieComponent,
   ],
     imports: [
         BrowserModule,
@@ -42,7 +45,8 @@ import {FormsModule} from "@angular/forms";
   providers: [
       HomeService,
       CreationService,
-      ResultatService
+      ResultatService,
+      SerieService,
   ],
   bootstrap: [AppComponent]
 })

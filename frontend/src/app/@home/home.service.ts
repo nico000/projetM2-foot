@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {Scenario} from "../@creation/beans/Scenario";
 import {Observable} from "rxjs";
 import {Entite} from "../@creation/beans/Entite";
+import {Examen} from "./beans/Examen";
+import {Experience} from "./beans/Experience";
 
 
 
@@ -26,6 +28,14 @@ export class HomeService {
 
     public DelScenario(id:Number): Observable<any> {
         return this._http.delete('/scenario/'+id)
+    }
+
+    public addExamen (examen:Examen):Observable<Examen>{
+        return this._http.post<Examen>("/examen",examen);
+    }
+
+    public addExeperience (exp:Experience):Observable<Examen>{
+        return this._http.put<Examen>("/examen/add",exp);
     }
 
 }

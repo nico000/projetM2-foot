@@ -71,7 +71,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<table class=\"tableau\" >\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <h1 class=\"presentation\">Ajout d'un Scenario</h1>\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\"   [style.background-color]=\"_newScenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\"  [style.background-color]=\"_newScenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain:\n                <input type=\"checkbox\" id=\"couleurV\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert')\">\n                <label for=\"couleurV\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                <input type=\"checkbox\" id=\"couleurB\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc')\">\n                <label for=\"couleurB\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'moyen' ? '#3498db' : 'initial'\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'grand' ? '#3498db' : 'initial'\">Grand</label>\n            </div><br>\n            <!--\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_use === true ? '#3498db' : 'initial'\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_display === true ? '#3498db' : 'initial'\">Afficher les zones du terrain</label>\n            </div><br>-->\n            <div class=\"titre\">\n                Nombre de joueur:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <div *ngIf=\"is_placement\" class=\"mode\">Ajout des entités</div>\n                <div *ngIf=\"is_deplacement\" class=\"mode\">Ajout deplacement</div>\n                <tr>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button (click)=\"delEntite()\" class=\"boutton\">retour placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button (click)=\"delDeplacement()\" class=\"boutton\">retour deplacement</button></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">joueur :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"deplacableObject\" class=\"draggable joueur\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">ballon :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"ballondeplacableObject\" class=\"draggable ballon\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button  (click)=\"passEntite()\" class=\"boutton\">fin placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button  (click)=\"passDeplacement()\" class=\"boutton\">fin deplacement</button></div>\n                    </td>\n                    <br><br><br><br><br>\n                </tr></table><br>\n            <table  class=\"tableau_terrain tabter\" (click)=\"addDeplacement($event)\">\n                <tr  *ngFor=\"let couloir of nb_couloir(lastCouloir); let odd = odd\" class=\"couloir\">\n                    <td  *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\"\n                         [style.background-color]=\"lastCouleur === 'blanc' ? 'white' : 'initial'\">\n                        <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                             [style.left.%]=\"entite.y\" [style.top.%]=\"entite.x\"\n                              (contextmenu)=\"selectEntite(entite)\">\n                            <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                            <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                </tr>\n            </table><br>\n            <table>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addJoueur()\">ajouter joueur</a></li>\n                        </ul>\n                    </nav>\n                </td>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addBallon()\">ajouter ballon</a></li>\n                        </ul>\n                    </nav>\n                </td>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
+    __webpack_exports__["default"] = "<table class=\"tableau\" >\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <h1 class=\"presentation\">Ajout d'un Scenario</h1>\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\"   [style.background-color]=\"_newScenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\"  [style.background-color]=\"_newScenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain:\n                <input type=\"checkbox\" id=\"couleurV\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert')\">\n                <label for=\"couleurV\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                <input type=\"checkbox\" id=\"couleurB\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc')\">\n                <label for=\"couleurB\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'moyen' ? '#3498db' : 'initial'\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'grand' ? '#3498db' : 'initial'\">Grand</label>\n            </div><br>\n            <!--\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_use === true ? '#3498db' : 'initial'\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_display === true ? '#3498db' : 'initial'\">Afficher les zones du terrain</label>\n            </div><br>-->\n            <div class=\"titre\">\n                Nombre de joueur:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <div *ngIf=\"is_placement\" class=\"mode\">Ajout des entités</div>\n                <div *ngIf=\"is_deplacement\" class=\"mode\">Ajout deplacement</div>\n                <tr>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button (click)=\"delEntite()\" class=\"boutton\">retour placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button (click)=\"delDeplacement()\" class=\"boutton\">retour deplacement</button></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">joueur :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"deplacableObject\" class=\"draggable joueur\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">ballon :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"ballondeplacableObject\" class=\"draggable ballon\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button  (click)=\"passEntite()\" class=\"boutton\">fin placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button  (click)=\"passDeplacement()\" class=\"boutton\">fin deplacement</button></div>\n                    </td>\n                    <br><br><br><br><br>\n                </tr></table><br>\n            <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\" (click)=\"addDeplacement($event)\">\n                <tr  *ngFor=\"let couloir of nb_couloir(lastCouloir); let odd = odd\" class=\"couloir\">\n                    <td  *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\"\n                         [style.background-color]=\"lastCouleur === 'blanc' ? 'white' : 'initial'\">\n                        <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                             [style.left.%]=\"entite.y+this.tabLeft\" [style.top.%]=\"entite.x+tabTop\"\n                              (contextmenu)=\"selectEntite(entite)\">\n                            <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                            <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                </tr>\n            </table><br>\n            <table>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addJoueur()\">ajouter joueur</a></li>\n                        </ul>\n                    </nav>\n                </td>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addBallon()\">ajouter ballon</a></li>\n                        </ul>\n                    </nav>\n                </td>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
     /***/
   },
 
@@ -111,7 +111,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<header class=\"fond\">\n    <!-- menu -->\n    <nav class=\"menu\">\n        <h1>Beta Foot</h1>\n        <ul>\n            <li class=\"boutton\">\n                <a routerLink=\"/creation\">Creation</a>\n            </li>\n\n            <li class=\"boutton\">\n                <a routerLink=\"/home\">Tests</a>\n            </li>\n            <li class=\"boutton\">\n                <a >Series</a>\n            </li>\n            <li class=\"boutton\">\n                <a routerLink=\"/resultat\">Resultats</a>\n            </li>\n        </ul>\n    </nav>\n</header>\n\n\n";
+    __webpack_exports__["default"] = "<header class=\"fond\">\n    <!-- menu -->\n    <nav class=\"menu\">\n        <h1>Beta Foot</h1>\n        <ul>\n            <li class=\"boutton\">\n                <a routerLink=\"/creation\">Creation</a>\n            </li>\n\n            <li class=\"boutton\">\n                <a routerLink=\"/home\">Tests</a>\n            </li>\n            <li class=\"boutton\">\n                <a routerLink=\"/serie\">Series</a>\n            </li>\n            <li class=\"boutton\">\n                <a routerLink=\"/resultat\">Resultats</a>\n            </li>\n        </ul>\n    </nav>\n</header>\n\n\n";
     /***/
   },
 
@@ -131,7 +131,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des scénario : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de zone\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de couloir\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            //\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_zone}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_couloir}}\n        </td>\n        <td class=\"colonne ecriture\">\n            <button (click)=\"selectScenario(_selectScenarioModalName,scenario)\">details</button>\n            <button (click)=\"delScenario(scenario)\">Supprimer</button>\n        </td>\n    </tr>\n</table>\n\n\n<jw-modal id=\"{{_selectScenarioModalName}}\" >\n    <h1 class=\"titre\">{{_selectedScenario.nom}}</h1>\n    <div class=\"categorie\">Mode Scene : </div><div class=\"Ecriture\">{{_selectedScenario.mode_scene}}</div>\n    <div class=\"categorie\">Couleur terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_couleur}}</div>\n    <div class=\"categorie\">Taille terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_taille}}</div><br>\n<table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain\">\n                <div class=\"categorie\">Nombre de zone : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_zone}}</div>\n                <div class=\"categorie\">Nombre de couloir : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_couloir}}</div>\n            </td>\n            <td class=\"colonne_terrain2\">\n\n                <table  class=\"tableau_terrain tabter\">\n                    <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                        <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                             [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                            <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                  [style.left.%]=\"entite.y\" [style.top.%]=\"(entite.x)\">\n                                <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                    {{ entite.numero }}\n                                </div>\n                                <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </td>\n                    </tr>\n\n                </table>\n            </td>\n        </tr>\n    </table>\n</jw-modal>";
+    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des scénario : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == false\" (click)=\"isAddSerie=true\">Creer une serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"isAddSerie=false\">Annuler la serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"changeDesigne(_designModal)\">Valider</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de zone\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de couloir\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            //\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_zone}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_couloir}}\n        </td>\n        <td class=\"colonne2 ecriture\">\n            <button (click)=\"selectScenario(_selectScenarioModalName,scenario)\">details</button>\n            <button (click)=\"delScenario(scenario)\">Supprimer</button>\n            <input *ngIf=\"isAddSerie\"  class=\"checkbox-custom\" type=\"checkbox\" (change)=\"toggleSelection(scenario)\">\n        </td>\n    </tr>\n</table>\n\n\n<jw-modal id=\"{{_selectScenarioModalName}}\" >\n<table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain\">\n                <h1 class=\"titre\">{{_selectedScenario.nom}}</h1>\n                <div class=\"categorie\">Mode Scene : </div><div class=\"Ecriture\">{{_selectedScenario.mode_scene}}</div>\n                <div class=\"categorie\">Couleur terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_couleur}}</div>\n                <div class=\"categorie\">Taille terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_taille}}</div>\n                <div class=\"categorie\">Nombre de zone : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_zone}}</div>\n                <div class=\"categorie\">Nombre de couloir : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_couloir}}</div>\n            </td>\n            <td class=\"colonne_terrain2\">\n\n                <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\">\n                    <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                        <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                             [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                            <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                  [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                    {{ entite.numero }}\n                                </div>\n                                <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </td>\n                    </tr>\n\n                </table>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_designModal}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetData(_designModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addDesign(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <h1 class=\"presentation\">Serie : </h1>\n    <div class=\"titre\">\n        Nom de la series:\n        <input type=\"text\" [(ngModel)]=\"-_newExam.nom\"/><br>\n    </div>\n\n    <h1 class=\"presentation\">Design : </h1><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Nom\n            </td>\n            <td class=\"titre colonne\">\n                Mode de scene\n            </td>\n            <td class=\"titre colonne\">\n                Couleur terrain\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de zone\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de couloir\n            </td>\n        </tr>\n        <tr *ngFor=\"let scenario of _scenarioSelect\" >\n            <td class=\"colonne ecriture\">\n                {{scenario.nom}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene',scenario)\">\n                    <label for=\"scene\" class=\"round-button\"   [style.background-color]=\"scenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                    <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action',scenario)\">\n                    <label for=\"action\" class=\"round-button\"  [style.background-color]=\"scenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"couleurV\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert',scenario)\">\n                    <label for=\"couleurV\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                    <input type=\"checkbox\" id=\"couleurB\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc',scenario)\">\n                    <label for=\"couleurB\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_zone\"/><br>\n            </td>\n            <td class=\"colonne \">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_couloir\"/><br>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_feedBackModal}}\" >\n    <h1 class=\"presentation\">FeedBack : </h1>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_feedBackModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addFeedBack(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Scenario\n            </td>\n            <td class=\"titre colonne\">\n                Type feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Frequence feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Visualisation feedBack\n            </td>\n        </tr>\n        <tr *ngFor=\"let exeprience of _newExeperience\" >\n            <td class=\"colonne ecriture\">\n                {{exeprience.scenario}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"typesf\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('tableau',exeprience)\">\n                    <label for=\"typesf\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'tableau' ? '#3498db' : 'initial'\">Tableau</label>\n\n                    <input type=\"checkbox\" id=\"static\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('static',exeprience)\">\n                    <label for=\"static\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'static' ? '#3498db' : 'initial'\">Static</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"25\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(25,exeprience)\">\n                    <label for=\"25\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 25 ? '#3498db' : 'initial'\">25%</label>\n\n                    <input type=\"checkbox\" id=\"50\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(50,exeprience)\">\n                    <label for=\"50\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 50 ? '#3498db' : 'initial'\">50%</label>\n\n                    <input type=\"checkbox\" id=\"100\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(100,exeprience)\">\n                    <label for=\"100\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 100 ? '#3498db' : 'initial'\">100%</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <input type=\"checkbox\" id=\"1\" class=\"hidden-checkbox\" (click)=\"updateVisuFeed(1,exeprience)\">\n                <label for=\"1\" class=\"round-button\" [style.background-color]=\"exeprience.visuFeedback === 1 ? '#3498db' : 'initial'\">1 Visu</label>\n\n                <input type=\"checkbox\" id=\"2\" class=\"hidden-checkbox\" (click)=\"updateVisuFeed(2,exeprience)\">\n                <label for=\"2\" class=\"round-button\" [style.background-color]=\"exeprience.visuFeedback === 2 ? '#3498db' : 'initial'\">2 Visu</label>\n            </td>\n        </tr>\n    </table>\n</jw-modal>";
     /***/
   },
 
@@ -172,6 +172,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     __webpack_exports__["default"] = "<div >PAGE resultat</div>";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/@serie/serie.component.html":
+  /*!***********************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/@serie/serie.component.html ***!
+    \***********************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppSerieSerieComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div >PAGE Serie</div>";
     /***/
   },
 
@@ -1091,7 +1111,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.draggableObject = null;
         this.ballon_draggableObject = null;
-        this.scroll = 0;
+        this.scroll = 0; // recuperer position du tableau
+
+        this.tableau = null;
+        this.tabTop = 0.0;
+        this.tabLeft = 0.0;
+        this.positionPercentage = this.getPositionPercentage(this.tableau);
       }
 
       _createClass(CreationComponent, [{
@@ -1183,11 +1208,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
         }
       }, {
+        key: "getPositionPercentage",
+        value: function getPositionPercentage(element) {
+          console.log("fonction get");
+          if (!element) return {
+            top: 0,
+            left: 0
+          };
+          var rect = element.getBoundingClientRect();
+          var windowWidth = window.innerWidth;
+          var windowHeight = window.innerHeight;
+          console.log("fonction get top :", rect.top / windowHeight * 100, "left :", rect.left / windowWidth * 100);
+          return {
+            top: rect.top / windowHeight * 100,
+            left: rect.left / windowWidth * 100
+          };
+        }
+      }, {
         key: "objectInit",
         value: function objectInit() {
           // daplacement joueur
           this.draggableObject = document.getElementById('deplacableObject');
           this.ballon_draggableObject = document.getElementById('ballondeplacableObject');
+          this.tableau = document.getElementById('tableau_terrain');
           this.initialLeft = -1;
           this.initialTop = -1;
           this.ballon_initialLeft = -1;
@@ -1352,7 +1395,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var pageHeight = window.innerHeight; // Calculer les positions finales en pourcentage par rapport à la page
 
             var leftPercentage = finalLeft / pageWidth * 100;
-            var topPercentage = finalTop / pageHeight * 100; // Afficher les positions finales en pourcentage dans la console
+            var topPercentage = finalTop / pageHeight * 100; //recup position tableau
+
+            this.positionPercentage = this.getPositionPercentage(this.tableau);
+            this.tabLeft = this.positionPercentage.left;
+            this.tabTop = this.positionPercentage.top;
+            leftPercentage = leftPercentage - this.tabLeft;
+            topPercentage = topPercentage - this.tabTop; // Afficher les positions finales en pourcentage dans la console
 
             console.log('Position finale en pourcentage - Left:', leftPercentage, 'Top:', topPercentage); // Ajouter joueur dans la bdd
 
@@ -1397,7 +1446,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var pageHeight = window.innerHeight; // Calculer les positions finales en pourcentage par rapport à la page
 
             var leftPercentage = finalLeft / pageWidth * 100;
-            var topPercentage = finalTop / pageHeight * 100; // Afficher les positions finales en pourcentage dans la console
+            var topPercentage = finalTop / pageHeight * 100; //recup position tableau
+
+            this.positionPercentage = this.getPositionPercentage(this.tableau);
+            this.tabLeft = this.positionPercentage.left;
+            this.tabTop = this.positionPercentage.top;
+            leftPercentage = leftPercentage - this.tabLeft;
+            topPercentage = topPercentage - this.tabTop; // Afficher les positions finales en pourcentage dans la console
 
             console.log('Position finale en pourcentage - Left:', leftPercentage, 'Top:', topPercentage); // Ajouter joueur dans la bdd
 
@@ -1794,6 +1849,85 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/@home/beans/Examen.ts":
+  /*!***************************************!*\
+    !*** ./src/app/@home/beans/Examen.ts ***!
+    \***************************************/
+
+  /*! exports provided: Examen */
+
+  /***/
+  function srcAppHomeBeansExamenTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Examen", function () {
+      return Examen;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var Examen = /*#__PURE__*/_createClass(function Examen() {
+      _classCallCheck(this, Examen);
+
+      this.nom = "";
+      this.mode = "";
+    });
+    /***/
+
+  },
+
+  /***/
+  "./src/app/@home/beans/Experience.ts":
+  /*!*******************************************!*\
+    !*** ./src/app/@home/beans/Experience.ts ***!
+    \*******************************************/
+
+  /*! exports provided: Experience */
+
+  /***/
+  function srcAppHomeBeansExperienceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Experience", function () {
+      return Experience;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var Experience = /*#__PURE__*/_createClass(function Experience() {
+      _classCallCheck(this, Experience);
+
+      this.scenario = 0.0;
+      this.typeFeedback = "";
+      this.freqFeedback = 0.0;
+      this.visuFeedback = 0.0;
+      this.zone_display = false;
+      this.zone_nb_zone = 0.0;
+      this.zone_nb_couloir = 0.0;
+      this.mode_scene = "";
+      this.terrain_couleur = "";
+    });
+    /***/
+
+  },
+
+  /***/
   "./src/app/@home/home.component.css":
   /*!******************************************!*\
     !*** ./src/app/@home/home.component.css ***!
@@ -1809,7 +1943,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n.presentation{\n  font-size: 200%;\n  color: white;\n  text-align: center;\n}\n.tableau{\n  padding: 5px;\n  border: 1px solid black;\n  border-collapse: collapse;\n  width:100%;\n}\n.colonne{\n  width:10%;\n}\n.colonne2{\n  width:30%;\n}\n.titre{\n  font-size: 150%;\n  color: mediumblue;\n  text-align: center;\n}\n.ecriture{\n  font-size: 120%;\n  text-align: center;\n}\n.contient{\n  font-size: 50%;\n  width: 50%;\n}\nnav.menu ul  .boutton{\n  display: inline-block;\n  text-align:center ;\n  width: 20%;\n  margin: auto;\n}\nnav.menu ul li.boutton a{\n  color :Azure;\n  background-color: green;\n  text-decoration: none;\n  text-align: center;\n  display: flex;\n  font-size:35px;\n  justify-content: center;\n}\nnav.menu ul li.boutton:hover a{\n  color: green;\n  background-color: Azure;\n  transition: 0.5s all;\n}\nnav.menu ul {\n  display: flex;\n  justify-content: center; /* Centre horizontalement */\n}\n.container{\n  width: 100%;\n}\n.categorie{\n  font-size: 150%;\n  color: limegreen;\n  text-align: center;\n}\n.Ecriture{\n  font-size: 120%;\n  color: white;\n  text-align: center;\n}\n.info {\n  font-size: 130%;\n  text-align: center;\n}\n.colonne_terrain{\n  width:35%;\n}\n.colonne_terrain2{\n  width:65%;\n}\n.tableau_joueur{\n  width:100%;\n}\n/*terrain*/\n.draggable {\n  position: absolute;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  cursor: -webkit-grab;\n  cursor: grab;\n  overflow: hidden;\n  margin: auto;\n  align-items: center;\n}\n.barreOutils{\n  text-align:center ;\n  align-content: center;\n  width:16.5%;\n}\n.numEcriture{\n  font-size: 120%;\n  color: black;\n  text-align: center;\n}\n.joueur{\n  background-color: #ffeb3b;\n}\n.ballon {\n  background-color:white;\n  width: 25px;\n  height: 25px;\n}\n.couloir{\n  background: forestgreen;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.zone{\n  background: forestgreen;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tableau_terrain{\n  padding: 5%;\n  width:100%;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tabter{\n  border: 1px solid white;\n  height: 40vh;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhvbWUvaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxZQUFZO0VBQ1osdUJBQXVCO0VBQ3ZCLHlCQUF5QjtFQUN6QixVQUFVO0FBQ1o7QUFFQTtFQUNFLFNBQVM7QUFDWDtBQUNBO0VBQ0UsU0FBUztBQUNYO0FBRUE7RUFDRSxlQUFlO0VBQ2YsaUJBQWlCO0VBQ2pCLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0UsY0FBYztFQUNkLFVBQVU7QUFDWjtBQUNBO0VBQ0UscUJBQXFCO0VBQ3JCLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osdUJBQXVCO0VBQ3ZCLHFCQUFxQjtFQUNyQixrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLGNBQWM7RUFDZCx1QkFBdUI7QUFDekI7QUFDQTtFQUNFLFlBQVk7RUFDWix1QkFBdUI7RUFDdkIsb0JBQW9CO0FBQ3RCO0FBQ0E7RUFDRSxhQUFhO0VBQ2IsdUJBQXVCLEVBQUUsMkJBQTJCO0FBQ3REO0FBQ0E7RUFDRSxXQUFXO0FBQ2I7QUFDQTtFQUNFLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxlQUFlO0VBQ2YsWUFBWTtFQUNaLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsU0FBUztBQUNYO0FBQ0E7RUFDRSxTQUFTO0FBQ1g7QUFDQTtFQUNFLFVBQVU7QUFDWjtBQUVBLFVBQVU7QUFDVjtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixvQkFBWTtFQUFaLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLG1CQUFtQjtBQUNyQjtBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLHFCQUFxQjtFQUNyQixXQUFXO0FBQ2I7QUFFQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSx5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLHNCQUFzQjtFQUN0QixXQUFXO0VBQ1gsWUFBWTtBQUNkO0FBQ0E7RUFDRSx1QkFBdUI7RUFDdkIsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLHVCQUF1QjtFQUN2Qix5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLFdBQVc7RUFDWCxVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZCIsImZpbGUiOiJzcmMvYXBwL0Bob21lL2hvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLnByZXNlbnRhdGlvbntcbiAgZm9udC1zaXplOiAyMDAlO1xuICBjb2xvcjogd2hpdGU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi50YWJsZWF1e1xuICBwYWRkaW5nOiA1cHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICB3aWR0aDoxMDAlO1xufVxuXG4uY29sb25uZXtcbiAgd2lkdGg6MTAlO1xufVxuLmNvbG9ubmUye1xuICB3aWR0aDozMCU7XG59XG5cbi50aXRyZXtcbiAgZm9udC1zaXplOiAxNTAlO1xuICBjb2xvcjogbWVkaXVtYmx1ZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uZWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uY29udGllbnR7XG4gIGZvbnQtc2l6ZTogNTAlO1xuICB3aWR0aDogNTAlO1xufVxubmF2Lm1lbnUgdWwgIC5ib3V0dG9ue1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgd2lkdGg6IDIwJTtcbiAgbWFyZ2luOiBhdXRvO1xufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbiBhe1xuICBjb2xvciA6QXp1cmU7XG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgZGlzcGxheTogZmxleDtcbiAgZm9udC1zaXplOjM1cHg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICBjb2xvcjogZ3JlZW47XG4gIGJhY2tncm91bmQtY29sb3I6IEF6dXJlO1xuICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcbn1cbm5hdi5tZW51IHVsIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7IC8qIENlbnRyZSBob3Jpem9udGFsZW1lbnQgKi9cbn1cbi5jb250YWluZXJ7XG4gIHdpZHRoOiAxMDAlO1xufVxuLmNhdGVnb3JpZXtcbiAgZm9udC1zaXplOiAxNTAlO1xuICBjb2xvcjogbGltZWdyZWVuO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uRWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uaW5mbyB7XG4gIGZvbnQtc2l6ZTogMTMwJTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmNvbG9ubmVfdGVycmFpbntcbiAgd2lkdGg6MzUlO1xufVxuLmNvbG9ubmVfdGVycmFpbjJ7XG4gIHdpZHRoOjY1JTtcbn1cbi50YWJsZWF1X2pvdWV1cntcbiAgd2lkdGg6MTAwJTtcbn1cblxuLyp0ZXJyYWluKi9cbi5kcmFnZ2FibGUge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiA1MHB4O1xuICBoZWlnaHQ6IDUwcHg7XG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgY3Vyc29yOiBncmFiO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBtYXJnaW46IGF1dG87XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG4uYmFycmVPdXRpbHN7XG4gIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICB3aWR0aDoxNi41JTtcbn1cblxuLm51bUVjcml0dXJle1xuICBmb250LXNpemU6IDEyMCU7XG4gIGNvbG9yOiBibGFjaztcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmpvdWV1cntcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZWIzYjtcbn1cbi5iYWxsb24ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOndoaXRlO1xuICB3aWR0aDogMjVweDtcbiAgaGVpZ2h0OiAyNXB4O1xufVxuLmNvdWxvaXJ7XG4gIGJhY2tncm91bmQ6IGZvcmVzdGdyZWVuO1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi56b25le1xuICBiYWNrZ3JvdW5kOiBmb3Jlc3RncmVlbjtcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG59XG4udGFibGVhdV90ZXJyYWlue1xuICBwYWRkaW5nOiA1JTtcbiAgd2lkdGg6MTAwJTtcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG59XG4udGFidGVye1xuICBib3JkZXI6IDFweCBzb2xpZCB3aGl0ZTtcbiAgaGVpZ2h0OiA0MHZoO1xufVxuIl19 */";
+    __webpack_exports__["default"] = "\n.presentation{\n  font-size: 200%;\n  color: white;\n  text-align: center;\n}\n.tableau{\n  padding: 5px;\n  border: 1px solid black;\n  border-collapse: collapse;\n  width:100%;\n}\n.colonne{\n  width:20%;\n}\n.colonne2{\n  width:30%;\n}\n.titre{\n  font-size: 150%;\n  color: mediumblue;\n  text-align: center;\n}\n.ecriture{\n  font-size: 120%;\n  text-align: center;\n}\n.contient{\n  font-size: 50%;\n  width: 50%;\n}\nnav.menu ul  .boutton{\n  display: inline-block;\n  text-align:center ;\n  width: 19%;\n  margin: auto;\n}\nnav.menu ul li.boutton a{\n  color :Azure;\n  background-color: green;\n  text-decoration: none;\n  text-align: center;\n  display: flex;\n  font-size:35px;\n  justify-content: center;\n}\nnav.menu ul li.boutton:hover a{\n  color: green;\n  background-color: Azure;\n  transition: 0.5s all;\n}\nnav.menu ul {\n  display: flex;\n  justify-content: center; /* Centre horizontalement */\n}\n.container{\n  width: 100%;\n}\n.categorie{\n  font-size: 150%;\n  color: limegreen;\n  text-align: center;\n}\n.Ecriture{\n  font-size: 120%;\n  color: white;\n  text-align: center;\n}\n.info {\n  font-size: 130%;\n  text-align: center;\n}\n.colonne_terrain{\n  width:10%;\n}\n.colonne_terrain2{\n  width:90%;\n}\n.tableau_joueur{\n  width:100%;\n}\n/*terrain*/\n.draggable {\n  position: absolute;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  cursor: -webkit-grab;\n  cursor: grab;\n  overflow: hidden;\n  margin: auto;\n  align-items: center;\n}\n.barreOutils{\n  text-align:center ;\n  align-content: center;\n  width:16.5%;\n}\n.numEcriture{\n  font-size: 120%;\n  color: black;\n  text-align: center;\n}\n.joueur{\n  background-color: #ffeb3b;\n}\n.ballon {\n  background-color:white;\n  width: 25px;\n  height: 25px;\n}\n.couloir{\n  background: forestgreen;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.zone{\n  background: forestgreen;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tableau_terrain{\n  padding: 5%;\n  width:100%;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tabter{\n  border: 1px solid white;\n  height: 40vh;\n}\n/* Style du conteneur de la case à cocher */\n.checkbox-container {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  margin-right: 5px;\n}\n/* Cacher la case à cocher par défaut */\n.checkbox-container input {\n  display: none;\n}\n/* Style de l'apparence personnalisée de la case à cocher */\n.checkbox-custom {\n  position: absolute;\n  height: 20px;\n  width: 20px;\n  background-color: white;\n  border-radius: 3px;\n}\n/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */\n.checkbox-custom::after {\n  content: \"\\2713\";\n  font-size: 16px;\n  color: white;\n  position: absolute;\n  opacity: 0; /* Par défaut, le symbole de coche est invisible */\n}\n/* Style de la case à cocher lorsque elle est cochée */\n.checkbox-container input:checked + .checkbox-custom {\n  background-color: #2196F3;\n}\n/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */\n.checkbox-container input:checked + .checkbox-custom::after {\n  opacity: 1;\n}\n.round-button {\n  display: inline-block;\n  cursor: pointer;\n  padding: 10px;\n  border: 2px solid white;\n  border-radius: 50px;\n  font-size: 15px;\n  text-align: center;\n  color: white;\n  transition: background-color 0.3s;\n}\n.round-button:hover {\n  background-color: #3498db;\n  color: #fff;\n}\n.hidden-checkbox {\n  display: none;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhvbWUvaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxZQUFZO0VBQ1osdUJBQXVCO0VBQ3ZCLHlCQUF5QjtFQUN6QixVQUFVO0FBQ1o7QUFFQTtFQUNFLFNBQVM7QUFDWDtBQUNBO0VBQ0UsU0FBUztBQUNYO0FBRUE7RUFDRSxlQUFlO0VBQ2YsaUJBQWlCO0VBQ2pCLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0UsY0FBYztFQUNkLFVBQVU7QUFDWjtBQUNBO0VBQ0UscUJBQXFCO0VBQ3JCLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsWUFBWTtBQUNkO0FBRUE7RUFDRSxZQUFZO0VBQ1osdUJBQXVCO0VBQ3ZCLHFCQUFxQjtFQUNyQixrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLGNBQWM7RUFDZCx1QkFBdUI7QUFDekI7QUFDQTtFQUNFLFlBQVk7RUFDWix1QkFBdUI7RUFDdkIsb0JBQW9CO0FBQ3RCO0FBQ0E7RUFDRSxhQUFhO0VBQ2IsdUJBQXVCLEVBQUUsMkJBQTJCO0FBQ3REO0FBQ0E7RUFDRSxXQUFXO0FBQ2I7QUFDQTtFQUNFLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxlQUFlO0VBQ2YsWUFBWTtFQUNaLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsU0FBUztBQUNYO0FBQ0E7RUFDRSxTQUFTO0FBQ1g7QUFDQTtFQUNFLFVBQVU7QUFDWjtBQUVBLFVBQVU7QUFDVjtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixvQkFBWTtFQUFaLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLG1CQUFtQjtBQUNyQjtBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLHFCQUFxQjtFQUNyQixXQUFXO0FBQ2I7QUFFQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSx5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLHNCQUFzQjtFQUN0QixXQUFXO0VBQ1gsWUFBWTtBQUNkO0FBQ0E7RUFDRSx1QkFBdUI7RUFDdkIsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLHVCQUF1QjtFQUN2Qix5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLFdBQVc7RUFDWCxVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZDtBQUNBLDJDQUEyQztBQUMzQztFQUNFLHFCQUFxQjtFQUNyQixrQkFBa0I7RUFDbEIsZUFBZTtFQUNmLGlCQUFpQjtBQUNuQjtBQUNBLHVDQUF1QztBQUN2QztFQUNFLGFBQWE7QUFDZjtBQUNBLDJEQUEyRDtBQUMzRDtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osV0FBVztFQUNYLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7QUFDQSw0RUFBNEU7QUFDNUU7RUFDRSxnQkFBZ0I7RUFDaEIsZUFBZTtFQUNmLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsVUFBVSxFQUFFLGtEQUFrRDtBQUNoRTtBQUNBLHNEQUFzRDtBQUN0RDtFQUNFLHlCQUF5QjtBQUMzQjtBQUNBLDRFQUE0RTtBQUM1RTtFQUNFLFVBQVU7QUFDWjtBQUVBO0VBQ0UscUJBQXFCO0VBQ3JCLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixlQUFlO0VBQ2Ysa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixpQ0FBaUM7QUFDbkM7QUFDQTtFQUNFLHlCQUF5QjtFQUN6QixXQUFXO0FBQ2I7QUFFQTtFQUNFLGFBQWE7QUFDZiIsImZpbGUiOiJzcmMvYXBwL0Bob21lL2hvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLnByZXNlbnRhdGlvbntcbiAgZm9udC1zaXplOiAyMDAlO1xuICBjb2xvcjogd2hpdGU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi50YWJsZWF1e1xuICBwYWRkaW5nOiA1cHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICB3aWR0aDoxMDAlO1xufVxuXG4uY29sb25uZXtcbiAgd2lkdGg6MjAlO1xufVxuLmNvbG9ubmUye1xuICB3aWR0aDozMCU7XG59XG5cbi50aXRyZXtcbiAgZm9udC1zaXplOiAxNTAlO1xuICBjb2xvcjogbWVkaXVtYmx1ZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uZWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uY29udGllbnR7XG4gIGZvbnQtc2l6ZTogNTAlO1xuICB3aWR0aDogNTAlO1xufVxubmF2Lm1lbnUgdWwgIC5ib3V0dG9ue1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgd2lkdGg6IDE5JTtcbiAgbWFyZ2luOiBhdXRvO1xufVxuXG5uYXYubWVudSB1bCBsaS5ib3V0dG9uIGF7XG4gIGNvbG9yIDpBenVyZTtcbiAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmb250LXNpemU6MzVweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5uYXYubWVudSB1bCBsaS5ib3V0dG9uOmhvdmVyIGF7XG4gIGNvbG9yOiBncmVlbjtcbiAgYmFja2dyb3VuZC1jb2xvcjogQXp1cmU7XG4gIHRyYW5zaXRpb246IDAuNXMgYWxsO1xufVxubmF2Lm1lbnUgdWwge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsgLyogQ2VudHJlIGhvcml6b250YWxlbWVudCAqL1xufVxuLmNvbnRhaW5lcntcbiAgd2lkdGg6IDEwMCU7XG59XG4uY2F0ZWdvcmlle1xuICBmb250LXNpemU6IDE1MCU7XG4gIGNvbG9yOiBsaW1lZ3JlZW47XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5FY3JpdHVyZXtcbiAgZm9udC1zaXplOiAxMjAlO1xuICBjb2xvcjogd2hpdGU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5pbmZvIHtcbiAgZm9udC1zaXplOiAxMzAlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uY29sb25uZV90ZXJyYWlue1xuICB3aWR0aDoxMCU7XG59XG4uY29sb25uZV90ZXJyYWluMntcbiAgd2lkdGg6OTAlO1xufVxuLnRhYmxlYXVfam91ZXVye1xuICB3aWR0aDoxMDAlO1xufVxuXG4vKnRlcnJhaW4qL1xuLmRyYWdnYWJsZSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgd2lkdGg6IDUwcHg7XG4gIGhlaWdodDogNTBweDtcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xuICBjdXJzb3I6IGdyYWI7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIG1hcmdpbjogYXV0bztcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5iYXJyZU91dGlsc3tcbiAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICBhbGlnbi1jb250ZW50OiBjZW50ZXI7XG4gIHdpZHRoOjE2LjUlO1xufVxuXG4ubnVtRWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgY29sb3I6IGJsYWNrO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uam91ZXVye1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZlYjNiO1xufVxuLmJhbGxvbiB7XG4gIGJhY2tncm91bmQtY29sb3I6d2hpdGU7XG4gIHdpZHRoOiAyNXB4O1xuICBoZWlnaHQ6IDI1cHg7XG59XG4uY291bG9pcntcbiAgYmFja2dyb3VuZDogZm9yZXN0Z3JlZW47XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xufVxuLnpvbmV7XG4gIGJhY2tncm91bmQ6IGZvcmVzdGdyZWVuO1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi50YWJsZWF1X3RlcnJhaW57XG4gIHBhZGRpbmc6IDUlO1xuICB3aWR0aDoxMDAlO1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi50YWJ0ZXJ7XG4gIGJvcmRlcjogMXB4IHNvbGlkIHdoaXRlO1xuICBoZWlnaHQ6IDQwdmg7XG59XG4vKiBTdHlsZSBkdSBjb250ZW5ldXIgZGUgbGEgY2FzZSDDoCBjb2NoZXIgKi9cbi5jaGVja2JveC1jb250YWluZXIge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBtYXJnaW4tcmlnaHQ6IDVweDtcbn1cbi8qIENhY2hlciBsYSBjYXNlIMOgIGNvY2hlciBwYXIgZMOpZmF1dCAqL1xuLmNoZWNrYm94LWNvbnRhaW5lciBpbnB1dCB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4vKiBTdHlsZSBkZSBsJ2FwcGFyZW5jZSBwZXJzb25uYWxpc8OpZSBkZSBsYSBjYXNlIMOgIGNvY2hlciAqL1xuLmNoZWNrYm94LWN1c3RvbSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgaGVpZ2h0OiAyMHB4O1xuICB3aWR0aDogMjBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDNweDtcbn1cbi8qIFN0eWxlIGR1IHBvaW50IMOgIGwnaW50w6lyaWV1ciBkZSBsYSBjYXNlIMOgIGNvY2hlciBsb3JzcXUnZWxsZSBlc3QgY29jaMOpZSAqL1xuLmNoZWNrYm94LWN1c3RvbTo6YWZ0ZXIge1xuICBjb250ZW50OiBcIlxcMjcxM1wiO1xuICBmb250LXNpemU6IDE2cHg7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBvcGFjaXR5OiAwOyAvKiBQYXIgZMOpZmF1dCwgbGUgc3ltYm9sZSBkZSBjb2NoZSBlc3QgaW52aXNpYmxlICovXG59XG4vKiBTdHlsZSBkZSBsYSBjYXNlIMOgIGNvY2hlciBsb3JzcXVlIGVsbGUgZXN0IGNvY2jDqWUgKi9cbi5jaGVja2JveC1jb250YWluZXIgaW5wdXQ6Y2hlY2tlZCArIC5jaGVja2JveC1jdXN0b20ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjE5NkYzO1xufVxuLyogU3R5bGUgZHUgcG9pbnQgw6AgbCdpbnTDqXJpZXVyIGRlIGxhIGNhc2Ugw6AgY29jaGVyIGxvcnNxdSdlbGxlIGVzdCBjb2Now6llICovXG4uY2hlY2tib3gtY29udGFpbmVyIGlucHV0OmNoZWNrZWQgKyAuY2hlY2tib3gtY3VzdG9tOjphZnRlciB7XG4gIG9wYWNpdHk6IDE7XG59XG5cbi5yb3VuZC1idXR0b24ge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgcGFkZGluZzogMTBweDtcbiAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gIGZvbnQtc2l6ZTogMTVweDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogd2hpdGU7XG4gIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcztcbn1cbi5yb3VuZC1idXR0b246aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzQ5OGRiO1xuICBjb2xvcjogI2ZmZjtcbn1cblxuLmhpZGRlbi1jaGVja2JveCB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4iXX0= */";
     /***/
   },
 
@@ -1862,6 +1996,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _modal_modal_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ../@modal/modal.service */
     "./src/app/@modal/modal.service.ts");
+    /* harmony import */
+
+
+    var _beans_Experience__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./beans/Experience */
+    "./src/app/@home/beans/Experience.ts");
+    /* harmony import */
+
+
+    var _beans_Examen__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./beans/Examen */
+    "./src/app/@home/beans/Examen.ts");
 
     var HomeComponent = /*#__PURE__*/function () {
       function HomeComponent(_homeService, _modalService) {
@@ -1869,10 +2015,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this._homeService = _homeService;
         this._modalService = _modalService;
+        this._scenarioList = [];
         this._selectedScenario = new _creation_beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"]();
         this._selectedScenarioEntite = new _creation_beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"]();
         this._isFiltering = false;
-        this._selectScenarioModalName = "selectScenarioModal";
+        this._entiteList = [];
+        this._selectScenarioModalName = "selectScenarioModal"; // recuperer position du tableau
+
+        this.tableau = null;
+        this.tabTop = 0.0;
+        this.tabLeft = 0.0;
+        this.positionPercentage = this.getPositionPercentage(this.tableau); //creation serie
+
+        this._scenarioSelect = [];
+        this.isAddSerie = false;
+        this._designModal = "_designModal";
+        this._feedBackModal = "_FeedBackModal";
+        this._newExeperience = [];
+        this._newExam = new _beans_Examen__WEBPACK_IMPORTED_MODULE_6__["Examen"]();
       }
 
       _createClass(HomeComponent, [{
@@ -1947,7 +2107,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this._modalService.open(modal);
 
           this._selectedScenario = scenario;
-          this.genEntite(scenario.nom);
+          this.genEntite(scenario.nom); //recup position tableau
+
+          this.tableau = document.getElementById('tableau_terrain');
+          this.positionPercentage = this.getPositionPercentage(this.tableau);
+          this.tabLeft = this.positionPercentage.left;
+          this.tabTop = this.positionPercentage.top;
         } //delete scenario
 
       }, {
@@ -1969,6 +2134,120 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }, function (_, index) {
             return index + 1;
           });
+        } //recup position tableau
+
+      }, {
+        key: "getPositionPercentage",
+        value: function getPositionPercentage(element) {
+          if (!element) return {
+            top: 0,
+            left: 0
+          };
+          var rect = element.getBoundingClientRect();
+          var windowWidth = window.innerWidth;
+          var windowHeight = window.innerHeight;
+          var popupScreenX = window.screenX || window.screenLeft || 0;
+          var popupScreenY = window.screenY || window.screenTop || 0;
+          console.log("Position de page par rapport à l'écran : ", popupScreenX, popupScreenY);
+          console.log("Position du popup par rapport à l'écran : ", popupScreenX, popupScreenY);
+          console.log("fonction get top :", rect.top / windowHeight * 100, "left :", rect.left / windowWidth * 100);
+          return {
+            top: rect.top / windowHeight * 100,
+            left: rect.left / windowWidth * 100
+          };
+        }
+      }, {
+        key: "toggleSelection",
+        value: function toggleSelection(nom) {
+          var index = this._scenarioSelect.indexOf(nom);
+
+          console.log("tooooo", index);
+
+          if (index === -1) {
+            this._scenarioSelect.push(nom);
+
+            console.log("push");
+          } else {
+            this._scenarioSelect.splice(index, 1);
+          }
+
+          console.log("liste", this._scenarioSelect);
+        }
+      }, {
+        key: "resetData",
+        value: function resetData(modal) {
+          this._modalService.close(modal);
+        }
+      }, {
+        key: "changeDesigne",
+        value: function changeDesigne(modal) {
+          this.isAddSerie = false;
+
+          this._modalService.open(modal);
+        }
+      }, {
+        key: "updateModeScenario",
+        value: function updateModeScenario(nom, scenario) {
+          scenario.mode_scene = nom;
+        }
+      }, {
+        key: "updateCouleur",
+        value: function updateCouleur(nom, scenario) {
+          scenario.terrain_couleur = nom;
+        }
+      }, {
+        key: "addDesign",
+        value: function addDesign(modal) {
+          var _this14 = this;
+
+          this._modalService.open(modal);
+
+          var nomScenario; // Parcours de la liste _scenarioSelect
+
+          this._scenarioSelect.forEach(function (scenario) {
+            var exp = new _beans_Experience__WEBPACK_IMPORTED_MODULE_5__["Experience"]();
+            exp.scenario = scenario.id;
+            exp.mode_scene = scenario.mode_scene;
+            exp.zone_display = scenario.zone_display;
+            exp.terrain_couleur = scenario.terrain_couleur;
+            exp.zone_nb_couloir = scenario.zone_nb_couloir;
+            exp.zone_nb_zone = scenario.zone_nb_zone;
+
+            _this14._newExeperience.push(exp);
+
+            console.log("exp");
+          });
+
+          this.resetData(this._designModal);
+        }
+      }, {
+        key: "updateTypeFeed",
+        value: function updateTypeFeed(nom, experience) {
+          experience.typeFeedback = nom;
+        }
+      }, {
+        key: "updateFrequenceFeed",
+        value: function updateFrequenceFeed(nom, experience) {
+          experience.freqFeedback = nom;
+        }
+      }, {
+        key: "updateVisuFeed",
+        value: function updateVisuFeed(nom, experience) {
+          experience.visuFeedback = nom;
+        }
+      }, {
+        key: "resetFeedBack",
+        value: function resetFeedBack(modal) {
+          this._newExeperience = null;
+          this.resetData(modal);
+        }
+      }, {
+        key: "addFeedBack",
+        value: function addFeedBack(modal) {
+          //creation examen
+          //ajout des exp
+          //reset
+          this.resetFeedBack(modal);
         }
       }]);
 
@@ -2060,6 +2339,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function DelScenario(id) {
           return this._http["delete"]('/scenario/' + id);
         }
+      }, {
+        key: "addExamen",
+        value: function addExamen(examen) {
+          return this._http.post("/examen", examen);
+        }
+      }, {
+        key: "addExeperience",
+        value: function addExeperience(exp) {
+          return this._http.put("/examen/add", exp);
+        }
       }]);
 
       return HomeService;
@@ -2145,7 +2434,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ModalComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this14 = this;
+          var _this15 = this;
 
           // ensure id attribute exists
           if (!this.id) {
@@ -2158,7 +2447,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.element.addEventListener('click', function (el) {
             if (el.target.className === 'jw-modal') {
-              _this14.close();
+              _this15.close();
             }
           }); // add self (this modal instance) to the modal service so it's accessible from controllers
 
@@ -2417,6 +2706,128 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/@serie/serie.component.css":
+  /*!********************************************!*\
+    !*** ./src/app/@serie/serie.component.css ***!
+    \********************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppSerieSerieComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL0BzZXJpZS9zZXJpZS5jb21wb25lbnQuY3NzIn0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/@serie/serie.component.ts":
+  /*!*******************************************!*\
+    !*** ./src/app/@serie/serie.component.ts ***!
+    \*******************************************/
+
+  /*! exports provided: SerieComponent */
+
+  /***/
+  function srcAppSerieSerieComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "SerieComponent", function () {
+      return SerieComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var SerieComponent = /*#__PURE__*/_createClass(function SerieComponent() {
+      _classCallCheck(this, SerieComponent);
+    });
+
+    SerieComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'serie',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./serie.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/@serie/serie.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./serie.component.css */
+      "./src/app/@serie/serie.component.css"))["default"]]
+    })], SerieComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/@serie/serie.service.ts":
+  /*!*****************************************!*\
+    !*** ./src/app/@serie/serie.service.ts ***!
+    \*****************************************/
+
+  /*! exports provided: SerieService */
+
+  /***/
+  function srcAppSerieSerieServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "SerieService", function () {
+      return SerieService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+
+    var SerieService = /*#__PURE__*/_createClass(function SerieService(_http) {
+      _classCallCheck(this, SerieService);
+
+      this._http = _http;
+    });
+
+    SerieService.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+      }];
+    };
+
+    SerieService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], SerieService);
+    /***/
+  },
+
+  /***/
   "./src/app/app-routing.module.ts":
   /*!***************************************!*\
     !*** ./src/app/app-routing.module.ts ***!
@@ -2471,6 +2882,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _serie_serie_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./@serie/serie.component */
+    "./src/app/@serie/serie.component.ts");
 
     var routes = [{
       path: '',
@@ -2485,6 +2902,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }, {
       path: 'resultat',
       component: _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_4__["ResultatComponent"]
+    }, {
+      path: 'serie',
+      component: _serie_serie_component__WEBPACK_IMPORTED_MODULE_6__["SerieComponent"]
     }];
 
     var AppRoutingModule = /*#__PURE__*/_createClass(function AppRoutingModule() {
@@ -2626,7 +3046,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _angular_forms__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
     /*! @angular/forms */
-    "./node_modules/@angular/forms/fesm2015/forms.js"); //import {DragDropModule} from '@angular/cdk/drag-drop';
+    "./node_modules/@angular/forms/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _serie_serie_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+    /*! ../@serie/serie.component */
+    "./src/app/@serie/serie.component.ts");
+    /* harmony import */
+
+
+    var _serie_serie_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+    /*! ../@serie/serie.service */
+    "./src/app/@serie/serie.service.ts"); //import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
     var AppModule = /*#__PURE__*/_createClass(function AppModule() {
@@ -2634,9 +3066,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     });
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _creation_creation_component__WEBPACK_IMPORTED_MODULE_13__["CreationComponent"], _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_14__["ResultatComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_7__["FooterComponent"], _modal_modal_component__WEBPACK_IMPORTED_MODULE_12__["ModalComponent"]],
+      declarations: [_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_5__["HomeComponent"], _creation_creation_component__WEBPACK_IMPORTED_MODULE_13__["CreationComponent"], _resultat_resultat_component__WEBPACK_IMPORTED_MODULE_14__["ResultatComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_7__["FooterComponent"], _modal_modal_component__WEBPACK_IMPORTED_MODULE_12__["ModalComponent"], _serie_serie_component__WEBPACK_IMPORTED_MODULE_18__["SerieComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_17__["FormsModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_10__["NgbModule"], _angular_common__WEBPACK_IMPORTED_MODULE_11__["CommonModule"]],
-      providers: [_home_home_service__WEBPACK_IMPORTED_MODULE_6__["HomeService"], _creation_creation_service__WEBPACK_IMPORTED_MODULE_15__["CreationService"], _resultat_resultat_service__WEBPACK_IMPORTED_MODULE_16__["ResultatService"]],
+      providers: [_home_home_service__WEBPACK_IMPORTED_MODULE_6__["HomeService"], _creation_creation_service__WEBPACK_IMPORTED_MODULE_15__["CreationService"], _resultat_resultat_service__WEBPACK_IMPORTED_MODULE_16__["ResultatService"], _serie_serie_service__WEBPACK_IMPORTED_MODULE_19__["SerieService"]],
       bootstrap: [_app_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
     })], AppModule);
     /***/

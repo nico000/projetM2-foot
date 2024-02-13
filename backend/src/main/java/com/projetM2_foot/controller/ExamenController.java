@@ -90,15 +90,15 @@ public class ExamenController {
     @PutMapping("/add")
     @Operation(
             summary = "Ajouter une experience à un examen",
-            description = "On lie un id d'examen et un id "
+            description = "On lie un id d'examen (ou nom) et une experience à créer"
     )
     public ResponseEntity<ExamenResponse> addExperience(
             @RequestParam(required = false) Long id,
-            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String nom,
             @RequestBody ExperienceRequestCreate request
     ){
 
-        if(name == null && id == null) {
+        if(nom == null && id == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         else {
@@ -117,7 +117,7 @@ public class ExamenController {
                 entity_exa = examenService.addExp(id, entity_save);
             }
             else{
-                entity_exa = examenService.addExp(name, entity_save);
+                entity_exa = examenService.addExp(nom, entity_save);
             }
             // creer response
             final ExamenResponse dto = examenMapper.toDto(entity_exa);

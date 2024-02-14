@@ -1,6 +1,5 @@
 package com.projetM2_foot.api.response;
 
-import com.projetM2_foot.entity.Examen;
 import lombok.Builder;
 import lombok.Data;
 

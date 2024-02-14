@@ -1,12 +1,11 @@
 package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.ResultatExamenRequestCreate;
-import com.projetM2_foot.api.response.ExamenResponse;
 import com.projetM2_foot.api.response.ResultatExamenResponse;
 import com.projetM2_foot.entity.Examen;
-import com.projetM2_foot.entity.Experience;
 import com.projetM2_foot.entity.ResultatExamen;
 import com.projetM2_foot.service.ExamenService;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

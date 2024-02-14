@@ -98,6 +98,8 @@ public class ExamenController {
             @RequestBody ExperienceRequestCreate request
     ){
 
+        log.info("Endpoint appelé : PUT /examen/add?id=" + id +"&nom="+ nom);
+
         if(nom == null && id == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }

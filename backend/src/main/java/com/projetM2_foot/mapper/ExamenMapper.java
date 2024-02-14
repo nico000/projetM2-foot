@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,6 +29,7 @@ public class ExamenMapper {
         return Examen.builder()
                 .name(request.getName())
                 .mode(request.getMode())
+                .experienceSet(new HashSet<>())
                 .build();
     }
 
@@ -38,8 +40,7 @@ public class ExamenMapper {
                 .id(entity.getId())
                 .name(entity.getName())
                 .mode(entity.getMode())
-            //    .experienceSet(entity.getExperienceSet().stream().map(Experience::getId).collect(Collectors.toList()))
-            //    .experienceSet(Long.emptySet())
+                .experienceSet(entity.getExperienceSet().stream().map(Experience::getId).collect(Collectors.toList()))
                 .build();
     }
 

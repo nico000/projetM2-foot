@@ -6,8 +6,6 @@ import lombok.Data;
 @Data
 @Builder
 public class ExamenRequestCreate {
-
-   // List<Long> experienceSet;
     private String nom;
     private String mode;
 }

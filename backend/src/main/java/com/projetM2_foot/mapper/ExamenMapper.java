@@ -38,7 +38,7 @@ public class ExamenMapper {
                 .id(entity.getId())
                 .nom(entity.getName())
                 .mode(entity.getMode())
-                .experienceSet(entity.getExperienceSet().stream().map(Experience::getId).collect(Collectors.toList()))
+                .experience(entity.getExperienceSet().stream().map(Experience::getId).collect(Collectors.toList()))
                 .build();
     }
 

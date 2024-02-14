@@ -13,5 +13,5 @@ public class ExamenResponse {
     private String nom;
     private String mode;
 
-    List<Long> experienceSet; // A changer
+    List<Long> experience;
 }

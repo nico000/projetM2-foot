@@ -10,7 +10,7 @@ import java.util.List;
 public class ExamenResponse {
     private Long id;
 
-    private String name;
+    private String nom;
     private String mode;
 
     List<Long> experienceSet; // A changer

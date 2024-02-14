@@ -10,6 +10,6 @@ import java.util.List;
 public class ExamenRequestCreate {
 
    // List<Long> experienceSet;
-    private String name;
+    private String nom;
     private String mode;
 }

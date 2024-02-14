@@ -25,7 +25,7 @@ public class ExamenMapper {
         //Set<Experience> set = request.getExperienceSet().stream().map(experienceService::getById).collect(Collectors.toSet());
 
         return Examen.builder()
-                .name(request.getName())
+                .name(request.getNom())
                 .mode(request.getMode())
                 .experienceSet(new HashSet<>())
                 .build();
@@ -36,7 +36,7 @@ public class ExamenMapper {
 
         return ExamenResponse.builder()
                 .id(entity.getId())
-                .name(entity.getName())
+                .nom(entity.getName())
                 .mode(entity.getMode())
                 .experienceSet(entity.getExperienceSet().stream().map(Experience::getId).collect(Collectors.toList()))
                 .build();

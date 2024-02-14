@@ -44,17 +44,17 @@ public class DeplacementController {
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
-    @GetMapping("/{idScenario}")
+    @GetMapping()
     @Operation(
             summary = "Récupérer une liste de déplacement",
             description = "Trouve l'ensemble des déplacements lié à un scénario")
     public ResponseEntity<List<DeplacementResponse>> getDeplacementByScenario(
-            @PathVariable Long idScenario
+            @RequestParam Long scenario
     ){
 
-        log.info("Endpoint appelé : GET /deplacement/" + idScenario);
+        log.info("Endpoint appelé : GET /deplacement/" + scenario);
 
-        final List<Deplacement> entityList = deplacementService.getByScenario(idScenario);
+        final List<Deplacement> entityList = deplacementService.getByScenario(scenario);
         final List<DeplacementResponse> dtos = deplacementMapper.toDtoAll(entityList);
 
         return ResponseEntity.ok(dtos);

@@ -3,6 +3,7 @@ package com.projetM2_foot.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Getter
@@ -32,7 +33,8 @@ public class ResultatExperience {
     @JoinColumn(name = "rexp_fk_rexa")
     private ResultatExamen resultatExamen;
 
-
-
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "rexp_create_date")
+    private Date createDate;
 
 }

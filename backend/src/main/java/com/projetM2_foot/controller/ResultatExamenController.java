@@ -1,11 +1,16 @@
 package com.projetM2_foot.controller;
 
 import com.projetM2_foot.api.request.ResultatExamenRequestCreate;
+import com.projetM2_foot.api.response.ResultatCreationResponse;
 import com.projetM2_foot.api.response.ResultatExamenResponse;
+import com.projetM2_foot.entity.Experience;
 import com.projetM2_foot.entity.ResultatExamen;
+import com.projetM2_foot.entity.ResultatExperience;
 import com.projetM2_foot.mapper.ResultatExamenMapper;
+import com.projetM2_foot.mapper.ResultatExperienceMapper;
 import com.projetM2_foot.service.ResultatExamenService;
 
+import com.projetM2_foot.service.ResultatExperienceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -16,6 +21,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,20 +37,36 @@ public class ResultatExamenController {
     final ResultatExamenMapper resultatExamenMapper;
     final ResultatExamenService resultatExamenService;
 
+    final ResultatExperienceMapper resultatExperienceMapper;
+    final ResultatExperienceService resultatExperienceService;
+
     @PostMapping
     @Operation(
             summary = "Créer un résultat d'examen",
-            description = "Créer une entité qui rassemble des résultat des examens")
-    public ResponseEntity<ResultatExamenResponse> createResultatExamen (
+            description = "Créer une entité qui rassemble des résultat des examens et les resulatat d'expérience associé")
+    public ResponseEntity<ResultatCreationResponse> createResultatExamen (
             @RequestBody ResultatExamenRequestCreate request){
 
         log.info("Endpoint appelé : POST /resultat_examen");
 
-        ResultatExamen entity = resultatExamenMapper.toEntity(request);
-        if(entity == null) return ResponseEntity.notFound().build();
-        entity = resultatExamenService.create(entity);
-        ResultatExamenResponse dto = resultatExamenMapper.toDto(entity);
+        // Créer le résultat d'examen
+        ResultatExamen rexa = resultatExamenMapper.toEntity(request);
+        if(rexa == null) return ResponseEntity.notFound().build();
+        rexa = resultatExamenService.create(rexa);
 
+        // Créer le résultat experience
+        List<Experience> listExp = new ArrayList<>(rexa.getExamen().getExperienceSet());
+
+        List<Long> listrexp = new ArrayList<>();
+
+        for(Experience exp : listExp ){
+            ResultatExperience rexp = resultatExperienceMapper.toEntity(rexa.getId() , exp.getId());
+            if(rexp == null) return ResponseEntity.notFound().build();
+            rexp = resultatExperienceService.create(rexp);
+            listrexp.add(rexp.getId());
+        }
+
+        ResultatCreationResponse dto = resultatExamenMapper.toDtoCreation(rexa.getId() , listrexp);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
@@ -78,8 +100,5 @@ public class ResultatExamenController {
         List<ResultatExamenResponse> dtos = resultatExamenMapper.toDtoAll(listEntity);
         return ResponseEntity.ok(dtos);
     }
-
-
-
 
 }

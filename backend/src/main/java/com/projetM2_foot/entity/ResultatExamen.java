@@ -3,6 +3,7 @@ package com.projetM2_foot.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Getter
@@ -30,5 +31,9 @@ public class ResultatExamen {
     private String prenomPerson;
     @Column(name = "rexa_score")
     private int score;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "rexa_create_date")
+    private Date createDate;
 
 }

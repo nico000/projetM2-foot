@@ -1,6 +1,7 @@
 package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.ResultatExamenRequestCreate;
+import com.projetM2_foot.api.response.ResultatCreationResponse;
 import com.projetM2_foot.api.response.ResultatExamenResponse;
 import com.projetM2_foot.entity.Examen;
 import com.projetM2_foot.entity.ResultatExamen;
@@ -42,6 +43,13 @@ public class ResultatExamenMapper {
                 .prenom_person(entity.getPrenomPerson())
                 .score(entity.getScore())
                 .examen(entity.getExamen().getId())
+                .build();
+    }
+
+    public ResultatCreationResponse toDtoCreation(Long id , List<Long> rexp){
+        return ResultatCreationResponse.builder()
+                .id(id)
+                .resultat_experience(rexp)
                 .build();
     }
 

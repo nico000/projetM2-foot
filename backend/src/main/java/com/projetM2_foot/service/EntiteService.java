@@ -7,7 +7,9 @@ import com.projetM2_foot.repository.ScenarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -29,7 +31,11 @@ public class EntiteService {
     }
 
     public Entite getEntite(Long id){
-        return entiteRepository.findById(id).orElse(null);
+        return entiteRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Entité non trouvé avec l'id : " + id));
     }
 
     public void deleteById(Long id){
@@ -45,16 +51,17 @@ public class EntiteService {
 
     public void deleteLastEntite(Long scenario){
 
-        Scenario s = scenarioRepository.findById(scenario).orElse(null);
+        Scenario s = scenarioRepository
+                .findById(scenario)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Entité non trouvé avec l'id scenario : " + scenario));
 
-        if(s != null) {
-            List<Entite> entityToSupp = entiteRepository.deleteLatest(s , PageRequest.of(0,1));
+        List<Entite> entityToSupp = entiteRepository.deleteLatest(s , PageRequest.of(0,1));
 
-            if(!entityToSupp.isEmpty()){
-                entiteRepository.deleteById(entityToSupp.get(0).getId());
-            }
+        if(!entityToSupp.isEmpty()){
+            entiteRepository.deleteById(entityToSupp.get(0).getId());
         }
-
     }
 
     public Entite updateEntite(Entite entity){

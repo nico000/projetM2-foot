@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -45,12 +46,9 @@ public class ExamenController {
             @RequestBody ExamenRequestCreate request){
 
         log.info("Endpoint appelé : POST /examen");
-        final Examen entity = examenMapper.toEntity(request);
-
-       // log.info("Examen.ts : "+ entity.getExperienceSet().stream().map(experienceMapper::toDto).collect(Collectors.toList()));
-        final Examen new_entity =  examenService.create(entity);
-
-        final ExamenResponse dto = examenMapper.toDto(new_entity);
+        Examen entity = examenMapper.toEntity(request);
+        entity =  examenService.create(entity);
+        ExamenResponse dto = examenMapper.toDto(entity);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
@@ -64,9 +62,8 @@ public class ExamenController {
     ){
 
         log.info("Endpoint appelé : GET /examen/" + idExamen);
-
-        final Examen entity = examenService.getById(idExamen);
-        final ExamenResponse dto = examenMapper.toDto(entity);
+        Examen entity = examenService.getById(idExamen);
+        ExamenResponse dto = examenMapper.toDto(entity);
 
         return ResponseEntity.ok(dto);
     }
@@ -100,7 +97,9 @@ public class ExamenController {
         log.info("Endpoint appelé : PUT /examen/add?id=" + id +"&nom="+ nom);
 
         if(nom == null && id == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Requête non valide , l'un des arguments ne doit pas être null : " + nom + " / " + id);
         }
         else {
 

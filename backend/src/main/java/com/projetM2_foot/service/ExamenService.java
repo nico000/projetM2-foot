@@ -7,7 +7,9 @@ import com.projetM2_foot.repository.ExamenRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -24,33 +26,36 @@ public class ExamenService {
     }
 
     public Examen getById(Long id){
-        return examenRepository.findById(id).orElse(null);
+        return examenRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Examen non trouvé avec l'id : " + id));
     }
 
-    public Examen getByName(String name) { return examenRepository.findByName(name);}
+    public Examen getByName(String name) {
+        return examenRepository
+                .findByName(name)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Examen non trouvé avec le nom : " + name));
+    }
 
-    public List<Examen> getAll(){ return examenRepository.findAll();}
+    public List<Examen> getAll(){
+        return examenRepository.findAll();
+    }
 
     public Examen addExp(Long id , Experience exp){
-
-        Examen exa = examenRepository.findById(id).orElse(null);
-
-        assert exa != null;
+        Examen exa = getById(id);
         exa.getExperienceSet().add(exp);
-
         return examenRepository.save(exa);
 
     }
 
     public Examen addExp(String name , Experience exp){
-
-        Examen exa = examenRepository.findByName(name);
-        assert exa != null;
+        Examen exa = getByName(name);
         exa.getExperienceSet().add(exp);
         return examenRepository.save(exa);
     }
-
-
-
 
 }

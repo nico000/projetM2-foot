@@ -22,10 +22,8 @@ public class ExperienceMapper {
 
     public Experience toEntity (ExperienceRequestCreate request){
 
-        final Scenario scenario = scenarioService.getScenario(request.getScenario());
-
         return Experience.builder()
-                .scenario(scenario)
+                .scenario(scenarioService.getScenario(request.getScenario()))
                 .typeFeedback(request.getTypeFeedback())
                 .freqFeedback(request.getFreqFeedback())
                 .visuFeedback(request.getVisuFeedback())

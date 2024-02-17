@@ -32,7 +32,6 @@ import java.util.List;
 public class ExamenController {
 
     public final ExamenMapper examenMapper;
-    //public final ExamenService examenService;
     public final ExamenRepository examenRepository;
     public final ExperienceMapper experienceMapper;
     public final ExamenService examenService;

@@ -38,9 +38,9 @@ public class ExperienceController {
             @RequestBody ExperienceRequestCreate request){
 
         log.info("Endpoint appelé : POST /experience/");
-        final Experience entity = experienceMapper.toEntity(request);
-        final Experience new_entity = experienceService.create(entity);
-        final ExperienceResponse dto = experienceMapper.toDto(new_entity);
+        Experience entity = experienceMapper.toEntity(request);
+        entity = experienceService.create(entity);
+        ExperienceResponse dto = experienceMapper.toDto(entity);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
@@ -53,14 +53,10 @@ public class ExperienceController {
     ){
 
         log.info("Endpoint appelé : GET /experience/" + idExperience);
-
-        final Experience entity = experienceService.getById(idExperience);
-        final ExperienceResponse dto = experienceMapper.toDto(entity);
+        Experience entity = experienceService.getById(idExperience);
+        ExperienceResponse dto = experienceMapper.toDto(entity);
 
         return ResponseEntity.ok(dto);
     }
-
-
-
 
 }

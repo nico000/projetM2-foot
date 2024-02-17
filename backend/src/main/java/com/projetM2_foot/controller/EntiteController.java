@@ -61,9 +61,9 @@ public class EntiteController {
 
         log.info("Endpoint appelé : POST /entite/");
 
-        final Entite entite = entiteMapper.toEntity(request);
-        final Entite new_entite =  entiteService.create(entite);
-        final EntiteResponse dto = entiteMapper.toDto(new_entite);
+        Entite entite = entiteMapper.toEntity(request);
+        entite =  entiteService.create(entite);
+        EntiteResponse dto = entiteMapper.toDto(entite);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
@@ -79,8 +79,8 @@ public class EntiteController {
 
         log.info("Endpoint appelé : GET /entite/" + scenarioId);
 
-        final List<Entite> listEntite =  entiteService.getByScenario(scenarioId);
-        final List<EntiteResponse> dtos = entiteMapper.toDtoAll(listEntite);
+        List<Entite> listEntite =  entiteService.getByScenario(scenarioId);
+        List<EntiteResponse> dtos = entiteMapper.toDtoAll(listEntite);
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
 
@@ -123,9 +123,9 @@ public class EntiteController {
 
         log.info("Endpoint appelé : UPDATE /entite/");
 
-        final Entite entity = entiteMapper.toEntity(request);
-        final Entite new_entity = entiteService.updateEntite(entity);
-        final EntiteResponse dto = entiteMapper.toDto(new_entity);
+        Entite entity = entiteMapper.toEntity(request);
+        entity = entiteService.updateEntite(entity);
+        EntiteResponse dto = entiteMapper.toDto(entity);
         return ResponseEntity.status(HttpStatus.OK).body(dto);
     }
 

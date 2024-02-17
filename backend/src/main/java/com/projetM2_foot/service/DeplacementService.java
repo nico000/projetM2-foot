@@ -8,7 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -36,16 +38,19 @@ public class DeplacementService {
 
     public void deleteLast(Long scenario){
 
-        Scenario  scenarioE = scenarioRepository.findById(scenario).orElse(null);
+        Scenario  scenarioE = scenarioRepository
+                .findById(scenario)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Deplacemment non trouvé avec l'id scenario : " + scenario));
 
-        if(scenarioE != null){
 
-            final List<Deplacement>  entityToSupp = deplacementRepository.deleteLast(scenarioE, PageRequest.of(0,1));
+        final List<Deplacement>  entityToSupp = deplacementRepository.deleteLast(scenarioE, PageRequest.of(0,1));
 
-            if(!entityToSupp.isEmpty()){
-                deplacementRepository.deleteById(entityToSupp.get(0).getId());
-            }
+        if(!entityToSupp.isEmpty()){
+            deplacementRepository.deleteById(entityToSupp.get(0).getId());
         }
+
     }
 
 

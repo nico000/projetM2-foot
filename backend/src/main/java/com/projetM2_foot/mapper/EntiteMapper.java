@@ -21,10 +21,8 @@ public class EntiteMapper {
 
     public Entite toEntity (EntiteRequestCreate request){
 
-        final Scenario scenario = scenarioService.getScenario(request.getScenario());
-
         return Entite.builder()
-                .scenario(scenario)
+                .scenario(scenarioService.getScenario(request.getScenario()))
                 .type(request.getType())
                 .numero(request.getNumero())
                 .initialPosX(request.getX())
@@ -35,11 +33,9 @@ public class EntiteMapper {
 
     public Entite toEntity (EntiteRequestUpdate request){
 
-        final Scenario scenario = scenarioService.getScenario(request.getScenario());
-
         return Entite.builder()
                 .id(request.getId())
-                .scenario(scenario)
+                .scenario(scenarioService.getScenario(request.getScenario()))
                 .type(request.getType())
                 .numero(request.getNumero())
                 .initialPosX(request.getX())
@@ -48,23 +44,15 @@ public class EntiteMapper {
                 .build();
     }
 
-    public EntiteResponse toDto (Entite scenario){
-
-        long scenar;
-        if(scenario.getScenario() == null){
-            scenar = 0L;
-        }
-        else{
-            scenar = scenario.getScenario().getId();
-        }
+    public EntiteResponse toDto (Entite entity){
 
         return EntiteResponse.builder()
-                .id(scenario.getId())
-                .scenario(scenar)
-                .type(scenario.getType())
-                .numero(scenario.getNumero())
-                .x(scenario.getInitialPosX())
-                .y(scenario.getInitialPosY())
+                .id(entity.getId())
+                .scenario(entity.getScenario().getId())
+                .type(entity.getType())
+                .numero(entity.getNumero())
+                .x(entity.getInitialPosX())
+                .y(entity.getInitialPosY())
                 .build();
     }
 

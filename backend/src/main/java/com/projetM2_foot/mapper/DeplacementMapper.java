@@ -4,15 +4,12 @@ import com.projetM2_foot.api.request.DeplacementRequestCreate;
 import com.projetM2_foot.api.request.ResultatDeplacementRequestCreate;
 import com.projetM2_foot.api.response.DeplacementResponse;
 import com.projetM2_foot.entity.Deplacement;
-import com.projetM2_foot.entity.Entite;
 import com.projetM2_foot.entity.ResultatDeplacement;
-import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.service.EntiteService;
 import com.projetM2_foot.service.ScenarioService;
+
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;

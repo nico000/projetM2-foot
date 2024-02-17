@@ -4,7 +4,6 @@ import com.projetM2_foot.api.request.EntiteRequestCreate;
 import com.projetM2_foot.api.request.EntiteRequestUpdate;
 import com.projetM2_foot.api.response.EntiteResponse;
 import com.projetM2_foot.entity.Entite;
-import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.service.ScenarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

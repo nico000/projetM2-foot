@@ -5,8 +5,10 @@ import com.projetM2_foot.repository.ScenarioRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -31,7 +33,18 @@ public class ScenarioService {
     }
 
     public Scenario getScenario(Long id){
-        return scenarioRepository.findById(id).orElse(null);
+        return scenarioRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Scenario non trouvé avec l'id : " + id));
+    }
+
+    public Scenario getScenarioByName(String nom){
+        return scenarioRepository.findByName(nom)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Scenario non trouvé avec le nom : " + nom));
     }
 
     @Transactional
@@ -45,8 +58,6 @@ public class ScenarioService {
         return scenarioRepository.save(entity);
     }
 
-    public Scenario getScenarioByName(String nom){
-        return scenarioRepository.findByName(nom);
-    }
+
 
 }

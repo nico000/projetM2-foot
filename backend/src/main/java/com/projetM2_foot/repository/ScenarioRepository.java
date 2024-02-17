@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ScenarioRepository extends CrudRepository<Scenario , Long> {
@@ -12,5 +13,5 @@ public interface ScenarioRepository extends CrudRepository<Scenario , Long> {
     @Override
     List<Scenario> findAll();
 
-    Scenario findByName(String name);
+    Optional<Scenario> findByName(String name);
 }

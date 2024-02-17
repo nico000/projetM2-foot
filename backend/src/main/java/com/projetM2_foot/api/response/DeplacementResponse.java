@@ -10,10 +10,7 @@ public class DeplacementResponse {
     private Long id;
     private Long scenario;
     private Long entite;
-
     private int numAction;
-    private int numScene;
-    private int numBloc;
 
     private float startPosX;
     private float startPosY;

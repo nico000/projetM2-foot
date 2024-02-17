@@ -36,16 +36,16 @@ public class DeplacementService {
         deplacementRepository.deleteByEntiteId(entite);
     }
 
-    public void deleteLast(Long scenario){
+    public void deleteLast(Long idScenario){
 
-        Scenario  scenarioE = scenarioRepository
-                .findById(scenario)
+        Scenario  scenario = scenarioRepository
+                .findById(idScenario)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
-                        "Deplacemment non trouvé avec l'id scenario : " + scenario));
+                        "Deplacemment non trouvé avec l'id scenario : " + idScenario));
 
 
-        final List<Deplacement>  entityToSupp = deplacementRepository.deleteLast(scenarioE, PageRequest.of(0,1));
+        final List<Deplacement>  entityToSupp = deplacementRepository.deleteLast(scenario, PageRequest.of(0,1));
 
         if(!entityToSupp.isEmpty()){
             deplacementRepository.deleteById(entityToSupp.get(0).getId());

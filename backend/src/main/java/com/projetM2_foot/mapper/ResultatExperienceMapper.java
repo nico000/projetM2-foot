@@ -1,8 +1,6 @@
 package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.response.ResultatExperienceResponse;
-import com.projetM2_foot.entity.Experience;
-import com.projetM2_foot.entity.ResultatExamen;
 import com.projetM2_foot.entity.ResultatExperience;
 import com.projetM2_foot.service.ExperienceService;
 import com.projetM2_foot.service.ResultatExamenService;

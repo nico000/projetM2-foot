@@ -23,14 +23,11 @@ public class ResultatExamenMapper {
 
     public ResultatExamen toEntity (ResultatExamenRequestCreate request){
 
-        Examen exa = examenService.getById(request.getExamen());
-        if(exa == null) return null;
-
         return ResultatExamen.builder()
                 .nomPerson(request.getNom_person())
                 .prenomPerson(request.getPrenom_person())
                 .score(-1)
-                .examen(exa)
+                .examen(examenService.getById(request.getExamen()))
                 .build();
     }
 

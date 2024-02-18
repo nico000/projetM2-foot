@@ -50,23 +50,21 @@ public class ResultatExamenController {
         log.info("Endpoint appelé : POST /resultat_examen");
 
         // Créer le résultat d'examen
-        ResultatExamen rexa = resultatExamenMapper.toEntity(request);
-        if(rexa == null) return ResponseEntity.notFound().build();
-        rexa = resultatExamenService.create(rexa);
+        ResultatExamen resultatExamen = resultatExamenMapper.toEntity(request);
+        resultatExamen = resultatExamenService.create(resultatExamen);
 
         // Créer le résultat experience
-        List<Experience> listExp = new ArrayList<>(rexa.getExamen().getExperienceSet());
+        List<Experience> listExp = new ArrayList<>(resultatExamen.getExamen().getExperienceSet());
 
         List<Long> listrexp = new ArrayList<>();
 
         for(Experience exp : listExp ){
-            ResultatExperience rexp = resultatExperienceMapper.toEntity(rexa.getId() , exp.getId());
-            if(rexp == null) return ResponseEntity.notFound().build();
+            ResultatExperience rexp = resultatExperienceMapper.toEntity(resultatExamen.getId() , exp.getId());
             rexp = resultatExperienceService.create(rexp);
             listrexp.add(rexp.getId());
         }
 
-        ResultatCreationResponse dto = resultatExamenMapper.toDtoCreation(rexa.getId() , listrexp);
+        ResultatCreationResponse dto = resultatExamenMapper.toDtoCreation(resultatExamen.getId() , listrexp);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);
     }
 
@@ -82,7 +80,6 @@ public class ResultatExamenController {
         log.info("Endpoint appelé : GET /resultat_examen/" + idResultatExamen);
 
         ResultatExamen entity = resultatExamenService.getById(idResultatExamen);
-        if(entity == null) return ResponseEntity.notFound().build();
         ResultatExamenResponse dto = resultatExamenMapper.toDto(entity);
         return ResponseEntity.ok(dto);
     }

@@ -27,7 +27,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Tag(
-        name = "Examen.ts",
+        name = "Examen",
         description = "Gestion des differents examens"
 )
 public class ExamenController {
@@ -121,8 +121,5 @@ public class ExamenController {
             return ResponseEntity.ok().body(dto);
         }
     }
-
-
-
 
 }

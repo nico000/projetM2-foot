@@ -40,7 +40,6 @@ public class ResultatExperienceController {
         log.info("Endpoint appelé : GET /resultat_experience/" + id);
 
         ResultatExperience entity = resultatExperienceService.getById(id);
-        if(entity == null) return ResponseEntity.notFound().build();
         ResultatExperienceResponse dto = resultatExperienceMapper.toDto(entity);
         return ResponseEntity.ok(dto);
     }

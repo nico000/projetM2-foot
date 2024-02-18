@@ -6,7 +6,9 @@ import com.projetM2_foot.repository.ResultatExperienceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -23,7 +25,11 @@ public class ResultatExperienceService {
     }
 
     public ResultatExperience getById(Long id){
-        return resultatExperienceRepository.findById(id).orElse(null);
+        return resultatExperienceRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST,
+                        "Resultat expérience non trouvé avec l'id : " + id));
     }
 
     public List<ResultatExperience> getAll(){

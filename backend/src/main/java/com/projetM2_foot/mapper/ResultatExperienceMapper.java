@@ -24,13 +24,9 @@ public class ResultatExperienceMapper {
 
     public ResultatExperience toEntity (Long resultatExamen , Long experience){
 
-        Experience exp = experienceService.getById(experience);
-        ResultatExamen rexa = resultatExamenService.getById(resultatExamen);
-        if(exp == null || rexa == null) return null;
-
         return ResultatExperience.builder()
-                .experience(exp)
-                .resultatExamen(rexa)
+                .experience(experienceService.getById(experience))
+                .resultatExamen(resultatExamenService.getById(resultatExamen))
                 .score(-1)
                 .createDate(new Date())
                 .build();

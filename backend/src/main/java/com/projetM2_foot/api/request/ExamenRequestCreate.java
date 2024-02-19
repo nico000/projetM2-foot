@@ -7,5 +7,7 @@ import lombok.Data;
 @Builder
 public class ExamenRequestCreate {
     private String nom;
-    private String mode;
+    private String sequencage;
+    private String complexite;
+    private String contenuFeedback;
 }

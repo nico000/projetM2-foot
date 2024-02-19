@@ -25,10 +25,32 @@ public class ResultatExamen {
     @JoinColumn(name = "rexa_fk_exa")
     private Examen examen;
 
+
+
+    @Column(name = "rexa_groupe_person")
+    private String groupePerson;
     @Column(name = "rexa_nom_person")
     private String nomPerson;
     @Column(name = "rexa_prenom_person")
     private String prenomPerson;
+    @Column(name = "rexa_age_person")
+    private int agePerson;
+    @Column(name = "rexa_sex_person")
+    private String sexPerson;
+    @Column(name = "rexa_pratique_person")
+    private String pratiquePerson;
+    @Column(name = "rexa_pro_person")
+    private Boolean proPerson;
+    @Column(name = "rexa_annee_experience_person")
+    private int anneeExperiencePerson;
+    @Column(name = "rexa_matche_person")
+    public int matchePerson;
+    @Column(name = "rexa_entrainement_person")
+    private int entrainementPerson;
+    @Column(name = "rexa_heure_person")
+    private int heurePerson;
+
+
     @Column(name = "rexa_score")
     private int score;
 

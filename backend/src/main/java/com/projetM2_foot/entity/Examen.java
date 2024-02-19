@@ -30,7 +30,11 @@ public class Examen {
     @Column(name = "exa_name")
     private String name;
 
-    @Column(name = "exa_mode")
-    private String mode;
+    @Column(name = "exa_sequencage")
+    private String sequencage;
+    @Column(name = "exa_complexite")
+    private String complexite;
+    @Column(name = "exa_contenu_feedback")
+    private String contenuFeedback;
 
 }

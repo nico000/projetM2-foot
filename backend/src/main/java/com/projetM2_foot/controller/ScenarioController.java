@@ -105,5 +105,17 @@ public class ScenarioController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/{idScenario}")
+    public ResponseEntity<ScenarioResponse> getScenarioId(@PathVariable Long idScenario){
+
+        log.info("Endpoint appelé : GET /scenario/" + idScenario);
+
+        final Scenario scenario = scenarioService.getScenario(idScenario);
+        final ScenarioResponse response = scenarioMapper.toDto(scenario);
+
+        return ResponseEntity.ok(response);
+
+    }
+
 
 }

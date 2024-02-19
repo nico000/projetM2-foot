@@ -1,1 +1,200 @@
-<div >PAGE Serie</div>
+<h1 class="presentation">Liste des Series : </h1>
+<nav class="menu">
+    <ul>
+        <li  class="boutton" >
+            <a *ngIf="_isFiltering == true" (click)="resetFilter()">Annuler les filtres</a>
+        </li>
+        <li  class="boutton" >
+            <a *ngIf="_isFiltering == false" (click)="_isFiltering = true">Filtrer</a>
+        </li>
+    </ul>
+</nav>
+
+
+
+<table class="tableau">
+    <tr>
+        <td class="titre colonne" (click)="orderBy('nom')">
+            Nom serie
+            <div *ngIf="_isFiltering == true"><input class="contient" type="text" #titreFilter placeholder="Contient..."/>
+                <button (click)="filterBy('nom', titreFilter.value)"><span>&#10003;</span></button></div>
+        </td>
+        <td class="titre colonne">
+            Scenario
+        </td>
+        <td class="titre colonne">
+            Type feedBack
+        </td>
+        <td class="titre colonne">
+            Frequence feedBack
+        </td>
+        <td class="titre colonne">
+            Nombre de zone
+        </td>
+        <td class="titre colonne">
+            Nombre de couloire
+        </td>
+        <td class="titre colonne">
+            //
+        </td>
+    </tr>
+</table>
+<table class="tableau">
+    <tr class="tableau" *ngFor="let serie of _serieList" (play)="orderBy('nom')" >
+        <td class="ecriture colonne">
+            {{serie.nom}}
+        </td>
+        <td class="colonne" >
+            <div *ngFor="let exp of serie.experience">
+                <div class="ecriture " >
+                    {{exp.scenario}}
+                </div>
+            </div>
+        </td>
+        <td class="colonne">
+            <div *ngFor="let exp of serie.experience">
+                <div class="ecriture" >
+                    {{exp.typeFeedback}}
+                </div>
+            </div>
+        </td>
+        <td class="colonne">
+            <div *ngFor="let exp of serie.experience">
+                <div class="ecriture" >
+                    {{exp.freqFeedback}}
+                </div>
+            </div>
+        </td>
+        <td class="colonne">
+            <div *ngFor="let exp of serie.experience">
+                <div class="ecriture" >
+                    {{exp.zone_nb_zone}}
+                </div>
+            </div>
+        </td>
+        <td class="colonne" >
+            <div *ngFor="let exp of serie.experience">
+                <div class="ecriture" >
+                    {{exp.zone_nb_couloir}}
+                </div>
+            </div>
+        </td>
+        <td class=" colonne ecriture">
+            <button (click)="openSimu(_simulationModal,serie)">Lancer serie</button>
+        </td>
+    </tr>
+</table>
+
+<!--modal entrer des info perso-->
+<jw-modal id="{{_simulationModal}}" >
+    <h1 class="presentation">Information personnel</h1>
+
+    <div class="titre">
+        Groupe :
+        <input type="text" [(ngModel)]="_newUtilisateur.groupe"/>
+    </div><br>
+
+    <div class="titre">
+        Nom :
+        <input type="text" [(ngModel)]="_newUtilisateur.nom"/>
+    </div><br>
+
+    <div class="titre">
+        Prenom :
+        <input type="text" [(ngModel)]="_newUtilisateur.prenom"/>
+    </div><br>
+
+    <div class="titre">
+        Age :
+        <input type="text" [(ngModel)]="_newUtilisateur.age"/>
+    </div><br>
+
+    <div class="titre">
+        Sex :
+        <input type="checkbox" id="fille" class="hidden-checkbox" (click)="updateSex('fille')">
+        <label for="fille" class="round-button" [style.background-color]="_newUtilisateur.sex === 'fille' ? '#3498db' : 'initial'">Fille</label>
+
+        <input type="checkbox" id="garcon" class="hidden-checkbox" (click)="updateSex('garcon')">
+        <label for="garcon" class="round-button" [style.background-color]="_newUtilisateur.sex === 'garcon' ? '#3498db' : 'initial'">Garcon</label>
+    </div><br>
+
+    <div class="titre">
+        Pratique sportive :
+        <input type="text" [(ngModel)]="_newUtilisateur.pratique"/>
+    </div><br>
+
+    <div class="titre">
+        Etes-vous profesionelle :
+        <input type="checkbox" id="oui" class="hidden-checkbox" (click)="updatePro(true)">
+        <label for="oui" class="round-button" [style.background-color]="_newUtilisateur.pro === true ? '#3498db' : 'initial'">oui</label>
+
+        <input type="checkbox" id="non" class="hidden-checkbox" (click)="updatePro(false)">
+        <label for="non" class="round-button" [style.background-color]="_newUtilisateur.pro === false ? '#3498db' : 'initial'">non</label>
+    </div><br>
+
+    <div *ngIf="_newUtilisateur.pro===true" class="titre">
+        Nombre d'année d'experience :
+        <input type="text" [(ngModel)]="_newUtilisateur.anneeExperience"/>
+    </div><br>
+
+    <div *ngIf="_newUtilisateur.pro===true" class="titre">
+        Nombre matches/an :
+        <input type="text" [(ngModel)]="_newUtilisateur.matche"/>
+    </div><br>
+
+    <div *ngIf="_newUtilisateur.pro===true" class="titre">
+        Nombre entrainements/mois :
+        <input type="text" [(ngModel)]="_newUtilisateur.entrenement"/>
+    </div><br>
+
+    <div *ngIf="_newUtilisateur.pro===true" class="titre">
+        Nombre d'heure pratique/semaine :
+        <input type="text" [(ngModel)]="_newUtilisateur.heure"/>
+    </div><br>
+
+    <nav class="menu">
+        <ul>
+            <li  class="boutton" >
+                <a (click)="resetData(_simulationModal)">Annuler</a>
+            </li>
+            <li  class="boutton" >
+                <a (click)="addUser(_veridModal)">Valider</a>
+            </li>
+        </ul>
+    </nav><br>
+</jw-modal>
+
+
+<jw-modal id="{{_veridModal}}" >
+    <p class="presentation">Cliquer sur lancer quand vous etes pret</p>
+    <nav class="menu">
+        <ul>
+            <li class="boutton" style="width: 50%"><a *ngIf="_isLancer===false" (click)="lance_simu()">Lancer</a></li>
+        </ul>
+    </nav>
+
+    <table class="tableau_joueur">
+        <tr>
+            <td class="colonne_terrain2">
+                <div  style="background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                    <table id="tableau_terrain" class="tableau_terrain tabter">
+                        <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
+                            <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
+                                 [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
+                                <div  *ngFor="let entite of _entiteList" class="draggable"
+                                      [style.left.%]="(entite.y+this.tabLeft)" [style.top.%]="entite.x+this.tabTop">
+                                    <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
+                                        {{ entite.numero }}
+                                    </div>
+                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0">
+                                        {{ entite.numero }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table></div>
+            </td>
+        </tr>
+    </table>
+</jw-modal>
+

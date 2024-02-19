@@ -71,7 +71,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<table class=\"tableau\" >\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <h1 class=\"presentation\">Ajout d'un Scenario</h1>\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\"   [style.background-color]=\"_newScenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\"  [style.background-color]=\"_newScenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain:\n                <input type=\"checkbox\" id=\"couleurV\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert')\">\n                <label for=\"couleurV\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                <input type=\"checkbox\" id=\"couleurB\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc')\">\n                <label for=\"couleurB\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'moyen' ? '#3498db' : 'initial'\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'grand' ? '#3498db' : 'initial'\">Grand</label>\n            </div><br>\n            <!--\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_use === true ? '#3498db' : 'initial'\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_display === true ? '#3498db' : 'initial'\">Afficher les zones du terrain</label>\n            </div><br>-->\n            <div class=\"titre\">\n                Nombre de joueur:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <table class=\"tableau_terrain\">\n                <div *ngIf=\"is_placement\" class=\"mode\">Ajout des entités</div>\n                <div *ngIf=\"is_deplacement\" class=\"mode\">Ajout deplacement</div>\n                <tr>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button (click)=\"delEntite()\" class=\"boutton\">retour placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button (click)=\"delDeplacement()\" class=\"boutton\">retour deplacement</button></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">joueur :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"deplacableObject\" class=\"draggable joueur\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">ballon :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"ballondeplacableObject\" class=\"draggable ballon\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button  (click)=\"passEntite()\" class=\"boutton\">fin placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button  (click)=\"passDeplacement()\" class=\"boutton\">fin deplacement</button></div>\n                    </td>\n                    <br><br><br><br><br>\n                </tr></table><br>\n            <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\" (click)=\"addDeplacement($event)\">\n                <tr  *ngFor=\"let couloir of nb_couloir(lastCouloir); let odd = odd\" class=\"couloir\">\n                    <td  *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\"\n                         [style.background-color]=\"lastCouleur === 'blanc' ? 'white' : 'initial'\">\n                        <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                             [style.left.%]=\"entite.y+this.tabLeft\" [style.top.%]=\"entite.x+tabTop\"\n                              (contextmenu)=\"selectEntite(entite)\">\n                            <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                            <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                </tr>\n            </table><br>\n            <table>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addJoueur()\">ajouter joueur</a></li>\n                        </ul>\n                    </nav>\n                </td>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addBallon()\">ajouter ballon</a></li>\n                        </ul>\n                    </nav>\n                </td>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
+    __webpack_exports__["default"] = "<table class=\"tableau\" >\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <h1 class=\"presentation\">Ajout d'un test</h1>\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\"   [style.background-color]=\"_newScenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\"  [style.background-color]=\"_newScenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain:\n                <input type=\"checkbox\" id=\"couleurV\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert')\">\n                <label for=\"couleurV\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                <input type=\"checkbox\" id=\"couleurB\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc')\">\n                <label for=\"couleurB\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'moyen' ? '#3498db' : 'initial'\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'grand' ? '#3498db' : 'initial'\">Grand</label>\n            </div><br>\n            <!--\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_use === true ? '#3498db' : 'initial'\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_display === true ? '#3498db' : 'initial'\">Afficher les zones du terrain</label>\n            </div><br>-->\n            <div class=\"titre\">\n                Nombre de joueur:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <div *ngIf=\"is_placement\" class=\"mode\">Ajout des entités</div>\n            <div *ngIf=\"is_deplacement\" class=\"mode\">Ajout deplacement   ::   Action={{ numAction }}</div>\n            <table class=\"tableau_terrain\">\n<!--                <div *ngIf=\"is_placement\" class=\"mode\">Ajout des entités</div>-->\n<!--                <div *ngIf=\"is_deplacement\" class=\"mode\">Ajout deplacement :  action={{ numAction }}</div>-->\n                <tr>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button (click)=\"delEntite()\" class=\"boutton\">retour placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button (click)=\"delDeplacement()\" class=\"boutton\">retour deplacement</button></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">joueur :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"deplacableObject\" class=\"draggable joueur\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">ballon :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"ballondeplacableObject\" class=\"draggable ballon\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button  (click)=\"passEntite()\" class=\"boutton\">fin placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button  (click)=\"passDeplacement()\" class=\"boutton\">fin deplacement</button></div>\n                    </td>\n                    <br><br><br><br><br>\n                </tr></table><br>\n            <div style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n            <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\" (dblclick)=\"addDeplacement($event)\">\n                <tr  *ngFor=\"let couloir of nb_couloir(lastCouloir); let odd = odd\" class=\"couloir\">\n                    <td  *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\"\n                         [style.background-color]=\"lastCouleur === 'blanc' ? 'white' : 'initial'\">\n                        <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                             [style.left.%]=\"entite.y+this.tabLeft\" [style.top.%]=\"entite.x+tabTop\"\n                              (click)=\"selectEntite(entite)\">\n                            <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                            <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                </tr>\n            </table>\n            </div>\n            <br>\n            <table>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addJoueur()\">ajouter joueur</a></li>\n                        </ul>\n                    </nav>\n                </td>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addBallon()\">ajouter ballon</a></li>\n                        </ul>\n                    </nav>\n                </td>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
     /***/
   },
 
@@ -131,7 +131,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des scénario : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == false\" (click)=\"isAddSerie=true\">Creer une serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"isAddSerie=false\">Annuler la serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"changeDesigne(_designModal)\">Valider</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de zone\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de couloir\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            //\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_zone}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_couloir}}\n        </td>\n        <td class=\"colonne2 ecriture\">\n            <button (click)=\"selectScenario(_selectScenarioModalName,scenario)\">details</button>\n            <button (click)=\"delScenario(scenario)\">Supprimer</button>\n            <input *ngIf=\"isAddSerie\"  class=\"checkbox-custom\" type=\"checkbox\" (change)=\"toggleSelection(scenario)\">\n        </td>\n    </tr>\n</table>\n\n\n<jw-modal id=\"{{_selectScenarioModalName}}\" >\n<table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain\">\n                <h1 class=\"titre\">{{_selectedScenario.nom}}</h1>\n                <div class=\"categorie\">Mode Scene : </div><div class=\"Ecriture\">{{_selectedScenario.mode_scene}}</div>\n                <div class=\"categorie\">Couleur terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_couleur}}</div>\n                <div class=\"categorie\">Taille terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_taille}}</div>\n                <div class=\"categorie\">Nombre de zone : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_zone}}</div>\n                <div class=\"categorie\">Nombre de couloir : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_couloir}}</div>\n            </td>\n            <td class=\"colonne_terrain2\">\n\n                <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\">\n                    <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                        <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                             [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                            <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                  [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                    {{ entite.numero }}\n                                </div>\n                                <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </td>\n                    </tr>\n\n                </table>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_designModal}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetData(_designModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addDesign(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <h1 class=\"presentation\">Serie : </h1>\n    <div class=\"titre\">\n        Nom de la series:\n        <input type=\"text\" [(ngModel)]=\"-_newExam.nom\"/><br>\n    </div>\n\n    <h1 class=\"presentation\">Design : </h1><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Nom\n            </td>\n            <td class=\"titre colonne\">\n                Mode de scene\n            </td>\n            <td class=\"titre colonne\">\n                Couleur terrain\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de zone\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de couloir\n            </td>\n        </tr>\n        <tr *ngFor=\"let scenario of _scenarioSelect\" >\n            <td class=\"colonne ecriture\">\n                {{scenario.nom}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene',scenario)\">\n                    <label for=\"scene\" class=\"round-button\"   [style.background-color]=\"scenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                    <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action',scenario)\">\n                    <label for=\"action\" class=\"round-button\"  [style.background-color]=\"scenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"couleurV\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert',scenario)\">\n                    <label for=\"couleurV\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                    <input type=\"checkbox\" id=\"couleurB\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc',scenario)\">\n                    <label for=\"couleurB\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_zone\"/><br>\n            </td>\n            <td class=\"colonne \">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_couloir\"/><br>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_feedBackModal}}\" >\n    <h1 class=\"presentation\">FeedBack : </h1>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_feedBackModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addFeedBack(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Scenario\n            </td>\n            <td class=\"titre colonne\">\n                Type feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Frequence feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Visualisation feedBack\n            </td>\n        </tr>\n        <tr *ngFor=\"let exeprience of _newExeperience\" >\n            <td class=\"colonne ecriture\">\n                {{exeprience.scenario}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"typesf\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('tableau',exeprience)\">\n                    <label for=\"typesf\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'tableau' ? '#3498db' : 'initial'\">Tableau</label>\n\n                    <input type=\"checkbox\" id=\"static\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('static',exeprience)\">\n                    <label for=\"static\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'static' ? '#3498db' : 'initial'\">Static</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"25\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(25,exeprience)\">\n                    <label for=\"25\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 25 ? '#3498db' : 'initial'\">25%</label>\n\n                    <input type=\"checkbox\" id=\"50\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(50,exeprience)\">\n                    <label for=\"50\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 50 ? '#3498db' : 'initial'\">50%</label>\n\n                    <input type=\"checkbox\" id=\"100\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(100,exeprience)\">\n                    <label for=\"100\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 100 ? '#3498db' : 'initial'\">100%</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <input type=\"checkbox\" id=\"1\" class=\"hidden-checkbox\" (click)=\"updateVisuFeed(1,exeprience)\">\n                <label for=\"1\" class=\"round-button\" [style.background-color]=\"exeprience.visuFeedback === 1 ? '#3498db' : 'initial'\">1 Visu</label>\n\n                <input type=\"checkbox\" id=\"2\" class=\"hidden-checkbox\" (click)=\"updateVisuFeed(2,exeprience)\">\n                <label for=\"2\" class=\"round-button\" [style.background-color]=\"exeprience.visuFeedback === 2 ? '#3498db' : 'initial'\">2 Visu</label>\n            </td>\n        </tr>\n    </table>\n</jw-modal>";
+    __webpack_exports__["default"] = "\n<h1 class=\"presentation\">Liste des Tests : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == false\" (click)=\"isAddSerie=true\">Creer une serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"isAddSerie=false\">Annuler la serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"changeDesigne(_designModal)\">Valider</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de zone\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de couloir\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            //\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_zone}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_couloir}}\n        </td>\n        <td class=\"colonne2 ecriture\">\n            <button (click)=\"selectScenario(_selectScenarioModalName,scenario)\">details</button>\n            <button (click)=\"delScenario(scenario)\">Supprimer</button>\n            <input *ngIf=\"isAddSerie\"  class=\"checkbox-custom\" type=\"checkbox\" (change)=\"toggleSelection(scenario)\">\n        </td>\n    </tr>\n</table>\n\n\n<jw-modal id=\"{{_selectScenarioModalName}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_selectScenarioModalName)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"playVisualisation(_selectedScenario)\">Play</a>\n            </li>\n        </ul>\n    </nav><br>\n<table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain\">\n                <h1 class=\"titre\">{{_selectedScenario.nom}}</h1>\n                <div class=\"categorie\">Mode Scene : </div><div class=\"Ecriture\">{{_selectedScenario.mode_scene}}</div>\n                <div class=\"categorie\">Couleur terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_couleur}}</div>\n                <div class=\"categorie\">Taille terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_taille}}</div>\n                <div class=\"categorie\">Nombre de zone : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_zone}}</div>\n                <div class=\"categorie\">Nombre de couloir : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_couloir}}</div>\n            </td>\n            <td class=\"colonne_terrain2\">\n\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\">\n                    <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                        <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                             [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                            <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                  [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                    {{ entite.numero }}\n                                </div>\n                                <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                    {{ entite.numero }}\n                                </div>\n                                <!-- Ajouter des éléments pour représenter les flèches -->\n                                <div *ngFor=\"let arrow of arrows\" class=\"arrow\" [style.left.px]=\"arrow.startX\" [style.top.px]=\"arrow.startY\"\n                                     [style.width.px]=\"arrow.length\" [style.transform]=\"getArrowRotation(arrow.startX, arrow.startY, arrow.endX, arrow.endY)\">\n                                </div>\n                            </div>\n                        </td>\n                    </tr>\n                </table></div>\n<!--                &lt;!&ndash; Div pour afficher les flèches &ndash;&gt;-->\n<!--                <svg style=\"position: relative; left: 0; top: 0; width: auto; height: auto\">-->\n<!--                        <defs>-->\n<!--                            <marker id=\"arrow\" markerWidth=\"10\" markerHeight=\"10\" refX=\"5\" refY=\"3\" orient=\"auto\"-->\n<!--                                    markerUnits=\"strokeWidth\" viewBox=\"0 0 20 20\">-->\n<!--                                <path d=\"M0,0 L0,6 L9,3 z\" fill=\"#f00\" />-->\n<!--                            </marker>-->\n<!--                        </defs>-->\n\n<!--                        <line [attr.x1]=\"startX\" [attr.y1]=\"startY\" [attr.x2]=\"endX\" [attr.y2]=\"endY\" stroke=\"#f00\" stroke-width=\"5\"-->\n<!--                              marker-end=\"url(#arrow)\" />-->\n<!--                </svg>-->\n            </td>\n        </tr>\n    </table>\n\n</jw-modal>\n\n<jw-modal id=\"{{_designModal}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_designModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addDesign(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <h1 class=\"presentation\">Serie : </h1>\n    <div class=\"titre\">\n        Nom de la series:\n        <input type=\"text\" [(ngModel)]=\"_newExam.nom\"/><br>\n    </div>\n\n    <div class=\"titre\">\n        Mode de la series:\n        <input type=\"checkbox\" id=\"sequentiel\" class=\"hidden-checkbox\" (click)=\"updateModeSequentiel('sequentiel')\">\n        <label for=\"sequentiel\" class=\"round-button\" [style.background-color]=\"_newExam.mode === 'sequentiel' ? '#3498db' : 'initial'\">Sequentiel</label>\n\n        <input type=\"checkbox\" id=\"aleatoire\" class=\"hidden-checkbox\" (click)=\"updateModeSequentiel('aleatoire')\">\n        <label for=\"aleatoire\" class=\"round-button\" [style.background-color]=\"_newExam.mode  === 'aleatoire' ? '#3498db' : 'initial'\">Aleatoire</label>\n    </div><br>\n\n    <h1 class=\"presentation\">Design : </h1><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Nom du test\n            </td>\n            <td class=\"titre colonne\">\n                Mode de scene\n            </td>\n            <td class=\"titre colonne\">\n                Couleur terrain\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de zone\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de couloir\n            </td>\n        </tr>\n        <tr  *ngFor=\"let scenario of _scenarioSelect\" >\n            <td class=\"colonne ecriture\">\n                {{scenario.nom}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"scene_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene',scenario)\">\n                    <label for=\"scene_{{scenario.nom}}\" class=\"round-button\"   [style.background-color]=\"scenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                    <input type=\"checkbox\" id=\"action_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action',scenario)\">\n                    <label for=\"action_{{scenario.nom}}\" class=\"round-button\"  [style.background-color]=\"scenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"couleurV_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert',scenario)\">\n                    <label for=\"couleurV_{{scenario.nom}}\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                    <input type=\"checkbox\" id=\"couleurB_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc',scenario)\">\n                    <label for=\"couleurB_{{scenario.nom}}\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n                </div>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_zone\"/><br>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_couloir\"/><br>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_feedBackModal}}\" >\n    <h1 class=\"presentation\">FeedBack : </h1>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_feedBackModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addFeedBack(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Test\n            </td>\n            <td class=\"titre colonne\">\n                Type feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Frequence feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Visualisation feedBack\n            </td>\n        </tr>\n        <tr *ngFor=\"let exeprience of _newExeperience\" >\n            <td class=\"colonne ecriture\">\n                {{exeprience.scenario}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"typesf_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('score',exeprience)\">\n                    <label for=\"typesf_{{exeprience.scenario}}\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'score' ? '#3498db' : 'initial'\">Score</label>\n\n                    <input type=\"checkbox\" id=\"static_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('static',exeprience)\">\n                    <label for=\"static_{{exeprience.scenario}}\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'static' ? '#3498db' : 'initial'\">Static</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"0_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(0,exeprience)\">\n                    <label for=\"0_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 0 ? '#3498db' : 'initial'\">0%</label>\n\n                    <input type=\"checkbox\" id=\"25_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(25,exeprience)\">\n                    <label for=\"25_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 25 ? '#3498db' : 'initial'\">25%</label>\n\n                    <input type=\"checkbox\" id=\"50_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(50,exeprience)\">\n                    <label for=\"50_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 50 ? '#3498db' : 'initial'\">50%</label>\n\n                    <input type=\"checkbox\" id=\"75_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(75,exeprience)\">\n                    <label for=\"75_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 75 ? '#3498db' : 'initial'\">75%</label>\n\n                    <input type=\"checkbox\" id=\"100_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(100,exeprience)\">\n                    <label for=\"100_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 100 ? '#3498db' : 'initial'\">100%</label>\n                </div>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"exeprience.visuFeedback\"/><br>\n            </td>\n        </tr>\n    </table>\n</jw-modal>";
     /***/
   },
 
@@ -191,7 +191,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div >PAGE Serie</div>";
+    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des Series : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom serie\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\">\n            Scenario\n        </td>\n        <td class=\"titre colonne\">\n            Type feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Frequence feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de zone\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de couloire\n        </td>\n        <td class=\"titre colonne\">\n            //\n        </td>\n    </tr>\n</table>\n<table class=\"tableau\">\n    <tr class=\"tableau\" *ngFor=\"let serie of _serieList\" (play)=\"orderBy('nom')\" >\n        <td class=\"ecriture colonne\">\n            {{serie.nom}}\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture \" >\n                    {{exp.scenario}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.typeFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.freqFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_zone}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_couloir}}\n                </div>\n            </div>\n        </td>\n        <td class=\" colonne ecriture\">\n            <button (click)=\"openSimu(_simulationModal,serie)\">Lancer serie</button>\n        </td>\n    </tr>\n</table>\n\n<!--modal entrer des info perso-->\n<jw-modal id=\"{{_simulationModal}}\" >\n    <h1 class=\"presentation\">Information personnel</h1>\n\n    <div class=\"titre\">\n        Groupe :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.groupe\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Nom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.nom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Prenom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.prenom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Age :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.age\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Sex :\n        <input type=\"checkbox\" id=\"fille\" class=\"hidden-checkbox\" (click)=\"updateSex('fille')\">\n        <label for=\"fille\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'fille' ? '#3498db' : 'initial'\">Fille</label>\n\n        <input type=\"checkbox\" id=\"garcon\" class=\"hidden-checkbox\" (click)=\"updateSex('garcon')\">\n        <label for=\"garcon\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'garcon' ? '#3498db' : 'initial'\">Garcon</label>\n    </div><br>\n\n    <div class=\"titre\">\n        Pratique sportive :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.pratique\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Etes-vous profesionelle :\n        <input type=\"checkbox\" id=\"oui\" class=\"hidden-checkbox\" (click)=\"updatePro(true)\">\n        <label for=\"oui\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === true ? '#3498db' : 'initial'\">oui</label>\n\n        <input type=\"checkbox\" id=\"non\" class=\"hidden-checkbox\" (click)=\"updatePro(false)\">\n        <label for=\"non\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === false ? '#3498db' : 'initial'\">non</label>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'année d'experience :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.anneeExperience\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre matches/an :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.matche\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre entrainements/mois :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.entrenement\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'heure pratique/semaine :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.heure\"/>\n    </div><br>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetData(_simulationModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addUser(_veridModal)\">Valider</a>\n            </li>\n        </ul>\n    </nav><br>\n</jw-modal>\n\n\n<jw-modal id=\"{{_veridModal}}\" >\n    <p class=\"presentation\">Cliquer sur lancer quand vous etes pret</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a *ngIf=\"_isLancer===false\" (click)=\"lance_simu()\">Lancer</a></li>\n        </ul>\n    </nav>\n\n    <table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                    <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\">\n                        <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                            <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                                 [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                                <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                      [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                    <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                        {{ entite.numero }}\n                                    </div>\n                                    <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                        {{ entite.numero }}\n                                    </div>\n                                </div>\n                            </td>\n                        </tr>\n                    </table></div>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n";
     /***/
   },
 
@@ -1012,7 +1012,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".presentation{\n    font-size:180%;\n    color: white;\n    text-align: center;\n}\n\n.verif{\n    font-size: 150%;\n    color: red;\n    text-align: center;\n}\n\n.titre{\n    font-size: 120%;\n    color: mediumblue;\n    text-align: center;\n}\n\n.round-button {\n    display: inline-block;\n    cursor: pointer;\n    padding: 10px;\n    border: 2px solid white;\n    border-radius: 50px;\n    font-size: 15px;\n    text-align: center;\n    color: white;\n    transition: background-color 0.3s;\n}\n\n.round-button:hover {\n    background-color: #3498db;\n    color: #fff;\n}\n\n.hidden-checkbox {\n    display: none;\n}\n\nnav.menu ul {\n    padding: 0;\n    margin: 0;\n    list-style-type: none;\n    display: flex;\n    justify-content: center;\n}\n\nnav.menu ul  .boutton{\n    display: inline-block;\n    width: 80%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: green;\n    text-decoration: none;\n    text-align:center ;\n    display: block;\n    font-size:30px;\n    justify-content: center;\n    border: 2px solid white;\n\n}\n\nnav.menu ul li.boutton:hover a{\n    color: lightgreen;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.tableau{\n    padding: 5px;\n    width:100%;\n}\n\n.colonne{\n    width:35%;\n}\n\n.colonne2{\n    width:65%;\n    vertical-align: top;\n}\n\n/*terrain*/\n\n.draggable {\n    position: absolute;\n    width: 50px;\n    height: 50px;\n    border-radius: 50%;\n    cursor: -webkit-grab;\n    cursor: grab;\n    overflow: hidden;\n    margin: auto;\n    align-items: center;\n}\n\n.barreOutils{\n    text-align:center ;\n    align-content: center;\n    width:16.5%;\n}\n\n.Ecriture{\n    font-size: 120%;\n    color: white;\n    text-align: center;\n}\n\n.numEcriture{\n    font-size: 120%;\n    color: black;\n    text-align: center;\n}\n\n.joueur{\n    background-color: #ffeb3b;\n}\n\n.ballon {\n    background-color:white;\n    width: 25px;\n    height: 25px;\n}\n\n.couloir{\n    background: forestgreen;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n.zone{\n    background: forestgreen;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n.tableau_terrain{\n    padding: 5%;\n    width:100%;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n.tabter{\n    border: 1px solid white;\n    height: 40vh;\n}\n\n.mode{\n    font-size: 100%;\n    color: white;\n    text-align: center;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGNyZWF0aW9uL2NyZWF0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxjQUFjO0lBQ2QsWUFBWTtJQUNaLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLGVBQWU7SUFDZixVQUFVO0lBQ1Ysa0JBQWtCO0FBQ3RCOztBQUNBO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsZUFBZTtJQUNmLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLGlDQUFpQztBQUNyQzs7QUFDQTtJQUNJLHlCQUF5QjtJQUN6QixXQUFXO0FBQ2Y7O0FBRUE7SUFDSSxhQUFhO0FBQ2pCOztBQUNBO0lBQ0ksVUFBVTtJQUNWLFNBQVM7SUFDVCxxQkFBcUI7SUFDckIsYUFBYTtJQUNiLHVCQUF1QjtBQUMzQjs7QUFDQTtJQUNJLHFCQUFxQjtJQUNyQixVQUFVO0FBQ2Q7O0FBRUE7SUFDSSxZQUFZO0lBQ1osdUJBQXVCO0lBQ3ZCLHFCQUFxQjtJQUNyQixrQkFBa0I7SUFDbEIsY0FBYztJQUNkLGNBQWM7SUFDZCx1QkFBdUI7SUFDdkIsdUJBQXVCOztBQUUzQjs7QUFDQTtJQUNJLGlCQUFpQjtJQUNqQix1QkFBdUI7SUFDdkIsb0JBQW9CO0FBQ3hCOztBQUNBO0lBQ0ksWUFBWTtJQUNaLFVBQVU7QUFDZDs7QUFDQTtJQUNJLFNBQVM7QUFDYjs7QUFDQTtJQUNJLFNBQVM7SUFDVCxtQkFBbUI7QUFDdkI7O0FBQ0EsVUFBVTs7QUFDVjtJQUNJLGtCQUFrQjtJQUNsQixXQUFXO0lBQ1gsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixvQkFBWTtJQUFaLFlBQVk7SUFDWixnQkFBZ0I7SUFDaEIsWUFBWTtJQUNaLG1CQUFtQjtBQUN2Qjs7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixxQkFBcUI7SUFDckIsV0FBVztBQUNmOztBQUNBO0lBQ0ksZUFBZTtJQUNmLFlBQVk7SUFDWixrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSxlQUFlO0lBQ2YsWUFBWTtJQUNaLGtCQUFrQjtBQUN0Qjs7QUFDQTtJQUNJLHlCQUF5QjtBQUM3Qjs7QUFDQTtJQUNJLHNCQUFzQjtJQUN0QixXQUFXO0lBQ1gsWUFBWTtBQUNoQjs7QUFDQTtJQUNJLHVCQUF1QjtJQUN2Qix1QkFBdUI7SUFDdkIseUJBQXlCO0FBQzdCOztBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLHVCQUF1QjtJQUN2Qix5QkFBeUI7QUFDN0I7O0FBQ0E7SUFDSSxXQUFXO0lBQ1gsVUFBVTtJQUNWLHVCQUF1QjtJQUN2Qix5QkFBeUI7QUFDN0I7O0FBQ0E7SUFDSSx1QkFBdUI7SUFDdkIsWUFBWTtBQUNoQjs7QUFDQTtJQUNJLGVBQWU7SUFDZixZQUFZO0lBQ1osa0JBQWtCO0FBQ3RCIiwiZmlsZSI6InNyYy9hcHAvQGNyZWF0aW9uL2NyZWF0aW9uLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucHJlc2VudGF0aW9ue1xuICAgIGZvbnQtc2l6ZToxODAlO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi52ZXJpZntcbiAgICBmb250LXNpemU6IDE1MCU7XG4gICAgY29sb3I6IHJlZDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4udGl0cmV7XG4gICAgZm9udC1zaXplOiAxMjAlO1xuICAgIGNvbG9yOiBtZWRpdW1ibHVlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5yb3VuZC1idXR0b24ge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICBib3JkZXI6IDJweCBzb2xpZCB3aGl0ZTtcbiAgICBib3JkZXItcmFkaXVzOiA1MHB4O1xuICAgIGZvbnQtc2l6ZTogMTVweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcztcbn1cbi5yb3VuZC1idXR0b246aG92ZXIge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMzNDk4ZGI7XG4gICAgY29sb3I6ICNmZmY7XG59XG5cbi5oaWRkZW4tY2hlY2tib3gge1xuICAgIGRpc3BsYXk6IG5vbmU7XG59XG5uYXYubWVudSB1bCB7XG4gICAgcGFkZGluZzogMDtcbiAgICBtYXJnaW46IDA7XG4gICAgbGlzdC1zdHlsZS10eXBlOiBub25lO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5uYXYubWVudSB1bCAgLmJvdXR0b257XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHdpZHRoOiA4MCU7XG59XG5cbm5hdi5tZW51IHVsIGxpLmJvdXR0b24gYXtcbiAgICBjb2xvciA6QXp1cmU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgICBmb250LXNpemU6MzBweDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBib3JkZXI6IDJweCBzb2xpZCB3aGl0ZTtcblxufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICAgIGNvbG9yOiBsaWdodGdyZWVuO1xuICAgIGJhY2tncm91bmQtY29sb3I6IEF6dXJlO1xuICAgIHRyYW5zaXRpb246IDAuNXMgYWxsO1xufVxuLnRhYmxlYXV7XG4gICAgcGFkZGluZzogNXB4O1xuICAgIHdpZHRoOjEwMCU7XG59XG4uY29sb25uZXtcbiAgICB3aWR0aDozNSU7XG59XG4uY29sb25uZTJ7XG4gICAgd2lkdGg6NjUlO1xuICAgIHZlcnRpY2FsLWFsaWduOiB0b3A7XG59XG4vKnRlcnJhaW4qL1xuLmRyYWdnYWJsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHdpZHRoOiA1MHB4O1xuICAgIGhlaWdodDogNTBweDtcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgY3Vyc29yOiBncmFiO1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgbWFyZ2luOiBhdXRvO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG4uYmFycmVPdXRpbHN7XG4gICAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICAgIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcbiAgICB3aWR0aDoxNi41JTtcbn1cbi5FY3JpdHVyZXtcbiAgICBmb250LXNpemU6IDEyMCU7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5udW1FY3JpdHVyZXtcbiAgICBmb250LXNpemU6IDEyMCU7XG4gICAgY29sb3I6IGJsYWNrO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5qb3VldXJ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZWIzYjtcbn1cbi5iYWxsb24ge1xuICAgIGJhY2tncm91bmQtY29sb3I6d2hpdGU7XG4gICAgd2lkdGg6IDI1cHg7XG4gICAgaGVpZ2h0OiAyNXB4O1xufVxuLmNvdWxvaXJ7XG4gICAgYmFja2dyb3VuZDogZm9yZXN0Z3JlZW47XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi56b25le1xuICAgIGJhY2tncm91bmQ6IGZvcmVzdGdyZWVuO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG59XG4udGFibGVhdV90ZXJyYWlue1xuICAgIHBhZGRpbmc6IDUlO1xuICAgIHdpZHRoOjEwMCU7XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi50YWJ0ZXJ7XG4gICAgYm9yZGVyOiAxcHggc29saWQgd2hpdGU7XG4gICAgaGVpZ2h0OiA0MHZoO1xufVxuLm1vZGV7XG4gICAgZm9udC1zaXplOiAxMDAlO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbiJdfQ== */";
+    __webpack_exports__["default"] = ".presentation{\n    font-size:180%;\n    color: white;\n    text-align: center;\n}\n\n.verif{\n    font-size: 150%;\n    color: red;\n    text-align: center;\n}\n\n.titre{\n    font-size: 120%;\n    color: mediumblue;\n    text-align: center;\n}\n\n.round-button {\n    display: inline-block;\n    cursor: pointer;\n    padding: 10px;\n    border: 2px solid white;\n    border-radius: 50px;\n    font-size: 15px;\n    text-align: center;\n    color: white;\n    transition: background-color 0.3s;\n}\n\n.round-button:hover {\n    background-color: #3498db;\n    color: #fff;\n}\n\n.hidden-checkbox {\n    display: none;\n}\n\nnav.menu ul {\n    padding: 0;\n    margin: 0;\n    list-style-type: none;\n    display: flex;\n    justify-content: center;\n}\n\nnav.menu ul  .boutton{\n    display: inline-block;\n    width: 80%;\n}\n\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: green;\n    text-decoration: none;\n    text-align:center ;\n    display: block;\n    font-size:30px;\n    justify-content: center;\n    border: 2px solid white;\n\n}\n\nnav.menu ul li.boutton:hover a{\n    color: lightgreen;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n\n.tableau{\n    padding: 5px;\n    width:100%;\n}\n\n.colonne{\n    width:35%;\n}\n\n.colonne2{\n    width:65%;\n    vertical-align: top;\n}\n\n/*terrain*/\n\n.draggable {\n    position: absolute;\n    width: 50px;\n    height: 50px;\n    border-radius: 50%;\n    cursor: grab;\n    overflow: hidden;\n    margin: auto;\n    align-items: center;\n}\n\n.barreOutils{\n    text-align:center ;\n    align-content: center;\n    width:16.5%;\n}\n\n.Ecriture{\n    font-size: 120%;\n    color: white;\n    text-align: center;\n}\n\n.numEcriture{\n    font-size: 120%;\n    color: black;\n    text-align: center;\n}\n\n.joueur{\n    background-color: #ffeb3b;\n}\n\n.ballon {\n    background-color:white;\n    width: 25px;\n    height: 25px;\n}\n\n.couloir{\n    background: transparent;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n.zone{\n    background: transparent;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n.tableau_terrain{\n    padding: 5%;\n    width:100%;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n\n.tabter{\n    border: 1px solid white;\n    height: 40vh;\n}\n\n.mode{\n    font-size: 110%;\n    color: white;\n    text-align: center;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGNyZWF0aW9uL2NyZWF0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxjQUFjO0lBQ2QsWUFBWTtJQUNaLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLGVBQWU7SUFDZixVQUFVO0lBQ1Ysa0JBQWtCO0FBQ3RCOztBQUNBO0lBQ0ksZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsZUFBZTtJQUNmLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLGlDQUFpQztBQUNyQzs7QUFDQTtJQUNJLHlCQUF5QjtJQUN6QixXQUFXO0FBQ2Y7O0FBRUE7SUFDSSxhQUFhO0FBQ2pCOztBQUNBO0lBQ0ksVUFBVTtJQUNWLFNBQVM7SUFDVCxxQkFBcUI7SUFDckIsYUFBYTtJQUNiLHVCQUF1QjtBQUMzQjs7QUFDQTtJQUNJLHFCQUFxQjtJQUNyQixVQUFVO0FBQ2Q7O0FBRUE7SUFDSSxZQUFZO0lBQ1osdUJBQXVCO0lBQ3ZCLHFCQUFxQjtJQUNyQixrQkFBa0I7SUFDbEIsY0FBYztJQUNkLGNBQWM7SUFDZCx1QkFBdUI7SUFDdkIsdUJBQXVCOztBQUUzQjs7QUFDQTtJQUNJLGlCQUFpQjtJQUNqQix1QkFBdUI7SUFDdkIsb0JBQW9CO0FBQ3hCOztBQUNBO0lBQ0ksWUFBWTtJQUNaLFVBQVU7QUFDZDs7QUFDQTtJQUNJLFNBQVM7QUFDYjs7QUFDQTtJQUNJLFNBQVM7SUFDVCxtQkFBbUI7QUFDdkI7O0FBQ0EsVUFBVTs7QUFDVjtJQUNJLGtCQUFrQjtJQUNsQixXQUFXO0lBQ1gsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLFlBQVk7SUFDWixtQkFBbUI7QUFDdkI7O0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIscUJBQXFCO0lBQ3JCLFdBQVc7QUFDZjs7QUFDQTtJQUNJLGVBQWU7SUFDZixZQUFZO0lBQ1osa0JBQWtCO0FBQ3RCOztBQUNBO0lBQ0ksZUFBZTtJQUNmLFlBQVk7SUFDWixrQkFBa0I7QUFDdEI7O0FBQ0E7SUFDSSx5QkFBeUI7QUFDN0I7O0FBQ0E7SUFDSSxzQkFBc0I7SUFDdEIsV0FBVztJQUNYLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSx1QkFBdUI7SUFDdkIsdUJBQXVCO0lBQ3ZCLHlCQUF5QjtBQUM3Qjs7QUFDQTtJQUNJLHVCQUF1QjtJQUN2Qix1QkFBdUI7SUFDdkIseUJBQXlCO0FBQzdCOztBQUNBO0lBQ0ksV0FBVztJQUNYLFVBQVU7SUFDVix1QkFBdUI7SUFDdkIseUJBQXlCO0FBQzdCOztBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSxlQUFlO0lBQ2YsWUFBWTtJQUNaLGtCQUFrQjtBQUN0QiIsImZpbGUiOiJzcmMvYXBwL0BjcmVhdGlvbi9jcmVhdGlvbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByZXNlbnRhdGlvbntcbiAgICBmb250LXNpemU6MTgwJTtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4udmVyaWZ7XG4gICAgZm9udC1zaXplOiAxNTAlO1xuICAgIGNvbG9yOiByZWQ7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLnRpdHJle1xuICAgIGZvbnQtc2l6ZTogMTIwJTtcbiAgICBjb2xvcjogbWVkaXVtYmx1ZTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4ucm91bmQtYnV0dG9uIHtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG4gICAgYm9yZGVyLXJhZGl1czogNTBweDtcbiAgICBmb250LXNpemU6IDE1cHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuM3M7XG59XG4ucm91bmQtYnV0dG9uOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzQ5OGRiO1xuICAgIGNvbG9yOiAjZmZmO1xufVxuXG4uaGlkZGVuLWNoZWNrYm94IHtcbiAgICBkaXNwbGF5OiBub25lO1xufVxubmF2Lm1lbnUgdWwge1xuICAgIHBhZGRpbmc6IDA7XG4gICAgbWFyZ2luOiAwO1xuICAgIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxubmF2Lm1lbnUgdWwgIC5ib3V0dG9ue1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB3aWR0aDogODAlO1xufVxuXG5uYXYubWVudSB1bCBsaS5ib3V0dG9uIGF7XG4gICAgY29sb3IgOkF6dXJlO1xuICAgIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgICB0ZXh0LWFsaWduOmNlbnRlciA7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gICAgZm9udC1zaXplOjMwcHg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG5cbn1cbm5hdi5tZW51IHVsIGxpLmJvdXR0b246aG92ZXIgYXtcbiAgICBjb2xvcjogbGlnaHRncmVlbjtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBBenVyZTtcbiAgICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcbn1cbi50YWJsZWF1e1xuICAgIHBhZGRpbmc6IDVweDtcbiAgICB3aWR0aDoxMDAlO1xufVxuLmNvbG9ubmV7XG4gICAgd2lkdGg6MzUlO1xufVxuLmNvbG9ubmUye1xuICAgIHdpZHRoOjY1JTtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xufVxuLyp0ZXJyYWluKi9cbi5kcmFnZ2FibGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB3aWR0aDogNTBweDtcbiAgICBoZWlnaHQ6IDUwcHg7XG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICAgIGN1cnNvcjogZ3JhYjtcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xuICAgIG1hcmdpbjogYXV0bztcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLmJhcnJlT3V0aWxze1xuICAgIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgICBhbGlnbi1jb250ZW50OiBjZW50ZXI7XG4gICAgd2lkdGg6MTYuNSU7XG59XG4uRWNyaXR1cmV7XG4gICAgZm9udC1zaXplOiAxMjAlO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4ubnVtRWNyaXR1cmV7XG4gICAgZm9udC1zaXplOiAxMjAlO1xuICAgIGNvbG9yOiBibGFjaztcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uam91ZXVye1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmViM2I7XG59XG4uYmFsbG9uIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOndoaXRlO1xuICAgIHdpZHRoOiAyNXB4O1xuICAgIGhlaWdodDogMjVweDtcbn1cbi5jb3Vsb2lye1xuICAgIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG59XG4uem9uZXtcbiAgICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xufVxuLnRhYmxlYXVfdGVycmFpbntcbiAgICBwYWRkaW5nOiA1JTtcbiAgICB3aWR0aDoxMDAlO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG59XG4udGFidGVye1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHdoaXRlO1xuICAgIGhlaWdodDogNDB2aDtcbn1cbi5tb2Rle1xuICAgIGZvbnQtc2l6ZTogMTEwJTtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4iXX0= */";
     /***/
   },
 
@@ -1509,8 +1509,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function addDeplacement(event) {
           var _this6 = this;
 
-          event.preventDefault();
-
           if (this._selectEntite == true && this.is_deplacement) {
             var offsetX = event.clientX;
             var offsetY = event.clientY;
@@ -1518,7 +1516,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var parentHeight = window.innerHeight;
             var percentX = offsetX / parentWidth * 100;
             var percentY = offsetY / parentHeight * 100;
-            this.numAction += 1; // Mettre à jour les coordonnées de l'entité sélectionnée
+            this.numAction += 1; //recup position tableau
+
+            this.positionPercentage = this.getPositionPercentage(this.tableau);
+            this.tabLeft = this.positionPercentage.left;
+            this.tabTop = this.positionPercentage.top;
+            console.log('tab finale en pourcentage - Left:', this.tabLeft, 'Top:', this.tabTop);
+            percentY = percentY - this.tabTop;
+            percentX = percentX - this.tabLeft; // Mettre à jour les coordonnées de l'entité sélectionnée
 
             this._entiteSelect.y = percentX;
             this._entiteSelect.x = percentY;
@@ -1878,7 +1883,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _classCallCheck(this, Examen);
 
       this.nom = "";
-      this.mode = "";
+      this.mode = ""; //public experience: number[] = [];
     });
     /***/
 
@@ -1943,7 +1948,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n.presentation{\n  font-size: 200%;\n  color: white;\n  text-align: center;\n}\n.tableau{\n  padding: 5px;\n  border: 1px solid black;\n  border-collapse: collapse;\n  width:100%;\n}\n.colonne{\n  width:20%;\n}\n.colonne2{\n  width:30%;\n}\n.titre{\n  font-size: 150%;\n  color: mediumblue;\n  text-align: center;\n}\n.ecriture{\n  font-size: 120%;\n  text-align: center;\n}\n.contient{\n  font-size: 50%;\n  width: 50%;\n}\nnav.menu ul  .boutton{\n  display: inline-block;\n  text-align:center ;\n  width: 19%;\n  margin: auto;\n}\nnav.menu ul li.boutton a{\n  color :Azure;\n  background-color: green;\n  text-decoration: none;\n  text-align: center;\n  display: flex;\n  font-size:35px;\n  justify-content: center;\n}\nnav.menu ul li.boutton:hover a{\n  color: green;\n  background-color: Azure;\n  transition: 0.5s all;\n}\nnav.menu ul {\n  display: flex;\n  justify-content: center; /* Centre horizontalement */\n}\n.container{\n  width: 100%;\n}\n.categorie{\n  font-size: 150%;\n  color: limegreen;\n  text-align: center;\n}\n.Ecriture{\n  font-size: 120%;\n  color: white;\n  text-align: center;\n}\n.info {\n  font-size: 130%;\n  text-align: center;\n}\n.colonne_terrain{\n  width:10%;\n}\n.colonne_terrain2{\n  width:90%;\n}\n.tableau_joueur{\n  width:100%;\n}\n/*terrain*/\n.draggable {\n  position: absolute;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  cursor: -webkit-grab;\n  cursor: grab;\n  overflow: hidden;\n  margin: auto;\n  align-items: center;\n}\n.barreOutils{\n  text-align:center ;\n  align-content: center;\n  width:16.5%;\n}\n.numEcriture{\n  font-size: 120%;\n  color: black;\n  text-align: center;\n}\n.joueur{\n  background-color: #ffeb3b;\n}\n.ballon {\n  background-color:white;\n  width: 25px;\n  height: 25px;\n}\n.couloir{\n  background: forestgreen;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.zone{\n  background: forestgreen;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tableau_terrain{\n  padding: 5%;\n  width:100%;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tabter{\n  border: 1px solid white;\n  height: 40vh;\n}\n/* Style du conteneur de la case à cocher */\n.checkbox-container {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  margin-right: 5px;\n}\n/* Cacher la case à cocher par défaut */\n.checkbox-container input {\n  display: none;\n}\n/* Style de l'apparence personnalisée de la case à cocher */\n.checkbox-custom {\n  position: absolute;\n  height: 20px;\n  width: 20px;\n  background-color: white;\n  border-radius: 3px;\n}\n/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */\n.checkbox-custom::after {\n  content: \"\\2713\";\n  font-size: 16px;\n  color: white;\n  position: absolute;\n  opacity: 0; /* Par défaut, le symbole de coche est invisible */\n}\n/* Style de la case à cocher lorsque elle est cochée */\n.checkbox-container input:checked + .checkbox-custom {\n  background-color: #2196F3;\n}\n/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */\n.checkbox-container input:checked + .checkbox-custom::after {\n  opacity: 1;\n}\n.round-button {\n  display: inline-block;\n  cursor: pointer;\n  padding: 10px;\n  border: 2px solid white;\n  border-radius: 50px;\n  font-size: 15px;\n  text-align: center;\n  color: white;\n  transition: background-color 0.3s;\n}\n.round-button:hover {\n  background-color: #3498db;\n  color: #fff;\n}\n.hidden-checkbox {\n  display: none;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhvbWUvaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxZQUFZO0VBQ1osdUJBQXVCO0VBQ3ZCLHlCQUF5QjtFQUN6QixVQUFVO0FBQ1o7QUFFQTtFQUNFLFNBQVM7QUFDWDtBQUNBO0VBQ0UsU0FBUztBQUNYO0FBRUE7RUFDRSxlQUFlO0VBQ2YsaUJBQWlCO0VBQ2pCLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUVBO0VBQ0UsY0FBYztFQUNkLFVBQVU7QUFDWjtBQUNBO0VBQ0UscUJBQXFCO0VBQ3JCLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsWUFBWTtBQUNkO0FBRUE7RUFDRSxZQUFZO0VBQ1osdUJBQXVCO0VBQ3ZCLHFCQUFxQjtFQUNyQixrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLGNBQWM7RUFDZCx1QkFBdUI7QUFDekI7QUFDQTtFQUNFLFlBQVk7RUFDWix1QkFBdUI7RUFDdkIsb0JBQW9CO0FBQ3RCO0FBQ0E7RUFDRSxhQUFhO0VBQ2IsdUJBQXVCLEVBQUUsMkJBQTJCO0FBQ3REO0FBQ0E7RUFDRSxXQUFXO0FBQ2I7QUFDQTtFQUNFLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxlQUFlO0VBQ2YsWUFBWTtFQUNaLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtBQUNwQjtBQUNBO0VBQ0UsU0FBUztBQUNYO0FBQ0E7RUFDRSxTQUFTO0FBQ1g7QUFDQTtFQUNFLFVBQVU7QUFDWjtBQUVBLFVBQVU7QUFDVjtFQUNFLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixvQkFBWTtFQUFaLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLG1CQUFtQjtBQUNyQjtBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLHFCQUFxQjtFQUNyQixXQUFXO0FBQ2I7QUFFQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSx5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLHNCQUFzQjtFQUN0QixXQUFXO0VBQ1gsWUFBWTtBQUNkO0FBQ0E7RUFDRSx1QkFBdUI7RUFDdkIsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLHVCQUF1QjtFQUN2Qix5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLFdBQVc7RUFDWCxVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZDtBQUNBLDJDQUEyQztBQUMzQztFQUNFLHFCQUFxQjtFQUNyQixrQkFBa0I7RUFDbEIsZUFBZTtFQUNmLGlCQUFpQjtBQUNuQjtBQUNBLHVDQUF1QztBQUN2QztFQUNFLGFBQWE7QUFDZjtBQUNBLDJEQUEyRDtBQUMzRDtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osV0FBVztFQUNYLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7QUFDQSw0RUFBNEU7QUFDNUU7RUFDRSxnQkFBZ0I7RUFDaEIsZUFBZTtFQUNmLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsVUFBVSxFQUFFLGtEQUFrRDtBQUNoRTtBQUNBLHNEQUFzRDtBQUN0RDtFQUNFLHlCQUF5QjtBQUMzQjtBQUNBLDRFQUE0RTtBQUM1RTtFQUNFLFVBQVU7QUFDWjtBQUVBO0VBQ0UscUJBQXFCO0VBQ3JCLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixlQUFlO0VBQ2Ysa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixpQ0FBaUM7QUFDbkM7QUFDQTtFQUNFLHlCQUF5QjtFQUN6QixXQUFXO0FBQ2I7QUFFQTtFQUNFLGFBQWE7QUFDZiIsImZpbGUiOiJzcmMvYXBwL0Bob21lL2hvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLnByZXNlbnRhdGlvbntcbiAgZm9udC1zaXplOiAyMDAlO1xuICBjb2xvcjogd2hpdGU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi50YWJsZWF1e1xuICBwYWRkaW5nOiA1cHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICB3aWR0aDoxMDAlO1xufVxuXG4uY29sb25uZXtcbiAgd2lkdGg6MjAlO1xufVxuLmNvbG9ubmUye1xuICB3aWR0aDozMCU7XG59XG5cbi50aXRyZXtcbiAgZm9udC1zaXplOiAxNTAlO1xuICBjb2xvcjogbWVkaXVtYmx1ZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uZWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uY29udGllbnR7XG4gIGZvbnQtc2l6ZTogNTAlO1xuICB3aWR0aDogNTAlO1xufVxubmF2Lm1lbnUgdWwgIC5ib3V0dG9ue1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgd2lkdGg6IDE5JTtcbiAgbWFyZ2luOiBhdXRvO1xufVxuXG5uYXYubWVudSB1bCBsaS5ib3V0dG9uIGF7XG4gIGNvbG9yIDpBenVyZTtcbiAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmb250LXNpemU6MzVweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5uYXYubWVudSB1bCBsaS5ib3V0dG9uOmhvdmVyIGF7XG4gIGNvbG9yOiBncmVlbjtcbiAgYmFja2dyb3VuZC1jb2xvcjogQXp1cmU7XG4gIHRyYW5zaXRpb246IDAuNXMgYWxsO1xufVxubmF2Lm1lbnUgdWwge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsgLyogQ2VudHJlIGhvcml6b250YWxlbWVudCAqL1xufVxuLmNvbnRhaW5lcntcbiAgd2lkdGg6IDEwMCU7XG59XG4uY2F0ZWdvcmlle1xuICBmb250LXNpemU6IDE1MCU7XG4gIGNvbG9yOiBsaW1lZ3JlZW47XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5FY3JpdHVyZXtcbiAgZm9udC1zaXplOiAxMjAlO1xuICBjb2xvcjogd2hpdGU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbi5pbmZvIHtcbiAgZm9udC1zaXplOiAxMzAlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uY29sb25uZV90ZXJyYWlue1xuICB3aWR0aDoxMCU7XG59XG4uY29sb25uZV90ZXJyYWluMntcbiAgd2lkdGg6OTAlO1xufVxuLnRhYmxlYXVfam91ZXVye1xuICB3aWR0aDoxMDAlO1xufVxuXG4vKnRlcnJhaW4qL1xuLmRyYWdnYWJsZSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgd2lkdGg6IDUwcHg7XG4gIGhlaWdodDogNTBweDtcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xuICBjdXJzb3I6IGdyYWI7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIG1hcmdpbjogYXV0bztcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5iYXJyZU91dGlsc3tcbiAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICBhbGlnbi1jb250ZW50OiBjZW50ZXI7XG4gIHdpZHRoOjE2LjUlO1xufVxuXG4ubnVtRWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgY29sb3I6IGJsYWNrO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uam91ZXVye1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZlYjNiO1xufVxuLmJhbGxvbiB7XG4gIGJhY2tncm91bmQtY29sb3I6d2hpdGU7XG4gIHdpZHRoOiAyNXB4O1xuICBoZWlnaHQ6IDI1cHg7XG59XG4uY291bG9pcntcbiAgYmFja2dyb3VuZDogZm9yZXN0Z3JlZW47XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xufVxuLnpvbmV7XG4gIGJhY2tncm91bmQ6IGZvcmVzdGdyZWVuO1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi50YWJsZWF1X3RlcnJhaW57XG4gIHBhZGRpbmc6IDUlO1xuICB3aWR0aDoxMDAlO1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi50YWJ0ZXJ7XG4gIGJvcmRlcjogMXB4IHNvbGlkIHdoaXRlO1xuICBoZWlnaHQ6IDQwdmg7XG59XG4vKiBTdHlsZSBkdSBjb250ZW5ldXIgZGUgbGEgY2FzZSDDoCBjb2NoZXIgKi9cbi5jaGVja2JveC1jb250YWluZXIge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBtYXJnaW4tcmlnaHQ6IDVweDtcbn1cbi8qIENhY2hlciBsYSBjYXNlIMOgIGNvY2hlciBwYXIgZMOpZmF1dCAqL1xuLmNoZWNrYm94LWNvbnRhaW5lciBpbnB1dCB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4vKiBTdHlsZSBkZSBsJ2FwcGFyZW5jZSBwZXJzb25uYWxpc8OpZSBkZSBsYSBjYXNlIMOgIGNvY2hlciAqL1xuLmNoZWNrYm94LWN1c3RvbSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgaGVpZ2h0OiAyMHB4O1xuICB3aWR0aDogMjBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDNweDtcbn1cbi8qIFN0eWxlIGR1IHBvaW50IMOgIGwnaW50w6lyaWV1ciBkZSBsYSBjYXNlIMOgIGNvY2hlciBsb3JzcXUnZWxsZSBlc3QgY29jaMOpZSAqL1xuLmNoZWNrYm94LWN1c3RvbTo6YWZ0ZXIge1xuICBjb250ZW50OiBcIlxcMjcxM1wiO1xuICBmb250LXNpemU6IDE2cHg7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBvcGFjaXR5OiAwOyAvKiBQYXIgZMOpZmF1dCwgbGUgc3ltYm9sZSBkZSBjb2NoZSBlc3QgaW52aXNpYmxlICovXG59XG4vKiBTdHlsZSBkZSBsYSBjYXNlIMOgIGNvY2hlciBsb3JzcXVlIGVsbGUgZXN0IGNvY2jDqWUgKi9cbi5jaGVja2JveC1jb250YWluZXIgaW5wdXQ6Y2hlY2tlZCArIC5jaGVja2JveC1jdXN0b20ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjE5NkYzO1xufVxuLyogU3R5bGUgZHUgcG9pbnQgw6AgbCdpbnTDqXJpZXVyIGRlIGxhIGNhc2Ugw6AgY29jaGVyIGxvcnNxdSdlbGxlIGVzdCBjb2Now6llICovXG4uY2hlY2tib3gtY29udGFpbmVyIGlucHV0OmNoZWNrZWQgKyAuY2hlY2tib3gtY3VzdG9tOjphZnRlciB7XG4gIG9wYWNpdHk6IDE7XG59XG5cbi5yb3VuZC1idXR0b24ge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgcGFkZGluZzogMTBweDtcbiAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gIGZvbnQtc2l6ZTogMTVweDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogd2hpdGU7XG4gIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcztcbn1cbi5yb3VuZC1idXR0b246aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzQ5OGRiO1xuICBjb2xvcjogI2ZmZjtcbn1cblxuLmhpZGRlbi1jaGVja2JveCB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4iXX0= */";
+    __webpack_exports__["default"] = "\n.presentation{\n  font-size: 200%;\n  color: white;\n  text-align: center;\n}\n.mode{\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n}\n.tableau{\n  padding: 5px;\n  border: 1px solid black;\n  border-collapse: collapse;\n  width:100%;\n}\n.colonne{\n  width:20%;\n}\n.colonne2{\n  width:30%;\n}\n.titre{\n  font-size: 150%;\n  color: mediumblue;\n  text-align: center;\n}\n.ecriture{\n  font-size: 120%;\n  text-align: center;\n  color: black;\n}\n.contient{\n  font-size: 50%;\n  width: 50%;\n}\nnav.menu ul  .boutton{\n  display: inline-block;\n  text-align:center ;\n  width: 19%;\n  margin: auto;\n}\nnav.menu ul li.boutton a{\n  color :Azure;\n  background-color: green;\n  text-decoration: none;\n  text-align: center;\n  display: flex;\n  font-size:35px;\n  justify-content: center;\n}\nnav.menu ul li.boutton:hover a{\n  color: green;\n  background-color: Azure;\n  transition: 0.5s all;\n}\nnav.menu ul {\n  display: flex;\n  justify-content: center; /* Centre horizontalement */\n}\n.container{\n  width: 100%;\n}\n.categorie{\n  font-size: 150%;\n  color: limegreen;\n  text-align: center;\n}\n.Ecriture{\n  font-size: 120%;\n  color: white;\n  text-align: center;\n}\n.info {\n  font-size: 130%;\n  text-align: center;\n}\n.colonne_terrain{\n  width:32%;\n}\n.colonne_terrain2{\n  width:68%;\n}\n.tableau_joueur{\n  width:100%;\n}\n/*terrain*/\n.draggable {\n  position: absolute;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  cursor: grab;\n  overflow: hidden;\n  margin: auto;\n  align-items: center;\n}\n.barreOutils{\n  text-align:center ;\n  align-content: center;\n  width:16.5%;\n}\n.numEcriture{\n  font-size: 120%;\n  color: black;\n  text-align: center;\n}\n.joueur{\n  background-color: #ffeb3b;\n}\n.ballon {\n  background-color:white;\n  width: 25px;\n  height: 25px;\n}\n.couloir{\n  background: transparent;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.zone{\n  background: transparent;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tableau_terrain{\n  padding: 5%;\n  width:100%;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tabter{\n  border: 1px solid white;\n  height: 40vh;\n}\n/* Style du conteneur de la case à cocher */\n.checkbox-container {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  margin-right: 5px;\n}\n/* Cacher la case à cocher par défaut */\n.checkbox-container input {\n  display: none;\n}\n/* Style de l'apparence personnalisée de la case à cocher */\n.checkbox-custom {\n  position: absolute;\n  height: 20px;\n  width: 20px;\n  background-color: white;\n  border-radius: 3px;\n}\n/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */\n.checkbox-custom::after {\n  content: \"\\2713\";\n  font-size: 16px;\n  color: white;\n  position: absolute;\n  opacity: 0; /* Par défaut, le symbole de coche est invisible */\n}\n/* Style de la case à cocher lorsque elle est cochée */\n.checkbox-container input:checked + .checkbox-custom {\n  background-color: #2196F3;\n}\n/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */\n.checkbox-container input:checked + .checkbox-custom::after {\n  opacity: 1;\n}\n.round-button {\n  display: inline-block;\n  cursor: pointer;\n  padding: 10px;\n  border: 2px solid white;\n  border-radius: 50px;\n  font-size: 15px;\n  text-align: center;\n  color: white;\n  transition: background-color 0.3s;\n}\n.round-button:hover {\n  background-color: #3498db;\n  color: #fff;\n}\n.hidden-checkbox {\n  display: none;\n}\n.arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-left: 10px solid blue;\n  border-right: 10px solid blue;\n}\n.arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  z-index: 9999;\n  color: black;\n  border-bottom: 10px solid black; /* Taille et couleur de la pointe de la flèche */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhvbWUvaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLHVCQUF1QjtBQUN6QjtBQUNBO0VBQ0UsWUFBWTtFQUNaLHVCQUF1QjtFQUN2Qix5QkFBeUI7RUFDekIsVUFBVTtBQUNaO0FBRUE7RUFDRSxTQUFTO0FBQ1g7QUFDQTtFQUNFLFNBQVM7QUFDWDtBQUVBO0VBQ0UsZUFBZTtFQUNmLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7QUFFQTtFQUNFLGVBQWU7RUFDZixrQkFBa0I7RUFDbEIsWUFBWTtBQUNkO0FBRUE7RUFDRSxjQUFjO0VBQ2QsVUFBVTtBQUNaO0FBQ0E7RUFDRSxxQkFBcUI7RUFDckIsa0JBQWtCO0VBQ2xCLFVBQVU7RUFDVixZQUFZO0FBQ2Q7QUFFQTtFQUNFLFlBQVk7RUFDWix1QkFBdUI7RUFDdkIscUJBQXFCO0VBQ3JCLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsY0FBYztFQUNkLHVCQUF1QjtBQUN6QjtBQUNBO0VBQ0UsWUFBWTtFQUNaLHVCQUF1QjtFQUN2QixvQkFBb0I7QUFDdEI7QUFDQTtFQUNFLGFBQWE7RUFDYix1QkFBdUIsRUFBRSwyQkFBMkI7QUFDdEQ7QUFDQTtFQUNFLFdBQVc7QUFDYjtBQUNBO0VBQ0UsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxlQUFlO0VBQ2Ysa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxTQUFTO0FBQ1g7QUFDQTtFQUNFLFNBQVM7QUFDWDtBQUNBO0VBQ0UsVUFBVTtBQUNaO0FBR0EsVUFBVTtBQUNWO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLG1CQUFtQjtBQUNyQjtBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLHFCQUFxQjtFQUNyQixXQUFXO0FBQ2I7QUFFQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSx5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLHNCQUFzQjtFQUN0QixXQUFXO0VBQ1gsWUFBWTtBQUNkO0FBQ0E7RUFDRSx1QkFBdUI7RUFDdkIsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLHVCQUF1QjtFQUN2Qix5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLFdBQVc7RUFDWCxVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZDtBQUNBLDJDQUEyQztBQUMzQztFQUNFLHFCQUFxQjtFQUNyQixrQkFBa0I7RUFDbEIsZUFBZTtFQUNmLGlCQUFpQjtBQUNuQjtBQUNBLHVDQUF1QztBQUN2QztFQUNFLGFBQWE7QUFDZjtBQUNBLDJEQUEyRDtBQUMzRDtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osV0FBVztFQUNYLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7QUFDQSw0RUFBNEU7QUFDNUU7RUFDRSxnQkFBZ0I7RUFDaEIsZUFBZTtFQUNmLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsVUFBVSxFQUFFLGtEQUFrRDtBQUNoRTtBQUNBLHNEQUFzRDtBQUN0RDtFQUNFLHlCQUF5QjtBQUMzQjtBQUNBLDRFQUE0RTtBQUM1RTtFQUNFLFVBQVU7QUFDWjtBQUVBO0VBQ0UscUJBQXFCO0VBQ3JCLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixlQUFlO0VBQ2Ysa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixpQ0FBaUM7QUFDbkM7QUFDQTtFQUNFLHlCQUF5QjtFQUN6QixXQUFXO0FBQ2I7QUFFQTtFQUNFLGFBQWE7QUFDZjtBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixTQUFTO0VBQ1QsNEJBQTRCO0VBQzVCLDZCQUE2QjtBQUMvQjtBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixTQUFTO0VBQ1QsYUFBYTtFQUNiLFlBQVk7RUFDWiwrQkFBK0IsRUFBRSxnREFBZ0Q7QUFDbkYiLCJmaWxlIjoic3JjL2FwcC9AaG9tZS9ob21lLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbi5wcmVzZW50YXRpb257XG4gIGZvbnQtc2l6ZTogMjAwJTtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4ubW9kZXtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBmbGV4LXN0YXJ0O1xufVxuLnRhYmxlYXV7XG4gIHBhZGRpbmc6IDVweDtcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gIHdpZHRoOjEwMCU7XG59XG5cbi5jb2xvbm5le1xuICB3aWR0aDoyMCU7XG59XG4uY29sb25uZTJ7XG4gIHdpZHRoOjMwJTtcbn1cblxuLnRpdHJle1xuICBmb250LXNpemU6IDE1MCU7XG4gIGNvbG9yOiBtZWRpdW1ibHVlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5lY3JpdHVyZXtcbiAgZm9udC1zaXplOiAxMjAlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGNvbG9yOiBibGFjaztcbn1cblxuLmNvbnRpZW50e1xuICBmb250LXNpemU6IDUwJTtcbiAgd2lkdGg6IDUwJTtcbn1cbm5hdi5tZW51IHVsICAuYm91dHRvbntcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB0ZXh0LWFsaWduOmNlbnRlciA7XG4gIHdpZHRoOiAxOSU7XG4gIG1hcmdpbjogYXV0bztcbn1cblxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbiBhe1xuICBjb2xvciA6QXp1cmU7XG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgZGlzcGxheTogZmxleDtcbiAgZm9udC1zaXplOjM1cHg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICBjb2xvcjogZ3JlZW47XG4gIGJhY2tncm91bmQtY29sb3I6IEF6dXJlO1xuICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcbn1cbm5hdi5tZW51IHVsIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7IC8qIENlbnRyZSBob3Jpem9udGFsZW1lbnQgKi9cbn1cbi5jb250YWluZXJ7XG4gIHdpZHRoOiAxMDAlO1xufVxuLmNhdGVnb3JpZXtcbiAgZm9udC1zaXplOiAxNTAlO1xuICBjb2xvcjogbGltZWdyZWVuO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uRWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uaW5mbyB7XG4gIGZvbnQtc2l6ZTogMTMwJTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmNvbG9ubmVfdGVycmFpbntcbiAgd2lkdGg6MzIlO1xufVxuLmNvbG9ubmVfdGVycmFpbjJ7XG4gIHdpZHRoOjY4JTtcbn1cbi50YWJsZWF1X2pvdWV1cntcbiAgd2lkdGg6MTAwJTtcbn1cblxuXG4vKnRlcnJhaW4qL1xuLmRyYWdnYWJsZSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgd2lkdGg6IDUwcHg7XG4gIGhlaWdodDogNTBweDtcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xuICBjdXJzb3I6IGdyYWI7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIG1hcmdpbjogYXV0bztcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5iYXJyZU91dGlsc3tcbiAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICBhbGlnbi1jb250ZW50OiBjZW50ZXI7XG4gIHdpZHRoOjE2LjUlO1xufVxuXG4ubnVtRWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgY29sb3I6IGJsYWNrO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uam91ZXVye1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZlYjNiO1xufVxuLmJhbGxvbiB7XG4gIGJhY2tncm91bmQtY29sb3I6d2hpdGU7XG4gIHdpZHRoOiAyNXB4O1xuICBoZWlnaHQ6IDI1cHg7XG59XG4uY291bG9pcntcbiAgYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xufVxuLnpvbmV7XG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi50YWJsZWF1X3RlcnJhaW57XG4gIHBhZGRpbmc6IDUlO1xuICB3aWR0aDoxMDAlO1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi50YWJ0ZXJ7XG4gIGJvcmRlcjogMXB4IHNvbGlkIHdoaXRlO1xuICBoZWlnaHQ6IDQwdmg7XG59XG4vKiBTdHlsZSBkdSBjb250ZW5ldXIgZGUgbGEgY2FzZSDDoCBjb2NoZXIgKi9cbi5jaGVja2JveC1jb250YWluZXIge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBtYXJnaW4tcmlnaHQ6IDVweDtcbn1cbi8qIENhY2hlciBsYSBjYXNlIMOgIGNvY2hlciBwYXIgZMOpZmF1dCAqL1xuLmNoZWNrYm94LWNvbnRhaW5lciBpbnB1dCB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4vKiBTdHlsZSBkZSBsJ2FwcGFyZW5jZSBwZXJzb25uYWxpc8OpZSBkZSBsYSBjYXNlIMOgIGNvY2hlciAqL1xuLmNoZWNrYm94LWN1c3RvbSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgaGVpZ2h0OiAyMHB4O1xuICB3aWR0aDogMjBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDNweDtcbn1cbi8qIFN0eWxlIGR1IHBvaW50IMOgIGwnaW50w6lyaWV1ciBkZSBsYSBjYXNlIMOgIGNvY2hlciBsb3JzcXUnZWxsZSBlc3QgY29jaMOpZSAqL1xuLmNoZWNrYm94LWN1c3RvbTo6YWZ0ZXIge1xuICBjb250ZW50OiBcIlxcMjcxM1wiO1xuICBmb250LXNpemU6IDE2cHg7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBvcGFjaXR5OiAwOyAvKiBQYXIgZMOpZmF1dCwgbGUgc3ltYm9sZSBkZSBjb2NoZSBlc3QgaW52aXNpYmxlICovXG59XG4vKiBTdHlsZSBkZSBsYSBjYXNlIMOgIGNvY2hlciBsb3JzcXVlIGVsbGUgZXN0IGNvY2jDqWUgKi9cbi5jaGVja2JveC1jb250YWluZXIgaW5wdXQ6Y2hlY2tlZCArIC5jaGVja2JveC1jdXN0b20ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjE5NkYzO1xufVxuLyogU3R5bGUgZHUgcG9pbnQgw6AgbCdpbnTDqXJpZXVyIGRlIGxhIGNhc2Ugw6AgY29jaGVyIGxvcnNxdSdlbGxlIGVzdCBjb2Now6llICovXG4uY2hlY2tib3gtY29udGFpbmVyIGlucHV0OmNoZWNrZWQgKyAuY2hlY2tib3gtY3VzdG9tOjphZnRlciB7XG4gIG9wYWNpdHk6IDE7XG59XG5cbi5yb3VuZC1idXR0b24ge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgcGFkZGluZzogMTBweDtcbiAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gIGZvbnQtc2l6ZTogMTVweDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogd2hpdGU7XG4gIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcztcbn1cbi5yb3VuZC1idXR0b246aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzQ5OGRiO1xuICBjb2xvcjogI2ZmZjtcbn1cblxuLmhpZGRlbi1jaGVja2JveCB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4uYXJyb3cge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAwO1xuICBoZWlnaHQ6IDA7XG4gIGJvcmRlci1sZWZ0OiAxMHB4IHNvbGlkIGJsdWU7XG4gIGJvcmRlci1yaWdodDogMTBweCBzb2xpZCBibHVlO1xufVxuXG4uYXJyb3cge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAwO1xuICBoZWlnaHQ6IDA7XG4gIHotaW5kZXg6IDk5OTk7XG4gIGNvbG9yOiBibGFjaztcbiAgYm9yZGVyLWJvdHRvbTogMTBweCBzb2xpZCBibGFjazsgLyogVGFpbGxlIGV0IGNvdWxldXIgZGUgbGEgcG9pbnRlIGRlIGxhIGZsw6hjaGUgKi9cbn1cbiJdfQ== */";
     /***/
   },
 
@@ -2020,6 +2025,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this._selectedScenarioEntite = new _creation_beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"]();
         this._isFiltering = false;
         this._entiteList = [];
+        this._depalcementList = [];
         this._selectScenarioModalName = "selectScenarioModal"; // recuperer position du tableau
 
         this.tableau = null;
@@ -2032,7 +2038,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this._designModal = "_designModal";
         this._feedBackModal = "_FeedBackModal";
         this._newExeperience = [];
-        this._newExam = new _beans_Examen__WEBPACK_IMPORTED_MODULE_6__["Examen"]();
+        this._newExam = new _beans_Examen__WEBPACK_IMPORTED_MODULE_6__["Examen"](); //permet de dessiner la fleche
+        // Déclarez une variable pour stocker les informations sur les flèches
+
+        this.arrows = [];
       }
 
       _createClass(HomeComponent, [{
@@ -2200,9 +2209,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function addDesign(modal) {
           var _this14 = this;
 
-          this._modalService.open(modal);
+          this._modalService.open(modal); // Parcours de la liste _scenarioSelect
 
-          var nomScenario; // Parcours de la liste _scenarioSelect
 
           this._scenarioSelect.forEach(function (scenario) {
             var exp = new _beans_Experience__WEBPACK_IMPORTED_MODULE_5__["Experience"]();
@@ -2238,16 +2246,107 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "resetFeedBack",
         value: function resetFeedBack(modal) {
-          this._newExeperience = null;
+          this._newExeperience = [];
+          this._scenarioSelect = [];
           this.resetData(modal);
+        }
+      }, {
+        key: "updateModeSequentiel",
+        value: function updateModeSequentiel(nom) {
+          this._newExam.mode = nom;
         }
       }, {
         key: "addFeedBack",
         value: function addFeedBack(modal) {
-          //creation examen
-          //ajout des exp
-          //reset
+          var _this15 = this;
+
+          this._homeService.addExamen(this._newExam).subscribe();
+
+          console.log("addexam"); //ajout des exp
+
+          this._newExeperience.forEach(function (experience) {
+            console.log("addExp", experience, _this15._newExam.nom);
+
+            _this15._homeService.addExeperience(experience, _this15._newExam.nom).subscribe();
+          }); //reset
+
+
           this.resetFeedBack(modal);
+        }
+      }, {
+        key: "playVisualisation",
+        value: function playVisualisation(scenario) {
+          var _this16 = this;
+
+          //on recherche la liste des deplacement
+          this._homeService.getDepalcementList(scenario.id).subscribe(function (res) {
+            _this16._depalcementList = res; // fonction récursive pour parcourir la liste avec un délai entre chaque itération
+
+            var processDepalcement = function processDepalcement(index) {
+              // vérifie si nous avons atteint la fin de la liste
+              if (index < _this16._depalcementList.length) {
+                var deplacement = _this16._depalcementList[index]; // parcourt la liste des entités
+
+                _this16._entiteList.forEach(function (entite) {
+                  // cherche l'entité devant être déplacée
+                  if (entite.id === deplacement.entite) {
+                    //on déplace l'entité
+                    entite.x = deplacement.endPosX;
+                    entite.y = deplacement.endPosY;
+                    console.log("entite trouvée"); // Afficher une flèche entre les entités
+                    // Convertir les pourcentages en pixels
+
+                    var startX = (entite.y + _this16.tabLeft) * window.innerWidth / 100;
+                    var startY = (entite.x + _this16.tabTop) * window.innerHeight / 100;
+                    var endX = (deplacement.endPosX + _this16.tabTop) * window.innerWidth / 100;
+                    var endY = (deplacement.endPosY + _this16.tabLeft) * window.innerHeight / 100;
+
+                    _this16.addArrow(startX, startY, endX, endY);
+                  }
+                });
+
+                console.log("deplacement"); // Appelle la fonction processDepalcement avec l'indice suivant après un délai
+
+                setTimeout(function () {
+                  processDepalcement(index + 1);
+                }, 3000); // délai de x seconde entre chaque déplacement
+              }
+            }; // démarrer le traitement avec l'indice 0
+
+
+            processDepalcement(0);
+          });
+
+          this.selectScenario(this._selectScenarioModalName, scenario);
+        } // Fonction pour ajouter une flèche entre deux points
+
+      }, {
+        key: "addArrow",
+        value: function addArrow(startX, startY, endX, endY) {
+          // Créer un élément de flèche
+          var arrow = document.createElement('div');
+          arrow.classList.add('arrow'); // Calculer la longueur et l'angle de la flèche
+
+          var length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+          var angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI); // Appliquer les styles à la flèche
+
+          arrow.style.position = 'absolute';
+          arrow.style.width = length + 'px';
+          arrow.style.height = '2px'; // Épaisseur de la flèche
+
+          arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+
+          arrow.style.left = startX + 'px';
+          arrow.style.top = startY + 'px';
+          arrow.style.transform = 'rotate(' + angle + 'deg)'; // Ajouter la flèche au DOM
+
+          document.body.append(arrow);
+        }
+      }, {
+        key: "getArrowRotation",
+        value: function getArrowRotation(startX, startY, endX, endY) {
+          var angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+          return "rotate(".concat(angle, "deg)");
         }
       }]);
 
@@ -2346,8 +2445,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "addExeperience",
-        value: function addExeperience(exp) {
-          return this._http.put("/examen/add", exp);
+        value: function addExeperience(exp, nom) {
+          return this._http.put("/examen/add?nom=".concat(nom), exp);
+        }
+      }, {
+        key: "getDepalcementList",
+        value: function getDepalcementList(id) {
+          return this._http.get("/deplacement?scenario=".concat(id));
         }
       }]);
 
@@ -2434,7 +2538,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ModalComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this15 = this;
+          var _this17 = this;
 
           // ensure id attribute exists
           if (!this.id) {
@@ -2447,7 +2551,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.element.addEventListener('click', function (el) {
             if (el.target.className === 'jw-modal') {
-              _this15.close();
+              _this17.close();
             }
           }); // add self (this modal instance) to the modal service so it's accessible from controllers
 
@@ -2706,6 +2810,91 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/@serie/beans/Serie.ts":
+  /*!***************************************!*\
+    !*** ./src/app/@serie/beans/Serie.ts ***!
+    \***************************************/
+
+  /*! exports provided: Serie */
+
+  /***/
+  function srcAppSerieBeansSerieTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Serie", function () {
+      return Serie;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var Serie = /*#__PURE__*/_createClass(function Serie() {
+      _classCallCheck(this, Serie);
+
+      this.id = 0.0;
+      this.nom = "";
+      this.mode = "";
+      this.experience = [];
+    });
+    /***/
+
+  },
+
+  /***/
+  "./src/app/@serie/beans/Utilisateur.ts":
+  /*!*********************************************!*\
+    !*** ./src/app/@serie/beans/Utilisateur.ts ***!
+    \*********************************************/
+
+  /*! exports provided: Utilisateur */
+
+  /***/
+  function srcAppSerieBeansUtilisateurTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Utilisateur", function () {
+      return Utilisateur;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var Utilisateur = /*#__PURE__*/_createClass(function Utilisateur() {
+      _classCallCheck(this, Utilisateur);
+
+      this.groupe = "";
+      this.nom = "";
+      this.prenom = "";
+      this.age = 0.0;
+      this.sex = "";
+      this.pratique = "";
+      this.pro = false;
+      this.anneeExperience = 0.0;
+      this.matche = 0.0;
+      this.entrenement = 0.0;
+      this.heure = 0.0; // public matche_tv: Number = 0.0;
+      // public matche_stade: Number = 0.0;
+      // public matche_jeu: Number = 0.0;
+    });
+    /***/
+
+  },
+
+  /***/
   "./src/app/@serie/serie.component.css":
   /*!********************************************!*\
     !*** ./src/app/@serie/serie.component.css ***!
@@ -2721,7 +2910,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL0BzZXJpZS9zZXJpZS5jb21wb25lbnQuY3NzIn0= */";
+    __webpack_exports__["default"] = ".presentation{\n    font-size: 200%;\n    color: white;\n    text-align: center;\n}\n.tableau{\n    padding: 5px;\n    border: 1px solid black;\n    border-collapse: collapse;\n    width:100%;\n}\n.ecriture{\n    font-size: 120%;\n    text-align: center;\n    color: black;\n}\n.colonne{\n    width:14%;\n}\n.colonne2{\n    width:72%;\n}\n.titre{\n    font-size: 150%;\n    color: mediumblue;\n    text-align: center;\n}\n.ecriture{\n    font-size: 120%;\n    text-align: center;\n}\n.contient{\n    font-size: 50%;\n    width: 50%;\n}\nnav.menu ul  .boutton{\n    display: inline-block;\n    text-align:center ;\n    width: 19%;\n    margin: auto;\n}\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: green;\n    text-decoration: none;\n    text-align: center;\n    display: flex;\n    font-size:35px;\n    justify-content: center;\n}\nnav.menu ul li.boutton:hover a{\n    color: green;\n    background-color: Azure;\n    transition: 0.5s all;\n}\nnav.menu ul {\n    display: flex;\n    justify-content: center; /* Centre horizontalement */\n}\n.round-button {\n    display: inline-block;\n    cursor: pointer;\n    padding: 10px;\n    border: 2px solid white;\n    border-radius: 50px;\n    font-size: 15px;\n    text-align: center;\n    color: white;\n    transition: background-color 0.3s;\n}\n.round-button:hover {\n    background-color: #3498db;\n    color: #fff;\n}\n.hidden-checkbox {\n    display: none;\n}\n.colonne_terrain2{\n    width:68%;\n}\n.tableau_joueur{\n    width:70%;\n}\n/*terrain*/\n.draggable {\n    position: absolute;\n    width: 50px;\n    height: 50px;\n    border-radius: 50%;\n    cursor: grab;\n    overflow: hidden;\n    margin: auto;\n    align-items: center;\n}\n.barreOutils{\n    text-align:center ;\n    align-content: center;\n    width:16.5%;\n}\n.numEcriture{\n    font-size: 120%;\n    color: black;\n    text-align: center;\n}\n.joueur{\n    background-color: #ffeb3b;\n}\n.ballon {\n    background-color:white;\n    width: 25px;\n    height: 25px;\n}\n.couloir{\n    background: transparent;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n.zone{\n    background: transparent;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n.tableau_terrain{\n    padding: 5%;\n    width:100%;\n    border: 1px solid black;\n    border-collapse: collapse;\n}\n.tabter {\n    border: 1px solid white;\n    height: 40vh;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQHNlcmllL3NlcmllLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxlQUFlO0lBQ2YsWUFBWTtJQUNaLGtCQUFrQjtBQUN0QjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHVCQUF1QjtJQUN2Qix5QkFBeUI7SUFDekIsVUFBVTtBQUNkO0FBQ0E7SUFDSSxlQUFlO0lBQ2Ysa0JBQWtCO0lBQ2xCLFlBQVk7QUFDaEI7QUFDQTtJQUNJLFNBQVM7QUFDYjtBQUNBO0lBQ0ksU0FBUztBQUNiO0FBQ0E7SUFDSSxlQUFlO0lBQ2YsaUJBQWlCO0lBQ2pCLGtCQUFrQjtBQUN0QjtBQUVBO0lBQ0ksZUFBZTtJQUNmLGtCQUFrQjtBQUN0QjtBQUVBO0lBQ0ksY0FBYztJQUNkLFVBQVU7QUFDZDtBQUNBO0lBQ0kscUJBQXFCO0lBQ3JCLGtCQUFrQjtJQUNsQixVQUFVO0lBQ1YsWUFBWTtBQUNoQjtBQUVBO0lBQ0ksWUFBWTtJQUNaLHVCQUF1QjtJQUN2QixxQkFBcUI7SUFDckIsa0JBQWtCO0lBQ2xCLGFBQWE7SUFDYixjQUFjO0lBQ2QsdUJBQXVCO0FBQzNCO0FBQ0E7SUFDSSxZQUFZO0lBQ1osdUJBQXVCO0lBQ3ZCLG9CQUFvQjtBQUN4QjtBQUNBO0lBQ0ksYUFBYTtJQUNiLHVCQUF1QixFQUFFLDJCQUEyQjtBQUN4RDtBQUNBO0lBQ0kscUJBQXFCO0lBQ3JCLGVBQWU7SUFDZixhQUFhO0lBQ2IsdUJBQXVCO0lBQ3ZCLG1CQUFtQjtJQUNuQixlQUFlO0lBQ2Ysa0JBQWtCO0lBQ2xCLFlBQVk7SUFDWixpQ0FBaUM7QUFDckM7QUFDQTtJQUNJLHlCQUF5QjtJQUN6QixXQUFXO0FBQ2Y7QUFFQTtJQUNJLGFBQWE7QUFDakI7QUFFQTtJQUNJLFNBQVM7QUFDYjtBQUVBO0lBQ0ksU0FBUztBQUNiO0FBQ0EsVUFBVTtBQUNWO0lBQ0ksa0JBQWtCO0lBQ2xCLFdBQVc7SUFDWCxZQUFZO0lBQ1osa0JBQWtCO0lBQ2xCLFlBQVk7SUFDWixnQkFBZ0I7SUFDaEIsWUFBWTtJQUNaLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksa0JBQWtCO0lBQ2xCLHFCQUFxQjtJQUNyQixXQUFXO0FBQ2Y7QUFFQTtJQUNJLGVBQWU7SUFDZixZQUFZO0lBQ1osa0JBQWtCO0FBQ3RCO0FBQ0E7SUFDSSx5QkFBeUI7QUFDN0I7QUFDQTtJQUNJLHNCQUFzQjtJQUN0QixXQUFXO0lBQ1gsWUFBWTtBQUNoQjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLHVCQUF1QjtJQUN2Qix5QkFBeUI7QUFDN0I7QUFDQTtJQUNJLHVCQUF1QjtJQUN2Qix1QkFBdUI7SUFDdkIseUJBQXlCO0FBQzdCO0FBQ0E7SUFDSSxXQUFXO0lBQ1gsVUFBVTtJQUNWLHVCQUF1QjtJQUN2Qix5QkFBeUI7QUFDN0I7QUFDQTtJQUNJLHVCQUF1QjtJQUN2QixZQUFZO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvQHNlcmllL3NlcmllLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucHJlc2VudGF0aW9ue1xuICAgIGZvbnQtc2l6ZTogMjAwJTtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLnRhYmxlYXV7XG4gICAgcGFkZGluZzogNXB4O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gICAgd2lkdGg6MTAwJTtcbn1cbi5lY3JpdHVyZXtcbiAgICBmb250LXNpemU6IDEyMCU7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGNvbG9yOiBibGFjaztcbn1cbi5jb2xvbm5le1xuICAgIHdpZHRoOjE0JTtcbn1cbi5jb2xvbm5lMntcbiAgICB3aWR0aDo3MiU7XG59XG4udGl0cmV7XG4gICAgZm9udC1zaXplOiAxNTAlO1xuICAgIGNvbG9yOiBtZWRpdW1ibHVlO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmVjcml0dXJle1xuICAgIGZvbnQtc2l6ZTogMTIwJTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5jb250aWVudHtcbiAgICBmb250LXNpemU6IDUwJTtcbiAgICB3aWR0aDogNTAlO1xufVxubmF2Lm1lbnUgdWwgIC5ib3V0dG9ue1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB0ZXh0LWFsaWduOmNlbnRlciA7XG4gICAgd2lkdGg6IDE5JTtcbiAgICBtYXJnaW46IGF1dG87XG59XG5cbm5hdi5tZW51IHVsIGxpLmJvdXR0b24gYXtcbiAgICBjb2xvciA6QXp1cmU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZvbnQtc2l6ZTozNXB4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICAgIGNvbG9yOiBncmVlbjtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBBenVyZTtcbiAgICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcbn1cbm5hdi5tZW51IHVsIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyOyAvKiBDZW50cmUgaG9yaXpvbnRhbGVtZW50ICovXG59XG4ucm91bmQtYnV0dG9uIHtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG4gICAgYm9yZGVyLXJhZGl1czogNTBweDtcbiAgICBmb250LXNpemU6IDE1cHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuM3M7XG59XG4ucm91bmQtYnV0dG9uOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzQ5OGRiO1xuICAgIGNvbG9yOiAjZmZmO1xufVxuXG4uaGlkZGVuLWNoZWNrYm94IHtcbiAgICBkaXNwbGF5OiBub25lO1xufVxuXG4uY29sb25uZV90ZXJyYWluMntcbiAgICB3aWR0aDo2OCU7XG59XG5cbi50YWJsZWF1X2pvdWV1cntcbiAgICB3aWR0aDo3MCU7XG59XG4vKnRlcnJhaW4qL1xuLmRyYWdnYWJsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHdpZHRoOiA1MHB4O1xuICAgIGhlaWdodDogNTBweDtcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgY3Vyc29yOiBncmFiO1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgbWFyZ2luOiBhdXRvO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG4uYmFycmVPdXRpbHN7XG4gICAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICAgIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcbiAgICB3aWR0aDoxNi41JTtcbn1cblxuLm51bUVjcml0dXJle1xuICAgIGZvbnQtc2l6ZTogMTIwJTtcbiAgICBjb2xvcjogYmxhY2s7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmpvdWV1cntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZlYjNiO1xufVxuLmJhbGxvbiB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjp3aGl0ZTtcbiAgICB3aWR0aDogMjVweDtcbiAgICBoZWlnaHQ6IDI1cHg7XG59XG4uY291bG9pcntcbiAgICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xufVxuLnpvbmV7XG4gICAgYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi50YWJsZWF1X3RlcnJhaW57XG4gICAgcGFkZGluZzogNSU7XG4gICAgd2lkdGg6MTAwJTtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xufVxuLnRhYnRlciB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgd2hpdGU7XG4gICAgaGVpZ2h0OiA0MHZoO1xufVxuIl19 */";
     /***/
   },
 
@@ -2756,10 +2945,270 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
 
-    var SerieComponent = /*#__PURE__*/_createClass(function SerieComponent() {
-      _classCallCheck(this, SerieComponent);
-    });
+
+    var _creation_beans_Scenario__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../@creation/beans/Scenario */
+    "./src/app/@creation/beans/Scenario.ts");
+    /* harmony import */
+
+
+    var _modal_modal_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../@modal/modal.service */
+    "./src/app/@modal/modal.service.ts");
+    /* harmony import */
+
+
+    var _serie_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ./serie.service */
+    "./src/app/@serie/serie.service.ts");
+    /* harmony import */
+
+
+    var _beans_Serie__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ./beans/Serie */
+    "./src/app/@serie/beans/Serie.ts");
+    /* harmony import */
+
+
+    var _beans_Utilisateur__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ./beans/Utilisateur */
+    "./src/app/@serie/beans/Utilisateur.ts");
+
+    var SerieComponent = /*#__PURE__*/function () {
+      function SerieComponent(_serieService, _modalService) {
+        _classCallCheck(this, SerieComponent);
+
+        this._serieService = _serieService;
+        this._modalService = _modalService;
+        this._isFiltering = false;
+        this._examList = [];
+        this._serieList = [];
+        this._experienceList = [];
+        this._experience = null; //ajoute l'utilisateur
+
+        this._simulationModal = "_simulationModal";
+        this._veridModal = "_veridModal";
+        this._newUtilisateur = new _beans_Utilisateur__WEBPACK_IMPORTED_MODULE_6__["Utilisateur"]();
+        this._isLancer = false; // lancer la simulation
+
+        this._serieSelect = new _beans_Serie__WEBPACK_IMPORTED_MODULE_5__["Serie"]();
+        this._depalcementList = [];
+        this._selectedScenario = new _creation_beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"](); //recuperer position du tableau
+
+        this.tableau = null;
+        this.tabTop = 0.0;
+        this.tabLeft = 0.0; //recup position tableau
+
+        this.positionPercentage = this.getPositionPercentage(this.tableau);
+      }
+
+      _createClass(SerieComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this18 = this;
+
+          this._serieService.getSerieList().subscribe(function (res) {
+            _this18._examList = res;
+
+            _this18._examList.forEach(function (examSerie) {
+              var serie = {
+                id: examSerie.id,
+                nom: examSerie.nom,
+                mode: examSerie.mode,
+                experience: []
+              };
+              examSerie.experience.forEach(function (experienceId) {
+                _this18.getExperience(experienceId, serie);
+              });
+              console.log("ngon serie:", serie);
+
+              _this18._serieList.push(serie);
+            });
+
+            console.log("ngon :", _this18._serieList);
+          });
+        }
+      }, {
+        key: "orderBy",
+        value: function orderBy(type) {
+          this._examList.sort(function (a, b) {
+            if (isNaN(a[type])) {
+              return a[type].toLowerCase() < b[type].toLowerCase() ? 1 : -1;
+            } else {
+              return Number(a[type]) < Number(b[type]) ? 1 : -1;
+            }
+          });
+        }
+      }, {
+        key: "filterBy",
+        value: function filterBy(type, contain) {
+          this._examList = this._examList.filter(function (produit) {
+            return produit[type].includes(contain.toLowerCase());
+          });
+        }
+      }, {
+        key: "resetFilter",
+        value: function resetFilter() {
+          var _this19 = this;
+
+          this._serieService.getSerieList().subscribe(function (res) {
+            _this19._examList = res;
+            _this19._isFiltering = false;
+          });
+        }
+      }, {
+        key: "getExperience",
+        value: function getExperience(id, serie) {
+          this._serieService.getExperience(id).subscribe(function (res) {
+            serie.experience.push(res);
+            console.log("get test", res);
+          });
+        }
+      }, {
+        key: "nb_couloir",
+        value: function nb_couloir(nombreDeCouloirs) {
+          return Array.from({
+            length: nombreDeCouloirs
+          }, function (_, index) {
+            return index + 1;
+          });
+        } //modal
+
+      }, {
+        key: "resetData",
+        value: function resetData(modal) {
+          this._modalService.close(modal);
+        }
+      }, {
+        key: "openData",
+        value: function openData(modal) {
+          this._modalService.open(modal);
+        }
+      }, {
+        key: "addUser",
+        value: function addUser(modal) {
+          this.openData(modal);
+          this.resetData(this._simulationModal);
+          this._isLancer = false;
+        } //update info user
+
+      }, {
+        key: "updateSex",
+        value: function updateSex(sex) {
+          this._newUtilisateur.sex = sex;
+        }
+      }, {
+        key: "updatePro",
+        value: function updatePro(bool) {
+          this._newUtilisateur.pro = bool;
+        } //open simulation
+
+      }, {
+        key: "openSimu",
+        value: function openSimu(modal, serie) {
+          this.openData(modal);
+          this._serieSelect = serie;
+        }
+      }, {
+        key: "getPositionPercentage",
+        value: function getPositionPercentage(element) {
+          if (!element) return {
+            top: 0,
+            left: 0
+          };
+          var rect = element.getBoundingClientRect();
+          var windowWidth = window.innerWidth;
+          var windowHeight = window.innerHeight;
+          var popupScreenX = window.screenX || window.screenLeft || 0;
+          var popupScreenY = window.screenY || window.screenTop || 0;
+          console.log("Position de page par rapport à l'écran : ", popupScreenX, popupScreenY);
+          console.log("Position du popup par rapport à l'écran : ", popupScreenX, popupScreenY);
+          console.log("fonction get top :", rect.top / windowHeight * 100, "left :", rect.left / windowWidth * 100);
+          return {
+            top: rect.top / windowHeight * 100,
+            left: rect.left / windowWidth * 100
+          };
+        } //genere les entite
+
+      }, {
+        key: "genEntite",
+        value: function genEntite(id) {
+          var _this20 = this;
+
+          this._serieService.getEntiteList(id).subscribe(function (res) {
+            return _this20._entiteList = res;
+          });
+        } //selectionner le scenario
+
+      }, {
+        key: "selectScenario",
+        value: function selectScenario(scenario) {
+          this._selectedScenario = scenario;
+          this.genEntite(scenario.id); //recup position tableau
+
+          this.tableau = document.getElementById('tableau_terrain');
+          this.positionPercentage = this.getPositionPercentage(this.tableau);
+          this.tabLeft = this.positionPercentage.left;
+          this.tabTop = this.positionPercentage.top;
+        } //lancer la visualisation
+
+      }, {
+        key: "playVisualisation",
+        value: function playVisualisation(scenario) {
+          var _this21 = this;
+
+          //on recherche la liste des deplacement
+          this._serieService.getDepalcementList(scenario.id).subscribe(function (res) {
+            _this21._depalcementList = res; // fonction récursive pour parcourir la liste avec un délai entre chaque itération
+
+            var processDepalcement = function processDepalcement(index) {
+              // vérifie si nous avons atteint la fin de la liste
+              if (index < _this21._depalcementList.length) {
+                var deplacement = _this21._depalcementList[index]; // parcourt la liste des entités
+
+                _this21._entiteList.forEach(function (entite) {
+                  // cherche l'entité devant être déplacée
+                  if (entite.id === deplacement.entite) {
+                    //on déplace l'entité
+                    entite.x = deplacement.endPosX;
+                    entite.y = deplacement.endPosY;
+                    console.log("entite trouvée");
+                  }
+                });
+
+                console.log("deplacement"); // Appelle la fonction processDepalcement avec l'indice suivant après un délai
+
+                setTimeout(function () {
+                  processDepalcement(index + 1);
+                }, 2000); // délai de x seconde entre chaque déplacement
+              }
+            }; // démarrer le traitement avec l'indice 0
+
+
+            processDepalcement(0);
+          });
+
+          this.selectScenario(scenario);
+        }
+      }, {
+        key: "lance_simu",
+        value: function lance_simu() {
+          this._isLancer = true;
+        }
+      }]);
+
+      return SerieComponent;
+    }();
+
+    SerieComponent.ctorParameters = function () {
+      return [{
+        type: _serie_service__WEBPACK_IMPORTED_MODULE_4__["SerieService"]
+      }, {
+        type: _modal_modal_service__WEBPACK_IMPORTED_MODULE_3__["ModalService"]
+      }];
+    };
 
     SerieComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'serie',
@@ -2811,11 +3260,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! @angular/common/http */
     "./node_modules/@angular/common/fesm2015/http.js");
 
-    var SerieService = /*#__PURE__*/_createClass(function SerieService(_http) {
-      _classCallCheck(this, SerieService);
+    var SerieService = /*#__PURE__*/function () {
+      function SerieService(_http) {
+        _classCallCheck(this, SerieService);
 
-      this._http = _http;
-    });
+        this._http = _http;
+      }
+
+      _createClass(SerieService, [{
+        key: "getSerieList",
+        value: function getSerieList() {
+          return this._http.get("/examen/all");
+        }
+      }, {
+        key: "getExperience",
+        value: function getExperience(id) {
+          return this._http.get("/experience/" + id);
+        }
+      }, {
+        key: "getDepalcementList",
+        value: function getDepalcementList(id) {
+          return this._http.get("/deplacement?scenario=".concat(id));
+        }
+      }, {
+        key: "getEntiteList",
+        value: function getEntiteList(id) {
+          return this._http.get('/entite/' + id);
+        }
+      }]);
+
+      return SerieService;
+    }();
 
     SerieService.ctorParameters = function () {
       return [{

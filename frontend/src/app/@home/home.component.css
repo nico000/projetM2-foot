@@ -4,6 +4,11 @@
   color: white;
   text-align: center;
 }
+.mode{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
 .tableau{
   padding: 5px;
   border: 1px solid black;
@@ -27,6 +32,7 @@
 .ecriture{
   font-size: 120%;
   text-align: center;
+  color: black;
 }
 
 .contient{
@@ -76,14 +82,15 @@ nav.menu ul {
   text-align: center;
 }
 .colonne_terrain{
-  width:10%;
+  width:32%;
 }
 .colonne_terrain2{
-  width:90%;
+  width:68%;
 }
 .tableau_joueur{
   width:100%;
 }
+
 
 /*terrain*/
 .draggable {
@@ -116,12 +123,12 @@ nav.menu ul {
   height: 25px;
 }
 .couloir{
-  background: forestgreen;
+  background: transparent;
   border: 1px solid black;
   border-collapse: collapse;
 }
 .zone{
-  background: forestgreen;
+  background: transparent;
   border: 1px solid black;
   border-collapse: collapse;
 }
@@ -189,4 +196,20 @@ nav.menu ul {
 
 .hidden-checkbox {
   display: none;
+}
+.arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid blue;
+  border-right: 10px solid blue;
+}
+
+.arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 9999;
+  color: black;
+  border-bottom: 10px solid black; /* Taille et couleur de la pointe de la flèche */
 }

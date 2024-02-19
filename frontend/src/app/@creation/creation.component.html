@@ -1,7 +1,7 @@
 <table class="tableau" >
     <tr>
         <td class=" colonne" > <!-- parametre  -->
-            <h1 class="presentation">Ajout d'un Scenario</h1>
+            <h1 class="presentation">Ajout d'un test</h1>
             <div class="titre">
                 nom:
                 <input type="text" [(ngModel)]="_newScenario.nom"/>
@@ -66,9 +66,11 @@
 
 
         <td class="colonne2" ><!-- terrain -->
+            <div *ngIf="is_placement" class="mode">Ajout des entités</div>
+            <div *ngIf="is_deplacement" class="mode">Ajout deplacement   ::   Action={{ numAction }}</div>
             <table class="tableau_terrain">
-                <div *ngIf="is_placement" class="mode">Ajout des entités</div>
-                <div *ngIf="is_deplacement" class="mode">Ajout deplacement</div>
+<!--                <div *ngIf="is_placement" class="mode">Ajout des entités</div>-->
+<!--                <div *ngIf="is_deplacement" class="mode">Ajout deplacement :  action={{ numAction }}</div>-->
                 <tr>
                     <td class="barreOutils">
                         <div *ngIf="is_placement" class="Ecriture"><button (click)="delEntite()" class="boutton">retour placement</button></div>
@@ -92,13 +94,14 @@
                     </td>
                     <br><br><br><br><br>
                 </tr></table><br>
-            <table id="tableau_terrain" class="tableau_terrain tabter" (click)="addDeplacement($event)">
+            <div style="background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+            <table id="tableau_terrain" class="tableau_terrain tabter" (dblclick)="addDeplacement($event)">
                 <tr  *ngFor="let couloir of nb_couloir(lastCouloir); let odd = odd" class="couloir">
                     <td  *ngFor="let zone of nb_couloir(lastZone)" class="zone"
                          [style.background-color]="lastCouleur === 'blanc' ? 'white' : 'initial'">
                         <div  *ngFor="let entite of _entiteList" class="draggable"
                              [style.left.%]="entite.y+this.tabLeft" [style.top.%]="entite.x+tabTop"
-                              (contextmenu)="selectEntite(entite)">
+                              (click)="selectEntite(entite)">
                             <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
                                 <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">
                                     {{ entite.numero }}
@@ -112,7 +115,9 @@
                         </div>
                     </td>
                 </tr>
-            </table><br>
+            </table>
+            </div>
+            <br>
             <table>
                 <td class="colonne">
                     <nav class="menu">

@@ -144,7 +144,7 @@
 
     <div *ngIf="_newUtilisateur.pro===true" class="titre">
         Nombre entrainements/mois :
-        <input type="text" [(ngModel)]="_newUtilisateur.entrenement"/>
+        <input type="text" [(ngModel)]="_newUtilisateur.entrainement"/>
     </div><br>
 
     <div *ngIf="_newUtilisateur.pro===true" class="titre">
@@ -172,7 +172,8 @@
             <li class="boutton" style="width: 50%"><a *ngIf="_isLancer===false" (click)="lance_simu()">Lancer</a></li>
         </ul>
     </nav>
-
+    <div *ngIf="_isLancer" class="ecriture">Visualisation : {{_nbVisualisation}}</div>
+    <div *ngIf="_isLancer" class="ecriture">action : {{_nbAction}}</div>
     <table class="tableau_joueur">
         <tr>
             <td class="colonne_terrain2">

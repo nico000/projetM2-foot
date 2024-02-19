@@ -253,7 +253,7 @@ export class HomeComponent {
                                 const endX = (deplacement.endPosX + this.tabTop) * window.innerWidth / 100;
                                 const endY = (deplacement.endPosY + this.tabLeft) * window.innerHeight / 100;
 
-                                this.addArrow(startX, startY, endX, endY);
+                                //this.addArrow(startX, startY, endX, endY);
 
                             }
                         });

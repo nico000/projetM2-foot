@@ -191,7 +191,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des Series : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom serie\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\">\n            Scenario\n        </td>\n        <td class=\"titre colonne\">\n            Type feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Frequence feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de zone\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de couloire\n        </td>\n        <td class=\"titre colonne\">\n            //\n        </td>\n    </tr>\n</table>\n<table class=\"tableau\">\n    <tr class=\"tableau\" *ngFor=\"let serie of _serieList\" (play)=\"orderBy('nom')\" >\n        <td class=\"ecriture colonne\">\n            {{serie.nom}}\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture \" >\n                    {{exp.scenario}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.typeFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.freqFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_zone}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_couloir}}\n                </div>\n            </div>\n        </td>\n        <td class=\" colonne ecriture\">\n            <button (click)=\"openSimu(_simulationModal,serie)\">Lancer serie</button>\n        </td>\n    </tr>\n</table>\n\n<!--modal entrer des info perso-->\n<jw-modal id=\"{{_simulationModal}}\" >\n    <h1 class=\"presentation\">Information personnel</h1>\n\n    <div class=\"titre\">\n        Groupe :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.groupe\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Nom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.nom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Prenom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.prenom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Age :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.age\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Sex :\n        <input type=\"checkbox\" id=\"fille\" class=\"hidden-checkbox\" (click)=\"updateSex('fille')\">\n        <label for=\"fille\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'fille' ? '#3498db' : 'initial'\">Fille</label>\n\n        <input type=\"checkbox\" id=\"garcon\" class=\"hidden-checkbox\" (click)=\"updateSex('garcon')\">\n        <label for=\"garcon\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'garcon' ? '#3498db' : 'initial'\">Garcon</label>\n    </div><br>\n\n    <div class=\"titre\">\n        Pratique sportive :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.pratique\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Etes-vous profesionelle :\n        <input type=\"checkbox\" id=\"oui\" class=\"hidden-checkbox\" (click)=\"updatePro(true)\">\n        <label for=\"oui\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === true ? '#3498db' : 'initial'\">oui</label>\n\n        <input type=\"checkbox\" id=\"non\" class=\"hidden-checkbox\" (click)=\"updatePro(false)\">\n        <label for=\"non\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === false ? '#3498db' : 'initial'\">non</label>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'année d'experience :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.anneeExperience\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre matches/an :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.matche\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre entrainements/mois :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.entrenement\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'heure pratique/semaine :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.heure\"/>\n    </div><br>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetData(_simulationModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addUser(_veridModal)\">Valider</a>\n            </li>\n        </ul>\n    </nav><br>\n</jw-modal>\n\n\n<jw-modal id=\"{{_veridModal}}\" >\n    <p class=\"presentation\">Cliquer sur lancer quand vous etes pret</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a *ngIf=\"_isLancer===false\" (click)=\"lance_simu()\">Lancer</a></li>\n        </ul>\n    </nav>\n\n    <table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                    <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\">\n                        <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                            <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                                 [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                                <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                      [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                    <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                        {{ entite.numero }}\n                                    </div>\n                                    <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                        {{ entite.numero }}\n                                    </div>\n                                </div>\n                            </td>\n                        </tr>\n                    </table></div>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n";
+    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des Series : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom serie\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\">\n            Scenario\n        </td>\n        <td class=\"titre colonne\">\n            Type feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Frequence feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de zone\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de couloire\n        </td>\n        <td class=\"titre colonne\">\n            //\n        </td>\n    </tr>\n</table>\n<table class=\"tableau\">\n    <tr class=\"tableau\" *ngFor=\"let serie of _serieList\" (play)=\"orderBy('nom')\" >\n        <td class=\"ecriture colonne\">\n            {{serie.nom}}\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture \" >\n                    {{exp.scenario}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.typeFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.freqFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_zone}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_couloir}}\n                </div>\n            </div>\n        </td>\n        <td class=\" colonne ecriture\">\n            <button (click)=\"openSimu(_simulationModal,serie)\">Lancer serie</button>\n        </td>\n    </tr>\n</table>\n\n<!--modal entrer des info perso-->\n<jw-modal id=\"{{_simulationModal}}\" >\n    <h1 class=\"presentation\">Information personnel</h1>\n\n    <div class=\"titre\">\n        Groupe :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.groupe\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Nom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.nom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Prenom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.prenom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Age :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.age\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Sex :\n        <input type=\"checkbox\" id=\"fille\" class=\"hidden-checkbox\" (click)=\"updateSex('fille')\">\n        <label for=\"fille\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'fille' ? '#3498db' : 'initial'\">Fille</label>\n\n        <input type=\"checkbox\" id=\"garcon\" class=\"hidden-checkbox\" (click)=\"updateSex('garcon')\">\n        <label for=\"garcon\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'garcon' ? '#3498db' : 'initial'\">Garcon</label>\n    </div><br>\n\n    <div class=\"titre\">\n        Pratique sportive :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.pratique\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Etes-vous profesionelle :\n        <input type=\"checkbox\" id=\"oui\" class=\"hidden-checkbox\" (click)=\"updatePro(true)\">\n        <label for=\"oui\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === true ? '#3498db' : 'initial'\">oui</label>\n\n        <input type=\"checkbox\" id=\"non\" class=\"hidden-checkbox\" (click)=\"updatePro(false)\">\n        <label for=\"non\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === false ? '#3498db' : 'initial'\">non</label>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'année d'experience :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.anneeExperience\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre matches/an :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.matche\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre entrainements/mois :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.entrainement\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'heure pratique/semaine :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.heure\"/>\n    </div><br>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetData(_simulationModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addUser(_veridModal)\">Valider</a>\n            </li>\n        </ul>\n    </nav><br>\n</jw-modal>\n\n\n<jw-modal id=\"{{_veridModal}}\" >\n    <p class=\"presentation\">Cliquer sur lancer quand vous etes pret</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a *ngIf=\"_isLancer===false\" (click)=\"lance_simu()\">Lancer</a></li>\n        </ul>\n    </nav>\n    <div *ngIf=\"_isLancer\" class=\"ecriture\">Visualisation : {{_nbVisualisation}}</div>\n    <div *ngIf=\"_isLancer\" class=\"ecriture\">action : {{_nbAction}}</div>\n    <table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                    <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\">\n                        <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                            <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                                 [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                                <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                      [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                    <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                        {{ entite.numero }}\n                                    </div>\n                                    <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                        {{ entite.numero }}\n                                    </div>\n                                </div>\n                            </td>\n                        </tr>\n                    </table></div>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n";
     /***/
   },
 
@@ -2299,9 +2299,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     var startX = (entite.y + _this16.tabLeft) * window.innerWidth / 100;
                     var startY = (entite.x + _this16.tabTop) * window.innerHeight / 100;
                     var endX = (deplacement.endPosX + _this16.tabTop) * window.innerWidth / 100;
-                    var endY = (deplacement.endPosY + _this16.tabLeft) * window.innerHeight / 100;
-
-                    _this16.addArrow(startX, startY, endX, endY);
+                    var endY = (deplacement.endPosY + _this16.tabLeft) * window.innerHeight / 100; //this.addArrow(startX, startY, endX, endY);
                   }
                 });
 
@@ -2885,10 +2883,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.pro = false;
       this.anneeExperience = 0.0;
       this.matche = 0.0;
-      this.entrenement = 0.0;
-      this.heure = 0.0; // public matche_tv: Number = 0.0;
-      // public matche_stade: Number = 0.0;
-      // public matche_jeu: Number = 0.0;
+      this.entrainement = 0.0;
+      this.heure = 0.0;
     });
     /***/
 
@@ -2995,7 +2991,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this._serieSelect = new _beans_Serie__WEBPACK_IMPORTED_MODULE_5__["Serie"]();
         this._depalcementList = [];
-        this._selectedScenario = new _creation_beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"](); //recuperer position du tableau
+        this._selectedScenario = new _creation_beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"]();
+        this._scenarioLancer = 0;
+        this._nbVisualisation = 1;
+        this._nbAction = 1; //recuperer position du tableau
 
         this.tableau = null;
         this.tabTop = 0.0;
@@ -3146,7 +3145,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "selectScenario",
         value: function selectScenario(scenario) {
           this._selectedScenario = scenario;
-          this.genEntite(scenario.id); //recup position tableau
+          this.genEntite(scenario.id);
+          this._nbAction = 1; //recup position tableau
 
           this.tableau = document.getElementById('tableau_terrain');
           this.positionPercentage = this.getPositionPercentage(this.tableau);
@@ -3164,7 +3164,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this21._depalcementList = res; // fonction récursive pour parcourir la liste avec un délai entre chaque itération
 
             var processDepalcement = function processDepalcement(index) {
-              // vérifie si nous avons atteint la fin de la liste
+              _this21._nbAction++; // vérifie si nous avons atteint la fin de la liste
+
               if (index < _this21._depalcementList.length) {
                 var deplacement = _this21._depalcementList[index]; // parcourt la liste des entités
 
@@ -3193,9 +3194,41 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.selectScenario(scenario);
         }
       }, {
+        key: "lance_visu",
+        value: function lance_visu() {
+          var _this22 = this;
+
+          // Appel à getScenarioId pour obtenir l'objet Scenario avant de lancer la visualisation
+          this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(function (scenario) {
+            _this22.playVisualisation(scenario);
+          });
+        }
+      }, {
         key: "lance_simu",
         value: function lance_simu() {
+          var _this23 = this;
+
           this._isLancer = true;
+          var nbVisualisation = this._serieSelect.experience[this._scenarioLancer].visuFeedback;
+          var visualisationCounter = 0;
+          this._nbVisualisation = 1;
+
+          var lanceVisuWithDelay = function lanceVisuWithDelay() {
+            if (visualisationCounter < nbVisualisation) {
+              _this23.lance_visu(); // Appel de la fonction lance_visu()
+              // Incrémentation du compteur et vérification si toutes les visualisations ont été effectuées
+
+
+              visualisationCounter++;
+              _this23._nbVisualisation++;
+
+              if (visualisationCounter < nbVisualisation) {
+                setTimeout(lanceVisuWithDelay, 2000); // Attendre 2 secondes avant la prochaine visualisation
+              }
+            }
+          };
+
+          lanceVisuWithDelay(); // Lancer le premier appel de la visualisation avec le délai
         }
       }]);
 
@@ -3286,6 +3319,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getEntiteList",
         value: function getEntiteList(id) {
           return this._http.get('/entite/' + id);
+        }
+      }, {
+        key: "getScenarioId",
+        value: function getScenarioId(id) {
+          return this._http.get("/scenario/" + id);
         }
       }]);
 

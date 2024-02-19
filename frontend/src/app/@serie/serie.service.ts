@@ -29,7 +29,7 @@ export class SerieService {
     public getEntiteList(id:Number): Observable<Entite[]> {
         return this._http.get<Entite[]>('/entite/'+id);
     }
-    // public getScenarioId(id:Number):Observable<Scenario> {
-    //     return this._http.get<Scenario>(`/scenario?nom=${nom}`);
-    // }
+    public getScenarioId(id:Number):Observable<Scenario> {
+        return this._http.get<Scenario>(`/scenario/`+id);
+    }
 }

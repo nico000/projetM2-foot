@@ -116,6 +116,10 @@ export class SerieComponent {
     protected _depalcementList: Deplacement[]= [];
     protected _entiteList: Entite[];
     protected _selectedScenario:Scenario=new Scenario();
+    protected _scenarioLancer:number=0;
+    protected _nbVisualisation:number=1;
+    protected _nbAction :number=1;
+    protected _finvisu:boolean=true;
 
     //recuperer position du tableau
     protected tableau: HTMLTableElement | null = null;
@@ -159,6 +163,7 @@ export class SerieComponent {
     selectScenario(scenario:Scenario ):void {
         this._selectedScenario =scenario;
         this.genEntite(scenario.id);
+        this._nbAction=1;
 
         //recup position tableau
         this.tableau =document.getElementById('tableau_terrain')as HTMLTableElement;
@@ -168,7 +173,7 @@ export class SerieComponent {
         this.tabTop=this.positionPercentage.top;
     }
     //lancer la visualisation
-    playVisualisation(scenario:Scenario) {
+    playVisualisation(scenario: Scenario) {
         //on recherche la liste des deplacement
         this._serieService.getDepalcementList(scenario.id).subscribe(
             res => {
@@ -176,6 +181,7 @@ export class SerieComponent {
 
                 // fonction récursive pour parcourir la liste avec un délai entre chaque itération
                 const processDepalcement = (index: number) => {
+                    this._nbAction++;
                     // vérifie si nous avons atteint la fin de la liste
                     if (index < this._depalcementList.length) {
                         const deplacement = this._depalcementList[index];
@@ -194,6 +200,8 @@ export class SerieComponent {
                         setTimeout(() => {
                             processDepalcement(index + 1);
                         }, 2000); // délai de x seconde entre chaque déplacement
+                    } else {
+                        this._finvisu = true; // Définit la variable  sur true lorsque le traitement est terminé
                     }
                 };
                 // démarrer le traitement avec l'indice 0
@@ -203,9 +211,23 @@ export class SerieComponent {
         this.selectScenario(scenario);
     }
 
-
-    lance_simu(){
-        this._isLancer=true;
+    lance_visu(){
+        this._finvisu=false;
+        // Appel à getScenarioId pour obtenir l'objet Scenario avant de lancer la visualisation
+        this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(scenario => {
+            this.playVisualisation(scenario);
+        });
     }
+    lance_simu() {
+        this._isLancer = true;
+        while(this._nbVisualisation<=this._serieSelect.experience[this._scenarioLancer].visuFeedback){
+            if (this._finvisu===true){
+                this.lance_visu();
+                console.log("visu");
+            }
+        }
+    }
+
+
 
 }

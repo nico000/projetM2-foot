@@ -1,10 +1,8 @@
 package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.DeplacementRequestCreate;
-import com.projetM2_foot.api.request.ResultatDeplacementRequestCreate;
 import com.projetM2_foot.api.response.DeplacementResponse;
 import com.projetM2_foot.entity.Deplacement;
-import com.projetM2_foot.entity.ResultatDeplacement;
 import com.projetM2_foot.service.EntiteService;
 import com.projetM2_foot.service.ScenarioService;
 
@@ -36,23 +34,23 @@ public class DeplacementMapper {
                 .build();
     }
 
-    public ResultatDeplacement toResEntity (ResultatDeplacementRequestCreate request){
-
-        return ResultatDeplacement.builder()
-                .entite(entiteService.getEntite(request.getEntite()))
-                .numAction(request.getNumAction())
-                .startPosX(request.getStartPosX())
-                .startPosY(request.getStartPosY())
-                .endPosX(request.getEndPosX())
-                .endPosY(request.getEndPosY())
-                .build();
-    }
-
-    public List<ResultatDeplacement> toResEntityAll (List<ResultatDeplacementRequestCreate> listEntity){
-        return listEntity.stream()
-                .map(this::toResEntity)
-                .collect(Collectors.toList());
-    }
+//    public ResultatDeplacement toResEntity (ResultatDeplacementRequestCreate request){
+//
+//        return ResultatDeplacement.builder()
+//                .entite(entiteService.getEntite(request.getEntite()))
+//                .numAction(request.getNumAction())
+//                .startPosX(request.getStartPosX())
+//                .startPosY(request.getStartPosY())
+//                .endPosX(request.getEndPosX())
+//                .endPosY(request.getEndPosY())
+//                .build();
+//    }
+//
+//    public List<ResultatDeplacement> toResEntityAll (List<ResultatDeplacementRequestCreate> listEntity){
+//        return listEntity.stream()
+//                .map(this::toResEntity)
+//                .collect(Collectors.toList());
+//    }
 
 
     public DeplacementResponse toDto (Deplacement entity){

@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {Entite} from "../@creation/beans/Entite";
 import {Examen} from "./beans/Examen";
 import {Experience} from "./beans/Experience";
+import {Deplacement} from "./beans/Deplacement";
 
 
 
@@ -34,8 +35,12 @@ export class HomeService {
         return this._http.post<Examen>("/examen",examen);
     }
 
-    public addExeperience (exp:Experience):Observable<Examen>{
-        return this._http.put<Examen>("/examen/add",exp);
+    public addExeperience (exp:Experience,nom:String):Observable<Examen>{
+        return this._http.put<Examen>(`/examen/add?nom=${nom}`,exp);
+    }
+
+    public getDepalcementList(id:Number): Observable<Deplacement[]> {
+        return this._http.get<Deplacement[]>(`/deplacement?scenario=${id}`);
     }
 
 }

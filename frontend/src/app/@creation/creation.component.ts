@@ -454,7 +454,6 @@ export class CreationComponent {
     }
 
     addDeplacement(event: MouseEvent){
-        event.preventDefault();
         if(this._selectEntite==true && this.is_deplacement){
 
             const offsetX = event.clientX;
@@ -463,10 +462,19 @@ export class CreationComponent {
             const parentWidth = window.innerWidth;
             const parentHeight = window.innerHeight;
 
-            const percentX = (offsetX / parentWidth) * 100;
-            const percentY = (offsetY / parentHeight) * 100;
+            let percentX = (offsetX / parentWidth) * 100;
+            let percentY = (offsetY / parentHeight) * 100;
 
             this.numAction +=  1;
+            //recup position tableau
+            this.positionPercentage = this.getPositionPercentage(this.tableau);
+
+            this.tabLeft=this.positionPercentage.left;
+            this.tabTop=this.positionPercentage.top;
+            console.log('tab finale en pourcentage - Left:', this.tabLeft, 'Top:', this.tabTop);
+            percentY=percentY-this.tabTop;
+            percentX=percentX-this.tabLeft;
+
             // Mettre à jour les coordonnées de l'entité sélectionnée
             this._entiteSelect.y = percentX;
             this._entiteSelect.x = percentY;

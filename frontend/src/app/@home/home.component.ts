@@ -5,6 +5,8 @@ import {ModalService} from "../@modal/modal.service";
 import {Entite} from "../@creation/beans/Entite";
 import {Experience} from "./beans/Experience";
 import {Examen} from "./beans/Examen";
+import {Deplacement} from "./beans/Deplacement";
+import {getArrow} from "perfect-arrows";
 
 
 
@@ -21,6 +23,7 @@ export class HomeComponent {
     protected _selectedScenarioEntite:Scenario = new Scenario();
     protected _isFiltering:boolean = false;
     protected _entiteList: Entite[]= [];
+    protected _depalcementList: Deplacement[]= [];
 
     protected _selectScenarioModalName: string = "selectScenarioModal";
 
@@ -177,11 +180,10 @@ export class HomeComponent {
     }
     addDesign(modal:string){
         this._modalService.open(modal);
-        let nomScenario:string;
 
         // Parcours de la liste _scenarioSelect
         this._scenarioSelect.forEach(scenario => {
-            const exp =new Experience();
+            let exp =new Experience();
             exp.scenario=scenario.id;
             exp.mode_scene=scenario.mode_scene;
             exp.zone_display=scenario.zone_display;
@@ -205,17 +207,110 @@ export class HomeComponent {
     }
 
     resetFeedBack(modal:string){
-        this._newExeperience = null;
+        this._newExeperience = [];
+        this._scenarioSelect= [];
         this.resetData(modal);
+    }
+    updateModeSequentiel(nom:string){
+        this._newExam.mode=nom;
     }
 
     addFeedBack(modal:string){
-        //creation examen
-
+        this._homeService.addExamen(this._newExam).subscribe();
+        console.log("addexam");
         //ajout des exp
-
+        this._newExeperience.forEach((experience) => {
+            console.log("addExp",experience,this._newExam.nom);
+            this._homeService.addExeperience(experience,this._newExam.nom).subscribe();
+        });
         //reset
         this.resetFeedBack(modal);
     }
+
+    playVisualisation(scenario:Scenario) {
+        //on recherche la liste des deplacement
+        this._homeService.getDepalcementList(scenario.id).subscribe(
+            res => {
+                this._depalcementList = res;
+
+                // fonction récursive pour parcourir la liste avec un délai entre chaque itération
+                const processDepalcement = (index: number) => {
+                    // vérifie si nous avons atteint la fin de la liste
+                    if (index < this._depalcementList.length) {
+                        const deplacement = this._depalcementList[index];
+                        // parcourt la liste des entités
+                        this._entiteList.forEach(entite => {
+                            // cherche l'entité devant être déplacée
+                            if (entite.id === deplacement.entite) {
+                                //on déplace l'entité
+                                entite.x = deplacement.endPosX;
+                                entite.y = deplacement.endPosY;
+                                console.log("entite trouvée");
+                                // Afficher une flèche entre les entités
+                                // Convertir les pourcentages en pixels
+                                const startX = (entite.y + this.tabLeft) * window.innerWidth / 100;
+                                const startY = (entite.x + this.tabTop) * window.innerHeight / 100;
+                                const endX = (deplacement.endPosX + this.tabTop) * window.innerWidth / 100;
+                                const endY = (deplacement.endPosY + this.tabLeft) * window.innerHeight / 100;
+
+                                //this.addArrow(startX, startY, endX, endY);
+
+                            }
+                        });
+                        console.log("deplacement");
+                        // Appelle la fonction processDepalcement avec l'indice suivant après un délai
+                        setTimeout(() => {
+                            processDepalcement(index + 1);
+                        }, 3000); // délai de x seconde entre chaque déplacement
+                    }
+                };
+                // démarrer le traitement avec l'indice 0
+                processDepalcement(0);
+            }
+        );
+        this.selectScenario(this._selectScenarioModalName,scenario);
+    }
+
+    //permet de dessiner la fleche
+    // Déclarez une variable pour stocker les informations sur les flèches
+    arrows: { startX: number, startY: number, endX: number, endY: number, length: number }[] = [];
+    // Fonction pour ajouter une flèche entre deux points
+    addArrow(startX: number, startY: number, endX: number, endY: number): void {
+        // Créer un élément de flèche
+        const arrow = document.createElement('div');
+        arrow.classList.add('arrow');
+
+        // Calculer la longueur et l'angle de la flèche
+        const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+        const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+
+        // Appliquer les styles à la flèche
+        arrow.style.position = 'absolute';
+        arrow.style.width = length + 'px';
+        arrow.style.height = '2px'; // Épaisseur de la flèche
+        arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+        arrow.style.left = startX + 'px';
+        arrow.style.top = startY + 'px';
+        arrow.style.transform = 'rotate(' + angle + 'deg)';
+
+        // Ajouter la flèche au DOM
+        document.body.append(arrow);
+    }
+
+    getArrowRotation(startX: number, startY: number, endX: number, endY: number): string {
+        const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+        return `rotate(${angle}deg)`;
+    }
+
+
+    // addArrow(startX: number, startY: number, endX: number, endY: number) {
+    //     //const arrow = getArrow(startX, startY, endX, endY);
+    //     //document.body.appendChild(arrow);
+    // }
+    startX: any;
+    startY: any;
+    endX: any;
+    endY: any;
+
 
 }

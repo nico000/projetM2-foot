@@ -107,12 +107,12 @@ nav.menu ul li.boutton:hover a{
     height: 25px;
 }
 .couloir{
-    background: forestgreen;
+    background: transparent;
     border: 1px solid black;
     border-collapse: collapse;
 }
 .zone{
-    background: forestgreen;
+    background: transparent;
     border: 1px solid black;
     border-collapse: collapse;
 }
@@ -127,7 +127,7 @@ nav.menu ul li.boutton:hover a{
     height: 40vh;
 }
 .mode{
-    font-size: 100%;
+    font-size: 110%;
     color: white;
     text-align: center;
 }

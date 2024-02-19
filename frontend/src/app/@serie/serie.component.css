@@ -1,0 +1,139 @@
+.presentation{
+    font-size: 200%;
+    color: white;
+    text-align: center;
+}
+.tableau{
+    padding: 5px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width:100%;
+}
+.ecriture{
+    font-size: 120%;
+    text-align: center;
+    color: black;
+}
+.colonne{
+    width:14%;
+}
+.colonne2{
+    width:72%;
+}
+.titre{
+    font-size: 150%;
+    color: mediumblue;
+    text-align: center;
+}
+
+.ecriture{
+    font-size: 120%;
+    text-align: center;
+}
+
+.contient{
+    font-size: 50%;
+    width: 50%;
+}
+nav.menu ul  .boutton{
+    display: inline-block;
+    text-align:center ;
+    width: 19%;
+    margin: auto;
+}
+
+nav.menu ul li.boutton a{
+    color :Azure;
+    background-color: green;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    font-size:35px;
+    justify-content: center;
+}
+nav.menu ul li.boutton:hover a{
+    color: green;
+    background-color: Azure;
+    transition: 0.5s all;
+}
+nav.menu ul {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+}
+.round-button {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 50px;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+    transition: background-color 0.3s;
+}
+.round-button:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.hidden-checkbox {
+    display: none;
+}
+
+.colonne_terrain2{
+    width:68%;
+}
+
+.tableau_joueur{
+    width:70%;
+}
+/*terrain*/
+.draggable {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: grab;
+    overflow: hidden;
+    margin: auto;
+    align-items: center;
+}
+.barreOutils{
+    text-align:center ;
+    align-content: center;
+    width:16.5%;
+}
+
+.numEcriture{
+    font-size: 120%;
+    color: black;
+    text-align: center;
+}
+.joueur{
+    background-color: #ffeb3b;
+}
+.ballon {
+    background-color:white;
+    width: 25px;
+    height: 25px;
+}
+.couloir{
+    background: transparent;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.zone{
+    background: transparent;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.tableau_terrain{
+    padding: 5%;
+    width:100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.tabter {
+    border: 1px solid white;
+    height: 40vh;
+}

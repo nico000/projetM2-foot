@@ -1,4 +1,5 @@
-<h1 class="presentation">Liste des scénario : </h1>
+
+<h1 class="presentation">Liste des Tests : </h1>
 <nav class="menu">
     <ul>
         <li  class="boutton" >
@@ -62,6 +63,16 @@
 
 
 <jw-modal id="{{_selectScenarioModalName}}" >
+    <nav class="menu">
+        <ul>
+            <li  class="boutton" >
+                <a (click)="resetFeedBack(_selectScenarioModalName)">Annuler</a>
+            </li>
+            <li  class="boutton" >
+                <a (click)="playVisualisation(_selectedScenario)">Play</a>
+            </li>
+        </ul>
+    </nav><br>
 <table class="tableau_joueur">
         <tr>
             <td class="colonne_terrain">
@@ -74,6 +85,7 @@
             </td>
             <td class="colonne_terrain2">
 
+                <div  style="background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;">
                 <table id="tableau_terrain" class="tableau_terrain tabter">
                     <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
                         <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
@@ -86,21 +98,37 @@
                                 <div class="draggable ballon numEcriture" *ngIf="entite.type==0">
                                     {{ entite.numero }}
                                 </div>
+                                <!-- Ajouter des éléments pour représenter les flèches -->
+                                <div *ngFor="let arrow of arrows" class="arrow" [style.left.px]="arrow.startX" [style.top.px]="arrow.startY"
+                                     [style.width.px]="arrow.length" [style.transform]="getArrowRotation(arrow.startX, arrow.startY, arrow.endX, arrow.endY)">
+                                </div>
                             </div>
                         </td>
                     </tr>
+                </table></div>
+<!--                &lt;!&ndash; Div pour afficher les flèches &ndash;&gt;-->
+<!--                <svg style="position: relative; left: 0; top: 0; width: auto; height: auto">-->
+<!--                        <defs>-->
+<!--                            <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto"-->
+<!--                                    markerUnits="strokeWidth" viewBox="0 0 20 20">-->
+<!--                                <path d="M0,0 L0,6 L9,3 z" fill="#f00" />-->
+<!--                            </marker>-->
+<!--                        </defs>-->
 
-                </table>
+<!--                        <line [attr.x1]="startX" [attr.y1]="startY" [attr.x2]="endX" [attr.y2]="endY" stroke="#f00" stroke-width="5"-->
+<!--                              marker-end="url(#arrow)" />-->
+<!--                </svg>-->
             </td>
         </tr>
     </table>
+
 </jw-modal>
 
 <jw-modal id="{{_designModal}}" >
     <nav class="menu">
         <ul>
             <li  class="boutton" >
-                <a (click)="resetData(_designModal)">Annuler</a>
+                <a (click)="resetFeedBack(_designModal)">Annuler</a>
             </li>
             <li  class="boutton" >
                 <a (click)="addDesign(_feedBackModal)">Valider</a>
@@ -114,15 +142,24 @@
     <h1 class="presentation">Serie : </h1>
     <div class="titre">
         Nom de la series:
-        <input type="text" [(ngModel)]="-_newExam.nom"/><br>
+        <input type="text" [(ngModel)]="_newExam.nom"/><br>
     </div>
+
+    <div class="titre">
+        Mode de la series:
+        <input type="checkbox" id="sequentiel" class="hidden-checkbox" (click)="updateModeSequentiel('sequentiel')">
+        <label for="sequentiel" class="round-button" [style.background-color]="_newExam.mode === 'sequentiel' ? '#3498db' : 'initial'">Sequentiel</label>
+
+        <input type="checkbox" id="aleatoire" class="hidden-checkbox" (click)="updateModeSequentiel('aleatoire')">
+        <label for="aleatoire" class="round-button" [style.background-color]="_newExam.mode  === 'aleatoire' ? '#3498db' : 'initial'">Aleatoire</label>
+    </div><br>
 
     <h1 class="presentation">Design : </h1><br>
 
     <table class="tableau">
         <tr>
             <td class="titre colonne">
-                Nom
+                Nom du test
             </td>
             <td class="titre colonne">
                 Mode de scene
@@ -137,32 +174,32 @@
                 Nombre de couloir
             </td>
         </tr>
-        <tr *ngFor="let scenario of _scenarioSelect" >
+        <tr  *ngFor="let scenario of _scenarioSelect" >
             <td class="colonne ecriture">
                 {{scenario.nom}}
             </td>
             <td class="colonne ">
                 <div class="titre">
-                    <input type="checkbox" id="scene" class="hidden-checkbox" (click)="updateModeScenario('scene',scenario)">
-                    <label for="scene" class="round-button"   [style.background-color]="scenario.mode_scene === 'scene' ? '#3498db' : 'initial'">Scene</label>
+                    <input type="checkbox" id="scene_{{scenario.nom}}" class="hidden-checkbox" (click)="updateModeScenario('scene',scenario)">
+                    <label for="scene_{{scenario.nom}}" class="round-button"   [style.background-color]="scenario.mode_scene === 'scene' ? '#3498db' : 'initial'">Scene</label>
 
-                    <input type="checkbox" id="action" class="hidden-checkbox" (click)="updateModeScenario('action',scenario)">
-                    <label for="action" class="round-button"  [style.background-color]="scenario.mode_scene === 'action' ? '#3498db' : 'initial'">Action</label>
+                    <input type="checkbox" id="action_{{scenario.nom}}" class="hidden-checkbox" (click)="updateModeScenario('action',scenario)">
+                    <label for="action_{{scenario.nom}}" class="round-button"  [style.background-color]="scenario.mode_scene === 'action' ? '#3498db' : 'initial'">Action</label>
                 </div>
             </td>
             <td class="colonne ">
                 <div class="titre">
-                    <input type="checkbox" id="couleurV" class="hidden-checkbox" (click)="updateCouleur('vert',scenario)">
-                    <label for="couleurV" class="round-button" [style.background-color]="scenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'">Vert</label>
+                    <input type="checkbox" id="couleurV_{{scenario.nom}}" class="hidden-checkbox" (click)="updateCouleur('vert',scenario)">
+                    <label for="couleurV_{{scenario.nom}}" class="round-button" [style.background-color]="scenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'">Vert</label>
 
-                    <input type="checkbox" id="couleurB" class="hidden-checkbox" (click)="updateCouleur('blanc',scenario)">
-                    <label for="couleurB" class="round-button" [style.background-color]="scenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'">Blanc</label>
+                    <input type="checkbox" id="couleurB_{{scenario.nom}}" class="hidden-checkbox" (click)="updateCouleur('blanc',scenario)">
+                    <label for="couleurB_{{scenario.nom}}" class="round-button" [style.background-color]="scenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'">Blanc</label>
                 </div>
             </td>
-            <td class="colonne ">
+            <td class="colonne titre">
                 <input type="text" [(ngModel)]="scenario.zone_nb_zone"/><br>
             </td>
-            <td class="colonne ">
+            <td class="colonne titre">
                 <input type="text" [(ngModel)]="scenario.zone_nb_couloir"/><br>
             </td>
         </tr>
@@ -189,7 +226,7 @@
     <table class="tableau">
         <tr>
             <td class="titre colonne">
-                Scenario
+                Test
             </td>
             <td class="titre colonne">
                 Type feedBack
@@ -207,31 +244,33 @@
             </td>
             <td class="colonne ">
                 <div class="titre">
-                    <input type="checkbox" id="typesf" class="hidden-checkbox" (click)="updateTypeFeed('tableau',exeprience)">
-                    <label for="typesf" class="round-button"   [style.background-color]="exeprience.typeFeedback === 'tableau' ? '#3498db' : 'initial'">Tableau</label>
+                    <input type="checkbox" id="typesf_{{exeprience.scenario}}" class="hidden-checkbox" (click)="updateTypeFeed('score',exeprience)">
+                    <label for="typesf_{{exeprience.scenario}}" class="round-button"   [style.background-color]="exeprience.typeFeedback === 'score' ? '#3498db' : 'initial'">Score</label>
 
-                    <input type="checkbox" id="static" class="hidden-checkbox" (click)="updateTypeFeed('static',exeprience)">
-                    <label for="static" class="round-button"   [style.background-color]="exeprience.typeFeedback === 'static' ? '#3498db' : 'initial'">Static</label>
+                    <input type="checkbox" id="static_{{exeprience.scenario}}" class="hidden-checkbox" (click)="updateTypeFeed('static',exeprience)">
+                    <label for="static_{{exeprience.scenario}}" class="round-button"   [style.background-color]="exeprience.typeFeedback === 'static' ? '#3498db' : 'initial'">Static</label>
                 </div>
             </td>
             <td class="colonne ">
                 <div class="titre">
-                    <input type="checkbox" id="25" class="hidden-checkbox" (click)="updateFrequenceFeed(25,exeprience)">
-                    <label for="25" class="round-button" [style.background-color]="exeprience.freqFeedback === 25 ? '#3498db' : 'initial'">25%</label>
+                    <input type="checkbox" id="0_{{exeprience.scenario}}" class="hidden-checkbox" (click)="updateFrequenceFeed(0,exeprience)">
+                    <label for="0_{{exeprience.scenario}}" class="round-button" [style.background-color]="exeprience.freqFeedback === 0 ? '#3498db' : 'initial'">0%</label>
 
-                    <input type="checkbox" id="50" class="hidden-checkbox" (click)="updateFrequenceFeed(50,exeprience)">
-                    <label for="50" class="round-button" [style.background-color]="exeprience.freqFeedback === 50 ? '#3498db' : 'initial'">50%</label>
+                    <input type="checkbox" id="25_{{exeprience.scenario}}" class="hidden-checkbox" (click)="updateFrequenceFeed(25,exeprience)">
+                    <label for="25_{{exeprience.scenario}}" class="round-button" [style.background-color]="exeprience.freqFeedback === 25 ? '#3498db' : 'initial'">25%</label>
 
-                    <input type="checkbox" id="100" class="hidden-checkbox" (click)="updateFrequenceFeed(100,exeprience)">
-                    <label for="100" class="round-button" [style.background-color]="exeprience.freqFeedback === 100 ? '#3498db' : 'initial'">100%</label>
+                    <input type="checkbox" id="50_{{exeprience.scenario}}" class="hidden-checkbox" (click)="updateFrequenceFeed(50,exeprience)">
+                    <label for="50_{{exeprience.scenario}}" class="round-button" [style.background-color]="exeprience.freqFeedback === 50 ? '#3498db' : 'initial'">50%</label>
+
+                    <input type="checkbox" id="75_{{exeprience.scenario}}" class="hidden-checkbox" (click)="updateFrequenceFeed(75,exeprience)">
+                    <label for="75_{{exeprience.scenario}}" class="round-button" [style.background-color]="exeprience.freqFeedback === 75 ? '#3498db' : 'initial'">75%</label>
+
+                    <input type="checkbox" id="100_{{exeprience.scenario}}" class="hidden-checkbox" (click)="updateFrequenceFeed(100,exeprience)">
+                    <label for="100_{{exeprience.scenario}}" class="round-button" [style.background-color]="exeprience.freqFeedback === 100 ? '#3498db' : 'initial'">100%</label>
                 </div>
             </td>
-            <td class="colonne ">
-                <input type="checkbox" id="1" class="hidden-checkbox" (click)="updateVisuFeed(1,exeprience)">
-                <label for="1" class="round-button" [style.background-color]="exeprience.visuFeedback === 1 ? '#3498db' : 'initial'">1 Visu</label>
-
-                <input type="checkbox" id="2" class="hidden-checkbox" (click)="updateVisuFeed(2,exeprience)">
-                <label for="2" class="round-button" [style.background-color]="exeprience.visuFeedback === 2 ? '#3498db' : 'initial'">2 Visu</label>
+            <td class="colonne titre">
+                <input type="text" [(ngModel)]="exeprience.visuFeedback"/><br>
             </td>
         </tr>
     </table>

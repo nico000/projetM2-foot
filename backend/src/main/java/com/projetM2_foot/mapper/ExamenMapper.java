@@ -26,7 +26,9 @@ public class ExamenMapper {
 
         return Examen.builder()
                 .name(request.getNom())
-                .mode(request.getMode())
+                .sequencage(request.getSequencage())
+                .complexite(request.getComplexite())
+                .contenuFeedback(request.getContenuFeedback())
                 .experienceSet(new HashSet<>())
                 .build();
     }
@@ -37,7 +39,9 @@ public class ExamenMapper {
         return ExamenResponse.builder()
                 .id(entity.getId())
                 .nom(entity.getName())
-                .mode(entity.getMode())
+                .sequencage(entity.getSequencage())
+                .complexite(entity.getComplexite())
+                .contenuFeedback(entity.getContenuFeedback())
                 .experience(entity.getExperienceSet().stream().map(Experience::getId).collect(Collectors.toList()))
                 .build();
     }

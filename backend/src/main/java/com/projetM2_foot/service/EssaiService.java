@@ -4,7 +4,6 @@ package com.projetM2_foot.service;
 import com.projetM2_foot.entity.*;
 import com.projetM2_foot.repository.EssaiRepository;
 import com.projetM2_foot.repository.ResultatDeplacementRepository;
-import com.projetM2_foot.repository.ResultatExperienceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service

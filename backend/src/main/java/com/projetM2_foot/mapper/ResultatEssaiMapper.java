@@ -3,13 +3,10 @@ package com.projetM2_foot.mapper;
 import com.projetM2_foot.api.request.ResultatEssaiRequestCreate;
 import com.projetM2_foot.api.response.ResultatExperienceResponse;
 import com.projetM2_foot.entity.*;
-import com.projetM2_foot.service.ExperienceService;
-import com.projetM2_foot.service.ResultatExamenService;
 import com.projetM2_foot.service.ResultatExperienceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;

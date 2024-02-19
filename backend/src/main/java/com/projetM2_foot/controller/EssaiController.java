@@ -5,12 +5,10 @@ import com.projetM2_foot.api.request.ResultatEssaiRequestCreate;
 import com.projetM2_foot.api.response.ResultatExperienceResponse;
 import com.projetM2_foot.entity.ResultatDeplacement;
 import com.projetM2_foot.entity.ResultatEssai;
-import com.projetM2_foot.entity.ResultatExperience;
 import com.projetM2_foot.mapper.DeplacementMapper;
 import com.projetM2_foot.mapper.ResultatEssaiMapper;
-import com.projetM2_foot.mapper.ResultatExperienceMapper;
 import com.projetM2_foot.service.EssaiService;
-import com.projetM2_foot.service.ResultatExperienceService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/essai")

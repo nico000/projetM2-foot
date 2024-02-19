@@ -12,10 +12,11 @@ public class ExperienceResponse {
     private int freqFeedback;
     private int visuFeedback;
 
-    private Boolean displayArea;
-    private int colonArea;
-    private int corridorArea;
 
-    private String modeScene;
-    private String groundColor;
+    private Boolean zone_display;
+    private int zone_nb_zone;
+    private int zone_nb_couloir;
+
+    private String mode_scene;
+    private String terrain_couleur;
 }

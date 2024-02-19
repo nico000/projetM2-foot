@@ -7,8 +7,9 @@ import {Experience} from "./beans/Experience";
 import {Examen} from "./beans/Examen";
 import {Serie} from "./beans/Serie";
 import {Utilisateur} from "./beans/Utilisateur";
-import {Deplacement} from "../@home/beans/Deplacement";
 import {Entite} from "../@creation/beans/Entite";
+import {Deplacement} from "./beans/Deplacement";
+import {Essai} from "./beans/Essai";
 
 @Component({
     selector: 'serie',
@@ -160,12 +161,13 @@ export class SerieComponent {
         )
     }
     //selectionner le scenario
-    selectScenario(scenario:Scenario ):void {
+    selectScenario(scenario:Scenario ,elementid:string):void {
         this._selectedScenario =scenario;
         this.genEntite(scenario.id);
         this._nbAction=1;
 
         //recup position tableau
+        //this.tableau =document.getElementById(elementid)as HTMLTableElement;
         this.tableau =document.getElementById('tableau_terrain')as HTMLTableElement;
         this.positionPercentage = this.getPositionPercentage(this.tableau);
 
@@ -174,6 +176,7 @@ export class SerieComponent {
     }
     //lancer la visualisation
     playVisualisation(scenario: Scenario) {
+        console.log("play");
         //on recherche la liste des deplacement
         this._serieService.getDepalcementList(scenario.id).subscribe(
             res => {
@@ -181,7 +184,6 @@ export class SerieComponent {
 
                 // fonction récursive pour parcourir la liste avec un délai entre chaque itération
                 const processDepalcement = (index: number) => {
-                    this._nbAction++;
                     // vérifie si nous avons atteint la fin de la liste
                     if (index < this._depalcementList.length) {
                         const deplacement = this._depalcementList[index];
@@ -196,6 +198,7 @@ export class SerieComponent {
                             }
                         });
                         console.log("deplacement");
+                        this._nbAction++;
                         // Appelle la fonction processDepalcement avec l'indice suivant après un délai
                         setTimeout(() => {
                             processDepalcement(index + 1);
@@ -208,11 +211,12 @@ export class SerieComponent {
                 processDepalcement(0);
             }
         );
-        this.selectScenario(scenario);
+        this.selectScenario(scenario,'tableau_terrain');
     }
 
     lance_visu(){
         this._finvisu=false;
+        this._nbAction=0;
         // Appel à getScenarioId pour obtenir l'objet Scenario avant de lancer la visualisation
         this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(scenario => {
             this.playVisualisation(scenario);
@@ -220,14 +224,118 @@ export class SerieComponent {
     }
     lance_simu() {
         this._isLancer = true;
-        while(this._nbVisualisation<=this._serieSelect.experience[this._scenarioLancer].visuFeedback){
-            if (this._finvisu===true){
-                this.lance_visu();
-                console.log("visu");
+        this._nbVisualisation = 1;
+        const visuFeedback = this._serieSelect.experience[this._scenarioLancer].visuFeedback;
+
+        const launchNextVisu = () => {
+            if (this._nbVisualisation <= visuFeedback) {
+                if (this._finvisu) {
+                    this.lance_visu();
+                    this._nbVisualisation++;
+                    console.log("visu",this._nbVisualisation);
+                }
+                setTimeout(launchNextVisu, 2000); // Attendre 2 secondes avant de vérifier si une nouvelle visualisation peut être lancée
             }
-        }
+            // else {
+            //     // Appel de maFonction une fois que toutes les visualisations sont terminées
+            //     this.toTest();
+            // }
+        };
+
+        launchNextVisu(); // Lancer le premier appel de la visualisation
     }
 
+    // //l'utilisateur entre les deplacement
+    // protected _nbEssai:number=0.0;
+    // protected _selectEntite:boolean=false;
+    // protected _entiteSelect:Entite=null;
+    //
+    // protected _newDeplacement: Deplacement = new Deplacement();
+    // protected numAction:number = 0;
+    // protected _ispostdeplacement=false;
+    // protected _newEssai:Essai=new Essai();
+    // protected  _PostDeplacementModal: string = "_PostDeplacementModal";
+    // toTest(){
+    //     this.openData(this._PostDeplacementModal);
+    //     this.resetData(this._veridModal);
+    //     //on regenere le terrain
+    //     this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(scenario => {
+    //         this.selectScenario(scenario,'tableau_terrain2');
+    //         console.log("regen :",scenario);
+    //     });
+    //     //on enr l'essai
+    //     this._nbEssai++;
+    //     //ajout essaie
+    //     this._newEssai.num=this._nbEssai;
+    //     this._newEssai.experience=this._serieSelect.experience[this._scenarioLancer].id;
+    //     this._newEssai.temps=0.0;
+    //     this._ispostdeplacement=true;
+    // }
+    // selectEntite(entite:Entite){
+    //     if (this._selectEntite==false && this._ispostdeplacement){
+    //         this._entiteSelect=entite;
+    //         this._selectEntite=true;
+    //         this._newDeplacement.startPosX=entite.x;
+    //         this._newDeplacement.startPosY=entite.y;
+    //     }else{
+    //         this._entiteSelect=null;
+    //         this._selectEntite=false;
+    //     }
+    //     console.log("select ",this._selectEntite,this._entiteSelect.id)
+    // }
+    //
+    // isEntiteSelect(entite:Entite):boolean{
+    //     if(this._selectEntite==true && entite.id==this._entiteSelect.id){
+    //         return true;
+    //     }
+    //     return false;
+    // }
+    //
+    // addDeplacement(event: MouseEvent){
+    //     if(this._selectEntite==true ){
+    //
+    //         const offsetX = event.clientX;
+    //         const offsetY = event.clientY;
+    //
+    //         const parentWidth = window.innerWidth;
+    //         const parentHeight = window.innerHeight;
+    //
+    //         let percentX = (offsetX / parentWidth) * 100;
+    //         let percentY = (offsetY / parentHeight) * 100;
+    //
+    //         this.numAction +=  1;
+    //         //recup position tableau
+    //         this.positionPercentage = this.getPositionPercentage(this.tableau);
+    //
+    //         this.tabLeft=this.positionPercentage.left;
+    //         this.tabTop=this.positionPercentage.top;
+    //         console.log('tab finale en pourcentage - Left:', this.tabLeft, 'Top:', this.tabTop);
+    //         percentY=percentY-this.tabTop-1.5;
+    //         percentX=percentX-this.tabLeft-1.5;
+    //
+    //         // Mettre à jour les coordonnées de l'entité sélectionnée
+    //         this._entiteSelect.y = percentX;
+    //         this._entiteSelect.x = percentY;
+    //         console.log('deplacement finale en pourcentage - Left:', percentX, 'Top:', percentY);
+    //         this._entiteList.forEach(entite => {
+    //             if (entite.id == this._entiteSelect.id) {
+    //                 this._newDeplacement.entite=entite.id;
+    //                 this._newDeplacement.numAction=this.numAction;
+    //                 this._newDeplacement.numScene=1;
+    //                 this._newDeplacement.numBloc=1;
+    //                 entite.y = percentX;
+    //                 entite.x = percentY;
+    //                 this._newDeplacement.endPosX=percentY;
+    //                 this._newDeplacement.endPosY=percentX;
+    //                 //add deplacement dans essai
+    //                 this._newEssai.deplacement.push(this._newDeplacement);
+    //                 console.log("add deplacement",this._newEssai);
+    //             }
+    //         });
+    //         this._entiteSelect=null;
+    //         this._selectEntite=false;
+    //     }
+    // }
 
 
 }

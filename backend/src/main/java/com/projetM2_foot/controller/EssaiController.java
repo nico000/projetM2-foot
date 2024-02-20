@@ -66,15 +66,5 @@ public class EssaiController {
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/all")
-    @Operation(
-            summary = "Récupérer tout les resultat d'experience",
-            description = "Trouve l'ensemble des resultat experience")
-    public ResponseEntity<List<ResultatExperienceResponse>> getResultatExperience(
-    ){
-
-
-        return ResponseEntity.ok(null);
-    }
 
 }

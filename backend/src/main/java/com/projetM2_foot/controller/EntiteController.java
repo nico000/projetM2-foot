@@ -1,7 +1,6 @@
 package com.projetM2_foot.controller;
 
 
-import com.projetM2_foot.api.dto.EntiteDto;
 import com.projetM2_foot.api.request.EntiteRequestCreate;
 import com.projetM2_foot.api.request.EntiteRequestUpdate;
 import com.projetM2_foot.api.response.EntiteResponse;
@@ -10,9 +9,6 @@ import com.projetM2_foot.mapper.EntiteMapper;
 import com.projetM2_foot.service.EntiteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,23 +35,8 @@ public class EntiteController {
     @PostMapping
     @Operation(
             summary = "Créer une entité",
-            description = "Créer dans la table entité une entité (joueur / ballon / ..) relié à un scénario",
-    responses = {
-        @ApiResponse(
-                responseCode = "200",
-                description = "Réponse en cas de succès",
-                content = @Content(mediaType = "application/json", schema = @Schema(allOf = EntiteDto.class))
-        ),
-        @ApiResponse(
-                responseCode = "400",
-                description = "Réponse lors de données non valide dans le body",
-                content = @Content(mediaType = "application/json")
-        ),
-        @ApiResponse(
-                responseCode = "404",
-                description = "Réponse si aucun scénario ne correspond à l'id donnée"
-        )
-    })
+            description = "Créer dans la table entité une entité (joueur / ballon / ..) relié à un scénario"
+    )
     public ResponseEntity<EntiteResponse> createEntite (
             @RequestBody EntiteRequestCreate request){
 

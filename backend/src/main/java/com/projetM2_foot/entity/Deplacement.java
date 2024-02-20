@@ -6,7 +6,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-
 @Getter
 @Setter
 @Builder
@@ -16,11 +15,11 @@ import javax.validation.constraints.NotNull;
 @Table(name = "deplacement")
 public class Deplacement {
 
-    /*
+/*
      Convention de nommage :
      Deplacement - dep
      Foreign key - fk
-     */
+*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

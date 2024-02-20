@@ -1,7 +1,7 @@
 package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.ResultatEssaiRequestCreate;
-import com.projetM2_foot.api.response.ResultatExperienceResponse;
+import com.projetM2_foot.api.response.FeedbackResponse;
 import com.projetM2_foot.entity.*;
 import com.projetM2_foot.service.ResultatExperienceService;
 import lombok.AllArgsConstructor;
@@ -20,13 +20,10 @@ public class ResultatEssaiMapper {
 
     public ResultatEssai toEntity (ResultatEssaiRequestCreate request , Set<ResultatDeplacement> rdepSet){
 
-        ResultatExperience rexp = resultatExperienceService.getById(request.getResultatExperience());
-        if(rexp == null) return null;
-
         return ResultatEssai.builder()
                 .num(request.getNum())
                 .temps(request.getTemps())
-                .resultatExperience(rexp)
+                .resultatExperience(resultatExperienceService.getById(request.getResultatExperience()))
                 .deplacementSet(rdepSet)
                 .build();
     }
@@ -34,14 +31,23 @@ public class ResultatEssaiMapper {
 
 
 
-    public ResultatExperienceResponse toDto (ResultatExperience entity){
+    public FeedbackResponse toFeedbackDto (ResultatEssai rtry){
 
-        return null;
+        rtry.getDeplacementSet().removeIf(ResultatDeplacement::getReussi);
+        return FeedbackResponse.builder()
+                .essai(rtry.getId())
+                .score(rtry.getScore())
+                .listError(rtry.getDeplacementSet()
+                        .stream()
+                        .map(DeplacementMapper::toResDto)
+                        .collect(Collectors.toList()))
+                .reussi(rtry.isReussi())
+                .build();
     }
 
-    public List<ResultatExperienceResponse> toDtoAll (List<ResultatExperience> listEntity){
+    public List<FeedbackResponse> toFeedbackDtoAll (List<ResultatEssai> listEntity){
         return listEntity.stream()
-                .map(this::toDto)
+                .map(this::toFeedbackDto)
                 .collect(Collectors.toList());
     }
 

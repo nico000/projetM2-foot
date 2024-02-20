@@ -9,12 +9,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
 public interface DeplacementRepository extends CrudRepository<Deplacement, Long> {
 
     List<Deplacement> findByScenarioId(Long scenario);
+
+    Optional<Deplacement> findByScenarioIdAndNumAction(Long scenario , int numAction);
 
     void deleteByEntiteId(Long entite);
 

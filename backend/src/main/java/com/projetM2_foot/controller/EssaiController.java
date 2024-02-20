@@ -2,6 +2,7 @@ package com.projetM2_foot.controller;
 
 
 import com.projetM2_foot.api.request.ResultatEssaiRequestCreate;
+import com.projetM2_foot.api.response.FeedbackResponse;
 import com.projetM2_foot.api.response.ResultatExperienceResponse;
 import com.projetM2_foot.entity.ResultatDeplacement;
 import com.projetM2_foot.entity.ResultatEssai;
@@ -41,7 +42,7 @@ public class EssaiController {
     @Operation(
             summary = "Créer un essai",
             description = "Créer un essai et ses déplacements associés")
-    public ResponseEntity<Long> getResultatExperienceById(
+    public ResponseEntity<FeedbackResponse> getResultatExperienceById(
             @RequestBody ResultatEssaiRequestCreate request
     ){
 
@@ -51,14 +52,18 @@ public class EssaiController {
 
         // creer la liste de déplacement
         Set<ResultatDeplacement> rdepSet = new HashSet<>(deplacementMapper.toResEntityAll(request.getDeplacements()));
+
+        // Vérifie la cohérence entre le résultat et le scénario et retourne le nobre de bonne réponse sur cette essai
+        int score = essaiService.getFeedbackListDeplacement(rdepSet , request.getResultatExperience());
+
         // Creer l'essai avec la liste de placement
         ResultatEssai rtry = resultatEssaiMapper.toEntity(request , rdepSet);
-        if(rtry == null) return ResponseEntity.notFound().build();
-
+        rtry.setScore(score);
+        rtry.setReussi(score == rdepSet.size());
         rtry = essaiService.create(rtry);
 
-        log.info(rtry.getId().toString());
-        return ResponseEntity.ok(1L);
+        FeedbackResponse dto = resultatEssaiMapper.toFeedbackDto(rtry);
+        return ResponseEntity.ok(dto);
     }
 
     @GetMapping("/all")

@@ -54,4 +54,15 @@ public class DeplacementService {
     }
 
 
+    public Deplacement getByScenarioAndAction(Long scenario , int action){
+
+        return deplacementRepository
+                .findByScenarioIdAndNumAction(scenario , action)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Deplacemment non trouvé avec l'id scenario & l'action : " + scenario + " / " + action));
+
+    }
+
+
 }

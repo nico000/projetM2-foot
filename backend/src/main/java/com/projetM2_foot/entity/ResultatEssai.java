@@ -20,6 +20,14 @@ public class ResultatEssai {
     @Column(name = "rtry_id")
     private Long id;
 
+    /** indique si l'essai est réussi */
+    @Column(name = "rtry_reussi")
+    private boolean reussi;
+
+    /** Indique le nombre de bonne réponse sur cet essai */
+    @Column(name = "rtry_score")
+    private int score;
+
     /** Temps qui c'est passé */
     @Column(name = "rtry_temps")
     private Long temps;

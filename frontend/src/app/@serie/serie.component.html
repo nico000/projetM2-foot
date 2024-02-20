@@ -170,6 +170,7 @@
     <nav class="menu">
         <ul>
             <li class="boutton" style="width: 50%"><a *ngIf="_isLancer===false" (click)="lance_simu()">Lancer</a></li>
+            <li class="boutton" style="width: 50%"><a *ngIf="_isLancer===true" (click)="toTest()">Fin visualisation</a></li>
         </ul>
     </nav>
     <div *ngIf="_isLancer" class="ecriture">Visualisation : {{_nbVisualisation-1}}</div>

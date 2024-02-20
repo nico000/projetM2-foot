@@ -209,7 +209,9 @@ export class SerieComponent {
                     }
                 };
                 // démarrer le traitement avec l'indice 0
-                processDepalcement(0);
+                setTimeout(() => {
+                    processDepalcement(0);
+                }, 2500);
             }
         );
     }
@@ -239,15 +241,10 @@ export class SerieComponent {
                 }
                 setTimeout(launchNextVisu, 2000); // Attendre 2 secondes avant de vérifier si une nouvelle visualisation peut être lancée
             }
-            else {
-                // Appel de maFonction une fois que toutes les visualisations sont terminées
-                //this.toTest();
-            }
         };
 
         launchNextVisu(); // Lancer le premier appel de la visualisation
     }
-
     //l'utilisateur entre les deplacement
     protected _nbEssai:number=0.0;
     protected _selectEntite:boolean=false;

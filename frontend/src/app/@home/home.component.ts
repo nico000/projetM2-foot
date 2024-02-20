@@ -210,7 +210,14 @@ export class HomeComponent {
     resetFeedBack(modal:string){
         this._newExeperience = [];
         this._scenarioSelect= [];
+        this.arrows = [];
         this.resetData(modal);
+
+        // Supprimer toutes les flèches du DOM
+        const arrowElements = document.querySelectorAll('.tableau_joueur .colonne_terrain2 .arrow');
+        arrowElements.forEach(element => {
+            element.remove();
+        });
     }
     updateModeSequentiel(nom:string){
         this._newExam.mode=nom;
@@ -244,18 +251,22 @@ export class HomeComponent {
                         this._entiteList.forEach(entite => {
                             // cherche l'entité devant être déplacée
                             if (entite.id === deplacement.entite) {
+                                //on enregistre position depart pour fleche
+                                const startX = (entite.x + this.tabLeft-10)
+                                const startY = (entite.y + this.tabTop)
                                 //on déplace l'entité
                                 entite.x = deplacement.endPosX;
                                 entite.y = deplacement.endPosY;
                                 console.log("entite trouvée");
                                 // Afficher une flèche entre les entités
                                 // Convertir les pourcentages en pixels
-                                const startX = (entite.y + this.tabLeft) * window.innerWidth / 100;
-                                const startY = (entite.x + this.tabTop) * window.innerHeight / 100;
-                                const endX = (deplacement.endPosX + this.tabTop) * window.innerWidth / 100;
-                                const endY = (deplacement.endPosY + this.tabLeft) * window.innerHeight / 100;
 
-                                //this.addArrow(startX, startY, endX, endY);
+                                const endX = (deplacement.endPosX + this.tabLeft-10)
+                                const endY = (deplacement.endPosY + this.tabTop)
+                                console.log("pos depart",(entite.y ) ,(entite.x),
+                                    (deplacement.endPosX),(deplacement.endPosY ));
+                                console.log("fleche :",startX, startY, endX, endY);
+                                this.addArrow(startY, startX, endY, endX);
 
                             }
                         });
@@ -267,7 +278,9 @@ export class HomeComponent {
                     }
                 };
                 // démarrer le traitement avec l'indice 0
-                processDepalcement(0);
+                setTimeout(() => {
+                    processDepalcement(0);
+                }, 2500);
             }
         );
         this.selectScenario(this._selectScenarioModalName,scenario);
@@ -287,31 +300,20 @@ export class HomeComponent {
 
         // Appliquer les styles à la flèche
         arrow.style.position = 'absolute';
-        arrow.style.width = length + 'px';
+        arrow.style.width = length + '%';
         arrow.style.height = '2px'; // Épaisseur de la flèche
         arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-        arrow.style.left = startX + 'px';
-        arrow.style.top = startY + 'px';
+        arrow.style.left = startX + '%';
+        arrow.style.top = startY + '%';
         arrow.style.transform = 'rotate(' + angle + 'deg)';
 
         // Ajouter la flèche au DOM
-        document.body.append(arrow);
+        document.querySelector('.tableau_joueur .colonne_terrain2').appendChild(arrow);
     }
-
     getArrowRotation(startX: number, startY: number, endX: number, endY: number): string {
         const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
         return `rotate(${angle}deg)`;
     }
-
-
-    // addArrow(startX: number, startY: number, endX: number, endY: number) {
-    //     //const arrow = getArrow(startX, startY, endX, endY);
-    //     //document.body.appendChild(arrow);
-    // }
-    startX: any;
-    startY: any;
-    endX: any;
-    endY: any;
 
 
 }

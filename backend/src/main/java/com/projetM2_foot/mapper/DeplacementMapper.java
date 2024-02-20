@@ -6,6 +6,7 @@ import com.projetM2_foot.api.response.DeplacementResponse;
 import com.projetM2_foot.entity.Deplacement;
 import com.projetM2_foot.entity.ResultatDeplacement;
 import com.projetM2_foot.service.EntiteService;
+import com.projetM2_foot.service.EssaiService;
 import com.projetM2_foot.service.ScenarioService;
 
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class DeplacementMapper {
 
     final ScenarioService scenarioService;
     final EntiteService entiteService;
+    final EssaiService essaiService;
 
 
     public Deplacement toEntity (DeplacementRequestCreate request){

@@ -20,13 +20,10 @@ public class ResultatEssaiMapper {
 
     public ResultatEssai toEntity (ResultatEssaiRequestCreate request , Set<ResultatDeplacement> rdepSet){
 
-        ResultatExperience rexp = resultatExperienceService.getById(request.getResultatExperience());
-        if(rexp == null) return null;
-
         return ResultatEssai.builder()
                 .num(request.getNum())
                 .temps(request.getTemps())
-                .resultatExperience(rexp)
+                .resultatExperience(resultatExperienceService.getById(request.getResultatExperience()))
                 .deplacementSet(rdepSet)
                 .build();
     }

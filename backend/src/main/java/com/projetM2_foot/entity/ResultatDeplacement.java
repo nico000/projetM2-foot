@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-
 @Getter
 @Setter
 @Builder
@@ -15,37 +14,40 @@ import javax.validation.constraints.NotNull;
 @Table(name = "res_deplacement")
 public class ResultatDeplacement {
 
-    /*
+/*
      Convention de nommage :
-     Resultat Deplacement - rdep
+     Deplacement - dep
      Foreign key - fk
-     */
+*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "rdep_id")
+    @Column(name = "dep_id")
     private Long id;
 
     /** Numero de l'action */
     @NotNull
-    @Column(name = "rdep_action")
+    @Column(name = "dep_action")
     private int numAction;
+
+    @Column(name = "dep_reussi")
+    private Boolean reussi;
 
     /** [FK] Entité */
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "rdep_fk_ent")
+    @JoinColumn(name = "dep_fk_ent")
     private Entite entite;
     /** Position X de début */
-    @Column(name = "rdep_start_x")
+    @Column(name = "dep_start_x")
     private float startPosX;
     /** Position Y de début */
-    @Column(name = "rdep_start_y")
+    @Column(name = "dep_start_y")
     private float startPosY;
     /** Position X de fin */
-    @Column(name = "rdep_end_x")
+    @Column(name = "dep_end_x")
     private float endPosX;
     /** Position Y de fin */
-    @Column(name = "rdep_end_y")
+    @Column(name = "dep_end_y")
     private float endPosY;
 
 }

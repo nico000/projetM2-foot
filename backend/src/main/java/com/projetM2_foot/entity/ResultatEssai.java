@@ -34,11 +34,12 @@ public class ResultatEssai {
 
     @ManyToMany
     @JoinTable(
-            name = "rtry_rdep",
+            name = "rtry_dep",
             joinColumns = @JoinColumn(name = "rtry_id"),
             inverseJoinColumns = @JoinColumn(name = "rdep_id")
     )
     Set<ResultatDeplacement> deplacementSet;
+
 
 
 }

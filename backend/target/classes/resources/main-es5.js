@@ -131,7 +131,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<h1 class=\"presentation\">Liste des Tests : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == false\" (click)=\"isAddSerie=true\">Creer une serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"isAddSerie=false\">Annuler la serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"changeDesigne(_designModal)\">Valider</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de zone\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de couloir\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            //\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_zone}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_couloir}}\n        </td>\n        <td class=\"colonne2 ecriture\">\n            <button (click)=\"selectScenario(_selectScenarioModalName,scenario)\">details</button>\n            <button (click)=\"delScenario(scenario)\">Supprimer</button>\n            <input *ngIf=\"isAddSerie\"  class=\"checkbox-custom\" type=\"checkbox\" (change)=\"toggleSelection(scenario)\">\n        </td>\n    </tr>\n</table>\n\n\n<jw-modal id=\"{{_selectScenarioModalName}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_selectScenarioModalName)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"playVisualisation(_selectedScenario)\">Play</a>\n            </li>\n        </ul>\n    </nav><br>\n<table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain\">\n                <h1 class=\"titre\">{{_selectedScenario.nom}}</h1>\n                <div class=\"categorie\">Mode Scene : </div><div class=\"Ecriture\">{{_selectedScenario.mode_scene}}</div>\n                <div class=\"categorie\">Couleur terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_couleur}}</div>\n                <div class=\"categorie\">Taille terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_taille}}</div>\n                <div class=\"categorie\">Nombre de zone : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_zone}}</div>\n                <div class=\"categorie\">Nombre de couloir : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_couloir}}</div>\n            </td>\n            <td class=\"colonne_terrain2\">\n\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\">\n                    <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                        <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                             [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                            <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                  [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                    {{ entite.numero }}\n                                </div>\n                                <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                    {{ entite.numero }}\n                                </div>\n                                <!-- Ajouter des éléments pour représenter les flèches -->\n                                <div *ngFor=\"let arrow of arrows\" class=\"arrow\" [style.left.px]=\"arrow.startX\" [style.top.px]=\"arrow.startY\"\n                                     [style.width.px]=\"arrow.length\" [style.transform]=\"getArrowRotation(arrow.startX, arrow.startY, arrow.endX, arrow.endY)\">\n                                </div>\n                            </div>\n                        </td>\n                    </tr>\n                </table></div>\n<!--                &lt;!&ndash; Div pour afficher les flèches &ndash;&gt;-->\n<!--                <svg style=\"position: relative; left: 0; top: 0; width: auto; height: auto\">-->\n<!--                        <defs>-->\n<!--                            <marker id=\"arrow\" markerWidth=\"10\" markerHeight=\"10\" refX=\"5\" refY=\"3\" orient=\"auto\"-->\n<!--                                    markerUnits=\"strokeWidth\" viewBox=\"0 0 20 20\">-->\n<!--                                <path d=\"M0,0 L0,6 L9,3 z\" fill=\"#f00\" />-->\n<!--                            </marker>-->\n<!--                        </defs>-->\n\n<!--                        <line [attr.x1]=\"startX\" [attr.y1]=\"startY\" [attr.x2]=\"endX\" [attr.y2]=\"endY\" stroke=\"#f00\" stroke-width=\"5\"-->\n<!--                              marker-end=\"url(#arrow)\" />-->\n<!--                </svg>-->\n            </td>\n        </tr>\n    </table>\n\n</jw-modal>\n\n<jw-modal id=\"{{_designModal}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_designModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addDesign(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <h1 class=\"presentation\">Serie : </h1>\n    <div class=\"titre\">\n        Nom de la series:\n        <input type=\"text\" [(ngModel)]=\"_newExam.nom\"/><br>\n    </div>\n\n    <div class=\"titre\">\n        Mode de la series:\n        <input type=\"checkbox\" id=\"sequentiel\" class=\"hidden-checkbox\" (click)=\"updateModeSequentiel('sequentiel')\">\n        <label for=\"sequentiel\" class=\"round-button\" [style.background-color]=\"_newExam.mode === 'sequentiel' ? '#3498db' : 'initial'\">Sequentiel</label>\n\n        <input type=\"checkbox\" id=\"aleatoire\" class=\"hidden-checkbox\" (click)=\"updateModeSequentiel('aleatoire')\">\n        <label for=\"aleatoire\" class=\"round-button\" [style.background-color]=\"_newExam.mode  === 'aleatoire' ? '#3498db' : 'initial'\">Aleatoire</label>\n    </div><br>\n\n    <h1 class=\"presentation\">Design : </h1><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Nom du test\n            </td>\n            <td class=\"titre colonne\">\n                Mode de scene\n            </td>\n            <td class=\"titre colonne\">\n                Couleur terrain\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de zone\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de couloir\n            </td>\n        </tr>\n        <tr  *ngFor=\"let scenario of _scenarioSelect\" >\n            <td class=\"colonne ecriture\">\n                {{scenario.nom}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"scene_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene',scenario)\">\n                    <label for=\"scene_{{scenario.nom}}\" class=\"round-button\"   [style.background-color]=\"scenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                    <input type=\"checkbox\" id=\"action_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action',scenario)\">\n                    <label for=\"action_{{scenario.nom}}\" class=\"round-button\"  [style.background-color]=\"scenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"couleurV_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert',scenario)\">\n                    <label for=\"couleurV_{{scenario.nom}}\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                    <input type=\"checkbox\" id=\"couleurB_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc',scenario)\">\n                    <label for=\"couleurB_{{scenario.nom}}\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n                </div>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_zone\"/><br>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_couloir\"/><br>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_feedBackModal}}\" >\n    <h1 class=\"presentation\">FeedBack : </h1>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_feedBackModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addFeedBack(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Test\n            </td>\n            <td class=\"titre colonne\">\n                Type feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Frequence feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Visualisation feedBack\n            </td>\n        </tr>\n        <tr *ngFor=\"let exeprience of _newExeperience\" >\n            <td class=\"colonne ecriture\">\n                {{exeprience.scenario}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"typesf_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('score',exeprience)\">\n                    <label for=\"typesf_{{exeprience.scenario}}\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'score' ? '#3498db' : 'initial'\">Score</label>\n\n                    <input type=\"checkbox\" id=\"static_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('static',exeprience)\">\n                    <label for=\"static_{{exeprience.scenario}}\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'static' ? '#3498db' : 'initial'\">Static</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"0_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(0,exeprience)\">\n                    <label for=\"0_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 0 ? '#3498db' : 'initial'\">0%</label>\n\n                    <input type=\"checkbox\" id=\"25_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(25,exeprience)\">\n                    <label for=\"25_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 25 ? '#3498db' : 'initial'\">25%</label>\n\n                    <input type=\"checkbox\" id=\"50_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(50,exeprience)\">\n                    <label for=\"50_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 50 ? '#3498db' : 'initial'\">50%</label>\n\n                    <input type=\"checkbox\" id=\"75_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(75,exeprience)\">\n                    <label for=\"75_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 75 ? '#3498db' : 'initial'\">75%</label>\n\n                    <input type=\"checkbox\" id=\"100_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(100,exeprience)\">\n                    <label for=\"100_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 100 ? '#3498db' : 'initial'\">100%</label>\n                </div>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"exeprience.visuFeedback\"/><br>\n            </td>\n        </tr>\n    </table>\n</jw-modal>";
+    __webpack_exports__["default"] = "\n<h1 class=\"presentation\">Liste des Tests : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == false\" (click)=\"isAddSerie=true\">Creer une serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"isAddSerie=false\">Annuler la serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"changeDesigne(_designModal)\">Valider</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de zone\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de couloir\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            //\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_zone}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_couloir}}\n        </td>\n        <td class=\"colonne2 ecriture\">\n            <button (click)=\"selectScenario(_selectScenarioModalName,scenario)\">details</button>\n            <button (click)=\"delScenario(scenario)\">Supprimer</button>\n            <input *ngIf=\"isAddSerie\"  class=\"checkbox-custom\" type=\"checkbox\" (change)=\"toggleSelection(scenario)\">\n        </td>\n    </tr>\n</table>\n\n\n<jw-modal id=\"{{_selectScenarioModalName}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_selectScenarioModalName)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"playVisualisation(_selectedScenario)\">Play</a>\n            </li>\n        </ul>\n    </nav><br>\n<table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain\">\n                <h1 class=\"titre\">{{_selectedScenario.nom}}</h1>\n                <div class=\"categorie\">Mode Scene : </div><div class=\"Ecriture\">{{_selectedScenario.mode_scene}}</div>\n                <div class=\"categorie\">Couleur terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_couleur}}</div>\n                <div class=\"categorie\">Taille terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_taille}}</div>\n                <div class=\"categorie\">Nombre de zone : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_zone}}</div>\n                <div class=\"categorie\">Nombre de couloir : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_couloir}}</div>\n            </td>\n            <td class=\"colonne_terrain2\">\n\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\" >\n                    <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                        <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                             [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                            <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                  [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                    {{ entite.numero }}\n                                </div>\n                                <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                    {{ entite.numero }}\n                                </div>\n                                <!-- Ajouter des éléments pour représenter les flèches -->\n                                <div *ngFor=\"let arrow of arrows\" class=\"arrow\" [style.left.px]=\"arrow.startX\" [style.top.px]=\"arrow.startY\"\n                                     [style.width.px]=\"arrow.length\" [style.transform]=\"getArrowRotation(arrow.startX, arrow.startY, arrow.endX, arrow.endY)\">\n                                </div>\n                            </div>\n                        </td>\n                    </tr>\n                </table></div>\n<!--                &lt;!&ndash; Div pour afficher les flèches &ndash;&gt;-->\n<!--                <svg style=\"position: relative; left: 0; top: 0; width: auto; height: auto\">-->\n<!--                        <defs>-->\n<!--                            <marker id=\"arrow\" markerWidth=\"10\" markerHeight=\"10\" refX=\"5\" refY=\"3\" orient=\"auto\"-->\n<!--                                    markerUnits=\"strokeWidth\" viewBox=\"0 0 20 20\">-->\n<!--                                <path d=\"M0,0 L0,6 L9,3 z\" fill=\"#f00\" />-->\n<!--                            </marker>-->\n<!--                        </defs>-->\n\n<!--                        <line [attr.x1]=\"startX\" [attr.y1]=\"startY\" [attr.x2]=\"endX\" [attr.y2]=\"endY\" stroke=\"#f00\" stroke-width=\"5\"-->\n<!--                              marker-end=\"url(#arrow)\" />-->\n<!--                </svg>-->\n            </td>\n        </tr>\n    </table>\n\n</jw-modal>\n\n<jw-modal id=\"{{_designModal}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_designModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addDesign(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <h1 class=\"presentation\">Serie : </h1>\n    <div class=\"titre\">\n        Nom de la series:\n        <input type=\"text\" [(ngModel)]=\"_newExam.nom\"/><br>\n    </div>\n\n    <div class=\"titre\">\n        Mode de la series:\n        <input type=\"checkbox\" id=\"sequentiel\" class=\"hidden-checkbox\" (click)=\"updateModeSequentiel('sequentiel')\">\n        <label for=\"sequentiel\" class=\"round-button\" [style.background-color]=\"_newExam.mode === 'sequentiel' ? '#3498db' : 'initial'\">Sequentiel</label>\n\n        <input type=\"checkbox\" id=\"aleatoire\" class=\"hidden-checkbox\" (click)=\"updateModeSequentiel('aleatoire')\">\n        <label for=\"aleatoire\" class=\"round-button\" [style.background-color]=\"_newExam.mode  === 'aleatoire' ? '#3498db' : 'initial'\">Aleatoire</label>\n    </div><br>\n\n    <h1 class=\"presentation\">Design : </h1><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Nom du test\n            </td>\n            <td class=\"titre colonne\">\n                Mode de scene\n            </td>\n            <td class=\"titre colonne\">\n                Couleur terrain\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de zone\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de couloir\n            </td>\n        </tr>\n        <tr  *ngFor=\"let scenario of _scenarioSelect\" >\n            <td class=\"colonne ecriture\">\n                {{scenario.nom}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"scene_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene',scenario)\">\n                    <label for=\"scene_{{scenario.nom}}\" class=\"round-button\"   [style.background-color]=\"scenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                    <input type=\"checkbox\" id=\"action_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action',scenario)\">\n                    <label for=\"action_{{scenario.nom}}\" class=\"round-button\"  [style.background-color]=\"scenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"couleurV_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert',scenario)\">\n                    <label for=\"couleurV_{{scenario.nom}}\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                    <input type=\"checkbox\" id=\"couleurB_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc',scenario)\">\n                    <label for=\"couleurB_{{scenario.nom}}\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n                </div>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_zone\"/><br>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_couloir\"/><br>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_feedBackModal}}\" >\n    <h1 class=\"presentation\">FeedBack : </h1>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_feedBackModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addFeedBack(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Test\n            </td>\n            <td class=\"titre colonne\">\n                Type feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Frequence feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Visualisation feedBack\n            </td>\n        </tr>\n        <tr *ngFor=\"let exeprience of _newExeperience\" >\n            <td class=\"colonne ecriture\">\n                {{exeprience.scenario}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"typesf_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('score',exeprience)\">\n                    <label for=\"typesf_{{exeprience.scenario}}\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'score' ? '#3498db' : 'initial'\">Score</label>\n\n                    <input type=\"checkbox\" id=\"static_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('static',exeprience)\">\n                    <label for=\"static_{{exeprience.scenario}}\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'static' ? '#3498db' : 'initial'\">Static</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"0_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(0,exeprience)\">\n                    <label for=\"0_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 0 ? '#3498db' : 'initial'\">0%</label>\n\n                    <input type=\"checkbox\" id=\"25_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(25,exeprience)\">\n                    <label for=\"25_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 25 ? '#3498db' : 'initial'\">25%</label>\n\n                    <input type=\"checkbox\" id=\"50_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(50,exeprience)\">\n                    <label for=\"50_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 50 ? '#3498db' : 'initial'\">50%</label>\n\n                    <input type=\"checkbox\" id=\"75_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(75,exeprience)\">\n                    <label for=\"75_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 75 ? '#3498db' : 'initial'\">75%</label>\n\n                    <input type=\"checkbox\" id=\"100_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(100,exeprience)\">\n                    <label for=\"100_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 100 ? '#3498db' : 'initial'\">100%</label>\n                </div>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"exeprience.visuFeedback\"/><br>\n            </td>\n        </tr>\n    </table>\n</jw-modal>";
     /***/
   },
 
@@ -191,7 +191,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des Series : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom serie\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\">\n            Scenario\n        </td>\n        <td class=\"titre colonne\">\n            Type feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Frequence feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de zone\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de couloire\n        </td>\n        <td class=\"titre colonne\">\n            //\n        </td>\n    </tr>\n</table>\n<table class=\"tableau\">\n    <tr class=\"tableau\" *ngFor=\"let serie of _serieList\" (play)=\"orderBy('nom')\" >\n        <td class=\"ecriture colonne\">\n            {{serie.nom}}\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture \" >\n                    {{exp.scenario}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.typeFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.freqFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_zone}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_couloir}}\n                </div>\n            </div>\n        </td>\n        <td class=\" colonne ecriture\">\n            <button (click)=\"openSimu(_simulationModal,serie)\">Lancer serie</button>\n        </td>\n    </tr>\n</table>\n\n<!--modal entrer des info perso-->\n<jw-modal id=\"{{_simulationModal}}\" >\n    <h1 class=\"presentation\">Information personnel</h1>\n\n    <div class=\"titre\">\n        Groupe :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.groupe\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Nom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.nom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Prenom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.prenom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Age :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.age\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Sex :\n        <input type=\"checkbox\" id=\"fille\" class=\"hidden-checkbox\" (click)=\"updateSex('fille')\">\n        <label for=\"fille\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'fille' ? '#3498db' : 'initial'\">Fille</label>\n\n        <input type=\"checkbox\" id=\"garcon\" class=\"hidden-checkbox\" (click)=\"updateSex('garcon')\">\n        <label for=\"garcon\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'garcon' ? '#3498db' : 'initial'\">Garcon</label>\n    </div><br>\n\n    <div class=\"titre\">\n        Pratique sportive :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.pratique\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Etes-vous profesionelle :\n        <input type=\"checkbox\" id=\"oui\" class=\"hidden-checkbox\" (click)=\"updatePro(true)\">\n        <label for=\"oui\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === true ? '#3498db' : 'initial'\">oui</label>\n\n        <input type=\"checkbox\" id=\"non\" class=\"hidden-checkbox\" (click)=\"updatePro(false)\">\n        <label for=\"non\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === false ? '#3498db' : 'initial'\">non</label>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'année d'experience :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.anneeExperience\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre matches/an :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.matche\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre entrainements/mois :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.entrainement\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'heure pratique/semaine :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.heure\"/>\n    </div><br>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetData(_simulationModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addUser(_veridModal)\">Valider</a>\n            </li>\n        </ul>\n    </nav><br>\n</jw-modal>\n\n\n<jw-modal id=\"{{_veridModal}}\" >\n    <p class=\"presentation\">Cliquer sur lancer quand vous etes pret</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a *ngIf=\"_isLancer===false\" (click)=\"lance_simu()\">Lancer</a></li>\n        </ul>\n    </nav>\n    <div *ngIf=\"_isLancer\" class=\"ecriture\">Visualisation : {{_nbVisualisation}}</div>\n    <div *ngIf=\"_isLancer\" class=\"ecriture\">action : {{_nbAction}}</div>\n    <table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                    <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\">\n                        <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                            <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                                 [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                                <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                      [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                    <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                        {{ entite.numero }}\n                                    </div>\n                                    <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                        {{ entite.numero }}\n                                    </div>\n                                </div>\n                            </td>\n                        </tr>\n                    </table></div>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n";
+    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des Series : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom serie\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\">\n            Scenario\n        </td>\n        <td class=\"titre colonne\">\n            Type feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Frequence feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de zone\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de couloire\n        </td>\n        <td class=\"titre colonne\">\n            //\n        </td>\n    </tr>\n</table>\n<table class=\"tableau\">\n    <tr class=\"tableau\" *ngFor=\"let serie of _serieList\" (play)=\"orderBy('nom')\" >\n        <td class=\"ecriture colonne\">\n            {{serie.nom}}\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture \" >\n                    {{exp.scenario}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.typeFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.freqFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_zone}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_couloir}}\n                </div>\n            </div>\n        </td>\n        <td class=\" colonne ecriture\">\n            <button (click)=\"openSimu(_simulationModal,serie)\">Lancer serie</button>\n        </td>\n    </tr>\n</table>\n\n<!--modal entrer des info perso-->\n<jw-modal id=\"{{_simulationModal}}\" >\n    <h1 class=\"presentation\">Information personnel</h1>\n\n    <div class=\"titre\">\n        Groupe :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.groupe\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Nom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.nom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Prenom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.prenom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Age :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.age\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Sex :\n        <input type=\"checkbox\" id=\"fille\" class=\"hidden-checkbox\" (click)=\"updateSex('fille')\">\n        <label for=\"fille\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'fille' ? '#3498db' : 'initial'\">Fille</label>\n\n        <input type=\"checkbox\" id=\"garcon\" class=\"hidden-checkbox\" (click)=\"updateSex('garcon')\">\n        <label for=\"garcon\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'garcon' ? '#3498db' : 'initial'\">Garcon</label>\n    </div><br>\n\n    <div class=\"titre\">\n        Pratique sportive :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.pratique\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Etes-vous profesionelle :\n        <input type=\"checkbox\" id=\"oui\" class=\"hidden-checkbox\" (click)=\"updatePro(true)\">\n        <label for=\"oui\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === true ? '#3498db' : 'initial'\">oui</label>\n\n        <input type=\"checkbox\" id=\"non\" class=\"hidden-checkbox\" (click)=\"updatePro(false)\">\n        <label for=\"non\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === false ? '#3498db' : 'initial'\">non</label>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'année d'experience :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.anneeExperience\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre matches/an :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.matche\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre entrainements/mois :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.entrainement\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'heure pratique/semaine :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.heure\"/>\n    </div><br>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetData(_simulationModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addUser(_veridModal)\">Valider</a>\n            </li>\n        </ul>\n    </nav><br>\n</jw-modal>\n\n\n<jw-modal id=\"{{_veridModal}}\" >\n    <p class=\"presentation\" *ngIf=\"_isLancer===false\">Cliquer sur lancer quand vous etes pret</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a *ngIf=\"_isLancer===false\" (click)=\"lance_simu()\">Lancer</a></li>\n        </ul>\n    </nav>\n    <div *ngIf=\"_isLancer\" class=\"ecriture\">Visualisation : {{_nbVisualisation-1}}</div>\n    <div *ngIf=\"_isLancer\" class=\"ecriture\">action : {{_nbAction-1}}</div>\n    <table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                    <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\">\n                        <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                            <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                                 [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                                <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                      [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                    <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                        {{ entite.numero }}\n                                    </div>\n                                    <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                        {{ entite.numero }}\n                                    </div>\n                                </div>\n                            </td>\n                        </tr>\n                    </table></div>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_PostDeplacementModal}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a *ngIf=\"_isLancer===false\" (click)=\"lance_simu()\">Lancer</a></li>\n        </ul>\n    </nav>\n    <div  class=\"ecriture\">Deplacement : {{_nbAction}}</div>\n    <table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                    <table id=\"tableau_terrain2\" class=\"tableau_terrain tabter\" (dblclick)=\"addDeplacement($event)\">\n                        <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                            <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                                 [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                                <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                      [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\"\n                                      (click)=\"selectEntite(entite)\">\n                                    <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                        <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                            {{ entite.numero }}\n                                        </div>\n                                    </div>\n                                    <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                        <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                            {{ entite.numero }}\n                                        </div>\n                                    </div>\n                                </div>\n                            </td>\n                        </tr>\n                    </table></div>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n";
     /***/
   },
 
@@ -1522,8 +1522,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.tabLeft = this.positionPercentage.left;
             this.tabTop = this.positionPercentage.top;
             console.log('tab finale en pourcentage - Left:', this.tabLeft, 'Top:', this.tabTop);
-            percentY = percentY - this.tabTop;
-            percentX = percentX - this.tabLeft; // Mettre à jour les coordonnées de l'entité sélectionnée
+            percentY = percentY - this.tabTop - 1.5;
+            percentX = percentX - this.tabLeft - 1.5; // Mettre à jour les coordonnées de l'entité sélectionnée
 
             this._entiteSelect.y = percentX;
             this._entiteSelect.x = percentY;
@@ -2307,7 +2307,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 setTimeout(function () {
                   processDepalcement(index + 1);
-                }, 3000); // délai de x seconde entre chaque déplacement
+                }, 1000); // délai de x seconde entre chaque déplacement
               }
             }; // démarrer le traitement avec l'indice 0
 
@@ -2808,6 +2808,87 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/@serie/beans/Deplacement.ts":
+  /*!*********************************************!*\
+    !*** ./src/app/@serie/beans/Deplacement.ts ***!
+    \*********************************************/
+
+  /*! exports provided: Deplacement */
+
+  /***/
+  function srcAppSerieBeansDeplacementTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Deplacement", function () {
+      return Deplacement;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var Deplacement = /*#__PURE__*/_createClass(function Deplacement() {
+      _classCallCheck(this, Deplacement);
+
+      this.scenario = 0.0;
+      this.entite = 0.0;
+      this.numAction = 0.0;
+      this.numScene = 0.0;
+      this.numBloc = 0.0;
+      this.startPosX = 0.0;
+      this.startPosY = 0.0;
+      this.endPosX = 0.0;
+      this.endPosY = 0.0;
+    });
+    /***/
+
+  },
+
+  /***/
+  "./src/app/@serie/beans/Essai.ts":
+  /*!***************************************!*\
+    !*** ./src/app/@serie/beans/Essai.ts ***!
+    \***************************************/
+
+  /*! exports provided: Essai */
+
+  /***/
+  function srcAppSerieBeansEssaiTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "Essai", function () {
+      return Essai;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var Essai = /*#__PURE__*/_createClass(function Essai() {
+      _classCallCheck(this, Essai);
+
+      this.temps = 0.0;
+      this.num = 0.0;
+      this.experience = 0.0;
+      this.deplacement = [];
+    });
+    /***/
+
+  },
+
+  /***/
   "./src/app/@serie/beans/Serie.ts":
   /*!***************************************!*\
     !*** ./src/app/@serie/beans/Serie.ts ***!
@@ -2971,6 +3052,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _beans_Utilisateur__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ./beans/Utilisateur */
     "./src/app/@serie/beans/Utilisateur.ts");
+    /* harmony import */
+
+
+    var _beans_Deplacement__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./beans/Deplacement */
+    "./src/app/@serie/beans/Deplacement.ts");
+    /* harmony import */
+
+
+    var _beans_Essai__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ./beans/Essai */
+    "./src/app/@serie/beans/Essai.ts");
 
     var SerieComponent = /*#__PURE__*/function () {
       function SerieComponent(_serieService, _modalService) {
@@ -2992,15 +3085,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this._serieSelect = new _beans_Serie__WEBPACK_IMPORTED_MODULE_5__["Serie"]();
         this._depalcementList = [];
         this._selectedScenario = new _creation_beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"]();
+        this._scenarioplay = new _creation_beans_Scenario__WEBPACK_IMPORTED_MODULE_2__["Scenario"]();
         this._scenarioLancer = 0;
         this._nbVisualisation = 1;
-        this._nbAction = 1; //recuperer position du tableau
+        this._nbAction = 1;
+        this._finvisu = true; //recuperer position du tableau
 
         this.tableau = null;
         this.tabTop = 0.0;
         this.tabLeft = 0.0; //recup position tableau
 
-        this.positionPercentage = this.getPositionPercentage(this.tableau);
+        this.positionPercentage = this.getPositionPercentage(this.tableau); //l'utilisateur entre les deplacement
+
+        this._nbEssai = 0.0;
+        this._selectEntite = false;
+        this._entiteSelect = null;
+        this._newDeplacement = new _beans_Deplacement__WEBPACK_IMPORTED_MODULE_7__["Deplacement"]();
+        this.numAction = 0;
+        this._ispostdeplacement = false;
+        this._newEssai = new _beans_Essai__WEBPACK_IMPORTED_MODULE_8__["Essai"]();
+        this._PostDeplacementModal = "_PostDeplacementModal";
       }
 
       _createClass(SerieComponent, [{
@@ -3143,12 +3247,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       }, {
         key: "selectScenario",
-        value: function selectScenario(scenario) {
+        value: function selectScenario(scenario, elementid) {
           this._selectedScenario = scenario;
           this.genEntite(scenario.id);
           this._nbAction = 1; //recup position tableau
 
-          this.tableau = document.getElementById('tableau_terrain');
+          this.tableau = document.getElementById(elementid); //this.tableau =document.getElementById('tableau_terrain')as HTMLTableElement;
+
           this.positionPercentage = this.getPositionPercentage(this.tableau);
           this.tabLeft = this.positionPercentage.left;
           this.tabTop = this.positionPercentage.top;
@@ -3159,13 +3264,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function playVisualisation(scenario) {
           var _this21 = this;
 
-          //on recherche la liste des deplacement
+          console.log("play"); //on recherche la liste des deplacement
+
           this._serieService.getDepalcementList(scenario.id).subscribe(function (res) {
             _this21._depalcementList = res; // fonction récursive pour parcourir la liste avec un délai entre chaque itération
 
             var processDepalcement = function processDepalcement(index) {
-              _this21._nbAction++; // vérifie si nous avons atteint la fin de la liste
-
+              // vérifie si nous avons atteint la fin de la liste
               if (index < _this21._depalcementList.length) {
                 var deplacement = _this21._depalcementList[index]; // parcourt la liste des entités
 
@@ -3179,26 +3284,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   }
                 });
 
-                console.log("deplacement"); // Appelle la fonction processDepalcement avec l'indice suivant après un délai
+                console.log("deplacement");
+                _this21._nbAction++; // Appelle la fonction processDepalcement avec l'indice suivant après un délai
 
                 setTimeout(function () {
                   processDepalcement(index + 1);
                 }, 2000); // délai de x seconde entre chaque déplacement
+              } else {
+                _this21._finvisu = true; // Définit la variable  sur true lorsque le traitement est terminé
               }
             }; // démarrer le traitement avec l'indice 0
 
 
             processDepalcement(0);
           });
-
-          this.selectScenario(scenario);
         }
       }, {
         key: "lance_visu",
         value: function lance_visu() {
           var _this22 = this;
 
-          // Appel à getScenarioId pour obtenir l'objet Scenario avant de lancer la visualisation
+          this._finvisu = false;
+          this._nbAction = 0; // Appel à getScenarioId pour obtenir l'objet Scenario avant de lancer la visualisation
+
           this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(function (scenario) {
             _this22.playVisualisation(scenario);
           });
@@ -3209,26 +3317,121 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this23 = this;
 
           this._isLancer = true;
-          var nbVisualisation = this._serieSelect.experience[this._scenarioLancer].visuFeedback;
-          var visualisationCounter = 0;
           this._nbVisualisation = 1;
+          var visuFeedback = this._serieSelect.experience[this._scenarioLancer].visuFeedback;
 
-          var lanceVisuWithDelay = function lanceVisuWithDelay() {
-            if (visualisationCounter < nbVisualisation) {
-              _this23.lance_visu(); // Appel de la fonction lance_visu()
-              // Incrémentation du compteur et vérification si toutes les visualisations ont été effectuées
+          this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(function (scenario) {
+            _this23.selectScenario(scenario, 'tableau_terrain');
+          });
 
+          var launchNextVisu = function launchNextVisu() {
+            if (_this23._nbVisualisation <= visuFeedback) {
+              if (_this23._finvisu) {
+                _this23.lance_visu();
 
-              visualisationCounter++;
-              _this23._nbVisualisation++;
-
-              if (visualisationCounter < nbVisualisation) {
-                setTimeout(lanceVisuWithDelay, 2000); // Attendre 2 secondes avant la prochaine visualisation
+                _this23._nbVisualisation++;
+                console.log("visu", _this23._nbVisualisation);
               }
+
+              setTimeout(launchNextVisu, 2000); // Attendre 2 secondes avant de vérifier si une nouvelle visualisation peut être lancée
+            } else {// Appel de maFonction une fois que toutes les visualisations sont terminées
+              //this.toTest();
             }
           };
 
-          lanceVisuWithDelay(); // Lancer le premier appel de la visualisation avec le délai
+          launchNextVisu(); // Lancer le premier appel de la visualisation
+        }
+      }, {
+        key: "toTest",
+        value: function toTest() {
+          var _this24 = this;
+
+          this.openData(this._PostDeplacementModal);
+          this.resetData(this._veridModal); //on regenere le terrain
+
+          this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(function (scenario) {
+            _this24.selectScenario(scenario, 'tableau_terrain2');
+
+            console.log("regen :", scenario);
+          }); //on enr l'essai
+
+
+          this._nbEssai++; //ajout essaie
+
+          this._newEssai.num = this._nbEssai;
+          this._newEssai.experience = this._serieSelect.experience[this._scenarioLancer].id;
+          this._newEssai.temps = 0.0;
+          this._ispostdeplacement = true;
+        }
+      }, {
+        key: "selectEntite",
+        value: function selectEntite(entite) {
+          if (this._selectEntite == false && this._ispostdeplacement) {
+            this._entiteSelect = entite;
+            this._selectEntite = true;
+            this._newDeplacement.startPosX = entite.x;
+            this._newDeplacement.startPosY = entite.y;
+          } else {
+            this._entiteSelect = null;
+            this._selectEntite = false;
+          }
+
+          console.log("select ", this._selectEntite, this._entiteSelect.id);
+        }
+      }, {
+        key: "isEntiteSelect",
+        value: function isEntiteSelect(entite) {
+          if (this._selectEntite == true && entite.id == this._entiteSelect.id) {
+            return true;
+          }
+
+          return false;
+        }
+      }, {
+        key: "addDeplacement",
+        value: function addDeplacement(event) {
+          var _this25 = this;
+
+          if (this._selectEntite == true) {
+            var offsetX = event.clientX;
+            var offsetY = event.clientY;
+            var parentWidth = window.innerWidth;
+            var parentHeight = window.innerHeight;
+            var percentX = offsetX / parentWidth * 100;
+            var percentY = offsetY / parentHeight * 100;
+            this.numAction += 1; //recup position tableau
+
+            this.positionPercentage = this.getPositionPercentage(this.tableau);
+            this.tabLeft = this.positionPercentage.left;
+            this.tabTop = this.positionPercentage.top;
+            console.log('tab finale en pourcentage - Left:', this.tabLeft, 'Top:', this.tabTop);
+            percentY = percentY - this.tabTop - 1.5;
+            percentX = percentX - this.tabLeft - 1.5; // Mettre à jour les coordonnées de l'entité sélectionnée
+
+            this._entiteSelect.y = percentX;
+            this._entiteSelect.x = percentY;
+            console.log('deplacement finale en pourcentage - Left:', percentX, 'Top:', percentY);
+
+            this._entiteList.forEach(function (entite) {
+              if (entite.id == _this25._entiteSelect.id) {
+                _this25._newDeplacement.entite = entite.id;
+                _this25._newDeplacement.numAction = _this25.numAction;
+                _this25._newDeplacement.numScene = 1;
+                _this25._newDeplacement.numBloc = 1;
+                entite.y = percentX;
+                entite.x = percentY;
+                _this25._newDeplacement.endPosX = percentY;
+                _this25._newDeplacement.endPosY = percentX; //add deplacement dans essai
+
+                _this25._newEssai.deplacement.push(_this25._newDeplacement);
+
+                console.log("add deplacement", _this25._newEssai);
+              }
+            });
+
+            this._entiteSelect = null;
+            this._selectEntite = false;
+          }
         }
       }]);
 

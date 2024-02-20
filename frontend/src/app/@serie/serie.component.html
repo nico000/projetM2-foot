@@ -166,14 +166,14 @@
 
 
 <jw-modal id="{{_veridModal}}" >
-    <p class="presentation">Cliquer sur lancer quand vous etes pret</p>
+    <p class="presentation" *ngIf="_isLancer===false">Cliquer sur lancer quand vous etes pret</p>
     <nav class="menu">
         <ul>
             <li class="boutton" style="width: 50%"><a *ngIf="_isLancer===false" (click)="lance_simu()">Lancer</a></li>
         </ul>
     </nav>
-    <div *ngIf="_isLancer" class="ecriture">Visualisation : {{_nbVisualisation}}</div>
-    <div *ngIf="_isLancer" class="ecriture">action : {{_nbAction}}</div>
+    <div *ngIf="_isLancer" class="ecriture">Visualisation : {{_nbVisualisation-1}}</div>
+    <div *ngIf="_isLancer" class="ecriture">action : {{_nbAction-1}}</div>
     <table class="tableau_joueur">
         <tr>
             <td class="colonne_terrain2">
@@ -189,6 +189,43 @@
                                     </div>
                                     <div class="draggable ballon numEcriture" *ngIf="entite.type==0">
                                         {{ entite.numero }}
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table></div>
+            </td>
+        </tr>
+    </table>
+</jw-modal>
+
+<jw-modal id="{{_PostDeplacementModal}}" >
+    <nav class="menu">
+        <ul>
+            <li class="boutton" style="width: 50%"><a *ngIf="_isLancer===false" (click)="lance_simu()">Lancer</a></li>
+        </ul>
+    </nav>
+    <div  class="ecriture">Deplacement : {{_nbAction}}</div>
+    <table class="tableau_joueur">
+        <tr>
+            <td class="colonne_terrain2">
+                <div  style="background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                    <table id="tableau_terrain2" class="tableau_terrain tabter" (dblclick)="addDeplacement($event)">
+                        <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
+                            <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
+                                 [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
+                                <div  *ngFor="let entite of _entiteList" class="draggable"
+                                      [style.left.%]="(entite.y+this.tabLeft)" [style.top.%]="entite.x+this.tabTop"
+                                      (click)="selectEntite(entite)">
+                                    <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
+                                        <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">
+                                            {{ entite.numero }}
+                                        </div>
+                                    </div>
+                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0">
+                                        <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">
+                                            {{ entite.numero }}
+                                        </div>
                                     </div>
                                 </div>
                             </td>

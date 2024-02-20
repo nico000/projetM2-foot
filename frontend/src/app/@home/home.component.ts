@@ -7,6 +7,7 @@ import {Experience} from "./beans/Experience";
 import {Examen} from "./beans/Examen";
 import {Deplacement} from "./beans/Deplacement";
 import {getArrow} from "perfect-arrows";
+import {forkJoin, Observable} from "rxjs";
 
 
 
@@ -227,6 +228,7 @@ export class HomeComponent {
         this.resetFeedBack(modal);
     }
 
+
     playVisualisation(scenario:Scenario) {
         //on recherche la liste des deplacement
         this._homeService.getDepalcementList(scenario.id).subscribe(
@@ -261,7 +263,7 @@ export class HomeComponent {
                         // Appelle la fonction processDepalcement avec l'indice suivant après un délai
                         setTimeout(() => {
                             processDepalcement(index + 1);
-                        }, 3000); // délai de x seconde entre chaque déplacement
+                        }, 1000); // délai de x seconde entre chaque déplacement
                     }
                 };
                 // démarrer le traitement avec l'indice 0
@@ -270,7 +272,6 @@ export class HomeComponent {
         );
         this.selectScenario(this._selectScenarioModalName,scenario);
     }
-
     //permet de dessiner la fleche
     // Déclarez une variable pour stocker les informations sur les flèches
     arrows: { startX: number, startY: number, endX: number, endY: number, length: number }[] = [];

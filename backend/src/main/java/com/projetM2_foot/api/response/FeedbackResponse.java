@@ -9,7 +9,6 @@ import java.util.List;
 @Builder
 public class FeedbackResponse {
 
-
     private Long essai;
     private Boolean reussi;
     private List<ResultatDeplacementResponse> listError;

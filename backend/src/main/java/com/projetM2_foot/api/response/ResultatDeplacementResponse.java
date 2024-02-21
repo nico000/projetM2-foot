@@ -8,9 +8,7 @@ import lombok.Data;
 public class ResultatDeplacementResponse {
 
     private Long id;
-
     private Boolean reussi;
-
     private Long entite;
     private int numAction;
 

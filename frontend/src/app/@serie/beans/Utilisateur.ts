@@ -1,4 +1,5 @@
 export class Utilisateur{
+    public examen:Number=0.0;
     public groupe:string="";
     public nom:string="";
     public prenom:string="";

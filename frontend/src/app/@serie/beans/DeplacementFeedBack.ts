@@ -1,7 +1,8 @@
-export class Deplacement{
-    public scenario:Number=0.0;
+export class DeplacementFeedBack{
+
     public entite:Number=0.0;
 
+    public reussi:Boolean=false;
     public numAction:Number=0.0;
 
     public startPosX:number=0.0;

@@ -186,9 +186,16 @@ export class CreationComponent {
     private addEventListeners(element: HTMLDivElement | null, onMouseDown: (e: MouseEvent) => void, onMouseMove: (e: MouseEvent) => void, onMouseUp: (e: MouseEvent) => void, onMouseLeave: (e: MouseEvent) => void) {
         if (element) {
             element.addEventListener('mousedown', onMouseDown);
+            element.addEventListener('touchstart', onMouseDown);
+
             document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('touchmove', onMouseMove);
+
             document.addEventListener('mouseup', onMouseUp);
+            document.addEventListener('touchend', onMouseUp);
+
             document.addEventListener('mouseleave', onMouseLeave);
+            document.addEventListener('touchcancel', onMouseLeave);
         }
     }
 
@@ -349,13 +356,11 @@ export class CreationComponent {
                 this._newEntite.scenario = this.LastScenario.id;
                 this._newEntite.numero = this.numero;
                 this._newEntite.type = 1;
-                this._newEntite.y = leftPercentage;
-                this._newEntite.x = topPercentage;
+                this._newEntite.x = leftPercentage;
+                this._newEntite.y = topPercentage;
                 this._creationService.addEntite(this._newEntite).subscribe(
                     res => {
                         this._entiteList.push(res);
-                        //const Entite_draggableObject:HTMLDivElement = document.getElementById(res.id+'_deplacableObject') as HTMLDivElement;
-                        //this.addEventListeners(Entite_draggableObject, this.entite_onMouseDown.bind(this), this.entite_onMouseMove.bind(this), this.entite_onMouseUp.bind(this), this.entite_onMouseLeave.bind(this));
                     }
                 )
 
@@ -408,8 +413,8 @@ export class CreationComponent {
                 this._newEntite.scenario = this.LastScenario.id;
                 this._newEntite.numero = 0;
                 this._newEntite.type = 0;
-                this._newEntite.y = leftPercentage;
-                this._newEntite.x = topPercentage;
+                this._newEntite.x = leftPercentage;
+                this._newEntite.y = topPercentage;
                 this._creationService.addEntite(this._newEntite).subscribe(
                     res => {
                         this._entiteList.push(res);
@@ -458,11 +463,12 @@ export class CreationComponent {
 
             const offsetX = event.clientX;
             const offsetY = event.clientY;
+            console.log("position deplacement px: ",offsetX,offsetY)
 
             const parentWidth = window.innerWidth;
             const parentHeight = window.innerHeight;
 
-            let percentX = (offsetX / parentWidth) * 100;
+            let percentX = (offsetX /parentWidth ) * 100;
             let percentY = (offsetY / parentHeight) * 100;
 
             this.numAction +=  1;
@@ -476,20 +482,18 @@ export class CreationComponent {
             percentX=percentX-this.tabLeft-1.5;
 
             // Mettre à jour les coordonnées de l'entité sélectionnée
-            this._entiteSelect.y = percentX;
-            this._entiteSelect.x = percentY;
+            this._entiteSelect.y = percentY;
+            this._entiteSelect.x = percentX;
             console.log('deplacement finale en pourcentage - Left:', percentX, 'Top:', percentY);
             this._entiteList.forEach(entite => {
                 if (entite.id == this._entiteSelect.id) {
                     this._newDeplacement.scenario=entite.scenario;
                     this._newDeplacement.entite=entite.id;
                     this._newDeplacement.numAction=this.numAction;
-                    this._newDeplacement.numScene=1;
-                    this._newDeplacement.numBloc=1;
-                    entite.y = percentX;
-                    entite.x = percentY;
-                    this._newDeplacement.endPosX=percentY;
-                    this._newDeplacement.endPosY=percentX;
+                    entite.y = percentY;
+                    entite.x = percentX;
+                    this._newDeplacement.endPosX=percentX;
+                    this._newDeplacement.endPosY=percentY;
                     this._creationService.addDeplacement(this._newDeplacement).subscribe(
                     )
                 }

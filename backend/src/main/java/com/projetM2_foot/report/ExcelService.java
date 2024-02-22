@@ -1,5 +1,6 @@
 package com.projetM2_foot.report;
 
+import com.projetM2_foot.report.response.ReportDeplacement;
 import com.projetM2_foot.report.response.ReportEntite;
 import com.projetM2_foot.report.response.ReportScenario;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -25,46 +26,67 @@ public class ExcelService extends ReportAbstract {
     /**
         Créer une zone
     */
-    public void createObjectCell(int row_init , int column_init ,List<Object> dataObject){
-
-        List<String> propertyNames = Arrays
-                .stream(getPropertyNameByClass(dataObject.get(0).getClass()))
-                .collect(Collectors.toList());
-
-
-        // font style content
-        CellStyle style = getFontContentExcel();
+    public void createObjectCell(List<Object> dataObject , int row_init , int column_init ){
 
         // starting write on row
         int startRow = row_init;
 
         // write content
         for (Object inst : dataObject) {
-            Row row = sheet.createRow(startRow++);
-            int columnCount = column_init;
 
-            for (String name_colon : propertyNames){
+            insertValueObject(inst , startRow , column_init);
+            startRow++;
 
-                try{
-                    Object prop = getPropertyValue(inst, name_colon);
+        }
+    }
 
-                    if(!String.valueOf(prop).isEmpty() && prop != null ){
-                        if(!(prop.getClass() == ArrayList.class)) {
-                            createCell(row_init, columnCount++, prop, style);
+    public void insertValueObject(Object inst ,int row_init , int column_init){
+
+        List<String> propertyNames = Arrays
+                .stream(getPropertyNameByClass(inst.getClass()))
+                .collect(Collectors.toList());
+
+        // font style content
+        CellStyle style = getFontContentExcel();
+
+        int columnCount = column_init;
+
+        for (String name_colon : propertyNames){
+
+            try{
+                Object prop = getPropertyValue(inst, name_colon);
+
+                if(!String.valueOf(prop).isEmpty() && prop != null ){
+
+                    if(!(prop.getClass() == ArrayList.class) && !(prop.getClass() == ReportEntite.class)) {
+                        createCell(row_init, columnCount++, prop, style);
+                    }
+                    else {
+                        if(prop.getClass() == ArrayList.class){
+                            // suite
+                            columnCount++;
+                            row_init++;
+                            createObjectCell((List<Object>) prop, row_init , column_init);
+                            columnCount = prop.getClass().getDeclaredFields().length;
                         }
                         else {
                             columnCount++;
+                            row_init++;
+                            insertValueObject(prop , row_init , columnCount);
                         }
-                    }
-                    else{
-                        createCell(row_init, columnCount++, "NA" , style);
-                    }
 
 
+
+                    }
                 }
-                catch (IllegalAccessException e) {
+                else{
                     createCell(row_init, columnCount++, "NA" , style);
                 }
+
+
+            }
+            catch (IllegalAccessException e) {
+                createCell(row_init, columnCount++, "NA" , style);
             }
         }
     }
@@ -111,6 +133,7 @@ public class ExcelService extends ReportAbstract {
 
         String[] headerScenario = getPropertyNameByClass(ReportScenario.class);
         String[] headerEntite = getPropertyNameByClass(ReportEntite.class);
+        String[] headerDeplacement = getPropertyNameByClass(ReportDeplacement.class);
 
         int row = 0;
         int column = 0;
@@ -120,11 +143,13 @@ public class ExcelService extends ReportAbstract {
         column = column + headerScenario.length;
         writeTableHeaderExcel("Entite", headerEntite ,row , column);
         column = column + headerScenario.length + 1;
+        writeTableHeaderExcel("Deplacement", headerDeplacement ,row , column);
+        column = column + headerScenario.length + 1;
 
 
         column = 0;
         row =+ 2;
-        createObjectCell(row , column , (List<Object>) data );
+        createObjectCell((List<Object>) data , row , column  );
 
 
         workbook.write(outputStream);

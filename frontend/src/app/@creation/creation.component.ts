@@ -254,7 +254,7 @@ export class CreationComponent {
 
     private onMouseMove(event: MouseEvent | TouchEvent) {
         // Empêcher le comportement par défaut pour éviter des problèmes de défilement
-        event.preventDefault();
+        //event.preventDefault();
 
         // Utiliser des coordonnées de toucher si l'événement est un événement tactile
         const clientX = event instanceof TouchEvent ? event.touches[0].clientX : event.clientX;
@@ -271,7 +271,7 @@ export class CreationComponent {
 
     private ballon_onMouseMove(event: MouseEvent | TouchEvent) {
         // Empêcher le comportement par défaut pour éviter des problèmes de défilement
-        event.preventDefault();
+        //event.preventDefault();
 
         // Utiliser des coordonnées de toucher si l'événement est un événement tactile
         const clientX = event instanceof TouchEvent ? event.touches[0].clientX : event.clientX;
@@ -288,7 +288,7 @@ export class CreationComponent {
 
     private onMouseUp(event: MouseEvent | TouchEvent) {
         // Empêcher le comportement par défaut pour éviter des problèmes de défilement
-        event.preventDefault();
+        //event.preventDefault();
 
         if (this.isDragging && this.draggableObject) {
             this.isDragging = false;
@@ -299,7 +299,7 @@ export class CreationComponent {
 
     private ballon_onMouseUp(event: MouseEvent | TouchEvent) {
         // Empêcher le comportement par défaut pour éviter des problèmes de défilement
-        event.preventDefault();
+        //event.preventDefault();
 
         if (this.ballon_isDragging && this.ballon_draggableObject) {
             this.ballon_isDragging = false;
@@ -310,7 +310,7 @@ export class CreationComponent {
 
     private onMouseLeave(event: MouseEvent | TouchEvent) {
         // Empêcher le comportement par défaut pour éviter des problèmes de défilement
-        event.preventDefault();
+        //event.preventDefault();
         if (this.isDragging && this.draggableObject) {
             this.isDragging = false;
             this.draggableObject.style.cursor = 'grab';
@@ -322,7 +322,7 @@ export class CreationComponent {
     }
 
     private ballon_onMouseLeave(event: MouseEvent | TouchEvent) {
-        event.preventDefault();
+        //event.preventDefault();
         if (this.ballon_isDragging && this.ballon_draggableObject) {
             this.ballon_isDragging = false;
             this.ballon_draggableObject.style.cursor = 'grab';

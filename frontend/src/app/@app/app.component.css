@@ -1,4 +1,9 @@
 
 fond{
     background: lightgreen;
+    margin-top: 0;
+    padding-top: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 }

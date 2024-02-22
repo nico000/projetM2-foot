@@ -95,7 +95,7 @@
                     <br><br><br><br><br>
                 </tr></table><br>
             <div style="background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;">
-            <table id="tableau_terrain" class="tableau_terrain tabter" (dblclick)="addDeplacement($event)">
+            <table id="tableau_terrain" class="tableau_terrain tabter" (click)="addDeplacement($event)">
                 <tr  *ngFor="let couloir of nb_couloir(lastCouloir); let odd = odd" class="couloir">
                     <td  *ngFor="let zone of nb_couloir(lastZone)" class="zone"
                          [style.background-color]="lastCouleur === 'blanc' ? 'white' : 'initial'">

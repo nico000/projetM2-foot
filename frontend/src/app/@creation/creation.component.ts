@@ -177,43 +177,46 @@ export class CreationComponent {
 
         //this.addEventListeners();
         //this.ballon_addEventListeners();
-        this.addEventListeners(this.draggableObject, this.onMouseDown.bind(this), this.onMouseMove.bind(this), this.onMouseUp.bind(this), this.onMouseLeave.bind(this));
-        this.addEventListeners(this.ballon_draggableObject, this.ballon_onMouseDown.bind(this), this.ballon_onMouseMove.bind(this), this.ballon_onMouseUp.bind(this), this.ballon_onMouseLeave.bind(this));
-        this.addScrollListener();
+        this.addEventListeners(this.draggableObject, this.onMouseDown.bind(this),
+            this.onMouseMove.bind(this), this.onMouseUp.bind(this), this.onMouseLeave.bind(this),
+            this.onTouchStart.bind(this), this.onTouchMove.bind(this), this.onTouchEnd.bind(this),
+            this.onTouchCancel.bind(this));
+        this.addEventListeners(this.ballon_draggableObject, this.ballon_onMouseDown.bind(this),
+            this.ballon_onMouseMove.bind(this), this.ballon_onMouseUp.bind(this), this.ballon_onMouseLeave.bind(this),
+            this.ballon_onTouchStart.bind(this), this.ballon_onTouchMove.bind(this), this.ballon_onTouchEnd.bind(this),
+            this.ballon_onTouchCancel.bind(this));
     }
 
 
-    private addEventListeners(element: HTMLDivElement | null, onMouseDown: (e: MouseEvent) => void, onMouseMove: (e: MouseEvent) => void, onMouseUp: (e: MouseEvent) => void, onMouseLeave: (e: MouseEvent) => void) {
+    private addEventListeners(
+        element: HTMLDivElement | null,
+        onMouseDown: (e: MouseEvent) => void,
+        onMouseMove: (e: MouseEvent) => void,
+        onMouseUp: (e: MouseEvent) => void,
+        onMouseLeave: (e: MouseEvent) => void,
+        onTouchStart: (e: TouchEvent) => void,
+        onTouchMove: (e: TouchEvent) => void,
+        onTouchEnd: (e: TouchEvent) => void,
+        onTouchCancel: (e: TouchEvent) => void
+    ) {
         if (element) {
             element.addEventListener('mousedown', onMouseDown);
-            element.addEventListener('touchstart', onMouseDown);
+            element.addEventListener('touchstart', onTouchStart);
 
             document.addEventListener('mousemove', onMouseMove);
-            document.addEventListener('touchmove', onMouseMove);
+            document.addEventListener('touchmove', onTouchMove);
 
             document.addEventListener('mouseup', onMouseUp);
-            document.addEventListener('touchend', onMouseUp);
+            document.addEventListener('touchend', onTouchEnd);
 
             document.addEventListener('mouseleave', onMouseLeave);
             document.addEventListener('touchleave', onMouseLeave);
+
+            document.addEventListener('touchcancel', onTouchCancel);
         }
     }
 
-    private addScrollListener() {
-        window.addEventListener('scroll', () => this.onScroll());
-    }
-    private onScroll() {
-        const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        this.scroll=scrollPercentage;
-    }
-
     private onMouseDown(event: MouseEvent) {
-        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
-        event.preventDefault();
-
-        // Utiliser des coordonnées de toucher si l'événement est un événement tactile
-        const clientX = event instanceof TouchEvent ? event.touches[0].clientX : event.clientX;
-        const clientY = event instanceof TouchEvent ? event.touches[0].clientY : event.clientY;
 
         if (this.draggableObject) {
             this.isDragging = true;
@@ -232,11 +235,7 @@ export class CreationComponent {
     }
 
     private ballon_onMouseDown(event: MouseEvent) {
-        event.preventDefault();
 
-        // Utiliser des coordonnées de toucher si l'événement est un événement tactile
-        const clientX = event instanceof TouchEvent ? event.touches[0].clientX : event.clientX;
-        const clientY = event instanceof TouchEvent ? event.touches[0].clientY : event.clientY;
         if (this.ballon_draggableObject) {
             this.ballon_isDragging = true;
 
@@ -251,44 +250,92 @@ export class CreationComponent {
             this.ballon_draggableObject.style.cursor = 'grabbing';
         }
     }
+    //fonction tablette
+    private onTouchStart(event: TouchEvent) {
+        // Récupérer les coordonnées du toucher
+        const touch = event.touches[0];
+        if (this.draggableObject) {
+            this.isDragging = true;
 
-    private onMouseMove(event: MouseEvent | TouchEvent) {
-        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
-        //event.preventDefault();
+            this.offsetX = touch.clientX - this.draggableObject.getBoundingClientRect().left;
+            this.offsetY = touch.clientY - this.draggableObject.getBoundingClientRect().top;
 
-        // Utiliser des coordonnées de toucher si l'événement est un événement tactile
-        const clientX = event instanceof TouchEvent ? event.touches[0].clientX : event.clientX;
-        const clientY = event instanceof TouchEvent ? event.touches[0].clientY : event.clientY;
+            // Stocker la position de départ en pixels
+            if (this.initialLeft == -1) {
+                this.initialLeft = this.draggableObject.offsetLeft;
+                this.initialTop = this.draggableObject.offsetTop;
+            }
+
+            this.draggableObject.style.cursor = 'grabbing';
+        }
+    }
+    private ballon_onTouchStart(event: TouchEvent) {
+        // Récupérer les coordonnées du toucher
+        const touch = event.touches[0];
+        if (this.ballon_draggableObject) {
+            this.ballon_isDragging = true;
+
+            this.ballon_offsetX = touch.clientX - this.ballon_draggableObject.getBoundingClientRect().left;
+            this.ballon_offsetY = touch.clientY - this.ballon_draggableObject.getBoundingClientRect().top;
+
+            if (this.ballon_initialLeft == -1) {
+                this.ballon_initialLeft = this.ballon_draggableObject.offsetLeft;
+                this.ballon_initialTop = this.ballon_draggableObject.offsetTop;
+            }
+
+            this.ballon_draggableObject.style.cursor = 'grabbing';
+        }
+    }
+
+    private onMouseMove(event: MouseEvent ) {
+
 
         if (this.isDragging && this.draggableObject) {
-            const x = clientX - this.offsetX;
-            const y = clientY - this.offsetY;
+            const x = event.clientX - this.offsetX;
+            const y = event.clientY - this.offsetY;
 
             this.draggableObject.style.left = `${x}px`;
             this.draggableObject.style.top = `${y}px`;
         }
     }
 
-    private ballon_onMouseMove(event: MouseEvent | TouchEvent) {
-        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
-        //event.preventDefault();
-
-        // Utiliser des coordonnées de toucher si l'événement est un événement tactile
-        const clientX = event instanceof TouchEvent ? event.touches[0].clientX : event.clientX;
-        const clientY = event instanceof TouchEvent ? event.touches[0].clientY : event.clientY;
+    private ballon_onMouseMove(event: MouseEvent) {
 
         if (this.ballon_isDragging && this.ballon_draggableObject) {
-            const x = clientX - this.ballon_offsetX;
-            const y = clientY - this.ballon_offsetY ;
+            const x = event.clientX - this.ballon_offsetX;
+            const y = event.clientY - this.ballon_offsetY ;
 
             this.ballon_draggableObject.style.left = `${x}px`;
             this.ballon_draggableObject.style.top = `${y}px`;
         }
     }
 
-    private onMouseUp(event: MouseEvent | TouchEvent) {
-        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
-        //event.preventDefault();
+    private onTouchMove(event: TouchEvent) {
+        // Récupérer les coordonnées du toucher
+        const touch = event.touches[0];
+
+        if (this.isDragging && this.draggableObject) {
+            const x = touch.clientX - this.offsetX;
+            const y = touch.clientY - this.offsetY;
+
+            this.draggableObject.style.left = `${x}px`;
+            this.draggableObject.style.top = `${y}px`;
+        }
+    }
+    private ballon_onTouchMove(event: TouchEvent) {
+        // Récupérer les coordonnées du toucher
+        const touch = event.touches[0];
+
+        if (this.ballon_isDragging && this.ballon_draggableObject) {
+            const x = touch.clientX - this.ballon_offsetX;
+            const y = touch.clientY - this.ballon_offsetY ;
+
+            this.ballon_draggableObject.style.left = `${x}px`;
+            this.ballon_draggableObject.style.top = `${y}px`;
+        }
+    }
+
+    private onMouseUp(event: MouseEvent ) {
 
         if (this.isDragging && this.draggableObject) {
             this.isDragging = false;
@@ -297,9 +344,7 @@ export class CreationComponent {
 
     }
 
-    private ballon_onMouseUp(event: MouseEvent | TouchEvent) {
-        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
-        //event.preventDefault();
+    private ballon_onMouseUp(event: MouseEvent) {
 
         if (this.ballon_isDragging && this.ballon_draggableObject) {
             this.ballon_isDragging = false;
@@ -308,21 +353,52 @@ export class CreationComponent {
         }
     }
 
-    private onMouseLeave(event: MouseEvent | TouchEvent) {
-        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
-        //event.preventDefault();
+    private onTouchEnd(event: TouchEvent) {
+        // Récupérer les coordonnées du toucher
+        const touch = event.touches[0];
+
         if (this.isDragging && this.draggableObject) {
             this.isDragging = false;
             this.draggableObject.style.cursor = 'grab';
         }
+    }
+    private ballon_onTouchEnd(event: TouchEvent) {
+        // Récupérer les coordonnées du toucher
+        const touch = event.touches[0];
+        if (this.ballon_isDragging && this.ballon_draggableObject) {
+            this.ballon_isDragging = false;
+            this.ballon_draggableObject.style.cursor = 'grab';
+        }
+    }
+    private onMouseLeave(event: MouseEvent) {
+
+
+        if (this.isDragging && this.draggableObject) {
+            this.isDragging = false;
+            this.draggableObject.style.cursor = 'grab';
+        }
+    }
+
+    private onTouchCancel(event: TouchEvent) {
+        // Récupérer les coordonnées du toucher
+        const touch = event.touches[0];
+
+        if (this.isDragging && this.draggableObject) {
+            this.isDragging = false;
+            this.draggableObject.style.cursor = 'grab';
+        }
+    }
+    private ballon_onTouchCancel(event: TouchEvent) {
+        // Récupérer les coordonnées du toucher
+        const touch = event.touches[0];
         if (this.ballon_isDragging && this.ballon_draggableObject) {
             this.ballon_isDragging = false;
             this.ballon_draggableObject.style.cursor = 'grab';
         }
     }
 
-    private ballon_onMouseLeave(event: MouseEvent | TouchEvent) {
-        //event.preventDefault();
+    private ballon_onMouseLeave(event: MouseEvent) {
+
         if (this.ballon_isDragging && this.ballon_draggableObject) {
             this.ballon_isDragging = false;
             this.ballon_draggableObject.style.cursor = 'grab';
@@ -474,7 +550,7 @@ export class CreationComponent {
     }
 
     selectEntite(entite:Entite){
-        if (this._selectEntite==false){
+        if (this._selectEntite===false){
             this._entiteSelect=entite;
             this._selectEntite=true;
             this._newDeplacement.startPosX=entite.x;
@@ -484,58 +560,59 @@ export class CreationComponent {
             this._selectEntite=false;
         }
         console.log("select ",this._selectEntite,this._entiteSelect.id)
+        event.stopPropagation();
     }
 
     isEntiteSelect(entite:Entite):boolean{
-        if(this._selectEntite==true && entite.id==this._entiteSelect.id){
+        if(this._selectEntite===true && entite.id==this._entiteSelect.id){
             return true;
         }
         return false;
     }
 
-    addDeplacement(event: MouseEvent){
-        if(this._selectEntite==true && this.is_deplacement){
+    addDeplacement(event: MouseEvent) {
+        // Ajouter un délai de 500 millisecondes (par exemple)
+            if (this._selectEntite == true && this.is_deplacement) {
+                // Votre code existant ici
+                const offsetX = event.clientX;
+                const offsetY = event.clientY;
+                console.log("position deplacement px: ", offsetX, offsetY);
 
-            const offsetX = event.clientX;
-            const offsetY = event.clientY;
-            console.log("position deplacement px: ",offsetX,offsetY)
+                const parentWidth = window.innerWidth;
+                const parentHeight = window.innerHeight;
 
-            const parentWidth = window.innerWidth;
-            const parentHeight = window.innerHeight;
+                let percentX = (offsetX / parentWidth) * 100;
+                let percentY = (offsetY / parentHeight) * 100;
 
-            let percentX = (offsetX /parentWidth ) * 100;
-            let percentY = (offsetY / parentHeight) * 100;
+                this.numAction += 1;
+                //recup position tableau
+                this.positionPercentage = this.getPositionPercentage(this.tableau);
 
-            this.numAction +=  1;
-            //recup position tableau
-            this.positionPercentage = this.getPositionPercentage(this.tableau);
+                this.tabLeft = this.positionPercentage.left;
+                this.tabTop = this.positionPercentage.top;
+                console.log('tab finale en pourcentage - Left:', this.tabLeft, 'Top:', this.tabTop);
+                percentY = percentY - this.tabTop - 1.5;
+                percentX = percentX - this.tabLeft - 1.5;
 
-            this.tabLeft=this.positionPercentage.left;
-            this.tabTop=this.positionPercentage.top;
-            console.log('tab finale en pourcentage - Left:', this.tabLeft, 'Top:', this.tabTop);
-            percentY=percentY-this.tabTop-1.5;
-            percentX=percentX-this.tabLeft-1.5;
-
-            // Mettre à jour les coordonnées de l'entité sélectionnée
-            this._entiteSelect.y = percentY;
-            this._entiteSelect.x = percentX;
-            console.log('deplacement finale en pourcentage - Left:', percentX, 'Top:', percentY);
-            this._entiteList.forEach(entite => {
-                if (entite.id == this._entiteSelect.id) {
-                    this._newDeplacement.scenario=entite.scenario;
-                    this._newDeplacement.entite=entite.id;
-                    this._newDeplacement.numAction=this.numAction;
-                    entite.y = percentY;
-                    entite.x = percentX;
-                    this._newDeplacement.endPosX=percentX;
-                    this._newDeplacement.endPosY=percentY;
-                    this._creationService.addDeplacement(this._newDeplacement).subscribe(
-                    )
-                }
-            });
-            this._entiteSelect=null;
-            this._selectEntite=false;
-        }
+                // Mettre à jour les coordonnées de l'entité sélectionnée
+                this._entiteSelect.y = percentY;
+                this._entiteSelect.x = percentX;
+                console.log('deplacement finale en pourcentage - Left:', percentX, 'Top:', percentY);
+                this._entiteList.forEach(entite => {
+                    if (entite.id == this._entiteSelect.id) {
+                        this._newDeplacement.scenario = entite.scenario;
+                        this._newDeplacement.entite = entite.id;
+                        this._newDeplacement.numAction = this.numAction;
+                        entite.y = percentY;
+                        entite.x = percentX;
+                        this._newDeplacement.endPosX = percentX;
+                        this._newDeplacement.endPosY = percentY;
+                        this._creationService.addDeplacement(this._newDeplacement).subscribe();
+                    }
+                });
+                this._entiteSelect = null;
+                this._selectEntite = false;
+            }
     }
 
     passDeplacement(){

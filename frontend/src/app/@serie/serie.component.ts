@@ -231,6 +231,12 @@ export class SerieComponent {
         this._nbAction=0;
         // Appel à getScenarioId pour obtenir l'objet Scenario avant de lancer la visualisation
         this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(scenario => {
+            //on actualise le scenario si les parametre on changer
+            scenario.mode_scene=this._serieSelect.experience[this._scenarioLancer].mode_scene;
+            scenario.terrain_couleur=this._serieSelect.experience[this._scenarioLancer].terrain_couleur;
+            scenario.zone_nb_zone=this._serieSelect.experience[this._scenarioLancer].zone_nb_zone;
+            scenario.zone_nb_couloir=this._serieSelect.experience[this._scenarioLancer].zone_nb_couloir;
+            //on lance le scenario
             this.selectScenario(scenario,'tableau_terrain');
             this.playVisualisation(scenario);
         });

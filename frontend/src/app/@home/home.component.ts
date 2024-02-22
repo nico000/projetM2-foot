@@ -194,6 +194,7 @@ export class HomeComponent {
             this._newExeperience.push(exp);
             console.log("exp");
         });
+        this.resetData(this._designModal);
     }
 
     updateTypeFeed(nom: string,experience:Experience){
@@ -232,7 +233,6 @@ export class HomeComponent {
         });
         //reset
         this.resetFeedBack(modal);
-        this.resetData(this._designModal);
     }
 
 

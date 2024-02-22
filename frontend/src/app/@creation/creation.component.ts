@@ -195,7 +195,7 @@ export class CreationComponent {
             document.addEventListener('touchend', onMouseUp);
 
             document.addEventListener('mouseleave', onMouseLeave);
-            document.addEventListener('touchcancel', onMouseLeave);
+            document.addEventListener('touchleave', onMouseLeave);
         }
     }
 
@@ -208,6 +208,13 @@ export class CreationComponent {
     }
 
     private onMouseDown(event: MouseEvent) {
+        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
+        event.preventDefault();
+
+        // Utiliser des coordonnées de toucher si l'événement est un événement tactile
+        const clientX = event instanceof TouchEvent ? event.touches[0].clientX : event.clientX;
+        const clientY = event instanceof TouchEvent ? event.touches[0].clientY : event.clientY;
+
         if (this.draggableObject) {
             this.isDragging = true;
 
@@ -225,6 +232,11 @@ export class CreationComponent {
     }
 
     private ballon_onMouseDown(event: MouseEvent) {
+        event.preventDefault();
+
+        // Utiliser des coordonnées de toucher si l'événement est un événement tactile
+        const clientX = event instanceof TouchEvent ? event.touches[0].clientX : event.clientX;
+        const clientY = event instanceof TouchEvent ? event.touches[0].clientY : event.clientY;
         if (this.ballon_draggableObject) {
             this.ballon_isDragging = true;
 
@@ -240,27 +252,44 @@ export class CreationComponent {
         }
     }
 
-    private onMouseMove(event: MouseEvent) {
+    private onMouseMove(event: MouseEvent | TouchEvent) {
+        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
+        event.preventDefault();
+
+        // Utiliser des coordonnées de toucher si l'événement est un événement tactile
+        const clientX = event instanceof TouchEvent ? event.touches[0].clientX : event.clientX;
+        const clientY = event instanceof TouchEvent ? event.touches[0].clientY : event.clientY;
+
         if (this.isDragging && this.draggableObject) {
-            const x = event.clientX - this.offsetX;
-            const y = event.clientY - this.offsetY;
+            const x = clientX - this.offsetX;
+            const y = clientY - this.offsetY;
 
             this.draggableObject.style.left = `${x}px`;
             this.draggableObject.style.top = `${y}px`;
         }
     }
 
-    private ballon_onMouseMove(event: MouseEvent) {
+    private ballon_onMouseMove(event: MouseEvent | TouchEvent) {
+        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
+        event.preventDefault();
+
+        // Utiliser des coordonnées de toucher si l'événement est un événement tactile
+        const clientX = event instanceof TouchEvent ? event.touches[0].clientX : event.clientX;
+        const clientY = event instanceof TouchEvent ? event.touches[0].clientY : event.clientY;
+
         if (this.ballon_isDragging && this.ballon_draggableObject) {
-            const x = event.clientX - this.ballon_offsetX;
-            const y = event.clientY - this.ballon_offsetY ;
+            const x = clientX - this.ballon_offsetX;
+            const y = clientY - this.ballon_offsetY ;
 
             this.ballon_draggableObject.style.left = `${x}px`;
             this.ballon_draggableObject.style.top = `${y}px`;
         }
     }
 
-    private onMouseUp(event: MouseEvent) {
+    private onMouseUp(event: MouseEvent | TouchEvent) {
+        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
+        event.preventDefault();
+
         if (this.isDragging && this.draggableObject) {
             this.isDragging = false;
             this.draggableObject.style.cursor = 'grab';
@@ -268,7 +297,10 @@ export class CreationComponent {
 
     }
 
-    private ballon_onMouseUp(event: MouseEvent) {
+    private ballon_onMouseUp(event: MouseEvent | TouchEvent) {
+        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
+        event.preventDefault();
+
         if (this.ballon_isDragging && this.ballon_draggableObject) {
             this.ballon_isDragging = false;
             this.ballon_draggableObject.style.cursor = 'grab';
@@ -276,7 +308,9 @@ export class CreationComponent {
         }
     }
 
-    private onMouseLeave(event: MouseEvent) {
+    private onMouseLeave(event: MouseEvent | TouchEvent) {
+        // Empêcher le comportement par défaut pour éviter des problèmes de défilement
+        event.preventDefault();
         if (this.isDragging && this.draggableObject) {
             this.isDragging = false;
             this.draggableObject.style.cursor = 'grab';
@@ -287,7 +321,8 @@ export class CreationComponent {
         }
     }
 
-    private ballon_onMouseLeave(event: MouseEvent) {
+    private ballon_onMouseLeave(event: MouseEvent | TouchEvent) {
+        event.preventDefault();
         if (this.ballon_isDragging && this.ballon_draggableObject) {
             this.ballon_isDragging = false;
             this.ballon_draggableObject.style.cursor = 'grab';

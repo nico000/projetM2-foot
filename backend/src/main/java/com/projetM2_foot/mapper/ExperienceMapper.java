@@ -26,11 +26,11 @@ public class ExperienceMapper {
                 .typeFeedback(request.getTypeFeedback())
                 .freqFeedback(request.getFreqFeedback())
                 .visuFeedback(request.getVisuFeedback())
-                .colonArea(request.getColonArea())
-                .corridorArea(request.getCorridorArea())
+                .colonArea(request.getZone_nb_zone())
+                .corridorArea(request.getZone_nb_couloir())
                 .modeScene(request.getModeScene())
-                .displayArea(request.getDisplayArea())
-                .groundColor(request.getGroundColor())
+                .displayArea(request.getZone_display())
+                .groundColor(request.getTerrain_couleur())
                 .build();
     }
 

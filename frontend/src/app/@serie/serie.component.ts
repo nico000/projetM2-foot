@@ -10,6 +10,8 @@ import {Utilisateur} from "./beans/Utilisateur";
 import {Entite} from "../@creation/beans/Entite";
 import {Deplacement} from "./beans/Deplacement";
 import {Essai} from "./beans/Essai";
+import {ResultatFeedBack} from "./beans/ResultatFeedBack";
+import {ResultatUser} from "./beans/ResultatUser";
 
 @Component({
     selector: 'serie',
@@ -99,10 +101,17 @@ export class SerieComponent {
     protected  _veridModal: string = "_veridModal";
     protected _newUtilisateur : Utilisateur=new Utilisateur();
     protected _isLancer:boolean=false;
+    protected resultUser:ResultatUser=new ResultatUser();
     addUser(modal: string){
         this.openData(modal);
         this.resetData(this._simulationModal);
         this._isLancer=false;
+        //on ajoute l'utlisateur
+        this._newUtilisateur.examen=this._serieSelect.id;
+        this._serieService.addUser(this._newUtilisateur).subscribe(
+            (resultat: ResultatUser) => {
+                this.resultUser=resultat;
+            },);
     }
     //update info user
     updateSex(sex: string){
@@ -132,6 +141,7 @@ export class SerieComponent {
     openSimu(modal: string,serie:Serie){
         this.openData(modal);
         this._serieSelect=serie;
+        this._scenarioLancer=0;
     }
 
     //recup position tableau
@@ -203,7 +213,7 @@ export class SerieComponent {
                         // Appelle la fonction processDepalcement avec l'indice suivant après un délai
                         setTimeout(() => {
                             processDepalcement(index + 1);
-                        }, 2000); // délai de x seconde entre chaque déplacement
+                        }, 1500); // délai de x seconde entre chaque déplacement
                     } else {
                         this._finvisu = true; // Définit la variable  sur true lorsque le traitement est terminé
                     }
@@ -211,7 +221,7 @@ export class SerieComponent {
                 // démarrer le traitement avec l'indice 0
                 setTimeout(() => {
                     processDepalcement(0);
-                }, 2500);
+                }, 1500);
             }
         );
     }
@@ -221,6 +231,7 @@ export class SerieComponent {
         this._nbAction=0;
         // Appel à getScenarioId pour obtenir l'objet Scenario avant de lancer la visualisation
         this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(scenario => {
+            this.selectScenario(scenario,'tableau_terrain');
             this.playVisualisation(scenario);
         });
     }
@@ -228,9 +239,6 @@ export class SerieComponent {
         this._isLancer = true;
         this._nbVisualisation = 1;
         const visuFeedback = this._serieSelect.experience[this._scenarioLancer].visuFeedback;
-        this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(scenario => {
-            this.selectScenario(scenario,'tableau_terrain');
-        });
 
         const launchNextVisu = () => {
             if (this._nbVisualisation <= visuFeedback) {
@@ -258,16 +266,18 @@ export class SerieComponent {
     toTest(){
         this.openData(this._PostDeplacementModal);
         this.resetData(this._veridModal);
+        this._isLancer=false;
         //on regenere le terrain
         this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(scenario => {
             this.selectScenario(scenario,'tableau_terrain2');
+            this._scenarioplay=scenario;
             console.log("regen :",scenario);
         });
         //on enr l'essai
         this._nbEssai++;
         //ajout essaie
         this._newEssai.num=this._nbEssai;
-        this._newEssai.experience=this._serieSelect.experience[this._scenarioLancer].id;
+        this._newEssai.resultatExperience=this.resultUser.resultat_experience[this._scenarioLancer];
         this._newEssai.temps=0.0;
         this._ispostdeplacement=true;
     }
@@ -303,7 +313,7 @@ export class SerieComponent {
             let percentX = (offsetX / parentWidth) * 100;
             let percentY = (offsetY / parentHeight) * 100;
 
-            this.numAction +=  1;
+            this.numAction++;
             //recup position tableau
             this.positionPercentage = this.getPositionPercentage(this.tableau);
 
@@ -321,21 +331,61 @@ export class SerieComponent {
                 if (entite.id == this._entiteSelect.id) {
                     this._newDeplacement.entite=entite.id;
                     this._newDeplacement.numAction=this.numAction;
-                    this._newDeplacement.numScene=1;
-                    this._newDeplacement.numBloc=1;
                     entite.y = percentX;
                     entite.x = percentY;
                     this._newDeplacement.endPosX=percentY;
                     this._newDeplacement.endPosY=percentX;
                     //add deplacement dans essai
-                    this._newEssai.deplacement.push(this._newDeplacement);
+                    this._newEssai.deplacements.push(this._newDeplacement);
                     console.log("add deplacement",this._newEssai);
                 }
             });
             this._entiteSelect=null;
             this._selectEntite=false;
+        };
+        console.log("finadd",this._scenarioplay)
+        this._serieService.getDepalcementList(this._scenarioplay.id).subscribe(
+            res => {
+                this._depalcementList = res;
+            });
+        console.log("num action",this.numAction,this._depalcementList.length)
+        if(this.numAction>=this._depalcementList.length){
+            this.lanceFeedBack();
         }
     }
 
+    //on lance le feedBack
+    protected _feedBackScoreModal: string = "_feedBackScoreModal";
+    protected _resultat:ResultatFeedBack=new ResultatFeedBack();
+    lanceFeedBack(){
+        //on envoie l'essai et recupere le resultat
+        this._serieService.addEssai(this._newEssai).subscribe(
+            (resultat: ResultatFeedBack) => {
+                this._resultat=resultat;
+            });
+        //on change le modal pour feedBack
+        this.resetData(this._PostDeplacementModal);
+        if (this._serieSelect.experience[this._scenarioLancer].typeFeedback==='score'){
+            this.openData(this._feedBackScoreModal);
+        }
+    }
 
+    //on relance
+    relance(){
+        //si il a reussi
+        if(this._resultat.reussi===true){
+            //si c le dernier scenario
+            if(this._scenarioLancer >= this._serieSelect.experience.length){
+                //on ferme les feedBack
+                this.resetData(this._feedBackScoreModal);
+            }else {//sinon on lance le prochain scenario
+                this._scenarioLancer++;
+                this.openData(this._veridModal);
+                this.resetData(this._feedBackScoreModal);
+            }
+        }else{//si il a pas reussi
+            this.openData(this._veridModal);
+            this.resetData(this._feedBackScoreModal);
+        }
+    }
 }

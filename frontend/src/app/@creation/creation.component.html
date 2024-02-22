@@ -100,7 +100,7 @@
                     <td  *ngFor="let zone of nb_couloir(lastZone)" class="zone"
                          [style.background-color]="lastCouleur === 'blanc' ? 'white' : 'initial'">
                         <div  *ngFor="let entite of _entiteList" class="draggable"
-                             [style.left.%]="entite.y+this.tabLeft" [style.top.%]="entite.x+tabTop"
+                             [style.left.%]="entite.x+this.tabLeft" [style.top.%]="entite.y+tabTop"
                               (click)="selectEntite(entite)">
                             <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
                                 <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">

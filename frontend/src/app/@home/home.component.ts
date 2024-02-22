@@ -194,7 +194,6 @@ export class HomeComponent {
             this._newExeperience.push(exp);
             console.log("exp");
         });
-        this.resetData(this._designModal);
     }
 
     updateTypeFeed(nom: string,experience:Experience){
@@ -233,6 +232,7 @@ export class HomeComponent {
         });
         //reset
         this.resetFeedBack(modal);
+        this.resetData(this._designModal);
     }
 
 
@@ -251,22 +251,22 @@ export class HomeComponent {
                         this._entiteList.forEach(entite => {
                             // cherche l'entité devant être déplacée
                             if (entite.id === deplacement.entite) {
-                                //on enregistre position depart pour fleche
-                                const startX = (entite.x + this.tabLeft-10)
-                                const startY = (entite.y + this.tabTop)
+
                                 //on déplace l'entité
                                 entite.x = deplacement.endPosX;
                                 entite.y = deplacement.endPosY;
                                 console.log("entite trouvée");
                                 // Afficher une flèche entre les entités
-                                // Convertir les pourcentages en pixels
-
-                                const endX = (deplacement.endPosX + this.tabLeft-10)
-                                const endY = (deplacement.endPosY + this.tabTop)
-                                console.log("pos depart",(entite.y ) ,(entite.x),
-                                    (deplacement.endPosX),(deplacement.endPosY ));
-                                console.log("fleche :",startX, startY, endX, endY);
-                                this.addArrow(startY, startX, endY, endX);
+                                const endX = (deplacement.startPosX)*(100/68);
+                                const endY = (deplacement.startPosY)*(100/68);
+                                const startX = (deplacement.endPosX )*(100/68);
+                                const startY = (deplacement.endPosY)*(100/68);
+                                console.log("this.tabTop",this.tabTop,"this.tabLeft",this.tabLeft)
+                                console.log("deplacement.startPosX:",deplacement.startPosX ,"startX :" ,startX);
+                                console.log("deplacement.startPosY:",deplacement.startPosY ,"startY :" ,startY);
+                                console.log("deplacement.endPosX:",deplacement.endPosX ,"endX :" ,endX);
+                                console.log("deplacement.endPosY:",deplacement.endPosY ,"endY :" ,endY);
+                                this.addArrow(startX, startY, endX, endY);
 
                             }
                         });
@@ -274,7 +274,7 @@ export class HomeComponent {
                         // Appelle la fonction processDepalcement avec l'indice suivant après un délai
                         setTimeout(() => {
                             processDepalcement(index + 1);
-                        }, 1000); // délai de x seconde entre chaque déplacement
+                        }, 2000); // délai de x seconde entre chaque déplacement
                     }
                 };
                 // démarrer le traitement avec l'indice 0
@@ -296,15 +296,15 @@ export class HomeComponent {
 
         // Calculer la longueur et l'angle de la flèche
         const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
-        const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+        const angle = Math.atan2(endY - startY,endX - startX) * (180 / Math.PI);
 
         // Appliquer les styles à la flèche
         arrow.style.position = 'absolute';
         arrow.style.width = length + '%';
         arrow.style.height = '2px'; // Épaisseur de la flèche
         arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-        arrow.style.left = startX + '%';
-        arrow.style.top = startY + '%';
+        arrow.style.left = ((startX) +this.tabLeft)+ '%';
+        arrow.style.top = ((startY) +this.tabTop) + '%';
         arrow.style.transform = 'rotate(' + angle + 'deg)';
 
         // Ajouter la flèche au DOM

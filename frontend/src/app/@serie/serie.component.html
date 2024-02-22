@@ -201,12 +201,7 @@
 </jw-modal>
 
 <jw-modal id="{{_PostDeplacementModal}}" >
-    <nav class="menu">
-        <ul>
-            <li class="boutton" style="width: 50%"><a *ngIf="_isLancer===false" (click)="lance_simu()">Lancer</a></li>
-        </ul>
-    </nav>
-    <div  class="ecriture">Deplacement : {{_nbAction}}</div>
+    <div  class="ecriture">Deplacement : {{numAction}}</div>
     <table class="tableau_joueur">
         <tr>
             <td class="colonne_terrain2">
@@ -237,3 +232,14 @@
     </table>
 </jw-modal>
 
+<jw-modal id="{{_feedBackScoreModal}}" >
+    <h1 class="presentation">FeedBack Score</h1>
+    <div class="categorie">Resultat : {{_resultat.reussi}}</div>
+    <div class="categorie">Score : {{_resultat.score}}</div>
+    <nav class="menu">
+        <ul>
+            <li class="boutton" style="width: 40%"><a (click)="resetData(_feedBackScoreModal)">Abandoner</a></li>
+            <li class="boutton" style="width: 40%"><a (click)="relance()">Suivant</a></li>
+        </ul>
+    </nav>
+</jw-modal>

@@ -71,7 +71,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<table class=\"tableau\" >\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <h1 class=\"presentation\">Ajout d'un test</h1>\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\"   [style.background-color]=\"_newScenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\"  [style.background-color]=\"_newScenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain:\n                <input type=\"checkbox\" id=\"couleurV\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert')\">\n                <label for=\"couleurV\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                <input type=\"checkbox\" id=\"couleurB\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc')\">\n                <label for=\"couleurB\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'moyen' ? '#3498db' : 'initial'\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'grand' ? '#3498db' : 'initial'\">Grand</label>\n            </div><br>\n            <!--\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_use === true ? '#3498db' : 'initial'\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_display === true ? '#3498db' : 'initial'\">Afficher les zones du terrain</label>\n            </div><br>-->\n            <div class=\"titre\">\n                Nombre de joueur:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <div *ngIf=\"is_placement\" class=\"mode\">Ajout des entités</div>\n            <div *ngIf=\"is_deplacement\" class=\"mode\">Ajout deplacement   ::   Action={{ numAction }}</div>\n            <table class=\"tableau_terrain\">\n<!--                <div *ngIf=\"is_placement\" class=\"mode\">Ajout des entités</div>-->\n<!--                <div *ngIf=\"is_deplacement\" class=\"mode\">Ajout deplacement :  action={{ numAction }}</div>-->\n                <tr>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button (click)=\"delEntite()\" class=\"boutton\">retour placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button (click)=\"delDeplacement()\" class=\"boutton\">retour deplacement</button></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">joueur :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"deplacableObject\" class=\"draggable joueur\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">ballon :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"ballondeplacableObject\" class=\"draggable ballon\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button  (click)=\"passEntite()\" class=\"boutton\">fin placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button  (click)=\"passDeplacement()\" class=\"boutton\">fin deplacement</button></div>\n                    </td>\n                    <br><br><br><br><br>\n                </tr></table><br>\n            <div style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n            <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\" (dblclick)=\"addDeplacement($event)\">\n                <tr  *ngFor=\"let couloir of nb_couloir(lastCouloir); let odd = odd\" class=\"couloir\">\n                    <td  *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\"\n                         [style.background-color]=\"lastCouleur === 'blanc' ? 'white' : 'initial'\">\n                        <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                             [style.left.%]=\"entite.y+this.tabLeft\" [style.top.%]=\"entite.x+tabTop\"\n                              (click)=\"selectEntite(entite)\">\n                            <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                            <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                </tr>\n            </table>\n            </div>\n            <br>\n            <table>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addJoueur()\">ajouter joueur</a></li>\n                        </ul>\n                    </nav>\n                </td>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addBallon()\">ajouter ballon</a></li>\n                        </ul>\n                    </nav>\n                </td>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
+    __webpack_exports__["default"] = "<table class=\"tableau\" >\n    <tr>\n        <td class=\" colonne\" > <!-- parametre  -->\n            <h1 class=\"presentation\">Ajout d'un test</h1>\n            <div class=\"titre\">\n                nom:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.nom\"/>\n            </div><br>\n            <div class=\"titre\">\n                mode_scene:\n                <input type=\"checkbox\" id=\"scene\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene')\">\n                <label for=\"scene\" class=\"round-button\"   [style.background-color]=\"_newScenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                <input type=\"checkbox\" id=\"action\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action')\">\n                <label for=\"action\" class=\"round-button\"  [style.background-color]=\"_newScenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n            </div><br>\n\n            <div class=\"titre\">\n                couleur du terrain:\n                <input type=\"checkbox\" id=\"couleurV\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert')\">\n                <label for=\"couleurV\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                <input type=\"checkbox\" id=\"couleurB\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc')\">\n                <label for=\"couleurB\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n            </div><br>\n\n            <div class=\"titre\">\n                taille du terrain:\n                <input type=\"checkbox\" id=\"moyen\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('moyen')\">\n                <label for=\"moyen\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'moyen' ? '#3498db' : 'initial'\">Moyen</label>\n\n                <input type=\"checkbox\" id=\"grand\" class=\"hidden-checkbox\" (click)=\"updateterrainScenario('grand')\">\n                <label for=\"grand\" class=\"round-button\" [style.background-color]=\"_newScenario.terrain_taille === 'grand' ? '#3498db' : 'initial'\">Grand</label>\n            </div><br>\n            <!--\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"_useT\" class=\"hidden-checkbox\" (click)=\"updateUseZone('true')\">\n                <label for=\"_useT\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_use === true ? '#3498db' : 'initial'\">utiliser les zone</label>\n            </div><br>\n\n            <div class=\"titre\">\n                <input type=\"checkbox\" id=\"AZone\" class=\"hidden-checkbox\" (click)=\"updateAfficheZone('true')\">\n                <label for=\"AZone\" class=\"round-button\" [style.background-color]=\"_newScenario.zone_display === true ? '#3498db' : 'initial'\">Afficher les zones du terrain</label>\n            </div><br>-->\n            <div class=\"titre\">\n                Nombre de joueur:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.joueur_nb\"/><br>\n            </div><br>\n\n            <div class=\"titre\">\n                Nombre de zone:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_zone\"/><br>\n            </div><br>\n            <div class=\"titre\">\n                Nombre de couloir:\n                <input type=\"text\" [(ngModel)]=\"_newScenario.zone_nb_couloir\"/><br>\n            </div><br>\n\n\n            <nav class=\"menu\">\n                <ul>\n                    <li class=\"boutton\" ><a (click)=\"openModal(_addScenarioModalName)\">valider</a></li>\n                </ul>\n            </nav>\n        </td>\n\n\n        <td class=\"colonne2\" ><!-- terrain -->\n            <div *ngIf=\"is_placement\" class=\"mode\">Ajout des entités</div>\n            <div *ngIf=\"is_deplacement\" class=\"mode\">Ajout deplacement   ::   Action={{ numAction }}</div>\n            <table class=\"tableau_terrain\">\n<!--                <div *ngIf=\"is_placement\" class=\"mode\">Ajout des entités</div>-->\n<!--                <div *ngIf=\"is_deplacement\" class=\"mode\">Ajout deplacement :  action={{ numAction }}</div>-->\n                <tr>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button (click)=\"delEntite()\" class=\"boutton\">retour placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button (click)=\"delDeplacement()\" class=\"boutton\">retour deplacement</button></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">joueur :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"deplacableObject\" class=\"draggable joueur\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div class=\"Ecriture\">ballon :</div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div id=\"ballondeplacableObject\" class=\"draggable ballon\"></div>\n                    </td>\n                    <td class=\"barreOutils\">\n                        <div *ngIf=\"is_placement\" class=\"Ecriture\"><button  (click)=\"passEntite()\" class=\"boutton\">fin placement</button></div>\n                        <div *ngIf=\"is_deplacement\" class=\"Ecriture\"><button  (click)=\"passDeplacement()\" class=\"boutton\">fin deplacement</button></div>\n                    </td>\n                    <br><br><br><br><br>\n                </tr></table><br>\n            <div style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n            <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\" (dblclick)=\"addDeplacement($event)\">\n                <tr  *ngFor=\"let couloir of nb_couloir(lastCouloir); let odd = odd\" class=\"couloir\">\n                    <td  *ngFor=\"let zone of nb_couloir(lastZone)\" class=\"zone\"\n                         [style.background-color]=\"lastCouleur === 'blanc' ? 'white' : 'initial'\">\n                        <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                             [style.left.%]=\"entite.x+this.tabLeft\" [style.top.%]=\"entite.y+tabTop\"\n                              (click)=\"selectEntite(entite)\">\n                            <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                            <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                    {{ entite.numero }}\n                                </div>\n                            </div>\n                        </div>\n                    </td>\n                </tr>\n            </table>\n            </div>\n            <br>\n            <table>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addJoueur()\">ajouter joueur</a></li>\n                        </ul>\n                    </nav>\n                </td>\n                <td class=\"colonne\">\n                    <nav class=\"menu\">\n                        <ul>\n                            <li class=\"boutton\" ><a *ngIf=\"is_placement\" (click)=\"addBallon()\">ajouter ballon</a></li>\n                        </ul>\n                    </nav>\n                </td>\n            </table>\n        </td>\n    </tr>\n</table>\n\n\n\n<jw-modal id=\"{{_addScenarioModalName}}\" >\n    <p class=\"verif\">Êtes-vous sûr de vouloir ajouter ce scénario ?</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"addScenario(_addScenarioModalName)\">oui</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a  (click)=\"resetData(_addScenarioModalName);\">non</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
     /***/
   },
 
@@ -111,7 +111,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<header class=\"fond\">\n    <!-- menu -->\n    <nav class=\"menu\">\n        <h1>Beta Foot</h1>\n        <ul>\n            <li class=\"boutton\">\n                <a routerLink=\"/creation\">Creation</a>\n            </li>\n\n            <li class=\"boutton\">\n                <a routerLink=\"/home\">Tests</a>\n            </li>\n            <li class=\"boutton\">\n                <a routerLink=\"/serie\">Series</a>\n            </li>\n            <li class=\"boutton\">\n                <a routerLink=\"/resultat\">Resultats</a>\n            </li>\n        </ul>\n    </nav>\n</header>\n\n\n";
+    __webpack_exports__["default"] = "<header class=\"fond\">\n    <!-- menu -->\n    <nav class=\"menu\">\n        <h1>Beta-Foot</h1>\n        <ul>\n            <li class=\"boutton\">\n                <a routerLink=\"/creation\">Creation</a>\n            </li>\n\n            <li class=\"boutton\">\n                <a routerLink=\"/home\">Tests</a>\n            </li>\n            <li class=\"boutton\">\n                <a routerLink=\"/serie\">Series</a>\n            </li>\n            <li class=\"boutton\">\n                <a routerLink=\"/resultat\">Resultats</a>\n            </li>\n        </ul>\n    </nav>\n</header>\n\n\n";
     /***/
   },
 
@@ -131,7 +131,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<h1 class=\"presentation\">Liste des Tests : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == false\" (click)=\"isAddSerie=true\">Creer une serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"isAddSerie=false\">Annuler la serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"changeDesigne(_designModal)\">Valider</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de zone\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de couloir\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            //\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_zone}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_couloir}}\n        </td>\n        <td class=\"colonne2 ecriture\">\n            <button (click)=\"selectScenario(_selectScenarioModalName,scenario)\">details</button>\n            <button (click)=\"delScenario(scenario)\">Supprimer</button>\n            <input *ngIf=\"isAddSerie\"  class=\"checkbox-custom\" type=\"checkbox\" (change)=\"toggleSelection(scenario)\">\n        </td>\n    </tr>\n</table>\n\n\n<jw-modal id=\"{{_selectScenarioModalName}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_selectScenarioModalName)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"playVisualisation(_selectedScenario)\">Play</a>\n            </li>\n        </ul>\n    </nav><br>\n<table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain\">\n                <h1 class=\"titre\">{{_selectedScenario.nom}}</h1>\n                <div class=\"categorie\">Mode Scene : </div><div class=\"Ecriture\">{{_selectedScenario.mode_scene}}</div>\n                <div class=\"categorie\">Couleur terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_couleur}}</div>\n                <div class=\"categorie\">Taille terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_taille}}</div>\n                <div class=\"categorie\">Nombre de zone : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_zone}}</div>\n                <div class=\"categorie\">Nombre de couloir : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_couloir}}</div>\n            </td>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\" >\n                    <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                        <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                             [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                            <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                  [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                    {{ entite.numero }}\n                                </div>\n                                <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                    {{ entite.numero }}\n                                </div>\n                                <!-- Ajouter des éléments pour représenter les flèches -->\n                                <div *ngFor=\"let arrow of arrows\" class=\"arrow\" [style.left.px]=\"arrow.startX\" [style.top.px]=\"arrow.startY\"\n                                     [style.width.px]=\"arrow.length\" [style.transform]=\"getArrowRotation(arrow.startX, arrow.startY, arrow.endX, arrow.endY)\">\n                                </div>\n                            </div>\n                        </td>\n                    </tr>\n                </table></div>\n\n            </td>\n        </tr>\n    </table>\n\n</jw-modal>\n\n<jw-modal id=\"{{_designModal}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_designModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addDesign(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <h1 class=\"presentation\">Serie : </h1>\n    <div class=\"titre\">\n        Nom de la series:\n        <input type=\"text\" [(ngModel)]=\"_newExam.nom\"/><br>\n    </div>\n\n    <div class=\"titre\">\n        Mode de la series:\n        <input type=\"checkbox\" id=\"sequentiel\" class=\"hidden-checkbox\" (click)=\"updateModeSequentiel('sequentiel')\">\n        <label for=\"sequentiel\" class=\"round-button\" [style.background-color]=\"_newExam.mode === 'sequentiel' ? '#3498db' : 'initial'\">Sequentiel</label>\n\n        <input type=\"checkbox\" id=\"aleatoire\" class=\"hidden-checkbox\" (click)=\"updateModeSequentiel('aleatoire')\">\n        <label for=\"aleatoire\" class=\"round-button\" [style.background-color]=\"_newExam.mode  === 'aleatoire' ? '#3498db' : 'initial'\">Aleatoire</label>\n    </div><br>\n\n    <h1 class=\"presentation\">Design : </h1><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Nom du test\n            </td>\n            <td class=\"titre colonne\">\n                Mode de scene\n            </td>\n            <td class=\"titre colonne\">\n                Couleur terrain\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de zone\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de couloir\n            </td>\n        </tr>\n        <tr  *ngFor=\"let scenario of _scenarioSelect\" >\n            <td class=\"colonne ecriture\">\n                {{scenario.nom}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"scene_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene',scenario)\">\n                    <label for=\"scene_{{scenario.nom}}\" class=\"round-button\"   [style.background-color]=\"scenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                    <input type=\"checkbox\" id=\"action_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action',scenario)\">\n                    <label for=\"action_{{scenario.nom}}\" class=\"round-button\"  [style.background-color]=\"scenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"couleurV_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert',scenario)\">\n                    <label for=\"couleurV_{{scenario.nom}}\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                    <input type=\"checkbox\" id=\"couleurB_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc',scenario)\">\n                    <label for=\"couleurB_{{scenario.nom}}\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n                </div>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_zone\"/><br>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_couloir\"/><br>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_feedBackModal}}\" >\n    <h1 class=\"presentation\">FeedBack : </h1>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_feedBackModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addFeedBack(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Test\n            </td>\n            <td class=\"titre colonne\">\n                Type feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Frequence feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Visualisation feedBack\n            </td>\n        </tr>\n        <tr *ngFor=\"let exeprience of _newExeperience\" >\n            <td class=\"colonne ecriture\">\n                {{exeprience.scenario}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"typesf_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('score',exeprience)\">\n                    <label for=\"typesf_{{exeprience.scenario}}\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'score' ? '#3498db' : 'initial'\">Score</label>\n\n                    <input type=\"checkbox\" id=\"static_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('static',exeprience)\">\n                    <label for=\"static_{{exeprience.scenario}}\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'static' ? '#3498db' : 'initial'\">Static</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"0_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(0,exeprience)\">\n                    <label for=\"0_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 0 ? '#3498db' : 'initial'\">0%</label>\n\n                    <input type=\"checkbox\" id=\"25_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(25,exeprience)\">\n                    <label for=\"25_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 25 ? '#3498db' : 'initial'\">25%</label>\n\n                    <input type=\"checkbox\" id=\"50_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(50,exeprience)\">\n                    <label for=\"50_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 50 ? '#3498db' : 'initial'\">50%</label>\n\n                    <input type=\"checkbox\" id=\"75_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(75,exeprience)\">\n                    <label for=\"75_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 75 ? '#3498db' : 'initial'\">75%</label>\n\n                    <input type=\"checkbox\" id=\"100_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(100,exeprience)\">\n                    <label for=\"100_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 100 ? '#3498db' : 'initial'\">100%</label>\n                </div>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"exeprience.visuFeedback\"/><br>\n            </td>\n        </tr>\n    </table>\n</jw-modal>";
+    __webpack_exports__["default"] = "\n<h1 class=\"presentation\">Liste des Tests : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == false\" (click)=\"isAddSerie=true\">Creer une serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"isAddSerie=false\">Annuler la serie</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"isAddSerie == true\" (click)=\"changeDesigne(_designModal)\">Valider</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n            <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('joueur_nb')\">\n            Nombre de zone\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('joueur_nb', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nombre de couloir\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne2\">\n            //\n        </td>\n    </tr>\n    <tr *ngFor=\"let scenario of _scenarioList\" (play)=\"orderBy('nom')\" >\n        <td class=\"colonne ecriture\">\n            {{scenario.nom}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_zone}}\n        </td>\n        <td class=\"colonne ecriture\">\n            {{scenario.zone_nb_couloir}}\n        </td>\n        <td class=\"colonne2 ecriture\">\n            <button (click)=\"selectScenario(_selectScenarioModalName,scenario)\">details</button>\n            <button (click)=\"delScenario(scenario)\">Supprimer</button>\n            <input *ngIf=\"isAddSerie\"  class=\"checkbox-custom\" type=\"checkbox\" (change)=\"toggleSelection(scenario)\">\n        </td>\n    </tr>\n</table>\n\n\n<jw-modal id=\"{{_selectScenarioModalName}}\" >\n    <h1 class=\"titre\">{{_selectedScenario.nom}}</h1>\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_selectScenarioModalName)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"playVisualisation(_selectedScenario)\">Play</a>\n            </li>\n        </ul>\n    </nav><br>\n<table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\" >\n                    <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                        <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                             [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                            <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                  [style.left.%]=\"((entite.x*(100/68))+this.tabLeft)\" [style.top.%]=\"((entite.y*(100/70))+this.tabTop)\">\n                                <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                    {{ entite.numero }}\n                                </div>\n                                <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                    {{ entite.numero }}\n                                </div>\n                                <!-- Ajouter des éléments pour représenter les flèches -->\n                                <div *ngFor=\"let arrow of arrows\">\n                                </div>\n                            </div>\n                        </td>\n                    </tr>\n                </table></div>\n            </td>\n        </tr>\n        <tr>\n            <div class=\"container\">\n                <div class=\"categorie\">Mode Scene : </div><div class=\"Ecriture\">{{_selectedScenario.mode_scene}}&nbsp;&nbsp;&nbsp;</div>\n                <div class=\"categorie\">Couleur terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_couleur}}&nbsp;&nbsp;&nbsp;</div>\n                <div class=\"categorie\">Taille terrain : </div><div class=\"Ecriture\">{{_selectedScenario.terrain_taille}}&nbsp;&nbsp;&nbsp;</div>\n                <div class=\"categorie\">Nombre de zone : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_zone}}&nbsp;&nbsp;&nbsp;</div>\n                <div class=\"categorie\">Nombre de couloir : </div><div class=\"Ecriture\">{{_selectedScenario.zone_nb_couloir}}</div>\n            </div>\n        </tr>\n    </table>\n\n</jw-modal>\n\n<jw-modal id=\"{{_designModal}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_designModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addDesign(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <h1 class=\"presentation\">Serie : </h1>\n    <div class=\"titre\">\n        Nom de la series:\n        <input type=\"text\" [(ngModel)]=\"_newExam.nom\"/><br>\n    </div>\n\n    <div class=\"titre\">\n        Mode de la series:\n        <input type=\"checkbox\" id=\"sequentiel\" class=\"hidden-checkbox\" (click)=\"updateModeSequentiel('sequentiel')\">\n        <label for=\"sequentiel\" class=\"round-button\" [style.background-color]=\"_newExam.mode === 'sequentiel' ? '#3498db' : 'initial'\">Sequentiel</label>\n\n        <input type=\"checkbox\" id=\"aleatoire\" class=\"hidden-checkbox\" (click)=\"updateModeSequentiel('aleatoire')\">\n        <label for=\"aleatoire\" class=\"round-button\" [style.background-color]=\"_newExam.mode  === 'aleatoire' ? '#3498db' : 'initial'\">Aleatoire</label>\n    </div><br>\n\n    <h1 class=\"presentation\">Design : </h1><br>\n\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Nom du test\n            </td>\n            <td class=\"titre colonne\">\n                Mode de scene\n            </td>\n            <td class=\"titre colonne\">\n                Couleur terrain\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de zone\n            </td>\n            <td class=\"titre colonne\">\n                Nombre de couloir\n            </td>\n        </tr>\n        <tr  *ngFor=\"let scenario of _scenarioSelect\" >\n            <td class=\"colonne ecriture\">\n                {{scenario.nom}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"scene_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('scene',scenario)\">\n                    <label for=\"scene_{{scenario.nom}}\" class=\"round-button\"   [style.background-color]=\"scenario.mode_scene === 'scene' ? '#3498db' : 'initial'\">Scene</label>\n\n                    <input type=\"checkbox\" id=\"action_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateModeScenario('action',scenario)\">\n                    <label for=\"action_{{scenario.nom}}\" class=\"round-button\"  [style.background-color]=\"scenario.mode_scene === 'action' ? '#3498db' : 'initial'\">Action</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"couleurV_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateCouleur('vert',scenario)\">\n                    <label for=\"couleurV_{{scenario.nom}}\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'vert' ? '#3498db' : 'initial'\">Vert</label>\n\n                    <input type=\"checkbox\" id=\"couleurB_{{scenario.nom}}\" class=\"hidden-checkbox\" (click)=\"updateCouleur('blanc',scenario)\">\n                    <label for=\"couleurB_{{scenario.nom}}\" class=\"round-button\" [style.background-color]=\"scenario.terrain_couleur === 'blanc' ? '#3498db' : 'initial'\">Blanc</label>\n                </div>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_zone\"/><br>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"scenario.zone_nb_couloir\"/><br>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_feedBackModal}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetFeedBack(_feedBackModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addFeedBack(_feedBackModal)\">Valider</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a  >Repliquer</a>\n            </li>\n        </ul>\n    </nav><br>\n\n    <h1 class=\"presentation\">FeedBack : </h1>\n    <table class=\"tableau\">\n        <tr>\n            <td class=\"titre colonne\">\n                Test\n            </td>\n            <td class=\"titre colonne\">\n                Type feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Frequence feedBack\n            </td>\n            <td class=\"titre colonne\">\n                Visualisation feedBack\n            </td>\n        </tr>\n        <tr *ngFor=\"let exeprience of _newExeperience\" >\n            <td class=\"colonne ecriture\">\n                {{exeprience.scenario}}\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"typesf_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('score',exeprience)\">\n                    <label for=\"typesf_{{exeprience.scenario}}\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'score' ? '#3498db' : 'initial'\">Score</label>\n\n                    <input type=\"checkbox\" id=\"static_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateTypeFeed('static',exeprience)\">\n                    <label for=\"static_{{exeprience.scenario}}\" class=\"round-button\"   [style.background-color]=\"exeprience.typeFeedback === 'static' ? '#3498db' : 'initial'\">Static</label>\n                </div>\n            </td>\n            <td class=\"colonne \">\n                <div class=\"titre\">\n                    <input type=\"checkbox\" id=\"0_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(0,exeprience)\">\n                    <label for=\"0_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 0 ? '#3498db' : 'initial'\">0%</label>\n\n                    <input type=\"checkbox\" id=\"25_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(25,exeprience)\">\n                    <label for=\"25_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 25 ? '#3498db' : 'initial'\">25%</label>\n\n                    <input type=\"checkbox\" id=\"50_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(50,exeprience)\">\n                    <label for=\"50_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 50 ? '#3498db' : 'initial'\">50%</label>\n\n                    <input type=\"checkbox\" id=\"75_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(75,exeprience)\">\n                    <label for=\"75_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 75 ? '#3498db' : 'initial'\">75%</label>\n\n                    <input type=\"checkbox\" id=\"100_{{exeprience.scenario}}\" class=\"hidden-checkbox\" (click)=\"updateFrequenceFeed(100,exeprience)\">\n                    <label for=\"100_{{exeprience.scenario}}\" class=\"round-button\" [style.background-color]=\"exeprience.freqFeedback === 100 ? '#3498db' : 'initial'\">100%</label>\n                </div>\n            </td>\n            <td class=\"colonne titre\">\n                <input type=\"text\" [(ngModel)]=\"exeprience.visuFeedback\"/><br>\n            </td>\n        </tr>\n    </table>\n    <br><br><br><br><br><br>\n</jw-modal>";
     /***/
   },
 
@@ -191,7 +191,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des Series : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom serie\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\">\n            Scenario\n        </td>\n        <td class=\"titre colonne\">\n            Type feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Frequence feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de zone\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de couloire\n        </td>\n        <td class=\"titre colonne\">\n            //\n        </td>\n    </tr>\n</table>\n<table class=\"tableau\">\n    <tr class=\"tableau\" *ngFor=\"let serie of _serieList\" (play)=\"orderBy('nom')\" >\n        <td class=\"ecriture colonne\">\n            {{serie.nom}}\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture \" >\n                    {{exp.scenario}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.typeFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.freqFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_zone}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_couloir}}\n                </div>\n            </div>\n        </td>\n        <td class=\" colonne ecriture\">\n            <button (click)=\"openSimu(_simulationModal,serie)\">Lancer serie</button>\n        </td>\n    </tr>\n</table>\n\n<!--modal entrer des info perso-->\n<jw-modal id=\"{{_simulationModal}}\" >\n    <h1 class=\"presentation\">Information personnel</h1>\n\n    <div class=\"titre\">\n        Groupe :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.groupe\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Nom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.nom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Prenom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.prenom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Age :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.age\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Sex :\n        <input type=\"checkbox\" id=\"fille\" class=\"hidden-checkbox\" (click)=\"updateSex('fille')\">\n        <label for=\"fille\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'fille' ? '#3498db' : 'initial'\">Fille</label>\n\n        <input type=\"checkbox\" id=\"garcon\" class=\"hidden-checkbox\" (click)=\"updateSex('garcon')\">\n        <label for=\"garcon\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'garcon' ? '#3498db' : 'initial'\">Garcon</label>\n    </div><br>\n\n    <div class=\"titre\">\n        Pratique sportive :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.pratique\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Etes-vous profesionelle :\n        <input type=\"checkbox\" id=\"oui\" class=\"hidden-checkbox\" (click)=\"updatePro(true)\">\n        <label for=\"oui\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === true ? '#3498db' : 'initial'\">oui</label>\n\n        <input type=\"checkbox\" id=\"non\" class=\"hidden-checkbox\" (click)=\"updatePro(false)\">\n        <label for=\"non\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === false ? '#3498db' : 'initial'\">non</label>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'année d'experience :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.anneeExperience\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre matches/an :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.matche\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre entrainements/mois :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.entrainement\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'heure pratique/semaine :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.heure\"/>\n    </div><br>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetData(_simulationModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addUser(_veridModal)\">Valider</a>\n            </li>\n        </ul>\n    </nav><br>\n</jw-modal>\n\n\n<jw-modal id=\"{{_veridModal}}\" >\n    <p class=\"presentation\" *ngIf=\"_isLancer===false\">Cliquer sur lancer quand vous etes pret</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a *ngIf=\"_isLancer===false\" (click)=\"lance_simu()\">Lancer</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a *ngIf=\"_isLancer===true\" (click)=\"toTest()\">Fin visualisation</a></li>\n        </ul>\n    </nav>\n    <div *ngIf=\"_isLancer\" class=\"ecriture\">Visualisation : {{_nbVisualisation-1}}</div>\n    <div *ngIf=\"_isLancer\" class=\"ecriture\">action : {{_nbAction-1}}</div>\n    <table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                    <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\">\n                        <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                            <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                                 [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                                <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                      [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                    <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                        {{ entite.numero }}\n                                    </div>\n                                    <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                        {{ entite.numero }}\n                                    </div>\n                                </div>\n                            </td>\n                        </tr>\n                    </table></div>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_PostDeplacementModal}}\" >\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a *ngIf=\"_isLancer===false\" (click)=\"lance_simu()\">Lancer</a></li>\n        </ul>\n    </nav>\n    <div  class=\"ecriture\">Deplacement : {{_nbAction}}</div>\n    <table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                    <table id=\"tableau_terrain2\" class=\"tableau_terrain tabter\" (dblclick)=\"addDeplacement($event)\">\n                        <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                            <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                                 [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                                <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                      [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\"\n                                      (click)=\"selectEntite(entite)\">\n                                    <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                        <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                            {{ entite.numero }}\n                                        </div>\n                                    </div>\n                                    <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                        <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                            {{ entite.numero }}\n                                        </div>\n                                    </div>\n                                </div>\n                            </td>\n                        </tr>\n                    </table></div>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n";
+    __webpack_exports__["default"] = "<h1 class=\"presentation\">Liste des Series : </h1>\n<nav class=\"menu\">\n    <ul>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == true\" (click)=\"resetFilter()\">Annuler les filtres</a>\n        </li>\n        <li  class=\"boutton\" >\n            <a *ngIf=\"_isFiltering == false\" (click)=\"_isFiltering = true\">Filtrer</a>\n        </li>\n    </ul>\n</nav>\n\n\n\n<table class=\"tableau\">\n    <tr>\n        <td class=\"titre colonne\" (click)=\"orderBy('nom')\">\n            Nom serie\n            <div *ngIf=\"_isFiltering == true\"><input class=\"contient\" type=\"text\" #titreFilter placeholder=\"Contient...\"/>\n                <button (click)=\"filterBy('nom', titreFilter.value)\"><span>&#10003;</span></button></div>\n        </td>\n        <td class=\"titre colonne\">\n            Scenario\n        </td>\n        <td class=\"titre colonne\">\n            Type feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Frequence feedBack\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de zone\n        </td>\n        <td class=\"titre colonne\">\n            Nombre de couloire\n        </td>\n        <td class=\"titre colonne\">\n            //\n        </td>\n    </tr>\n</table>\n<table class=\"tableau\">\n    <tr class=\"tableau\" *ngFor=\"let serie of _serieList\" (play)=\"orderBy('nom')\" >\n        <td class=\"ecriture colonne\">\n            {{serie.nom}}\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture \" >\n                    {{exp.scenario}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.typeFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.freqFeedback}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\">\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_zone}}\n                </div>\n            </div>\n        </td>\n        <td class=\"colonne\" >\n            <div *ngFor=\"let exp of serie.experience\">\n                <div class=\"ecriture\" >\n                    {{exp.zone_nb_couloir}}\n                </div>\n            </div>\n        </td>\n        <td class=\" colonne ecriture\">\n            <button (click)=\"openSimu(_simulationModal,serie)\">Lancer serie</button>\n        </td>\n    </tr>\n</table>\n\n<!--modal entrer des info perso-->\n<jw-modal id=\"{{_simulationModal}}\" >\n    <h1 class=\"presentation\">Information personnel</h1>\n\n    <div class=\"titre\">\n        Groupe :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.groupe\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Nom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.nom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Prenom :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.prenom\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Age :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.age\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Sex :\n        <input type=\"checkbox\" id=\"fille\" class=\"hidden-checkbox\" (click)=\"updateSex('fille')\">\n        <label for=\"fille\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'fille' ? '#3498db' : 'initial'\">Fille</label>\n\n        <input type=\"checkbox\" id=\"garcon\" class=\"hidden-checkbox\" (click)=\"updateSex('garcon')\">\n        <label for=\"garcon\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.sex === 'garcon' ? '#3498db' : 'initial'\">Garcon</label>\n    </div><br>\n\n    <div class=\"titre\">\n        Pratique sportive :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.pratique\"/>\n    </div><br>\n\n    <div class=\"titre\">\n        Etes-vous profesionelle :\n        <input type=\"checkbox\" id=\"oui\" class=\"hidden-checkbox\" (click)=\"updatePro(true)\">\n        <label for=\"oui\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === true ? '#3498db' : 'initial'\">oui</label>\n\n        <input type=\"checkbox\" id=\"non\" class=\"hidden-checkbox\" (click)=\"updatePro(false)\">\n        <label for=\"non\" class=\"round-button\" [style.background-color]=\"_newUtilisateur.pro === false ? '#3498db' : 'initial'\">non</label>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'année d'experience :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.anneeExperience\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre matches/an :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.matche\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre entrainements/mois :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.entrainement\"/>\n    </div><br>\n\n    <div *ngIf=\"_newUtilisateur.pro===true\" class=\"titre\">\n        Nombre d'heure pratique/semaine :\n        <input type=\"text\" [(ngModel)]=\"_newUtilisateur.heure\"/>\n    </div><br>\n\n    <nav class=\"menu\">\n        <ul>\n            <li  class=\"boutton\" >\n                <a (click)=\"resetData(_simulationModal)\">Annuler</a>\n            </li>\n            <li  class=\"boutton\" >\n                <a (click)=\"addUser(_veridModal)\">Valider</a>\n            </li>\n        </ul>\n    </nav><br>\n</jw-modal>\n\n\n<jw-modal id=\"{{_veridModal}}\" >\n    <p class=\"presentation\" *ngIf=\"_isLancer===false\">Cliquer sur lancer quand vous etes pret</p>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 50%\"><a *ngIf=\"_isLancer===false\" (click)=\"lance_simu()\">Lancer</a></li>\n            <li class=\"boutton\" style=\"width: 50%\"><a *ngIf=\"_isLancer===true\" (click)=\"toTest()\">Fin visualisation</a></li>\n        </ul>\n    </nav>\n    <div *ngIf=\"_isLancer\" class=\"ecriture\">Visualisation : {{_nbVisualisation-1}}</div>\n    <div *ngIf=\"_isLancer\" class=\"ecriture\">action : {{_nbAction-1}}</div>\n    <table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                    <table id=\"tableau_terrain\" class=\"tableau_terrain tabter\">\n                        <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                            <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                                 [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                                <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                      [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\">\n                                    <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                        {{ entite.numero }}\n                                    </div>\n                                    <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                        {{ entite.numero }}\n                                    </div>\n                                </div>\n                            </td>\n                        </tr>\n                    </table></div>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_PostDeplacementModal}}\" >\n    <div  class=\"ecriture\">Deplacement : {{numAction}}</div>\n    <table class=\"tableau_joueur\">\n        <tr>\n            <td class=\"colonne_terrain2\">\n                <div  style=\"background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;\">\n                    <table id=\"tableau_terrain2\" class=\"tableau_terrain tabter\" (dblclick)=\"addDeplacement($event)\">\n                        <tr  *ngFor=\"let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd\" class=\"couloir\">\n                            <td  *ngFor=\"let zone of nb_couloir(_selectedScenario.zone_nb_zone)\" class=\"zone\"\n                                 [style.background-color]=\"_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'\">\n                                <div  *ngFor=\"let entite of _entiteList\" class=\"draggable\"\n                                      [style.left.%]=\"(entite.y+this.tabLeft)\" [style.top.%]=\"entite.x+this.tabTop\"\n                                      (click)=\"selectEntite(entite)\">\n                                    <div class=\"draggable joueur numEcriture\" *ngIf=\"entite.type==1\">\n                                        <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                            {{ entite.numero }}\n                                        </div>\n                                    </div>\n                                    <div class=\"draggable ballon numEcriture\" *ngIf=\"entite.type==0\">\n                                        <div [style.background-color]=\"isEntiteSelect(entite) ? 'red' : ''\">\n                                            {{ entite.numero }}\n                                        </div>\n                                    </div>\n                                </div>\n                            </td>\n                        </tr>\n                    </table></div>\n            </td>\n        </tr>\n    </table>\n</jw-modal>\n\n<jw-modal id=\"{{_feedBackScoreModal}}\" >\n    <h1 class=\"presentation\">FeedBack Score</h1>\n    <div class=\"categorie\">Resultat : {{_resultat.reussi}}</div>\n    <div class=\"categorie\">Score : {{_resultat.score}}</div>\n    <nav class=\"menu\">\n        <ul>\n            <li class=\"boutton\" style=\"width: 40%\"><a (click)=\"resetData(_feedBackScoreModal)\">Abandoner</a></li>\n            <li class=\"boutton\" style=\"width: 40%\"><a (click)=\"relance()\">Suivant</a></li>\n        </ul>\n    </nav>\n</jw-modal>";
     /***/
   },
 
@@ -1410,13 +1410,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               _this4._newEntite.scenario = _this4.LastScenario.id;
               _this4._newEntite.numero = _this4.numero;
               _this4._newEntite.type = 1;
-              _this4._newEntite.y = leftPercentage;
-              _this4._newEntite.x = topPercentage;
+              _this4._newEntite.x = leftPercentage;
+              _this4._newEntite.y = topPercentage;
 
               _this4._creationService.addEntite(_this4._newEntite).subscribe(function (res) {
-                _this4._entiteList.push(res); //const Entite_draggableObject:HTMLDivElement = document.getElementById(res.id+'_deplacableObject') as HTMLDivElement;
-                //this.addEventListeners(Entite_draggableObject, this.entite_onMouseDown.bind(this), this.entite_onMouseMove.bind(this), this.entite_onMouseUp.bind(this), this.entite_onMouseLeave.bind(this));
-
+                _this4._entiteList.push(res);
               });
             })["catch"](function (error) {
               console.error('Une erreur s\'est produite lors de la récupération du scénario :', error); // Gérer l'erreur ici si nécessaire
@@ -1460,8 +1458,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               _this5._newEntite.scenario = _this5.LastScenario.id;
               _this5._newEntite.numero = 0;
               _this5._newEntite.type = 0;
-              _this5._newEntite.y = leftPercentage;
-              _this5._newEntite.x = topPercentage;
+              _this5._newEntite.x = leftPercentage;
+              _this5._newEntite.y = topPercentage;
 
               _this5._creationService.addEntite(_this5._newEntite).subscribe(function (res) {
                 _this5._entiteList.push(res);
@@ -1512,6 +1510,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (this._selectEntite == true && this.is_deplacement) {
             var offsetX = event.clientX;
             var offsetY = event.clientY;
+            console.log("position deplacement px: ", offsetX, offsetY);
             var parentWidth = window.innerWidth;
             var parentHeight = window.innerHeight;
             var percentX = offsetX / parentWidth * 100;
@@ -1525,8 +1524,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             percentY = percentY - this.tabTop - 1.5;
             percentX = percentX - this.tabLeft - 1.5; // Mettre à jour les coordonnées de l'entité sélectionnée
 
-            this._entiteSelect.y = percentX;
-            this._entiteSelect.x = percentY;
+            this._entiteSelect.y = percentY;
+            this._entiteSelect.x = percentX;
             console.log('deplacement finale en pourcentage - Left:', percentX, 'Top:', percentY);
 
             this._entiteList.forEach(function (entite) {
@@ -1534,12 +1533,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 _this6._newDeplacement.scenario = entite.scenario;
                 _this6._newDeplacement.entite = entite.id;
                 _this6._newDeplacement.numAction = _this6.numAction;
-                _this6._newDeplacement.numScene = 1;
-                _this6._newDeplacement.numBloc = 1;
-                entite.y = percentX;
-                entite.x = percentY;
-                _this6._newDeplacement.endPosX = percentY;
-                _this6._newDeplacement.endPosY = percentX;
+                entite.y = percentY;
+                entite.x = percentX;
+                _this6._newDeplacement.endPosX = percentX;
+                _this6._newDeplacement.endPosY = percentY;
 
                 _this6._creationService.addDeplacement(_this6._newDeplacement).subscribe();
               }
@@ -1795,7 +1792,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "nav.menu ul  .boutton{\n    display: inline-block;\n\n    width: 25%;\n}\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: green;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:35px;\n    justify-content: center;\n    border: 1px solid white;\n}\nnav.menu ul li.boutton:hover a{\n    color: green\t;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n.fond {\n    background: limegreen;\n    text-align:center ;\n    font-size: 35px;\n    color: white;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjs7SUFFckIsVUFBVTtBQUNkO0FBQ0E7SUFDSSxZQUFZO0lBQ1osdUJBQXVCO0lBQ3ZCLHFCQUFxQjtJQUNyQixrQkFBa0I7SUFDbEIsYUFBYTtJQUNiLGNBQWM7SUFDZCx1QkFBdUI7SUFDdkIsdUJBQXVCO0FBQzNCO0FBQ0E7SUFDSSxhQUFhO0lBQ2IsdUJBQXVCO0lBQ3ZCLG9CQUFvQjtBQUN4QjtBQUVBO0lBQ0kscUJBQXFCO0lBQ3JCLGtCQUFrQjtJQUNsQixlQUFlO0lBQ2YsWUFBWTtBQUNoQiIsImZpbGUiOiJzcmMvYXBwL0BoZWFkZXIvaGVhZGVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJuYXYubWVudSB1bCAgLmJvdXR0b257XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXG4gICAgd2lkdGg6IDI1JTtcbn1cbm5hdi5tZW51IHVsIGxpLmJvdXR0b24gYXtcbiAgICBjb2xvciA6QXp1cmU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZvbnQtc2l6ZTozNXB4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHdoaXRlO1xufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICAgIGNvbG9yOiBncmVlblx0O1xuICAgIGJhY2tncm91bmQtY29sb3I6IEF6dXJlO1xuICAgIHRyYW5zaXRpb246IDAuNXMgYWxsO1xufVxuXG4uZm9uZCB7XG4gICAgYmFja2dyb3VuZDogbGltZWdyZWVuO1xuICAgIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgICBmb250LXNpemU6IDM1cHg7XG4gICAgY29sb3I6IHdoaXRlO1xufVxuXG5cbiJdfQ== */";
+    __webpack_exports__["default"] = "nav.menu ul  .boutton{\n    display: inline-block;\n\n    width: 25%;\n}\nnav.menu ul li.boutton a{\n    color :Azure;\n    background-color: green;\n    text-decoration: none;\n    text-align:center ;\n    display: flex;\n    font-size:35px;\n    justify-content: center;\n    border: 1px solid white;\n}\nnav.menu ul li.boutton:hover a{\n    color: green\t;\n    background-color: Azure;\n    transition: 0.5s all;\n}\n.fond {\n    background: limegreen;\n    text-align:center ;\n    font-size: 25px;\n    color: white;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHFCQUFxQjs7SUFFckIsVUFBVTtBQUNkO0FBQ0E7SUFDSSxZQUFZO0lBQ1osdUJBQXVCO0lBQ3ZCLHFCQUFxQjtJQUNyQixrQkFBa0I7SUFDbEIsYUFBYTtJQUNiLGNBQWM7SUFDZCx1QkFBdUI7SUFDdkIsdUJBQXVCO0FBQzNCO0FBQ0E7SUFDSSxhQUFhO0lBQ2IsdUJBQXVCO0lBQ3ZCLG9CQUFvQjtBQUN4QjtBQUVBO0lBQ0kscUJBQXFCO0lBQ3JCLGtCQUFrQjtJQUNsQixlQUFlO0lBQ2YsWUFBWTtBQUNoQiIsImZpbGUiOiJzcmMvYXBwL0BoZWFkZXIvaGVhZGVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJuYXYubWVudSB1bCAgLmJvdXR0b257XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXG4gICAgd2lkdGg6IDI1JTtcbn1cbm5hdi5tZW51IHVsIGxpLmJvdXR0b24gYXtcbiAgICBjb2xvciA6QXp1cmU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZvbnQtc2l6ZTozNXB4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHdoaXRlO1xufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICAgIGNvbG9yOiBncmVlblx0O1xuICAgIGJhY2tncm91bmQtY29sb3I6IEF6dXJlO1xuICAgIHRyYW5zaXRpb246IDAuNXMgYWxsO1xufVxuXG4uZm9uZCB7XG4gICAgYmFja2dyb3VuZDogbGltZWdyZWVuO1xuICAgIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgICBmb250LXNpemU6IDI1cHg7XG4gICAgY29sb3I6IHdoaXRlO1xufVxuXG5cbiJdfQ== */";
     /***/
   },
 
@@ -1948,7 +1945,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n.presentation{\n  font-size: 200%;\n  color: white;\n  text-align: center;\n}\n.mode{\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n}\n.tableau{\n  padding: 5px;\n  border: 1px solid black;\n  border-collapse: collapse;\n  width:100%;\n}\n.colonne{\n  width:20%;\n}\n.colonne2{\n  width:30%;\n}\n.titre{\n  font-size: 150%;\n  color: mediumblue;\n  text-align: center;\n}\n.ecriture{\n  font-size: 120%;\n  text-align: center;\n  color: black;\n}\n.contient{\n  font-size: 50%;\n  width: 50%;\n}\nnav.menu ul  .boutton{\n  display: inline-block;\n  text-align:center ;\n  width: 19%;\n  margin: auto;\n}\nnav.menu ul li.boutton a{\n  color :Azure;\n  background-color: green;\n  text-decoration: none;\n  text-align: center;\n  display: flex;\n  font-size:35px;\n  justify-content: center;\n}\nnav.menu ul li.boutton:hover a{\n  color: green;\n  background-color: Azure;\n  transition: 0.5s all;\n}\nnav.menu ul {\n  display: flex;\n  justify-content: center; /* Centre horizontalement */\n}\n.container{\n  width: 100%;\n}\n.categorie{\n  font-size: 150%;\n  color: limegreen;\n  text-align: center;\n}\n.Ecriture{\n  font-size: 120%;\n  color: white;\n  text-align: center;\n}\n.info {\n  font-size: 130%;\n  text-align: center;\n}\n.colonne_terrain{\n  width:32%;\n}\n.colonne_terrain2{\n  width:68%;\n}\n.tableau_joueur{\n  width:100%;\n}\n/*terrain*/\n.draggable {\n  position: absolute;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  cursor: grab;\n  overflow: hidden;\n  margin: auto;\n  align-items: center;\n}\n.barreOutils{\n  text-align:center ;\n  align-content: center;\n  width:16.5%;\n}\n.numEcriture{\n  font-size: 120%;\n  color: black;\n  text-align: center;\n}\n.joueur{\n  background-color: #ffeb3b;\n}\n.ballon {\n  background-color:white;\n  width: 25px;\n  height: 25px;\n}\n.couloir{\n  background: transparent;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.zone{\n  background: transparent;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tableau_terrain{\n  padding: 5%;\n  width:100%;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tabter{\n  border: 1px solid white;\n  height: 40vh;\n}\n/* Style du conteneur de la case à cocher */\n.checkbox-container {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  margin-right: 5px;\n}\n/* Cacher la case à cocher par défaut */\n.checkbox-container input {\n  display: none;\n}\n/* Style de l'apparence personnalisée de la case à cocher */\n.checkbox-custom {\n  position: absolute;\n  height: 20px;\n  width: 20px;\n  background-color: white;\n  border-radius: 3px;\n}\n/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */\n.checkbox-custom::after {\n  content: \"\\2713\";\n  font-size: 16px;\n  color: white;\n  position: absolute;\n  opacity: 0; /* Par défaut, le symbole de coche est invisible */\n}\n/* Style de la case à cocher lorsque elle est cochée */\n.checkbox-container input:checked + .checkbox-custom {\n  background-color: #2196F3;\n}\n/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */\n.checkbox-container input:checked + .checkbox-custom::after {\n  opacity: 1;\n}\n.round-button {\n  display: inline-block;\n  cursor: pointer;\n  padding: 10px;\n  border: 2px solid white;\n  border-radius: 50px;\n  font-size: 15px;\n  text-align: center;\n  color: white;\n  transition: background-color 0.3s;\n}\n.round-button:hover {\n  background-color: #3498db;\n  color: #fff;\n}\n.hidden-checkbox {\n  display: none;\n}\n.arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  border-left: 10px solid blue;\n  border-right: 10px solid blue;\n}\n.arrow {\n  position: absolute;\n  width: 0;\n  height: 0;\n  z-index: 9999;\n  color: black;\n  border-bottom: 10px solid black; /* Taille et couleur de la pointe de la flèche */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhvbWUvaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLHVCQUF1QjtBQUN6QjtBQUNBO0VBQ0UsWUFBWTtFQUNaLHVCQUF1QjtFQUN2Qix5QkFBeUI7RUFDekIsVUFBVTtBQUNaO0FBRUE7RUFDRSxTQUFTO0FBQ1g7QUFDQTtFQUNFLFNBQVM7QUFDWDtBQUVBO0VBQ0UsZUFBZTtFQUNmLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7QUFFQTtFQUNFLGVBQWU7RUFDZixrQkFBa0I7RUFDbEIsWUFBWTtBQUNkO0FBRUE7RUFDRSxjQUFjO0VBQ2QsVUFBVTtBQUNaO0FBQ0E7RUFDRSxxQkFBcUI7RUFDckIsa0JBQWtCO0VBQ2xCLFVBQVU7RUFDVixZQUFZO0FBQ2Q7QUFFQTtFQUNFLFlBQVk7RUFDWix1QkFBdUI7RUFDdkIscUJBQXFCO0VBQ3JCLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsY0FBYztFQUNkLHVCQUF1QjtBQUN6QjtBQUNBO0VBQ0UsWUFBWTtFQUNaLHVCQUF1QjtFQUN2QixvQkFBb0I7QUFDdEI7QUFDQTtFQUNFLGFBQWE7RUFDYix1QkFBdUIsRUFBRSwyQkFBMkI7QUFDdEQ7QUFDQTtFQUNFLFdBQVc7QUFDYjtBQUNBO0VBQ0UsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxlQUFlO0VBQ2Ysa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxTQUFTO0FBQ1g7QUFDQTtFQUNFLFNBQVM7QUFDWDtBQUNBO0VBQ0UsVUFBVTtBQUNaO0FBR0EsVUFBVTtBQUNWO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLG1CQUFtQjtBQUNyQjtBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLHFCQUFxQjtFQUNyQixXQUFXO0FBQ2I7QUFFQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSx5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLHNCQUFzQjtFQUN0QixXQUFXO0VBQ1gsWUFBWTtBQUNkO0FBQ0E7RUFDRSx1QkFBdUI7RUFDdkIsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLHVCQUF1QjtFQUN2Qix5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLFdBQVc7RUFDWCxVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZDtBQUNBLDJDQUEyQztBQUMzQztFQUNFLHFCQUFxQjtFQUNyQixrQkFBa0I7RUFDbEIsZUFBZTtFQUNmLGlCQUFpQjtBQUNuQjtBQUNBLHVDQUF1QztBQUN2QztFQUNFLGFBQWE7QUFDZjtBQUNBLDJEQUEyRDtBQUMzRDtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osV0FBVztFQUNYLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7QUFDQSw0RUFBNEU7QUFDNUU7RUFDRSxnQkFBZ0I7RUFDaEIsZUFBZTtFQUNmLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsVUFBVSxFQUFFLGtEQUFrRDtBQUNoRTtBQUNBLHNEQUFzRDtBQUN0RDtFQUNFLHlCQUF5QjtBQUMzQjtBQUNBLDRFQUE0RTtBQUM1RTtFQUNFLFVBQVU7QUFDWjtBQUVBO0VBQ0UscUJBQXFCO0VBQ3JCLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixlQUFlO0VBQ2Ysa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixpQ0FBaUM7QUFDbkM7QUFDQTtFQUNFLHlCQUF5QjtFQUN6QixXQUFXO0FBQ2I7QUFFQTtFQUNFLGFBQWE7QUFDZjtBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixTQUFTO0VBQ1QsNEJBQTRCO0VBQzVCLDZCQUE2QjtBQUMvQjtBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixTQUFTO0VBQ1QsYUFBYTtFQUNiLFlBQVk7RUFDWiwrQkFBK0IsRUFBRSxnREFBZ0Q7QUFDbkYiLCJmaWxlIjoic3JjL2FwcC9AaG9tZS9ob21lLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbi5wcmVzZW50YXRpb257XG4gIGZvbnQtc2l6ZTogMjAwJTtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4ubW9kZXtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBmbGV4LXN0YXJ0O1xufVxuLnRhYmxlYXV7XG4gIHBhZGRpbmc6IDVweDtcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gIHdpZHRoOjEwMCU7XG59XG5cbi5jb2xvbm5le1xuICB3aWR0aDoyMCU7XG59XG4uY29sb25uZTJ7XG4gIHdpZHRoOjMwJTtcbn1cblxuLnRpdHJle1xuICBmb250LXNpemU6IDE1MCU7XG4gIGNvbG9yOiBtZWRpdW1ibHVlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5lY3JpdHVyZXtcbiAgZm9udC1zaXplOiAxMjAlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGNvbG9yOiBibGFjaztcbn1cblxuLmNvbnRpZW50e1xuICBmb250LXNpemU6IDUwJTtcbiAgd2lkdGg6IDUwJTtcbn1cbm5hdi5tZW51IHVsICAuYm91dHRvbntcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB0ZXh0LWFsaWduOmNlbnRlciA7XG4gIHdpZHRoOiAxOSU7XG4gIG1hcmdpbjogYXV0bztcbn1cblxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbiBhe1xuICBjb2xvciA6QXp1cmU7XG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgZGlzcGxheTogZmxleDtcbiAgZm9udC1zaXplOjM1cHg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICBjb2xvcjogZ3JlZW47XG4gIGJhY2tncm91bmQtY29sb3I6IEF6dXJlO1xuICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcbn1cbm5hdi5tZW51IHVsIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7IC8qIENlbnRyZSBob3Jpem9udGFsZW1lbnQgKi9cbn1cbi5jb250YWluZXJ7XG4gIHdpZHRoOiAxMDAlO1xufVxuLmNhdGVnb3JpZXtcbiAgZm9udC1zaXplOiAxNTAlO1xuICBjb2xvcjogbGltZWdyZWVuO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uRWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uaW5mbyB7XG4gIGZvbnQtc2l6ZTogMTMwJTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmNvbG9ubmVfdGVycmFpbntcbiAgd2lkdGg6MzIlO1xufVxuLmNvbG9ubmVfdGVycmFpbjJ7XG4gIHdpZHRoOjY4JTtcbn1cbi50YWJsZWF1X2pvdWV1cntcbiAgd2lkdGg6MTAwJTtcbn1cblxuXG4vKnRlcnJhaW4qL1xuLmRyYWdnYWJsZSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgd2lkdGg6IDUwcHg7XG4gIGhlaWdodDogNTBweDtcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xuICBjdXJzb3I6IGdyYWI7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIG1hcmdpbjogYXV0bztcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbi5iYXJyZU91dGlsc3tcbiAgdGV4dC1hbGlnbjpjZW50ZXIgO1xuICBhbGlnbi1jb250ZW50OiBjZW50ZXI7XG4gIHdpZHRoOjE2LjUlO1xufVxuXG4ubnVtRWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgY29sb3I6IGJsYWNrO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uam91ZXVye1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZlYjNiO1xufVxuLmJhbGxvbiB7XG4gIGJhY2tncm91bmQtY29sb3I6d2hpdGU7XG4gIHdpZHRoOiAyNXB4O1xuICBoZWlnaHQ6IDI1cHg7XG59XG4uY291bG9pcntcbiAgYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xuICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xufVxuLnpvbmV7XG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi50YWJsZWF1X3RlcnJhaW57XG4gIHBhZGRpbmc6IDUlO1xuICB3aWR0aDoxMDAlO1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi50YWJ0ZXJ7XG4gIGJvcmRlcjogMXB4IHNvbGlkIHdoaXRlO1xuICBoZWlnaHQ6IDQwdmg7XG59XG4vKiBTdHlsZSBkdSBjb250ZW5ldXIgZGUgbGEgY2FzZSDDoCBjb2NoZXIgKi9cbi5jaGVja2JveC1jb250YWluZXIge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBtYXJnaW4tcmlnaHQ6IDVweDtcbn1cbi8qIENhY2hlciBsYSBjYXNlIMOgIGNvY2hlciBwYXIgZMOpZmF1dCAqL1xuLmNoZWNrYm94LWNvbnRhaW5lciBpbnB1dCB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4vKiBTdHlsZSBkZSBsJ2FwcGFyZW5jZSBwZXJzb25uYWxpc8OpZSBkZSBsYSBjYXNlIMOgIGNvY2hlciAqL1xuLmNoZWNrYm94LWN1c3RvbSB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgaGVpZ2h0OiAyMHB4O1xuICB3aWR0aDogMjBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDNweDtcbn1cbi8qIFN0eWxlIGR1IHBvaW50IMOgIGwnaW50w6lyaWV1ciBkZSBsYSBjYXNlIMOgIGNvY2hlciBsb3JzcXUnZWxsZSBlc3QgY29jaMOpZSAqL1xuLmNoZWNrYm94LWN1c3RvbTo6YWZ0ZXIge1xuICBjb250ZW50OiBcIlxcMjcxM1wiO1xuICBmb250LXNpemU6IDE2cHg7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBvcGFjaXR5OiAwOyAvKiBQYXIgZMOpZmF1dCwgbGUgc3ltYm9sZSBkZSBjb2NoZSBlc3QgaW52aXNpYmxlICovXG59XG4vKiBTdHlsZSBkZSBsYSBjYXNlIMOgIGNvY2hlciBsb3JzcXVlIGVsbGUgZXN0IGNvY2jDqWUgKi9cbi5jaGVja2JveC1jb250YWluZXIgaW5wdXQ6Y2hlY2tlZCArIC5jaGVja2JveC1jdXN0b20ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjE5NkYzO1xufVxuLyogU3R5bGUgZHUgcG9pbnQgw6AgbCdpbnTDqXJpZXVyIGRlIGxhIGNhc2Ugw6AgY29jaGVyIGxvcnNxdSdlbGxlIGVzdCBjb2Now6llICovXG4uY2hlY2tib3gtY29udGFpbmVyIGlucHV0OmNoZWNrZWQgKyAuY2hlY2tib3gtY3VzdG9tOjphZnRlciB7XG4gIG9wYWNpdHk6IDE7XG59XG5cbi5yb3VuZC1idXR0b24ge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgcGFkZGluZzogMTBweDtcbiAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XG4gIGJvcmRlci1yYWRpdXM6IDUwcHg7XG4gIGZvbnQtc2l6ZTogMTVweDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogd2hpdGU7XG4gIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcztcbn1cbi5yb3VuZC1idXR0b246aG92ZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzQ5OGRiO1xuICBjb2xvcjogI2ZmZjtcbn1cblxuLmhpZGRlbi1jaGVja2JveCB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4uYXJyb3cge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAwO1xuICBoZWlnaHQ6IDA7XG4gIGJvcmRlci1sZWZ0OiAxMHB4IHNvbGlkIGJsdWU7XG4gIGJvcmRlci1yaWdodDogMTBweCBzb2xpZCBibHVlO1xufVxuXG4uYXJyb3cge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAwO1xuICBoZWlnaHQ6IDA7XG4gIHotaW5kZXg6IDk5OTk7XG4gIGNvbG9yOiBibGFjaztcbiAgYm9yZGVyLWJvdHRvbTogMTBweCBzb2xpZCBibGFjazsgLyogVGFpbGxlIGV0IGNvdWxldXIgZGUgbGEgcG9pbnRlIGRlIGxhIGZsw6hjaGUgKi9cbn1cbiJdfQ== */";
+    __webpack_exports__["default"] = "\n.presentation{\n  font-size: 200%;\n  color: white;\n  text-align: center;\n}\n.mode{\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n}\n.tableau{\n  padding: 5px;\n  border: 1px solid black;\n  border-collapse: collapse;\n  width:100%;\n}\n.colonne{\n  width:20%;\n}\n.colonne2{\n  width:30%;\n}\n.titre{\n  font-size: 150%;\n  color: mediumblue;\n  text-align: center;\n}\n.ecriture{\n  font-size: 120%;\n  text-align: center;\n  color: black;\n}\n.contient{\n  font-size: 50%;\n  width: 50%;\n}\nnav.menu ul  .boutton{\n  display: inline-block;\n  text-align:center ;\n  width: 19%;\n  margin: auto;\n}\nnav.menu ul li.boutton a{\n  color :Azure;\n  background-color: green;\n  text-decoration: none;\n  text-align: center;\n  display: flex;\n  font-size:35px;\n  justify-content: center;\n}\nnav.menu ul li.boutton:hover a{\n  color: green;\n  background-color: Azure;\n  transition: 0.5s all;\n}\nnav.menu ul {\n  display: flex;\n  justify-content: center; /* Centre horizontalement */\n}\n.container{\n  width: 100%;\n}\n.categorie{\n  font-size: 150%;\n  color: limegreen;\n  text-align: center;\n}\n.Ecriture{\n  font-size: 120%;\n  color: white;\n  text-align: center;\n}\n.info {\n  font-size: 130%;\n  text-align: center;\n}\n.colonne_terrain{\n  width:32%;\n}\n.colonne_terrain2{\n  width:100%;\n}\n.tableau_joueur{\n  width:100%;\n}\n/*terrain*/\n.draggable {\n  position: absolute;\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  cursor: grab;\n  overflow: hidden;\n  margin: auto;\n  align-items: center;\n}\n.barreOutils{\n  text-align:center ;\n  align-content: center;\n  width:16.5%;\n}\n.numEcriture{\n  font-size: 120%;\n  color: black;\n  text-align: center;\n}\n.joueur{\n  background-color: #ffeb3b;\n}\n.ballon {\n  background-color:white;\n  width: 25px;\n  height: 25px;\n}\n.couloir{\n  background: transparent;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.zone{\n  background: transparent;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tableau_terrain{\n  padding: 5%;\n  width:100%;\n  border: 1px solid black;\n  border-collapse: collapse;\n}\n.tabter{\n  border: 1px solid white;\n  height: 57vh;\n}\n/* Style du conteneur de la case à cocher */\n.checkbox-container {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  margin-right: 5px;\n}\n/* Cacher la case à cocher par défaut */\n.checkbox-container input {\n  display: none;\n}\n/* Style de l'apparence personnalisée de la case à cocher */\n.checkbox-custom {\n  position: absolute;\n  height: 20px;\n  width: 20px;\n  background-color: white;\n  border-radius: 3px;\n}\n/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */\n.checkbox-custom::after {\n  content: \"\\2713\";\n  font-size: 16px;\n  color: white;\n  position: absolute;\n  opacity: 0; /* Par défaut, le symbole de coche est invisible */\n}\n/* Style de la case à cocher lorsque elle est cochée */\n.checkbox-container input:checked + .checkbox-custom {\n  background-color: #2196F3;\n}\n/* Style du point à l'intérieur de la case à cocher lorsqu'elle est cochée */\n.checkbox-container input:checked + .checkbox-custom::after {\n  opacity: 1;\n}\n.round-button {\n  display: inline-block;\n  cursor: pointer;\n  padding: 10px;\n  border: 2px solid white;\n  border-radius: 50px;\n  font-size: 15px;\n  text-align: center;\n  color: white;\n  transition: background-color 0.3s;\n}\n.round-button:hover {\n  background-color: #3498db;\n  color: #fff;\n}\n.hidden-checkbox {\n  display: none;\n}\n.arrow {\n  width:70%;\n  position: absolute;\n  width: 0;\n  height: 0;\n  z-index: 9999;\n  color: black;\n  border-bottom: 10px solid black; /* Taille et couleur de la pointe de la flèche */\n}\n.container {\n  display: flex; /* Utilisation de flexbox pour afficher les éléments en ligne */\n  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQGhvbWUvaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLHVCQUF1QjtBQUN6QjtBQUNBO0VBQ0UsWUFBWTtFQUNaLHVCQUF1QjtFQUN2Qix5QkFBeUI7RUFDekIsVUFBVTtBQUNaO0FBRUE7RUFDRSxTQUFTO0FBQ1g7QUFDQTtFQUNFLFNBQVM7QUFDWDtBQUVBO0VBQ0UsZUFBZTtFQUNmLGlCQUFpQjtFQUNqQixrQkFBa0I7QUFDcEI7QUFFQTtFQUNFLGVBQWU7RUFDZixrQkFBa0I7RUFDbEIsWUFBWTtBQUNkO0FBRUE7RUFDRSxjQUFjO0VBQ2QsVUFBVTtBQUNaO0FBQ0E7RUFDRSxxQkFBcUI7RUFDckIsa0JBQWtCO0VBQ2xCLFVBQVU7RUFDVixZQUFZO0FBQ2Q7QUFFQTtFQUNFLFlBQVk7RUFDWix1QkFBdUI7RUFDdkIscUJBQXFCO0VBQ3JCLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsY0FBYztFQUNkLHVCQUF1QjtBQUN6QjtBQUNBO0VBQ0UsWUFBWTtFQUNaLHVCQUF1QjtFQUN2QixvQkFBb0I7QUFDdEI7QUFDQTtFQUNFLGFBQWE7RUFDYix1QkFBdUIsRUFBRSwyQkFBMkI7QUFDdEQ7QUFDQTtFQUNFLFdBQVc7QUFDYjtBQUNBO0VBQ0UsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixrQkFBa0I7QUFDcEI7QUFDQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxlQUFlO0VBQ2Ysa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSxTQUFTO0FBQ1g7QUFDQTtFQUNFLFVBQVU7QUFDWjtBQUNBO0VBQ0UsVUFBVTtBQUNaO0FBR0EsVUFBVTtBQUNWO0VBQ0Usa0JBQWtCO0VBQ2xCLFdBQVc7RUFDWCxZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLG1CQUFtQjtBQUNyQjtBQUNBO0VBQ0Usa0JBQWtCO0VBQ2xCLHFCQUFxQjtFQUNyQixXQUFXO0FBQ2I7QUFFQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCO0FBQ0E7RUFDRSx5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLHNCQUFzQjtFQUN0QixXQUFXO0VBQ1gsWUFBWTtBQUNkO0FBQ0E7RUFDRSx1QkFBdUI7RUFDdkIsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLHVCQUF1QjtFQUN2Qix5QkFBeUI7QUFDM0I7QUFDQTtFQUNFLFdBQVc7RUFDWCxVQUFVO0VBQ1YsdUJBQXVCO0VBQ3ZCLHlCQUF5QjtBQUMzQjtBQUNBO0VBQ0UsdUJBQXVCO0VBQ3ZCLFlBQVk7QUFDZDtBQUNBLDJDQUEyQztBQUMzQztFQUNFLHFCQUFxQjtFQUNyQixrQkFBa0I7RUFDbEIsZUFBZTtFQUNmLGlCQUFpQjtBQUNuQjtBQUNBLHVDQUF1QztBQUN2QztFQUNFLGFBQWE7QUFDZjtBQUNBLDJEQUEyRDtBQUMzRDtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osV0FBVztFQUNYLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7QUFDQSw0RUFBNEU7QUFDNUU7RUFDRSxnQkFBZ0I7RUFDaEIsZUFBZTtFQUNmLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsVUFBVSxFQUFFLGtEQUFrRDtBQUNoRTtBQUNBLHNEQUFzRDtBQUN0RDtFQUNFLHlCQUF5QjtBQUMzQjtBQUNBLDRFQUE0RTtBQUM1RTtFQUNFLFVBQVU7QUFDWjtBQUVBO0VBQ0UscUJBQXFCO0VBQ3JCLGVBQWU7RUFDZixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixlQUFlO0VBQ2Ysa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixpQ0FBaUM7QUFDbkM7QUFDQTtFQUNFLHlCQUF5QjtFQUN6QixXQUFXO0FBQ2I7QUFFQTtFQUNFLGFBQWE7QUFDZjtBQUdBO0VBQ0UsU0FBUztFQUNULGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsU0FBUztFQUNULGFBQWE7RUFDYixZQUFZO0VBQ1osK0JBQStCLEVBQUUsZ0RBQWdEO0FBQ25GO0FBQ0E7RUFDRSxhQUFhLEVBQUUsK0RBQStEO0VBQzlFLGVBQWUsRUFBRSwyREFBMkQ7QUFDOUUiLCJmaWxlIjoic3JjL2FwcC9AaG9tZS9ob21lLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbi5wcmVzZW50YXRpb257XG4gIGZvbnQtc2l6ZTogMjAwJTtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4ubW9kZXtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBmbGV4LXN0YXJ0O1xufVxuLnRhYmxlYXV7XG4gIHBhZGRpbmc6IDVweDtcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gIHdpZHRoOjEwMCU7XG59XG5cbi5jb2xvbm5le1xuICB3aWR0aDoyMCU7XG59XG4uY29sb25uZTJ7XG4gIHdpZHRoOjMwJTtcbn1cblxuLnRpdHJle1xuICBmb250LXNpemU6IDE1MCU7XG4gIGNvbG9yOiBtZWRpdW1ibHVlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5lY3JpdHVyZXtcbiAgZm9udC1zaXplOiAxMjAlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGNvbG9yOiBibGFjaztcbn1cblxuLmNvbnRpZW50e1xuICBmb250LXNpemU6IDUwJTtcbiAgd2lkdGg6IDUwJTtcbn1cbm5hdi5tZW51IHVsICAuYm91dHRvbntcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB0ZXh0LWFsaWduOmNlbnRlciA7XG4gIHdpZHRoOiAxOSU7XG4gIG1hcmdpbjogYXV0bztcbn1cblxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbiBhe1xuICBjb2xvciA6QXp1cmU7XG4gIGJhY2tncm91bmQtY29sb3I6IGdyZWVuO1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgZGlzcGxheTogZmxleDtcbiAgZm9udC1zaXplOjM1cHg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxubmF2Lm1lbnUgdWwgbGkuYm91dHRvbjpob3ZlciBhe1xuICBjb2xvcjogZ3JlZW47XG4gIGJhY2tncm91bmQtY29sb3I6IEF6dXJlO1xuICB0cmFuc2l0aW9uOiAwLjVzIGFsbDtcbn1cbm5hdi5tZW51IHVsIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7IC8qIENlbnRyZSBob3Jpem9udGFsZW1lbnQgKi9cbn1cbi5jb250YWluZXJ7XG4gIHdpZHRoOiAxMDAlO1xufVxuLmNhdGVnb3JpZXtcbiAgZm9udC1zaXplOiAxNTAlO1xuICBjb2xvcjogbGltZWdyZWVuO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uRWNyaXR1cmV7XG4gIGZvbnQtc2l6ZTogMTIwJTtcbiAgY29sb3I6IHdoaXRlO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG4uaW5mbyB7XG4gIGZvbnQtc2l6ZTogMTMwJTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmNvbG9ubmVfdGVycmFpbntcbiAgd2lkdGg6MzIlO1xufVxuLmNvbG9ubmVfdGVycmFpbjJ7XG4gIHdpZHRoOjEwMCU7XG59XG4udGFibGVhdV9qb3VldXJ7XG4gIHdpZHRoOjEwMCU7XG59XG5cblxuLyp0ZXJyYWluKi9cbi5kcmFnZ2FibGUge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiA1MHB4O1xuICBoZWlnaHQ6IDUwcHg7XG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgY3Vyc29yOiBncmFiO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBtYXJnaW46IGF1dG87XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG4uYmFycmVPdXRpbHN7XG4gIHRleHQtYWxpZ246Y2VudGVyIDtcbiAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICB3aWR0aDoxNi41JTtcbn1cblxuLm51bUVjcml0dXJle1xuICBmb250LXNpemU6IDEyMCU7XG4gIGNvbG9yOiBibGFjaztcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuLmpvdWV1cntcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZWIzYjtcbn1cbi5iYWxsb24ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOndoaXRlO1xuICB3aWR0aDogMjVweDtcbiAgaGVpZ2h0OiAyNXB4O1xufVxuLmNvdWxvaXJ7XG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTtcbn1cbi56b25le1xuICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG59XG4udGFibGVhdV90ZXJyYWlue1xuICBwYWRkaW5nOiA1JTtcbiAgd2lkdGg6MTAwJTtcbiAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG59XG4udGFidGVye1xuICBib3JkZXI6IDFweCBzb2xpZCB3aGl0ZTtcbiAgaGVpZ2h0OiA1N3ZoO1xufVxuLyogU3R5bGUgZHUgY29udGVuZXVyIGRlIGxhIGNhc2Ugw6AgY29jaGVyICovXG4uY2hlY2tib3gtY29udGFpbmVyIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgbWFyZ2luLXJpZ2h0OiA1cHg7XG59XG4vKiBDYWNoZXIgbGEgY2FzZSDDoCBjb2NoZXIgcGFyIGTDqWZhdXQgKi9cbi5jaGVja2JveC1jb250YWluZXIgaW5wdXQge1xuICBkaXNwbGF5OiBub25lO1xufVxuLyogU3R5bGUgZGUgbCdhcHBhcmVuY2UgcGVyc29ubmFsaXPDqWUgZGUgbGEgY2FzZSDDoCBjb2NoZXIgKi9cbi5jaGVja2JveC1jdXN0b20ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGhlaWdodDogMjBweDtcbiAgd2lkdGg6IDIwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICBib3JkZXItcmFkaXVzOiAzcHg7XG59XG4vKiBTdHlsZSBkdSBwb2ludCDDoCBsJ2ludMOpcmlldXIgZGUgbGEgY2FzZSDDoCBjb2NoZXIgbG9yc3F1J2VsbGUgZXN0IGNvY2jDqWUgKi9cbi5jaGVja2JveC1jdXN0b206OmFmdGVyIHtcbiAgY29udGVudDogXCJcXDI3MTNcIjtcbiAgZm9udC1zaXplOiAxNnB4O1xuICBjb2xvcjogd2hpdGU7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgb3BhY2l0eTogMDsgLyogUGFyIGTDqWZhdXQsIGxlIHN5bWJvbGUgZGUgY29jaGUgZXN0IGludmlzaWJsZSAqL1xufVxuLyogU3R5bGUgZGUgbGEgY2FzZSDDoCBjb2NoZXIgbG9yc3F1ZSBlbGxlIGVzdCBjb2Now6llICovXG4uY2hlY2tib3gtY29udGFpbmVyIGlucHV0OmNoZWNrZWQgKyAuY2hlY2tib3gtY3VzdG9tIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzIxOTZGMztcbn1cbi8qIFN0eWxlIGR1IHBvaW50IMOgIGwnaW50w6lyaWV1ciBkZSBsYSBjYXNlIMOgIGNvY2hlciBsb3JzcXUnZWxsZSBlc3QgY29jaMOpZSAqL1xuLmNoZWNrYm94LWNvbnRhaW5lciBpbnB1dDpjaGVja2VkICsgLmNoZWNrYm94LWN1c3RvbTo6YWZ0ZXIge1xuICBvcGFjaXR5OiAxO1xufVxuXG4ucm91bmQtYnV0dG9uIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIHBhZGRpbmc6IDEwcHg7XG4gIGJvcmRlcjogMnB4IHNvbGlkIHdoaXRlO1xuICBib3JkZXItcmFkaXVzOiA1MHB4O1xuICBmb250LXNpemU6IDE1cHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgY29sb3I6IHdoaXRlO1xuICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuM3M7XG59XG4ucm91bmQtYnV0dG9uOmhvdmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzM0OThkYjtcbiAgY29sb3I6ICNmZmY7XG59XG5cbi5oaWRkZW4tY2hlY2tib3gge1xuICBkaXNwbGF5OiBub25lO1xufVxuXG5cbi5hcnJvdyB7XG4gIHdpZHRoOjcwJTtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB3aWR0aDogMDtcbiAgaGVpZ2h0OiAwO1xuICB6LWluZGV4OiA5OTk5O1xuICBjb2xvcjogYmxhY2s7XG4gIGJvcmRlci1ib3R0b206IDEwcHggc29saWQgYmxhY2s7IC8qIFRhaWxsZSBldCBjb3VsZXVyIGRlIGxhIHBvaW50ZSBkZSBsYSBmbMOoY2hlICovXG59XG4uY29udGFpbmVyIHtcbiAgZGlzcGxheTogZmxleDsgLyogVXRpbGlzYXRpb24gZGUgZmxleGJveCBwb3VyIGFmZmljaGVyIGxlcyDDqWzDqW1lbnRzIGVuIGxpZ25lICovXG4gIGZsZXgtd3JhcDogd3JhcDsgLyogUGVybWV0IGF1eCDDqWzDqW1lbnRzIGRlIHBhc3NlciDDoCBsYSBsaWduZSBzaSBuw6ljZXNzYWlyZSAqL1xufVxuIl19 */";
     /***/
   },
 
@@ -2225,8 +2222,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             console.log("exp");
           });
-
-          this.resetData(this._designModal);
         }
       }, {
         key: "updateTypeFeed",
@@ -2278,6 +2273,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
           this.resetFeedBack(modal);
+          this.resetData(this._designModal);
         }
       }, {
         key: "playVisualisation",
@@ -2296,21 +2292,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 _this16._entiteList.forEach(function (entite) {
                   // cherche l'entité devant être déplacée
                   if (entite.id === deplacement.entite) {
-                    //on enregistre position depart pour fleche
-                    var startX = entite.x + _this16.tabLeft - 10;
-                    var startY = entite.y + _this16.tabTop; //on déplace l'entité
-
+                    //on déplace l'entité
                     entite.x = deplacement.endPosX;
                     entite.y = deplacement.endPosY;
                     console.log("entite trouvée"); // Afficher une flèche entre les entités
-                    // Convertir les pourcentages en pixels
 
-                    var endX = deplacement.endPosX + _this16.tabLeft - 10;
-                    var endY = deplacement.endPosY + _this16.tabTop;
-                    console.log("pos depart", entite.y, entite.x, deplacement.endPosX, deplacement.endPosY);
-                    console.log("fleche :", startX, startY, endX, endY);
+                    var endX = deplacement.startPosX * (100 / 68);
+                    var endY = deplacement.startPosY * (100 / 68);
+                    var startX = deplacement.endPosX * (100 / 68);
+                    var startY = deplacement.endPosY * (100 / 68);
+                    console.log("this.tabTop", _this16.tabTop, "this.tabLeft", _this16.tabLeft);
+                    console.log("deplacement.startPosX:", deplacement.startPosX, "startX :", startX);
+                    console.log("deplacement.startPosY:", deplacement.startPosY, "startY :", startY);
+                    console.log("deplacement.endPosX:", deplacement.endPosX, "endX :", endX);
+                    console.log("deplacement.endPosY:", deplacement.endPosY, "endY :", endY);
 
-                    _this16.addArrow(startY, startX, endY, endX);
+                    _this16.addArrow(startX, startY, endX, endY);
                   }
                 });
 
@@ -2318,7 +2315,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 setTimeout(function () {
                   processDepalcement(index + 1);
-                }, 1000); // délai de x seconde entre chaque déplacement
+                }, 2000); // délai de x seconde entre chaque déplacement
               }
             }; // démarrer le traitement avec l'indice 0
 
@@ -2347,8 +2344,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           arrow.style.backgroundColor = 'black'; // Couleur de la flèche
 
-          arrow.style.left = startX + '%';
-          arrow.style.top = startY + '%';
+          arrow.style.left = startX + this.tabLeft - 1 + '%';
+          arrow.style.top = startY + this.tabTop + '%';
           arrow.style.transform = 'rotate(' + angle + 'deg)'; // Ajouter la flèche au DOM
 
           document.querySelector('.tableau_joueur .colonne_terrain2').appendChild(arrow);
@@ -2852,8 +2849,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.scenario = 0.0;
       this.entite = 0.0;
       this.numAction = 0.0;
-      this.numScene = 0.0;
-      this.numBloc = 0.0;
       this.startPosX = 0.0;
       this.startPosY = 0.0;
       this.endPosX = 0.0;
@@ -2894,8 +2889,81 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       this.temps = 0.0;
       this.num = 0.0;
-      this.experience = 0.0;
-      this.deplacement = [];
+      this.resultatExperience = 0.0;
+      this.deplacements = [];
+    });
+    /***/
+
+  },
+
+  /***/
+  "./src/app/@serie/beans/ResultatFeedBack.ts":
+  /*!**************************************************!*\
+    !*** ./src/app/@serie/beans/ResultatFeedBack.ts ***!
+    \**************************************************/
+
+  /*! exports provided: ResultatFeedBack */
+
+  /***/
+  function srcAppSerieBeansResultatFeedBackTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ResultatFeedBack", function () {
+      return ResultatFeedBack;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var ResultatFeedBack = /*#__PURE__*/_createClass(function ResultatFeedBack() {
+      _classCallCheck(this, ResultatFeedBack);
+
+      this.essai = 0.0;
+      this.reussi = false;
+      this.listError = [];
+    });
+    /***/
+
+  },
+
+  /***/
+  "./src/app/@serie/beans/ResultatUser.ts":
+  /*!**********************************************!*\
+    !*** ./src/app/@serie/beans/ResultatUser.ts ***!
+    \**********************************************/
+
+  /*! exports provided: ResultatUser */
+
+  /***/
+  function srcAppSerieBeansResultatUserTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ResultatUser", function () {
+      return ResultatUser;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var ResultatUser = /*#__PURE__*/_createClass(function ResultatUser() {
+      _classCallCheck(this, ResultatUser);
+
+      this.id = 0.0;
+      this.resultat_experience = [];
     });
     /***/
 
@@ -2968,6 +3036,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var Utilisateur = /*#__PURE__*/_createClass(function Utilisateur() {
       _classCallCheck(this, Utilisateur);
 
+      this.examen = 0.0;
       this.groupe = "";
       this.nom = "";
       this.prenom = "";
@@ -3077,6 +3146,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _beans_Essai__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ./beans/Essai */
     "./src/app/@serie/beans/Essai.ts");
+    /* harmony import */
+
+
+    var _beans_ResultatFeedBack__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! ./beans/ResultatFeedBack */
+    "./src/app/@serie/beans/ResultatFeedBack.ts");
+    /* harmony import */
+
+
+    var _beans_ResultatUser__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! ./beans/ResultatUser */
+    "./src/app/@serie/beans/ResultatUser.ts");
 
     var SerieComponent = /*#__PURE__*/function () {
       function SerieComponent(_serieService, _modalService) {
@@ -3093,7 +3174,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this._simulationModal = "_simulationModal";
         this._veridModal = "_veridModal";
         this._newUtilisateur = new _beans_Utilisateur__WEBPACK_IMPORTED_MODULE_6__["Utilisateur"]();
-        this._isLancer = false; // lancer la simulation
+        this._isLancer = false;
+        this.resultUser = new _beans_ResultatUser__WEBPACK_IMPORTED_MODULE_10__["ResultatUser"](); // lancer la simulation
 
         this._serieSelect = new _beans_Serie__WEBPACK_IMPORTED_MODULE_5__["Serie"]();
         this._depalcementList = [];
@@ -3117,7 +3199,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.numAction = 0;
         this._ispostdeplacement = false;
         this._newEssai = new _beans_Essai__WEBPACK_IMPORTED_MODULE_8__["Essai"]();
-        this._PostDeplacementModal = "_PostDeplacementModal";
+        this._PostDeplacementModal = "_PostDeplacementModal"; //on lance le feedBack
+
+        this._feedBackScoreModal = "_feedBackScoreModal";
+        this._resultat = new _beans_ResultatFeedBack__WEBPACK_IMPORTED_MODULE_9__["ResultatFeedBack"]();
       }
 
       _createClass(SerieComponent, [{
@@ -3205,9 +3290,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addUser",
         value: function addUser(modal) {
+          var _this20 = this;
+
           this.openData(modal);
           this.resetData(this._simulationModal);
-          this._isLancer = false;
+          this._isLancer = false; //on ajoute l'utlisateur
+
+          this._newUtilisateur.examen = this._serieSelect.id;
+
+          this._serieService.addUser(this._newUtilisateur).subscribe(function (resultat) {
+            _this20.resultUser = resultat;
+          });
         } //update info user
 
       }, {
@@ -3226,6 +3319,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function openSimu(modal, serie) {
           this.openData(modal);
           this._serieSelect = serie;
+          this._scenarioLancer = 0;
         }
       }, {
         key: "getPositionPercentage",
@@ -3251,10 +3345,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "genEntite",
         value: function genEntite(id) {
-          var _this20 = this;
+          var _this21 = this;
 
           this._serieService.getEntiteList(id).subscribe(function (res) {
-            return _this20._entiteList = res;
+            return _this21._entiteList = res;
           });
         } //selectionner le scenario
 
@@ -3275,19 +3369,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "playVisualisation",
         value: function playVisualisation(scenario) {
-          var _this21 = this;
+          var _this22 = this;
 
           console.log("play"); //on recherche la liste des deplacement
 
           this._serieService.getDepalcementList(scenario.id).subscribe(function (res) {
-            _this21._depalcementList = res; // fonction récursive pour parcourir la liste avec un délai entre chaque itération
+            _this22._depalcementList = res; // fonction récursive pour parcourir la liste avec un délai entre chaque itération
 
             var processDepalcement = function processDepalcement(index) {
               // vérifie si nous avons atteint la fin de la liste
-              if (index < _this21._depalcementList.length) {
-                var deplacement = _this21._depalcementList[index]; // parcourt la liste des entités
+              if (index < _this22._depalcementList.length) {
+                var deplacement = _this22._depalcementList[index]; // parcourt la liste des entités
 
-                _this21._entiteList.forEach(function (entite) {
+                _this22._entiteList.forEach(function (entite) {
                   // cherche l'entité devant être déplacée
                   if (entite.id === deplacement.entite) {
                     //on déplace l'entité
@@ -3298,54 +3392,52 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 });
 
                 console.log("deplacement");
-                _this21._nbAction++; // Appelle la fonction processDepalcement avec l'indice suivant après un délai
+                _this22._nbAction++; // Appelle la fonction processDepalcement avec l'indice suivant après un délai
 
                 setTimeout(function () {
                   processDepalcement(index + 1);
-                }, 2000); // délai de x seconde entre chaque déplacement
+                }, 1500); // délai de x seconde entre chaque déplacement
               } else {
-                _this21._finvisu = true; // Définit la variable  sur true lorsque le traitement est terminé
+                _this22._finvisu = true; // Définit la variable  sur true lorsque le traitement est terminé
               }
             }; // démarrer le traitement avec l'indice 0
 
 
             setTimeout(function () {
               processDepalcement(0);
-            }, 2500);
+            }, 1500);
           });
         }
       }, {
         key: "lance_visu",
         value: function lance_visu() {
-          var _this22 = this;
+          var _this23 = this;
 
           this._finvisu = false;
           this._nbAction = 0; // Appel à getScenarioId pour obtenir l'objet Scenario avant de lancer la visualisation
 
           this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(function (scenario) {
-            _this22.playVisualisation(scenario);
+            _this23.selectScenario(scenario, 'tableau_terrain');
+
+            _this23.playVisualisation(scenario);
           });
         }
       }, {
         key: "lance_simu",
         value: function lance_simu() {
-          var _this23 = this;
+          var _this24 = this;
 
           this._isLancer = true;
           this._nbVisualisation = 1;
           var visuFeedback = this._serieSelect.experience[this._scenarioLancer].visuFeedback;
 
-          this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(function (scenario) {
-            _this23.selectScenario(scenario, 'tableau_terrain');
-          });
-
           var launchNextVisu = function launchNextVisu() {
-            if (_this23._nbVisualisation <= visuFeedback) {
-              if (_this23._finvisu) {
-                _this23.lance_visu();
+            if (_this24._nbVisualisation <= visuFeedback) {
+              if (_this24._finvisu) {
+                _this24.lance_visu();
 
-                _this23._nbVisualisation++;
-                console.log("visu", _this23._nbVisualisation);
+                _this24._nbVisualisation++;
+                console.log("visu", _this24._nbVisualisation);
               }
 
               setTimeout(launchNextVisu, 2000); // Attendre 2 secondes avant de vérifier si une nouvelle visualisation peut être lancée
@@ -3357,14 +3449,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "toTest",
         value: function toTest() {
-          var _this24 = this;
+          var _this25 = this;
 
           this.openData(this._PostDeplacementModal);
-          this.resetData(this._veridModal); //on regenere le terrain
+          this.resetData(this._veridModal);
+          this._isLancer = false; //on regenere le terrain
 
           this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(function (scenario) {
-            _this24.selectScenario(scenario, 'tableau_terrain2');
+            _this25.selectScenario(scenario, 'tableau_terrain2');
 
+            _this25._scenarioplay = scenario;
             console.log("regen :", scenario);
           }); //on enr l'essai
 
@@ -3372,7 +3466,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this._nbEssai++; //ajout essaie
 
           this._newEssai.num = this._nbEssai;
-          this._newEssai.experience = this._serieSelect.experience[this._scenarioLancer].id;
+          this._newEssai.resultatExperience = this.resultUser.resultat_experience[this._scenarioLancer];
           this._newEssai.temps = 0.0;
           this._ispostdeplacement = true;
         }
@@ -3403,7 +3497,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addDeplacement",
         value: function addDeplacement(event) {
-          var _this25 = this;
+          var _this26 = this;
 
           if (this._selectEntite == true) {
             var offsetX = event.clientX;
@@ -3412,7 +3506,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var parentHeight = window.innerHeight;
             var percentX = offsetX / parentWidth * 100;
             var percentY = offsetY / parentHeight * 100;
-            this.numAction += 1; //recup position tableau
+            this.numAction++; //recup position tableau
 
             this.positionPercentage = this.getPositionPercentage(this.tableau);
             this.tabLeft = this.positionPercentage.left;
@@ -3426,24 +3520,74 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             console.log('deplacement finale en pourcentage - Left:', percentX, 'Top:', percentY);
 
             this._entiteList.forEach(function (entite) {
-              if (entite.id == _this25._entiteSelect.id) {
-                _this25._newDeplacement.entite = entite.id;
-                _this25._newDeplacement.numAction = _this25.numAction;
-                _this25._newDeplacement.numScene = 1;
-                _this25._newDeplacement.numBloc = 1;
+              if (entite.id == _this26._entiteSelect.id) {
+                _this26._newDeplacement.entite = entite.id;
+                _this26._newDeplacement.numAction = _this26.numAction;
                 entite.y = percentX;
                 entite.x = percentY;
-                _this25._newDeplacement.endPosX = percentY;
-                _this25._newDeplacement.endPosY = percentX; //add deplacement dans essai
+                _this26._newDeplacement.endPosX = percentY;
+                _this26._newDeplacement.endPosY = percentX; //add deplacement dans essai
 
-                _this25._newEssai.deplacement.push(_this25._newDeplacement);
+                _this26._newEssai.deplacements.push(_this26._newDeplacement);
 
-                console.log("add deplacement", _this25._newEssai);
+                console.log("add deplacement", _this26._newEssai);
               }
             });
 
             this._entiteSelect = null;
             this._selectEntite = false;
+          }
+
+          ;
+          console.log("finadd", this._scenarioplay);
+
+          this._serieService.getDepalcementList(this._scenarioplay.id).subscribe(function (res) {
+            _this26._depalcementList = res;
+          });
+
+          console.log("num action", this.numAction, this._depalcementList.length);
+
+          if (this.numAction >= this._depalcementList.length) {
+            this.lanceFeedBack();
+          }
+        }
+      }, {
+        key: "lanceFeedBack",
+        value: function lanceFeedBack() {
+          var _this27 = this;
+
+          //on envoie l'essai et recupere le resultat
+          this._serieService.addEssai(this._newEssai).subscribe(function (resultat) {
+            _this27._resultat = resultat;
+          }); //on change le modal pour feedBack
+
+
+          this.resetData(this._PostDeplacementModal);
+
+          if (this._serieSelect.experience[this._scenarioLancer].typeFeedback === 'score') {
+            this.openData(this._feedBackScoreModal);
+          }
+        } //on relance
+
+      }, {
+        key: "relance",
+        value: function relance() {
+          //si il a reussi
+          if (this._resultat.reussi === true) {
+            //si c le dernier scenario
+            if (this._scenarioLancer >= this._serieSelect.experience.length) {
+              //on ferme les feedBack
+              this.resetData(this._feedBackScoreModal);
+            } else {
+              //sinon on lance le prochain scenario
+              this._scenarioLancer++;
+              this.openData(this._veridModal);
+              this.resetData(this._feedBackScoreModal);
+            }
+          } else {
+            //si il a pas reussi
+            this.openData(this._veridModal);
+            this.resetData(this._feedBackScoreModal);
           }
         }
       }]);
@@ -3540,6 +3684,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getScenarioId",
         value: function getScenarioId(id) {
           return this._http.get("/scenario/" + id);
+        }
+      }, {
+        key: "addEssai",
+        value: function addEssai(essai) {
+          return this._http.post("/essai/", essai);
+        }
+      }, {
+        key: "addUser",
+        value: function addUser(user) {
+          return this._http.post("/resultat_examen/", user);
         }
       }]);
 

@@ -85,7 +85,7 @@ nav.menu ul {
   width:32%;
 }
 .colonne_terrain2{
-  width:68%;
+  width:100%;
 }
 .tableau_joueur{
   width:100%;
@@ -140,7 +140,7 @@ nav.menu ul {
 }
 .tabter{
   border: 1px solid white;
-  height: 40vh;
+  height: 57vh;
 }
 /* Style du conteneur de la case à cocher */
 .checkbox-container {
@@ -197,19 +197,18 @@ nav.menu ul {
 .hidden-checkbox {
   display: none;
 }
-.arrow {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-left: 10px solid blue;
-  border-right: 10px solid blue;
-}
+
 
 .arrow {
+  width:70%;
   position: absolute;
   width: 0;
   height: 0;
   z-index: 9999;
   color: black;
   border-bottom: 10px solid black; /* Taille et couleur de la pointe de la flèche */
+}
+.container {
+  display: flex; /* Utilisation de flexbox pour afficher les éléments en ligne */
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
 }

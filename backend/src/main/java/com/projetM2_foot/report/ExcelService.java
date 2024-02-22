@@ -1,7 +1,5 @@
 package com.projetM2_foot.report;
 
-import com.projetM2_foot.api.response.ScenarioResponse;
-import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.report.response.ReportEntite;
 import com.projetM2_foot.report.response.ReportScenario;
 import org.apache.poi.ss.usermodel.CellStyle;

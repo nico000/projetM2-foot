@@ -2,14 +2,11 @@ package com.projetM2_foot.report;
 
 
 import com.projetM2_foot.entity.Examen;
-import com.projetM2_foot.entity.Experience;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.report.mapper.ReportMapper;
 import com.projetM2_foot.report.response.ReportExamen;
-import com.projetM2_foot.report.response.ReportExperience;
 import com.projetM2_foot.report.response.ReportScenario;
 import com.projetM2_foot.service.ExamenService;
-import com.projetM2_foot.service.ExperienceService;
 import com.projetM2_foot.service.ScenarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

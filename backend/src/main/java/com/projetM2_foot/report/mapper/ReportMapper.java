@@ -4,12 +4,8 @@ import com.projetM2_foot.entity.*;
 import com.projetM2_foot.report.response.*;
 import com.projetM2_foot.repository.DeplacementRepository;
 import com.projetM2_foot.repository.EntiteRepository;
-import com.projetM2_foot.repository.ExperienceRepository;
 import com.projetM2_foot.repository.ScenarioRepository;
-import com.projetM2_foot.service.ExamenService;
-import com.projetM2_foot.service.ExperienceService;
 import lombok.AllArgsConstructor;
-import org.apache.commons.math3.analysis.function.Exp;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

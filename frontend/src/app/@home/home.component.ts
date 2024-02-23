@@ -303,17 +303,21 @@ export class HomeComponent {
         const arrow = document.createElement('div');
         arrow.classList.add('arrow');
 
+        // Obtenir les dimensions actuelles de la page
+        const containerWidth = window.innerWidth;
+        const containerHeight = window.innerHeight;
+
         // Calculer la longueur et l'angle de la flèche
         const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
-        const angle = Math.atan2(endY - startY,endX - startX) * (180 / Math.PI);
+        const angle = Math.atan2(startY-endY,startX-endX ) * (180 / Math.PI);
 
         // Appliquer les styles à la flèche
         arrow.style.position = 'absolute';
         arrow.style.width = length + 'px';
         arrow.style.height = '2px'; // Épaisseur de la flèche
         arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-        arrow.style.left = ((endX))+ 'px';
-        arrow.style.top = ((endY) ) + 'px';
+        arrow.style.left = ((endX)+((this.tabLeft/100)*containerWidth))+ 'px';
+        arrow.style.top = ((endY) +((this.tabTop/100)*containerHeight)) + 'px';
         arrow.style.transform = 'rotate(' + angle + 'deg)';
 
         // Ajouter la flèche au DOM

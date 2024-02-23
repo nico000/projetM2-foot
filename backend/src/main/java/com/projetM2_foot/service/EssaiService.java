@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -51,10 +50,10 @@ public class EssaiService {
 
     /**
      * Retourne les numero de zone X Y en focntion des délimitation
-     * @param x
-     * @param y
-     * @param nb_colonne
-     * @param nb_ligne
+     * @param x Coordonées X
+     * @param y Coordonnée Y
+     * @param nb_colonne Nombre de zone
+     * @param nb_ligne Nombre de couloir
      */
     public int[] getZoneByCoord(float x , float y , int nb_colonne , int nb_ligne){
 
@@ -62,14 +61,14 @@ public class EssaiService {
 
         for(int i = 0 ; i < nb_colonne ; i++) {
             // Condition X
-            if (((((float) MAX_POURCENTAGE_TERRAIN / nb_colonne) * i) <= x) && (x < (((float) MAX_POURCENTAGE_TERRAIN / nb_colonne) * (i + 1)))) {
+            if ((((MAX_POURCENTAGE_TERRAIN / nb_colonne) * i) <= x) && (x < ((MAX_POURCENTAGE_TERRAIN / nb_colonne) * (i + 1)))) {
                 zone[0] = i + 1;
             }
         }
 
         for (int j = 0; j < nb_ligne; j++) {
             // Condition Y
-            if (((((float) MAX_POURCENTAGE_TERRAIN / nb_ligne) * j) <= y) && (y < (((float) MAX_POURCENTAGE_TERRAIN / nb_ligne) * (j + 1)))) {
+            if (((( MAX_POURCENTAGE_TERRAIN / nb_ligne) * j) <= y) && (y < ((MAX_POURCENTAGE_TERRAIN / nb_ligne) * (j + 1)))) {
                 zone[1] = j + 1;
             }
         }

@@ -591,8 +591,8 @@ export class CreationComponent {
                 this.tabLeft = this.positionPercentage.left;
                 this.tabTop = this.positionPercentage.top;
                 console.log('tab finale en pourcentage - Left:', this.tabLeft, 'Top:', this.tabTop);
-                percentY = percentY - this.tabTop - 1.5;
-                percentX = percentX - this.tabLeft - 1.5;
+                percentY = percentY - this.tabTop;
+                percentX = percentX - this.tabLeft;
 
                 // Mettre à jour les coordonnées de l'entité sélectionnée
                 this._entiteSelect.y = percentY;

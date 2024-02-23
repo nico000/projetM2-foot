@@ -1,11 +1,14 @@
 package com.projetM2_foot.report;
 
 
+import com.projetM2_foot.entity.Examen;
 import com.projetM2_foot.entity.Experience;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.report.mapper.ReportMapper;
+import com.projetM2_foot.report.response.ReportExamen;
 import com.projetM2_foot.report.response.ReportExperience;
 import com.projetM2_foot.report.response.ReportScenario;
+import com.projetM2_foot.service.ExamenService;
 import com.projetM2_foot.service.ExperienceService;
 import com.projetM2_foot.service.ScenarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +32,7 @@ public class ReportController {
     @Autowired
     ScenarioService scenarioService;
     @Autowired
-    ExperienceService experienceService;
+    ExamenService examService;
     @Autowired
     ReportMapper reportMapper;
 
@@ -48,11 +51,13 @@ public class ReportController {
     }
 
     @GetMapping("/exp")
-    public ResponseEntity<List<ReportExperience>> getAllReport() {
+    public ResponseEntity<List<ReportExamen>> getAllReport() {
 
-        Experience data = experienceService.getById(8L);
-        List<ReportExperience> sceneList = new ArrayList<>();
-        sceneList.add(reportMapper.toDtoExperience(data));
+        List<Examen> data = examService.getAll();
+        List<ReportExamen> sceneList = data
+                .stream()
+                .map(reportMapper::toDtoExamen)
+                .collect(Collectors.toList());
 
         return ResponseEntity.ok().body(sceneList);
     }

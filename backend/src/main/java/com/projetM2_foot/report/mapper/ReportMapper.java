@@ -1,17 +1,15 @@
 package com.projetM2_foot.report.mapper;
 
-import com.projetM2_foot.entity.Deplacement;
-import com.projetM2_foot.entity.Entite;
-import com.projetM2_foot.entity.Experience;
-import com.projetM2_foot.entity.Scenario;
-import com.projetM2_foot.report.response.ReportDeplacement;
-import com.projetM2_foot.report.response.ReportEntite;
-import com.projetM2_foot.report.response.ReportExperience;
-import com.projetM2_foot.report.response.ReportScenario;
+import com.projetM2_foot.entity.*;
+import com.projetM2_foot.report.response.*;
 import com.projetM2_foot.repository.DeplacementRepository;
 import com.projetM2_foot.repository.EntiteRepository;
+import com.projetM2_foot.repository.ExperienceRepository;
 import com.projetM2_foot.repository.ScenarioRepository;
+import com.projetM2_foot.service.ExamenService;
+import com.projetM2_foot.service.ExperienceService;
 import lombok.AllArgsConstructor;
+import org.apache.commons.math3.analysis.function.Exp;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,6 +22,19 @@ public class ReportMapper {
     final EntiteRepository entiteRepository;
     final DeplacementRepository deplacementRepository;
     final ScenarioRepository scenarioRepository;
+
+    public ReportExamen toDtoExamen (Examen entity){
+
+        return ReportExamen.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+
+                .sequencage(entity.getSequencage())
+                .complexite(entity.getComplexite())
+                .contenuFeedback(entity.getContenuFeedback())
+                .experiences(entity.getExperienceSet().stream().map(this::toDtoExperience).collect(Collectors.toList()))
+                .build();
+    }
 
 
 

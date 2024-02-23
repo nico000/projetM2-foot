@@ -105,7 +105,15 @@ public class EssaiService {
         Long scenario = rexp.getExperience().getScenario().getId();
         Deplacement dep = deplacementService.getByScenarioAndAction(scenario , num_action);
 
-        //
+        // Position de départ
+        int[] zoneScenarioStart = getZoneByCoord(dep.getStartPosX(), dep.getStartPosY(), nb_colonne, nb_ligne);
+        rdep.setScenarioStartZoneX(zoneScenarioStart[0]);
+        rdep.setScenarioStartZoneY(zoneScenarioStart[1]);
+
+        // Position de départ
+        int[] zoneEssaiStart = getZoneByCoord(rdep.getStartZoneX(), rdep.getStartZoneY(), nb_colonne, nb_ligne);
+        rdep.setScenarioStartZoneX(zoneEssaiStart[0]);
+        rdep.setScenarioStartZoneY(zoneEssaiStart[1]);
 
         // Récupération et set des valeurs de zones
         int[] zoneScenario = getZoneByCoord(dep.getEndPosX(), dep.getEndPosY(), nb_colonne, nb_ligne);

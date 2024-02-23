@@ -8,7 +8,7 @@ import lombok.*;
 public class ReportExperience {
 
     private Long id;
-    private ReportScenario scenario;
+
     private String typeFeedback;
     private int freqFeedback;
     private int visuFeedback;
@@ -19,6 +19,8 @@ public class ReportExperience {
 
     private String modeScene;
     private String groundColor;
+
+    private ReportScenario scenario;
 
 
 }

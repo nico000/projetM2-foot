@@ -33,7 +33,7 @@ public class ResultatEssaiMapper {
 
     public FeedbackResponse toFeedbackDto (ResultatEssai rtry){
 
-        rtry.getDeplacementSet().removeIf(ResultatDeplacement::getReussi);
+        //rtry.getDeplacementSet().removeIf(ResultatDeplacement::getReussi);
         return FeedbackResponse.builder()
                 .essai(rtry.getId())
                 .score(rtry.getScore())

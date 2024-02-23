@@ -50,4 +50,37 @@ public class ResultatDeplacement {
     @Column(name = "dep_end_y")
     private float endPosY;
 
+    // Deplacement zone essai
+
+    /** Position X de début */
+    @Column(name = "dep_start_zonex")
+    private int startZoneX;
+    /** Position Y de début */
+    @Column(name = "dep_start_zoney")
+    private int startZoneY;
+
+    /** Position X de fin */
+    @Column(name = "dep_end_zonex")
+    private int endZoneX;
+    /** Position Y de fin */
+    @Column(name = "dep_end_zoney")
+    private int endZoneY;
+
+    // Deplacement zone scenario
+
+    /** Position X de début */
+    @Column(name = "sce_start_zonex")
+    private int scenarioStartZoneX;
+    /** Position Y de début */
+    @Column(name = "sce_start_zoney")
+    private int scenarioStartZoneY;
+
+    /** Position X de fin */
+    @Column(name = "sce_end_zonex")
+    private int scenarioEndZoneX;
+    /** Position Y de fin */
+    @Column(name = "sce_end_zoney")
+    private int scenarioEndZoneY;
+
+
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -46,6 +47,37 @@ public class EssaiService {
     }
 
 
+    private final static float MAX_POURCENTAGE_TERRAIN = 65;
+
+    /**
+     * Retourne les numero de zone X Y en focntion des délimitation
+     * @param x
+     * @param y
+     * @param nb_colonne
+     * @param nb_ligne
+     */
+    public int[] getZoneByCoord(float x , float y , int nb_colonne , int nb_ligne){
+
+        int[] zone = new int[2];
+
+        for(int i = 0 ; i < nb_colonne ; i++) {
+            // Condition X
+            if (((((float) MAX_POURCENTAGE_TERRAIN / nb_colonne) * i) <= x) && (x < (((float) MAX_POURCENTAGE_TERRAIN / nb_colonne) * (i + 1)))) {
+                zone[0] = i + 1;
+            }
+        }
+
+        for (int j = 0; j < nb_ligne; j++) {
+            // Condition Y
+            if (((((float) MAX_POURCENTAGE_TERRAIN / nb_ligne) * j) <= y) && (y < (((float) MAX_POURCENTAGE_TERRAIN / nb_ligne) * (j + 1)))) {
+                zone[1] = j + 1;
+            }
+        }
+
+        return zone;
+    }
+
+
     public void getFeedbackByDeplacement(ResultatDeplacement rdep , Long exp_id){
 
         // trouver les délimitation
@@ -53,13 +85,21 @@ public class EssaiService {
 
         int nb_colonne = rexp.getExperience().getColonArea();
         int nb_ligne = rexp.getExperience().getCorridorArea();
+
+        if(nb_colonne == 0){
+            nb_colonne = rexp.getExperience().getScenario().getColonArea();
+        }
+        if(nb_ligne == 0){
+            nb_ligne = rexp.getExperience().getScenario().getCorridorArea();
+        }
+
+        log.info(String.valueOf(rexp.getExperience().getId()));
+
+
         // trouver le deplacement de essai
         float res_x = rdep.getEndPosX();
         float res_y = rdep.getEndPosY();
         int num_action = rdep.getNumAction();
-        //log.info( "X = " + res_x);
-        //log.info( "Y = " + res_y);
-        //log.info( "A = " + num_action);
 
         // get by scenario & num_action
         Long scenario = rexp.getExperience().getScenario().getId();
@@ -68,39 +108,31 @@ public class EssaiService {
         float x = dep.getEndPosX();
         float y = dep.getEndPosY();
 
-        //log.info( "XI = " + x);
-        //log.info( "YI = " + y);
-
-        // effectuer le calcul
+        // Récupération et set des valeurs de zones
+        int[] zoneScenario = getZoneByCoord(x, y, nb_colonne, nb_ligne);
+        rdep.setScenarioEndZoneX(zoneScenario[0]);
+        rdep.setScenarioEndZoneY(zoneScenario[1]);
 
         // Vérifie si les entités sont les même
-        if(Objects.equals(dep.getEntite().getNumero(), rdep.getEntite().getNumero())){
+        if(Objects.equals(dep.getEntite().getNumero(), rdep.getEntite().getNumero()) &&
+                Objects.equals(dep.getEntite().getType() , rdep.getEntite().getType())){
 
+            int[] zoneEssai = getZoneByCoord(res_x , res_y , nb_colonne , nb_ligne);
+            rdep.setEndZoneX(zoneEssai[0]);
+            rdep.setEndZoneY(zoneEssai[1]);
 
-            for(int i = 0 ; i < nb_colonne ; i++){
-                // Condition X
-                if( ((((float) 100 /nb_colonne)*i) <= x) && (x < (((float) 100 /nb_colonne)*(i+1)))){
+            //log.info("[I,J] = [" + i + "," + j + "]");
 
-                    for(int j = 0 ; j < nb_ligne ; j++){
-                        // Condition Y
-                        if( ((((float) 100 /nb_ligne)*j) <= y) && (y < (((float) 100 /nb_ligne)*(j+1)))) {
-                            //log.info("[I,J] = [" + i + "," + j + "]");
+            // Check comparaison
+            // modifier le deplacement en réussi
+            rdep.setReussi((rdep.getScenarioEndZoneX() == rdep.getEndZoneX()) &&
+                    (rdep.getScenarioEndZoneY() == rdep.getEndZoneY()));
 
-                            // Check comparaison
-                            if(((((float) 100 /nb_colonne)*i) <= res_x) && (res_x < (((float) 100 /nb_colonne)*(i+1)))){
-                                if(((((float) 100 /nb_ligne)*j) <= res_y) && (res_y < (((float) 100 /nb_ligne)*(j+1)))){
-
-                                    // modifier le deplacement en réussi
-                                    rdep.setReussi(true);
-                                }
-                            }
-                            i = nb_colonne;
-                            j = nb_ligne;
-
-                        }
-                    }
-                }
-            }
+        }
+        else {
+            rdep.setReussi(false);
+            rdep.setEndZoneX(0);
+            rdep.setEndZoneY(0);
         }
     }
 

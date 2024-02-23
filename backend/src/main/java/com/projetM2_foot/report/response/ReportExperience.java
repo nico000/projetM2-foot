@@ -1,9 +1,6 @@
 package com.projetM2_foot.report.response;
 
-import com.projetM2_foot.entity.Scenario;
 import lombok.*;
-
-import javax.persistence.*;
 
 
 @Data

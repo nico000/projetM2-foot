@@ -93,16 +93,6 @@ nav.menu ul {
 
 
 /*terrain*/
-.draggable {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: grab;
-  overflow: hidden;
-  margin: auto;
-  align-items: center;
-}
 .barreOutils{
   text-align:center ;
   align-content: center;
@@ -114,13 +104,23 @@ nav.menu ul {
   color: black;
   text-align: center;
 }
+.draggable {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: grab;
+  overflow: hidden;
+  margin: auto;
+  align-items: center;
+}
 .joueur{
   background-color: #ffeb3b;
 }
 .ballon {
   background-color:white;
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
 }
 .couloir{
   background: transparent;
@@ -140,7 +140,7 @@ nav.menu ul {
 }
 .tabter{
   border: 1px solid white;
-  height: 57vh;
+  height: 90vh;
 }
 /* Style du conteneur de la case à cocher */
 .checkbox-container {
@@ -200,7 +200,6 @@ nav.menu ul {
 
 
 .arrow {
-  width:70%;
   position: absolute;
   width: 0;
   height: 0;

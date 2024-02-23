@@ -258,10 +258,10 @@ export class HomeComponent {
                                 console.log("entite trouvée");
                                 // Afficher une flèche entre les entités
 
-                                const endX = (deplacement.endPosX * (100 / 68)) ;
-                                const endY = (deplacement.endPosY * (100 / 68)) ;
-                                const startX = (deplacement.startPosX * (100 / 68)) ;
-                                const startY = (deplacement.startPosY * (100 / 68)) ;
+                                const endX = (deplacement.endPosX * (100 / 65)) ;
+                                const endY = (deplacement.endPosY * (100 / 65)) ;
+                                const startX = (deplacement.startPosX * (100 / 65)) ;
+                                const startY = (deplacement.startPosY * (100 / 65)) ;
                                 // Obtenir les dimensions actuelles de la page
                                 const containerWidth = window.innerWidth;
                                 const containerHeight = window.innerHeight;
@@ -309,16 +309,34 @@ export class HomeComponent {
 
         // Calculer la longueur et l'angle de la flèche
         const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
-        const angle = Math.atan2(startY-endY,startX-endX ) * (180 / Math.PI);
+        const angle = Math.atan2(endY-startY,endX-startX ) * (180 / Math.PI);
+        console.log("angle :",angle,"length:",length);
 
-        // Appliquer les styles à la flèche
-        arrow.style.position = 'absolute';
-        arrow.style.width = length + 'px';
-        arrow.style.height = '2px'; // Épaisseur de la flèche
-        arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-        arrow.style.left = ((endX)+((this.tabLeft/100)*containerWidth))+ 'px';
-        arrow.style.top = ((endY) +((this.tabTop/100)*containerHeight)) + 'px';
-        arrow.style.transform = 'rotate(' + angle + 'deg)';
+
+        //on recalcule end en %
+        const endPX = (endX / containerWidth) * 100;
+        const endPY = (endY / containerHeight) * 100;
+        const startPY=(startY / containerHeight) * 100;
+        //on verifie si il change pas d'angle
+        if (Math.abs(endPY - startPY) <= 10) {
+            // Appliquer les styles à la flèche
+            arrow.style.position = 'absolute';
+            arrow.style.width = length + 'px';
+            arrow.style.height = '2px'; // Épaisseur de la flèche
+            arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+            arrow.style.left = (endPX+this.tabLeft)+ '%';
+            arrow.style.top = (endPY+this.tabTop) + '%';
+            arrow.style.transform = 'rotate(' + angle + 'deg)';
+        }else{
+            // Appliquer les styles à la flèche
+            arrow.style.position = 'absolute';
+            arrow.style.width = length + 'px';
+            arrow.style.height = '2px'; // Épaisseur de la flèche
+            arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+            arrow.style.left = (endPX)+ '%';
+            arrow.style.top = (endPY) + '%';
+            arrow.style.transform = 'rotate(' + angle + 'deg)';
+        }
 
         // Ajouter la flèche au DOM
         document.querySelector('.tableau_joueur .colonne_terrain2').appendChild(arrow);

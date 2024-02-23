@@ -46,7 +46,8 @@ public class EssaiService {
     }
 
 
-    private final static float MAX_POURCENTAGE_TERRAIN = 65;
+    private final static float MAX_POURCENTAGE_TERRAIN_WIDTH = 65;
+    private final static float MAX_POURCENTAGE_TERRAIN_HEIGHT = 58;
 
     /**
      * Retourne les numero de zone X Y en focntion des délimitation
@@ -61,14 +62,14 @@ public class EssaiService {
 
         for(int i = 0 ; i < nb_colonne ; i++) {
             // Condition X
-            if ((((MAX_POURCENTAGE_TERRAIN / nb_colonne) * i) <= x) && (x < ((MAX_POURCENTAGE_TERRAIN / nb_colonne) * (i + 1)))) {
+            if ((((MAX_POURCENTAGE_TERRAIN_WIDTH / nb_colonne) * i) <= x) && (x < ((MAX_POURCENTAGE_TERRAIN_WIDTH / nb_colonne) * (i + 1)))) {
                 zone[0] = i + 1;
             }
         }
 
         for (int j = 0; j < nb_ligne; j++) {
             // Condition Y
-            if (((( MAX_POURCENTAGE_TERRAIN / nb_ligne) * j) <= y) && (y < ((MAX_POURCENTAGE_TERRAIN / nb_ligne) * (j + 1)))) {
+            if (((( MAX_POURCENTAGE_TERRAIN_HEIGHT / nb_ligne) * j) <= y) && (y < ((MAX_POURCENTAGE_TERRAIN_HEIGHT / nb_ligne) * (j + 1)))) {
                 zone[1] = j + 1;
             }
         }
@@ -104,11 +105,10 @@ public class EssaiService {
         Long scenario = rexp.getExperience().getScenario().getId();
         Deplacement dep = deplacementService.getByScenarioAndAction(scenario , num_action);
 
-        float x = dep.getEndPosX();
-        float y = dep.getEndPosY();
+        //
 
         // Récupération et set des valeurs de zones
-        int[] zoneScenario = getZoneByCoord(x, y, nb_colonne, nb_ligne);
+        int[] zoneScenario = getZoneByCoord(dep.getEndPosX(), dep.getEndPosY(), nb_colonne, nb_ligne);
         rdep.setScenarioEndZoneX(zoneScenario[0]);
         rdep.setScenarioEndZoneY(zoneScenario[1]);
 

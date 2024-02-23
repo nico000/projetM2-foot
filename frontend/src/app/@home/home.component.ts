@@ -257,16 +257,25 @@ export class HomeComponent {
                                 entite.y = deplacement.endPosY;
                                 console.log("entite trouvée");
                                 // Afficher une flèche entre les entités
-                                const endX = (deplacement.startPosX)*(100/68);
-                                const endY = (deplacement.startPosY)*(100/68);
-                                const startX = (deplacement.endPosX )*(100/68);
-                                const startY = (deplacement.endPosY)*(100/68);
+
+                                const endX = (deplacement.endPosX * (100 / 68)) ;
+                                const endY = (deplacement.endPosY * (100 / 68)) ;
+                                const startX = (deplacement.startPosX * (100 / 68)) ;
+                                const startY = (deplacement.startPosY * (100 / 68)) ;
+                                // Obtenir les dimensions actuelles de la page
+                                const containerWidth = window.innerWidth;
+                                const containerHeight = window.innerHeight;
+                                // Convertir les coordonnées en pourcentage en coordonnées absolues
+                                const absStartX = (startX / 100)* containerWidth ;
+                                const absStartY = (startY / 100)* containerHeight;
+                                const absEndX = (endX / 100)* containerWidth ;
+                                const absEndY = (endY / 100)* containerHeight;
                                 console.log("this.tabTop",this.tabTop,"this.tabLeft",this.tabLeft)
                                 console.log("deplacement.startPosX:",deplacement.startPosX ,"startX :" ,startX);
                                 console.log("deplacement.startPosY:",deplacement.startPosY ,"startY :" ,startY);
                                 console.log("deplacement.endPosX:",deplacement.endPosX ,"endX :" ,endX);
                                 console.log("deplacement.endPosY:",deplacement.endPosY ,"endY :" ,endY);
-                                this.addArrow(startX, startY, endX, endY);
+                                this.addArrow(absStartX, absStartY, absEndX, absEndY);
 
                             }
                         });
@@ -300,19 +309,15 @@ export class HomeComponent {
 
         // Appliquer les styles à la flèche
         arrow.style.position = 'absolute';
-        arrow.style.width = length + '%';
+        arrow.style.width = length + 'px';
         arrow.style.height = '2px'; // Épaisseur de la flèche
         arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-        arrow.style.left = ((startX) +this.tabLeft)+ '%';
-        arrow.style.top = ((startY) +this.tabTop) + '%';
+        arrow.style.left = ((endX))+ 'px';
+        arrow.style.top = ((endY) ) + 'px';
         arrow.style.transform = 'rotate(' + angle + 'deg)';
 
         // Ajouter la flèche au DOM
         document.querySelector('.tableau_joueur .colonne_terrain2').appendChild(arrow);
-    }
-    getArrowRotation(startX: number, startY: number, endX: number, endY: number): string {
-        const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
-        return `rotate(${angle}deg)`;
     }
 
 

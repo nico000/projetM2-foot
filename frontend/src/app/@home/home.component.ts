@@ -304,29 +304,8 @@ export class HomeComponent {
         arrow.classList.add('arrow');
 
         // Calculer la longueur et l'angle de la flèche
-        //const length = Math.sqrt(  Math.pow(endY - startY, 2)+Math.pow(endX - startX, 2));
-        // Calculer la longueur et les composantes horizontales et verticales du vecteur
-        const deltaX = endX - startX;
-        const deltaY = endY - startY;
-        const length = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-    // Calculer l'angle en radians en utilisant les composantes horizontales et verticales
-        let angleRad;
-        if (deltaX === 0) {
-            angleRad = deltaY >= 0 ? Math.PI / 2 : -Math.PI / 2; // Gestion des cas particuliers pour deltaX = 0
-        } else {
-            angleRad = Math.atan(deltaY / deltaX); // Calcul de l'angle en radians
-        }
-
-    // Convertir l'angle en degrés
-        let angle = angleRad * (180 / Math.PI);
-
-    // Ajuster l'angle en fonction du quadrant
-        if (deltaX < 0) {
-            angle += 180;
-        } else if (deltaX >= 0 && deltaY < 0) {
-            angle += 360;
-        }
+        const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+        const angle = Math.atan2(endY - startY,endX - startX) * (180 / Math.PI);
 
         // Appliquer les styles à la flèche
         arrow.style.position = 'absolute';

@@ -9,6 +9,7 @@ import com.projetM2_foot.service.ExamenService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,7 @@ public class ResultatExamenMapper {
                 .heurePerson(request.getHeure())
                 .score(-1)
                 .examen(examenService.getById(request.getExamen()))
+                .createDate(new Date())
                 .build();
     }
 

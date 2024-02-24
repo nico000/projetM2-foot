@@ -4,7 +4,6 @@ package com.projetM2_foot.report;
 import com.projetM2_foot.entity.*;
 import com.projetM2_foot.report.mapper.ReportMapper;
 import com.projetM2_foot.report.response.*;
-import com.projetM2_foot.service.EssaiService;
 import com.projetM2_foot.service.ExamenService;
 import com.projetM2_foot.service.ResultatExperienceService;
 import com.projetM2_foot.service.ScenarioService;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

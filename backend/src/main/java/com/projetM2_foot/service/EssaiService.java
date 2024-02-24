@@ -49,16 +49,6 @@ public class EssaiService {
     }
 
 
-    public ResultatEssai getEssaiById(Long idEssai){
-
-        return essaiRepository
-                .findById(idEssai)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.BAD_REQUEST,
-                        "Essai non trouvé avec l'id : " + idEssai));
-
-    }
-
     public List<ResultatEssai> getEssaisByIdResultatExperience(Long idResultatExperience){
 
         return essaiRepository

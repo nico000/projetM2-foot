@@ -1,11 +1,8 @@
 package com.projetM2_foot.report.response;
 
-import com.projetM2_foot.entity.Examen;
-import com.projetM2_foot.entity.ResultatExperience;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 

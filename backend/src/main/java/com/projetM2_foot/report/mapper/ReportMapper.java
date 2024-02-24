@@ -158,9 +158,12 @@ public class ReportMapper {
 
         Entite entite = entiteRepository.findById(entity.getEntite().getId()).orElse(null);
 
+        ReportEntite reportEntite = null;
+        if(entite != null) reportEntite = toDtoEntite(entite);
+
         return ReportDeplacement.builder()
                 .id(entity.getId())
-                .entite(toDtoEntite(entite))
+                .entite(reportEntite)
                 .action(entity.getNumAction())
                 .posXDepart(entity.getStartPosX())
                 .posYDepart(entity.getStartPosY())

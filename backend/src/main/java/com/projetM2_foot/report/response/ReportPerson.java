@@ -1,10 +1,7 @@
 package com.projetM2_foot.report.response;
 
-import com.projetM2_foot.entity.Examen;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.Date;
 
 @Data
 @Builder

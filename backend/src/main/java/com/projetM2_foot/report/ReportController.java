@@ -6,7 +6,6 @@ import com.projetM2_foot.report.mapper.ReportMapper;
 import com.projetM2_foot.report.response.*;
 import com.projetM2_foot.service.ExamenService;
 import com.projetM2_foot.service.ResultatExamenService;
-import com.projetM2_foot.service.ResultatExperienceService;
 import com.projetM2_foot.service.ScenarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;

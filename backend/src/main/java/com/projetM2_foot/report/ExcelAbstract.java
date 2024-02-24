@@ -78,7 +78,7 @@ public abstract class ExcelAbstract {
         } else if (value instanceof Float) {
             cell.setCellValue((Float) value);
         } else if (value instanceof Timestamp) {
-            cell.setCellValue((String) value.toString());
+            cell.setCellValue(value.toString());
         } else {
             cell.setCellValue((String) value);
         }

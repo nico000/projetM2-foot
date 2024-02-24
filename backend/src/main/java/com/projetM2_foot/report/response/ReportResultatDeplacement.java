@@ -1,10 +1,7 @@
 package com.projetM2_foot.report.response;
 
-import com.projetM2_foot.entity.Entite;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 @Builder

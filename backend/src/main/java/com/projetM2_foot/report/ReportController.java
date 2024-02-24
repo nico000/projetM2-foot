@@ -9,10 +9,10 @@ import com.projetM2_foot.report.mapper.ReportMapper;
 import com.projetM2_foot.report.response.ReportExamen;
 import com.projetM2_foot.report.response.ReportResultatDeplacement;
 import com.projetM2_foot.report.response.ReportScenario;
-import com.projetM2_foot.service.DeplacementService;
 import com.projetM2_foot.service.EssaiService;
 import com.projetM2_foot.service.ExamenService;
 import com.projetM2_foot.service.ScenarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

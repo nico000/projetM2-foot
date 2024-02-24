@@ -22,6 +22,44 @@ public class ReportMapper {
     final ResultatExperienceService resultatExperience;
 
 
+
+    public ReportResultatExamen toDtoResultatExamen(ResultatExamen entity){
+
+        List<ResultatExperience> list =
+                    resultatExperience.getListByResultatExamen(entity.getId());
+
+        return ReportResultatExamen.builder()
+                .id(entity.getId())
+                .personalInformation(toDtoPerson(entity))
+                .resultatExperiences(list
+                        .stream()
+                        .map(this::toDtoResultatExperience)
+                        .collect(Collectors.toList()))
+                .createDate(entity.getCreateDate())
+                .score(entity.getScore())
+                .examen(toDtoExamen(entity.getExamen()))
+                .build();
+    }
+
+
+    public ReportPerson toDtoPerson(ResultatExamen entity){
+
+        return ReportPerson.builder()
+                .nom(entity.getNomPerson())
+                .prenom(entity.getPrenomPerson())
+                .groupe(entity.getGroupePerson())
+                .age(entity.getAgePerson())
+                .sex(entity.getSexPerson())
+                .pratique(entity.getPratiquePerson())
+
+                .pro(entity.getProPerson())
+                .anneeExperience(entity.getAnneeExperiencePerson())
+                .nombreMatches(entity.getMatchePerson())
+                .entrainement(entity.getEntrainementPerson())
+                .heure(entity.getHeurePerson())
+                .build();
+    }
+
     public ReportResultatExperience toDtoResultatExperience(ResultatExperience entity){
         List<ResultatEssai> listEssai  = essaiService.getEssaisByIdResultatExperience(entity.getId());
 
@@ -154,14 +192,6 @@ public class ReportMapper {
 
     }
 
-
-
-    public List<ReportScenario> toDtoAllScenario (List<Scenario> scenarioList){
-
-        return scenarioList.stream()
-                .map(this::toDtoScenario)
-                .collect(Collectors.toList());
-    }
 
     public ReportEntite toDtoEntite (Entite entity){
 

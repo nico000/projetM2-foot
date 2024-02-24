@@ -5,6 +5,7 @@ import com.projetM2_foot.entity.*;
 import com.projetM2_foot.report.mapper.ReportMapper;
 import com.projetM2_foot.report.response.*;
 import com.projetM2_foot.service.ExamenService;
+import com.projetM2_foot.service.ResultatExamenService;
 import com.projetM2_foot.service.ResultatExperienceService;
 import com.projetM2_foot.service.ScenarioService;
 
@@ -33,7 +34,7 @@ public class ReportController {
     ReportMapper reportMapper;
 
     @Autowired
-    ResultatExperienceService resultatExperienceService;
+    ResultatExamenService resExamService;
 
 
     @GetMapping("/all")
@@ -64,15 +65,14 @@ public class ReportController {
     }
 
     @GetMapping("/test")
-    public ResponseEntity<List<ReportResultatExperience>> getTestReport() {
+    public ResponseEntity<List<ReportResultatExamen>> getTestReport() {
 
-        List<ResultatExperience> data = resultatExperienceService.getAll();
-
-
+        List<ResultatExamen> data = resExamService.getAll();
 
 
-        List<ReportResultatExperience> serieList =
-                data.stream().map(reportMapper::toDtoResultatExperience)
+
+        List<ReportResultatExamen> serieList =
+                data.stream().map(reportMapper::toDtoResultatExamen)
                         .collect(Collectors.toList());
 
 

@@ -37,5 +37,11 @@ public class ResultatExperienceService {
     }
 
 
+    public List<ResultatExperience> getListByResultatExamen(Long idResultatExamen){
+
+        return resultatExperienceRepository
+                .findByResultatExamenId(idResultatExamen);
+    }
+
 
 }

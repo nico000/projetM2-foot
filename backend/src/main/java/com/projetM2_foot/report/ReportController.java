@@ -1,16 +1,12 @@
 package com.projetM2_foot.report;
 
 
-import com.projetM2_foot.entity.Examen;
-import com.projetM2_foot.entity.ResultatDeplacement;
-import com.projetM2_foot.entity.ResultatEssai;
-import com.projetM2_foot.entity.Scenario;
+import com.projetM2_foot.entity.*;
 import com.projetM2_foot.report.mapper.ReportMapper;
-import com.projetM2_foot.report.response.ReportExamen;
-import com.projetM2_foot.report.response.ReportResultatDeplacement;
-import com.projetM2_foot.report.response.ReportScenario;
+import com.projetM2_foot.report.response.*;
 import com.projetM2_foot.service.EssaiService;
 import com.projetM2_foot.service.ExamenService;
+import com.projetM2_foot.service.ResultatExperienceService;
 import com.projetM2_foot.service.ScenarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +35,7 @@ public class ReportController {
     ReportMapper reportMapper;
 
     @Autowired
-    EssaiService essaiService;
+    ResultatExperienceService resultatExperienceService;
 
 
     @GetMapping("/all")
@@ -70,17 +66,17 @@ public class ReportController {
     }
 
     @GetMapping("/test")
-    public ResponseEntity<List<ReportResultatDeplacement>> getTestReport() {
+    public ResponseEntity<List<ReportResultatExperience>> getTestReport() {
 
-        ResultatEssai data = essaiService.getEssaiById(14L);
+        List<ResultatExperience> data = resultatExperienceService.getAll();
 
-        List<ResultatDeplacement> tes = new ArrayList<>(data.getDeplacementSet());
 
-        List<ReportResultatDeplacement> serieList =
-                tes
-                        .stream()
-                        .map(reportMapper::toDtoResultatDeplacement)
+
+
+        List<ReportResultatExperience> serieList =
+                data.stream().map(reportMapper::toDtoResultatExperience)
                         .collect(Collectors.toList());
+
 
        /* List<ReportExamen> list = data
                 .stream()

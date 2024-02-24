@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -55,6 +56,13 @@ public class EssaiService {
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.BAD_REQUEST,
                         "Essai non trouvé avec l'id : " + idEssai));
+
+    }
+
+    public List<ResultatEssai> getEssaisByIdResultatExperience(Long idResultatExperience){
+
+        return essaiRepository
+                .findByResultatExperienceId(idResultatExperience);
 
     }
 

@@ -2,9 +2,9 @@ package com.projetM2_foot.report.mapper;
 
 import com.projetM2_foot.entity.*;
 import com.projetM2_foot.report.response.*;
-import com.projetM2_foot.repository.DeplacementRepository;
-import com.projetM2_foot.repository.EntiteRepository;
-import com.projetM2_foot.repository.ScenarioRepository;
+import com.projetM2_foot.repository.*;
+import com.projetM2_foot.service.EssaiService;
+import com.projetM2_foot.service.ResultatExperienceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +18,37 @@ public class ReportMapper {
     final EntiteRepository entiteRepository;
     final DeplacementRepository deplacementRepository;
     final ScenarioRepository scenarioRepository;
+    final EssaiService essaiService;
+    final ResultatExperienceService resultatExperience;
+
+
+    public ReportResultatExperience toDtoResultatExperience(ResultatExperience entity){
+        List<ResultatEssai> listEssai  = essaiService.getEssaisByIdResultatExperience(entity.getId());
+
+
+        return ReportResultatExperience.builder()
+                .id(entity.getId())
+                .score(entity.getScore())
+                .createDate(entity.getCreateDate())
+                .experience(toDtoExperience(entity.getExperience()))
+                .essais(listEssai.stream().map(this::toDtoEssai).collect(Collectors.toList()))
+                .build();
+    }
+
+    public ReportEssai toDtoEssai(ResultatEssai entity){
+
+        return ReportEssai.builder()
+                .id(entity.getId())
+                .reussi(entity.isReussi())
+                .score(entity.getScore())
+                .temps(entity.getTemps())
+                .numEssai(entity.getNum())
+                .deplacementsRealiser(entity.getDeplacementSet()
+                        .stream()
+                        .map(this::toDtoResultatDeplacement)
+                        .collect(Collectors.toList()))
+                .build();
+    }
 
 
     public ReportZonePos toDtoZone(int x1 , int y1 , int x2 , int y2){

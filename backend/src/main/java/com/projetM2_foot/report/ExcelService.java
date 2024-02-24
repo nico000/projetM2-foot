@@ -4,7 +4,6 @@ import com.projetM2_foot.report.response.ReportDeplacement;
 import com.projetM2_foot.report.response.ReportEntite;
 import com.projetM2_foot.report.response.ReportScenario;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ExcelService extends ReportAbstract {
+public class ExcelService extends ExcelAbstract {
 
 
 

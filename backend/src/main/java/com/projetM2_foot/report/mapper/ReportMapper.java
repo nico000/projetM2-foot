@@ -19,6 +19,41 @@ public class ReportMapper {
     final DeplacementRepository deplacementRepository;
     final ScenarioRepository scenarioRepository;
 
+
+    public ReportZonePos toDtoZone(int x1 , int y1 , int x2 , int y2){
+
+        return ReportZonePos.builder()
+                .zoneDepartX(x1)
+                .zoneDepartY(y1)
+                .zoneArriveeX(x2)
+                .zoneArriveeY(y2)
+                .build();
+    }
+
+    public ReportResultatDeplacement toDtoResultatDeplacement(ResultatDeplacement entity){
+
+        return ReportResultatDeplacement.builder()
+                .id(entity.getId())
+                .reussi(entity.getReussi())
+                .action(entity.getNumAction())
+                .entite(toDtoEntite(entity.getEntite()))
+                .scenarioPos(toDtoZone(
+                        entity.getScenarioStartZoneX() ,
+                        entity.getScenarioStartZoneY() ,
+                        entity.getScenarioEndZoneX() ,
+                        entity.getScenarioEndZoneY()))
+                .essaiPos(toDtoZone(
+                        entity.getStartZoneX() ,
+                        entity.getStartZoneY() ,
+                        entity.getEndZoneX() ,
+                        entity.getEndZoneY()))
+                .startPosX(entity.getStartPosX())
+                .startPosY(entity.getStartPosY())
+                .endPosX(entity.getEndPosX())
+                .endPosY(entity.getEndPosY())
+                .build();
+    }
+
     public ReportExamen toDtoExamen (Examen entity){
 
         return ReportExamen.builder()
@@ -65,22 +100,6 @@ public class ReportMapper {
                 .build();
     }
 
-    /*
-    public static ResultatDeplacementResponse toDtoResultatDeplacement(ResultatDeplacement entity){
-
-        return ResultatDeplacementResponse.builder()
-                .id(entity.getId())
-                .reussi(entity.getReussi())
-                .entite(entity.getEntite().getId())
-                .numAction(entity.getNumAction())
-                .startPosX(entity.getStartPosX())
-                .startPosY(entity.getStartPosY())
-                .endPosX(entity.getEndPosX())
-                .endPosY(entity.getEndPosY())
-                .build();
-    }
-
-     */
 
     public ReportScenario toDtoScenario(Scenario scenario){
 

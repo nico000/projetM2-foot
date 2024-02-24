@@ -14,7 +14,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class ReportAbstract {
+public abstract class ExcelAbstract {
 
 
     // ----------------------

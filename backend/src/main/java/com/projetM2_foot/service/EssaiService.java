@@ -7,8 +7,10 @@ import com.projetM2_foot.repository.ResultatDeplacementRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -43,6 +45,17 @@ public class EssaiService {
     public ResultatDeplacement addDep(ResultatDeplacement dep){
         assert dep != null;
         return resultatDeplacementRepository.save(dep);
+    }
+
+
+    public ResultatEssai getEssaiById(Long idEssai){
+
+        return essaiRepository
+                .findById(idEssai)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST,
+                        "Essai non trouvé avec l'id : " + idEssai));
+
     }
 
 
@@ -92,9 +105,6 @@ public class EssaiService {
         if(nb_ligne == 0){
             nb_ligne = rexp.getExperience().getScenario().getCorridorArea();
         }
-
-        log.info(String.valueOf(rexp.getExperience().getId()));
-
 
         // trouver le deplacement de essai
         float res_x = rdep.getEndPosX();

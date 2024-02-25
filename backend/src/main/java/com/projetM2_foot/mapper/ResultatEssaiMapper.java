@@ -2,7 +2,6 @@ package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.ResultatEssaiRequestCreate;
 import com.projetM2_foot.api.response.FeedbackResponse;
-import com.projetM2_foot.api.response.ResultatDeplacementResponse;
 import com.projetM2_foot.entity.*;
 import com.projetM2_foot.service.ResultatExperienceService;
 import lombok.AllArgsConstructor;

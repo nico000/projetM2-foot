@@ -96,17 +96,19 @@ public class ExcelService extends ExcelAbstract {
         CellStyle style = headerStyle;
         XSSFFont font = headerFont;
 
-        // title
-        createCell(rowInit, columnInit, titleName, style);
-        sheet.addMergedRegion(new CellRangeAddress(rowInit, rowInit, columnInit, columnInit + headers.length - 1));
-        font.setFontHeightInPoints((short) 10);
+        if(titleName != null) {
+            // title
+            createCell(rowInit, columnInit, titleName, style);
+            sheet.addMergedRegion(new CellRangeAddress(rowInit++, rowInit, columnInit, columnInit + headers.length - 1));
+        }
 
+        font.setFontHeightInPoints((short) 10);
         // header
         font.setBold(true);
         font.setFontHeight(16);
         style.setFont(font);
         for (int i = 0; i < headers.length; i++) {
-            createCell(rowInit+1, i+columnInit, headers[i], style);
+            createCell(rowInit, i+columnInit, headers[i], style);
         }
     }
 
@@ -115,42 +117,38 @@ public class ExcelService extends ExcelAbstract {
     public void exportToExcel(HttpServletResponse response, Object data) throws IOException {
 
         String filename = "BetaFoot";
-
-
         newReportExcel();
 
         // response  writer to excel
         response = initResponseForExportExcel(response, filename);
         ServletOutputStream outputStream = response.getOutputStream();
 
+        // Infos personnelle
+        createSheet("Info personelle");
+        String[] headerPerson = getPropertyNameByClass(ReportPerson.class);
+        writeTableHeaderExcel(null, headerPerson ,0, 0);
 
-        createGlobal(data , "Global");
+        List<ReportResultatExamen> dataList = (List<ReportResultatExamen>) data;
+        insertValueObject(dataList.get(0).getPersonalInformation() , 1 , 0);
 
+        for(int a = 0 ; a < 20 ; a++) {
+            sheet.autoSizeColumn(a);
+        }
+
+        // Détail
+        createDetail(data , "Détails");
 
 
 /*
-        String sheetName = "Info personnel";
-        //createSheet(sheetName);
 
 
 
         // write sheet, title & header
         //String[] headers = new String[]{"No", "username", "Password", "Roles", "Permission", "Active", "Bloked", "Created By", "Created Date", "Update By", "Update Date"};
-
         String[] headerScenario = getPropertyNameByClass(ReportScenario.class);
-        String[] headerEntite = getPropertyNameByClass(ReportEntite.class);
-        String[] headerDeplacement = getPropertyNameByClass(ReportDeplacement.class);
-
-        int row = 0;
-        int column = 0;
-
 
         writeTableHeaderExcel("Scenario", headerScenario ,row , column);
         column = column + headerScenario.length;
-        writeTableHeaderExcel("Entite", headerEntite ,row , column);
-        column = column + headerScenario.length + 1;
-        writeTableHeaderExcel("Deplacement", headerDeplacement ,row , column);
-        column = column + headerScenario.length + 1;
 
 
         column = 0;
@@ -163,7 +161,7 @@ public class ExcelService extends ExcelAbstract {
         outputStream.close();
     }
 
-    public void createGlobal(Object dataBrut , String sheetName){
+    public void createDetail(Object dataBrut , String sheetName){
 
         int row_init = 0;
         int column_init = 0;

@@ -31,7 +31,7 @@ public class Scenario {
     // **** DESIGN **** //
     /** Visuel du terrain en 3D (par défaut inactif) */
     @Column(name = "sce_three_dim")
-    private Boolean threeDim = false;
+    private Boolean threeDim;
     /** action par action / scene par scene */
     @Column(name = "sce_mode_scene")
     private String modeScene = "action";

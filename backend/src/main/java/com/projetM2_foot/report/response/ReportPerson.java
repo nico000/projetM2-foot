@@ -11,7 +11,7 @@ public class ReportPerson {
     private String prenom;
     private String groupe;
     private int age;
-    private String sex;
+    private String genre;
     private String pratique;
 
     private Boolean pro;

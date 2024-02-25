@@ -51,7 +51,7 @@ public class ReportMapper {
                 .prenom(entity.getPrenomPerson())
                 .groupe(entity.getGroupePerson())
                 .age(entity.getAgePerson())
-                .sex(entity.getSexPerson())
+                .genre(entity.getSexPerson())
                 .pratique(entity.getPratiquePerson())
 
                 .pro(entity.getProPerson())

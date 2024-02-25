@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -63,27 +64,29 @@ public class ReportController {
         return ResponseEntity.ok().body(serieList);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<List<ReportResultatExamen>> getTestReport() {
+    @GetMapping("/resultats")
+    public ResponseEntity<List<ReportResultatExamen>> getResultatReport() {
 
         List<ResultatExamen> data = resExamService.getAll();
-
-
-
         List<ReportResultatExamen> serieList =
                 data.stream().map(reportMapper::toDtoResultatExamen)
                         .collect(Collectors.toList());
 
-
-       /* List<ReportExamen> list = data
-                .stream()
-                .map(reportMapper::toDtoExamen)
-                .collect(Collectors.toList());
-
-        */
         return ResponseEntity.ok().body(serieList);
     }
 
+
+    @GetMapping("/resultat")
+    public ResponseEntity<List<ReportResultatExamen>> getResultatNomPrenomReport(
+            @RequestParam String nom,
+            @RequestParam String prenom
+    ) {
+        List<ResultatExamen> data = resExamService.getByNomPrenom(nom,prenom);
+        List<ReportResultatExamen> serieList =
+                data.stream().map(reportMapper::toDtoResultatExamen)
+                        .collect(Collectors.toList());
+        return ResponseEntity.ok().body(serieList);
+    }
 
 
 }

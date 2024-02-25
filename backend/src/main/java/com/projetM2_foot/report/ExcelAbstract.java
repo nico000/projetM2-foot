@@ -49,7 +49,7 @@ public abstract class ExcelAbstract {
         CellStyle style = workbook.createCellStyle();
         XSSFFont font = workbook.createFont();
         font.setBold(true);
-        font.setFontHeight(20);
+        font.setFontHeight(15);
         style.setFont(font);
         style.setAlignment(HorizontalAlignment.CENTER);
 

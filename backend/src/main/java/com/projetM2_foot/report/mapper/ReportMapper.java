@@ -8,6 +8,8 @@ import com.projetM2_foot.service.ResultatExperienceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,13 +77,18 @@ public class ReportMapper {
 
     public ReportEssai toDtoEssai(ResultatEssai entity){
 
+        List<ResultatDeplacement> rdep =
+                new ArrayList<>(entity.getDeplacementSet());
+        Comparator<ResultatDeplacement> comparator = Comparator.comparingInt(ResultatDeplacement::getNumAction);
+        rdep.sort(comparator);
+
         return ReportEssai.builder()
                 .id(entity.getId())
                 .reussi(entity.isReussi())
                 .score(entity.getScore())
                 .temps(entity.getTemps())
                 .numEssai(entity.getNum())
-                .deplacementsRealiser(entity.getDeplacementSet()
+                .deplacementsRealiser(rdep
                         .stream()
                         .map(this::toDtoResultatDeplacement)
                         .collect(Collectors.toList()))

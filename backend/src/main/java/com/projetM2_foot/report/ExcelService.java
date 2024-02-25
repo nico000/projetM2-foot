@@ -1,21 +1,27 @@
 package com.projetM2_foot.report;
 
-import com.projetM2_foot.report.response.ReportDeplacement;
-import com.projetM2_foot.report.response.ReportEntite;
-import com.projetM2_foot.report.response.ReportScenario;
-import org.apache.poi.ss.usermodel.CellStyle;
+import com.projetM2_foot.entity.ResultatExamen;
+import com.projetM2_foot.report.response.*;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.RegionUtil;
+import org.apache.poi.xssf.usermodel.IndexedColorMap;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
+import java.awt.Color;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ExcelService extends ExcelAbstract {
@@ -115,7 +121,7 @@ public class ExcelService extends ExcelAbstract {
     public void exportToExcel(HttpServletResponse response, Object data) throws IOException {
 
         String filename = "BetaFoot";
-        String sheetName = "Feuille global";
+
 
         newReportExcel();
 
@@ -123,7 +129,14 @@ public class ExcelService extends ExcelAbstract {
         response = initResponseForExportExcel(response, filename);
         ServletOutputStream outputStream = response.getOutputStream();
 
-        createSheet(sheetName);
+
+        createGlobal(data , "Global");
+
+
+
+/*
+        String sheetName = "Info personnel";
+        //createSheet(sheetName);
 
 
 
@@ -149,13 +162,184 @@ public class ExcelService extends ExcelAbstract {
         column = 0;
         row =+ 2;
         createObjectCell((List<Object>) data , row , column  );
-
+*/
 
         workbook.write(outputStream);
         workbook.close();
         outputStream.close();
     }
 
+    public void createGlobal(Object dataBrut , String sheetName){
+
+        int row_init = 0;
+        int column_init = 0;
+        int row = row_init;
+        int column = column_init;
+        createSheet(sheetName);
+
+        CellStyle style = getFontContentExcel();
+
+
+        CellStyle styleError = getFontContentExcel();
+
+        styleError.setFillBackgroundColor(IndexedColors.WHITE.index);
+        styleError.setFillPattern(FillPatternType.BIG_SPOTS);
+        styleError.setFillForegroundColor(IndexedColors.RED1.getIndex());
+        styleError.setAlignment(HorizontalAlignment.CENTER);
+
+        style.setAlignment(HorizontalAlignment.CENTER);
+
+        CellStyle styleErrorDep = getFontContentExcel();
+        styleErrorDep.setAlignment(HorizontalAlignment.CENTER);
+        styleErrorDep.setFillBackgroundColor(IndexedColors.WHITE.index);
+        styleErrorDep.setFillPattern(FillPatternType.BIG_SPOTS);
+        styleErrorDep.setFillForegroundColor(new XSSFColor(new java.awt.Color(147,2,2),workbook.getStylesSource().getIndexedColors()));
+
+
+        CellStyle styleGoodDep = getFontContentExcel();
+        styleGoodDep.setAlignment(HorizontalAlignment.CENTER);
+        styleGoodDep.setFillBackgroundColor(IndexedColors.WHITE.index);
+        styleGoodDep.setFillPattern(FillPatternType.BIG_SPOTS);
+        styleGoodDep.setFillForegroundColor(new XSSFColor(new java.awt.Color(48, 114, 3),workbook.getStylesSource().getIndexedColors()));
+
+
+        CellStyle pourcentStyle = getFontContentExcel();
+        pourcentStyle.setDataFormat(workbook.createDataFormat().getFormat("0.00%"));
+
+    //    styleError.setFillForegroundColor(IndexedColors.RED.getIndex());
+
+        row++;
+
+        List<ReportResultatExamen> rexaList = (List<ReportResultatExamen>) dataBrut;
+
+        for( ReportResultatExamen rexa : rexaList ){
+
+            for( ReportResultatExperience rexp : rexa.getResultatExperiences()){
+
+                for(ReportEssai rtry : rexp.getEssais()){
+
+                    int dep_reussi = 0;
+                    int dep_total = 0;
+
+                    for(ReportResultatDeplacement rdep : rtry.getDeplacementsRealiser()){
+
+                        column = 0;
+                        row++;
+                        dep_total++;
+                        if(rdep.getReussi()) dep_reussi++;
+
+
+
+                        createCell(row, column++, rexa.getExamen().getId(), style);
+                        createCell(row, column++, rexa.getExamen().getName(), style);
+                        createCell(row, column++, rexa.getExamen().getSequencage(), style);
+                        createCell(row, column++, rexa.getExamen().getComplexite(), style);
+                        createCell(row, column++, rexa.getExamen().getContenuFeedback(), style);
+                        createCell(row, column++, rexp.getId(), style);
+                        createCell(row, column++, rexp.getExperience().getTypeFeedback(), style);
+                        createCell(row, column++, (float) rexp.getExperience().getFreqFeedback() / 100, pourcentStyle);
+                        createCell(row, column++, rexp.getExperience().getVisuFeedback(), style);
+                        createCell(row, column++, rexp.getExperience().getScenario().getId(), style);
+                        createCell(row, column++, rexp.getExperience().getScenario().getNom(), style);
+
+
+                        createCell(row, column++, rtry.getNumEssai(), rtry.isReussi() ? style : styleError);
+                        createCell(row, column++, rtry.getScore(), rtry.isReussi() ? style : styleError);
+                        createCell(row, column++, rtry.getTemps(), rtry.isReussi() ? style : styleError);
+                        createCell(row, column++, rtry.isReussi() ? "Oui" : "Non",  rtry.isReussi() ? style : styleError);
+
+                        createCell(row, column++, rdep.getId() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        createCell(row, column++, rdep.getAction() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        createCell(row, column++, rdep.getEntite().getType() == 1 ? "Joueur" : "Balle",  rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        createCell(row, column++, rdep.getEntite().getNumero() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
+
+                        createCell(row, column++, rdep.getEssaiPos().getZoneDepartX() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        createCell(row, column++, rdep.getEssaiPos().getZoneDepartY() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        createCell(row, column++, rdep.getEssaiPos().getZoneArriveeX() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        createCell(row, column++, rdep.getEssaiPos().getZoneArriveeY() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
+
+
+                        // Calcul pourcentage ascendant
+                        createCell(row, column, (float) dep_reussi/dep_total , pourcentStyle);
+
+
+                    }
+
+                }
+            }
+
+
+        }
+
+        String[][] headerList = createHeader(row_init,column_init);
+        CellRangeAddress region;
+        int col = 0;
+        for( int i = 0 ; i < headerList.length-1 ; i++){
+            col = col + headerList[i].length;
+            region = new CellRangeAddress(0, row, col-1, col-1);
+
+            RegionUtil.setBorderRight(BorderStyle.DOUBLE, region, sheet);
+            RegionUtil.setRightBorderColor(IndexedColors.RED.index, region, sheet);
+
+
+        }
+
+        region = new CellRangeAddress(row_init+1, row_init+1, column_init, column);
+        RegionUtil.setBorderBottom(BorderStyle.DASH_DOT, region, sheet);
+        RegionUtil.setBorderTop(BorderStyle.DOUBLE , region , sheet);
+        RegionUtil.setRightBorderColor(IndexedColors.BLACK.index, region, sheet);
+
+
+        for(int a = 0 ; a < 100 ; a++) {
+            sheet.autoSizeColumn(a);
+        }
+    }
+
+    public String[][] createHeader(int row_init , int column_init){
+
+        CellStyle style = getFontContentExcel();
+        style.setAlignment(HorizontalAlignment.CENTER);
+
+
+
+        // header
+        String[] headersSerie = new String[]{
+                "ID", "Nom série", "Séquençage", "Complexité", "Contenu feed-back",
+                };
+
+        String[] headersExperience = new String[]{
+                "ID Résultat d'expérience", "Type feed-back", "Fréquence feed-back", "Nombre de visualisation", "ID Expérience", "Nom Expérience"
+                };
+
+        String[] headersEssai = new String[]{
+                "Essai N°", "Score essai", "Temps essai", "Essai réussi",
+                };
+
+        String[] headersDeplacement = new String[]{
+                "ID deplacement", "Déplacement N°", "Type de déplacement", "Joueur/Balle N°", "Zone départ", "Couloir départ", "Zone arrivé", "Couloir arrivé" , "Score ascendant"};
+
+        String[][] headersList = new String[][]{
+                headersSerie, headersExperience, headersEssai, headersDeplacement
+        };
+
+        // Créer les têtes des headers
+        String[] nameHeader = new String[]{ "Série" , "Expérience" , "Essai" , "Déplacement"};
+        String[] headers = concatArrays(headersList);
+        int column = column_init;
+        for (int i = 0 ; i < headersList.length ; i++){
+            column = createHeaderHead(row_init, column , headersList[i], nameHeader[i] , style) + 1;
+        }
+
+
+        int row = row_init + 1;
+        for(int col = column_init ; col < headers.length ; col++){
+            createCell(row, col , headers[col] , headerStyle);
+        }
+
+
+
+        return headersList;
+    }
 
     public String[] getPropertyNameByClass(Class<?> object){
 
@@ -165,5 +349,19 @@ public class ExcelService extends ExcelAbstract {
             propertyNames.add(field.getName());
         }
         return propertyNames.toArray(new String[0]);
+    }
+
+    // Fonction pour concaténer plusieurs tableaux de type String[]
+    public static String[] concatArrays(String[]... arrays) {
+        return Arrays.stream(arrays)
+                .flatMap(Arrays::stream)
+                .toArray(String[]::new);
+    }
+
+    // Créer la tête d'un header et fusionne les colonnes
+    public int createHeaderHead(int row , int column , String[] header , String nom , CellStyle style){
+        createCell(row, column, nom, style);
+        sheet.addMergedRegion(new CellRangeAddress(row, row, column, column + (header.length-1) ));
+        return column + (header.length-1);
     }
 }

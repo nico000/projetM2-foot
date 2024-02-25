@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/export")
+@RequestMapping("/report")
 public class ReportController {
 
     @Autowired
@@ -37,10 +37,22 @@ public class ReportController {
     ResultatExamenService resExamService;
 
 
-    @GetMapping("/all")
+    // Partie rapport en excel
+
+    @GetMapping("/export/all")
     public void exportToExcel(HttpServletResponse response) throws IOException {
-        this.userReportService.exportToExcel(response);
+        this.userReportService.exportToExcelAll(response);
     }
+
+    @GetMapping("/export")
+    public void exportToExcel(
+            HttpServletResponse response,
+            @RequestParam String nom,
+            @RequestParam String prenom) throws IOException {
+        this.userReportService.exportToExcelPerson(response,nom,prenom);
+    }
+
+    // Partie rapport en json
 
     @GetMapping("/scenario")
     public ResponseEntity<List<ReportScenario>> getScenarioReport() {

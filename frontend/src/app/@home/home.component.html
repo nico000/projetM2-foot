@@ -128,12 +128,12 @@
 
     <h1 class="presentation">Serie : </h1>
     <div class="titre">
-        Nom de la series:
+        Nom de scenario:
         <input type="text" [(ngModel)]="_newExam.nom"/><br>
     </div>
 
     <div class="titre">
-        Mode de la serie:
+        Mode d'execution:
         <input type="checkbox" id="sequentiel" class="hidden-checkbox" (click)="updateModeSequentiel('sequentiel')">
         <label for="sequentiel" class="round-button" [style.background-color]="_newExam.sequencage === 'sequentiel' ? '#3498db' : 'initial'">Sequentiel</label>
 
@@ -147,7 +147,7 @@
         <label for="analytique" class="round-button" [style.background-color]="_newExam.complexite === 'analytique' ? '#3498db' : 'initial'">Analytique</label>
 
         <input type="checkbox" id="synthétique" class="hidden-checkbox" (click)="updateModeComplexite('synthétique')">
-        <label for="synthétique" class="round-button" [style.background-color]="_newExam.complexite  === 'synthétique' ? '#3498db' : 'initial'">Synthétique</label>
+        <label for="synthétique" class="round-button" [style.background-color]="_newExam.complexite  === 'synthétique' ? '#3498db' : 'initial'">Global</label>
     </div><br>
 
     <h1 class="presentation">Design : </h1><br>
@@ -214,7 +214,7 @@
         </ul>
     </nav><br>
 
-    <h1 class="presentation">FeedBack : </h1>
+    <h1 class="presentation">Parametre exeperience (FeedBack): </h1>
 
     <div class="titre">
         contenu feedBack de la serie:
@@ -228,7 +228,7 @@
     <table class="tableau">
         <tr>
             <td class="titre colonne">
-                Test
+                Nom scenario
             </td>
             <td class="titre colonne">
                 Type feedBack
@@ -237,7 +237,7 @@
                 Frequence feedBack
             </td>
             <td class="titre colonne">
-                Visualisation feedBack
+                Nombre de Visualisation
             </td>
         </tr>
         <tr *ngFor="let exeprience of _newExeperience" >

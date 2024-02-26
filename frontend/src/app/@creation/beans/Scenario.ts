@@ -10,7 +10,7 @@ export class Scenario{
     //zone
     public zone_use:boolean=false;
     public zone_display:boolean=false;
-    public zone_nb_zone:number=6.0;
+    public zone_nb_zone:number=5.0;
     public zone_nb_couloir:number=5.0;
     public zone_epaisseur:number=0.0;
 }

@@ -1,0 +1,25 @@
+.presentation{
+    font-size: 200%;
+    color: white;
+    text-align: center;
+}
+.tableau{
+    padding: 5px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width:100%;
+}
+.colonne{
+    width: 30%;
+}
+.titre{
+    font-size: 150%;
+    color: mediumblue;
+    text-align: center;
+}
+
+.ecriture{
+    font-size: 120%;
+    text-align: center;
+    color: black;
+}

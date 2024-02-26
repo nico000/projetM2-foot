@@ -1,1 +1,26 @@
-<div >PAGE resultat</div>
+<h1 class="presentation">Resultat</h1>
+
+<table class="tableau">
+    <tr class="titre">
+        <td class="colonne ">
+            Nom
+        </td>
+        <td class="colonne ">
+            prenom
+        </td>
+        <td class="colonne ">
+            //
+        </td>
+    </tr>
+    <tr *ngFor="let user of _listeUser" class="ecriture">
+        <td class="colonne ecriture">
+            {{ user.nom }}
+        </td>
+        <td class="colonne ecriture">
+            {{ user.prenom }}
+        </td>
+        <td class="colonne ecriture">
+            <button (click)="exportExel(user.nom,user.prenom)">Exporter en Exel</button>
+        </td>
+    </tr>
+</table>

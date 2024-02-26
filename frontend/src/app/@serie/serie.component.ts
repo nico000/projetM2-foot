@@ -490,9 +490,6 @@ export class SerieComponent {
                         setTimeout(() => {
                             processDepalcement(index + 1);
                         }, 2000); // délai de x seconde entre chaque déplacement
-                    }else {
-                        this.resetData(this._StaticModal);
-                         // racharge lorsque le traitement est terminé
                     }
                 };
                 // démarrer le traitement avec l'indice 0
@@ -549,6 +546,7 @@ export class SerieComponent {
     }
 
     lanceStatic(){
+        this.arrows=[];
         this.openData(this._StaticModal);
         this.selectScenario(this._scenarioplay,'tableau_terrain3');
         this.playVisualisationStatic();

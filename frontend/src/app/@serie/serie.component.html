@@ -15,7 +15,7 @@
 <table class="tableau">
     <tr>
         <td class="titre colonne" (click)="orderBy('nom')">
-            Nom serie
+            Nom series
             <div *ngIf="_isFiltering == true"><input class="contient" type="text" #titreFilter placeholder="Contient..."/>
                 <button (click)="filterBy('nom', titreFilter.value)"><span>&#10003;</span></button></div>
         </td>
@@ -78,7 +78,7 @@
     <h1 class="presentation">Information personnel</h1>
 
     <div class="titre">
-        Groupe :
+        Groupe Test:
         <input type="text" [(ngModel)]="_newUtilisateur.groupe"/>
     </div><br>
 
@@ -284,4 +284,9 @@
             </td>
         </tr>
     </table>
+    <nav class="menu">
+        <ul>
+            <li class="boutton"(click)="resetData(_StaticModal)">Quitter</li>
+        </ul>
+    </nav>
 </jw-modal>

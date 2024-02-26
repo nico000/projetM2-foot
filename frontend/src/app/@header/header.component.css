@@ -26,6 +26,9 @@ nav.menu ul li.boutton:hover a{
     display: inline-block;
     width: 20%;
 }
-
+nav.menu ul li.boutton a.active {
+    color: green;
+    background-color: Azure;
+}
 
 

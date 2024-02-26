@@ -408,7 +408,7 @@ export class SerieComponent {
     lanceFeedBack(){
         //recuper le time
         this.EndTime=Date.now();
-        this._newEssai.temps=this.StartTime-this.EndTime;
+        this._newEssai.temps=(this.EndTime-this.StartTime)/1000;//temps en seconde
         //on envoie l'essai et recupere le resultat
         this._serieService.addEssai(this._newEssai).subscribe(
             (resultat: ResultatFeedBack) => {

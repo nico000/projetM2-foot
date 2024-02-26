@@ -347,6 +347,7 @@ export class HomeComponent {
             arrow.style.transform = 'rotate(' + angle + 'deg)';
         }
 
+
         // Ajouter la flèche au DOM
         document.querySelector('.tableau_joueur .colonne_terrain2').appendChild(arrow);
     }

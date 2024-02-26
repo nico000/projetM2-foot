@@ -1,6 +1,7 @@
 package com.projetM2_foot.controller;
 
 import com.projetM2_foot.api.request.ResultatExamenRequestCreate;
+import com.projetM2_foot.api.response.ResNomPrenomResponse;
 import com.projetM2_foot.api.response.ResultatCreationResponse;
 import com.projetM2_foot.api.response.ResultatExamenResponse;
 import com.projetM2_foot.entity.Experience;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/resultat_examen")
@@ -95,6 +97,25 @@ public class ResultatExamenController {
 
         List<ResultatExamen> listEntity = resultatExamenService.getAll();
         List<ResultatExamenResponse> dtos = resultatExamenMapper.toDtoAll(listEntity);
+        return ResponseEntity.ok(dtos);
+    }
+
+    @GetMapping("/getIdentite")
+    @Operation(
+            summary = "Récupérer les nom prénoms",
+            description = "Trouve l'ensemble des resultat examens")
+    public ResponseEntity<List<ResNomPrenomResponse>> getIdentite(
+    ){
+
+        //log.info("Endpoint appelé : GET /resultat_examen/all");
+
+        List<ResultatExamen> listEntity = resultatExamenService.getAll();
+        List<ResNomPrenomResponse> dtos = listEntity
+                .stream()
+                .map(resultatExamenMapper::toDtoGetIdentite)
+                .collect(Collectors.toList());
+
+        dtos = dtos.stream().distinct().collect(Collectors.toList());
         return ResponseEntity.ok(dtos);
     }
 

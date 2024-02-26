@@ -1,6 +1,7 @@
 package com.projetM2_foot.mapper;
 
 import com.projetM2_foot.api.request.ResultatExamenRequestCreate;
+import com.projetM2_foot.api.response.ResNomPrenomResponse;
 import com.projetM2_foot.api.response.ResultatCreationResponse;
 import com.projetM2_foot.api.response.ResultatExamenResponse;
 import com.projetM2_foot.entity.ResultatExamen;
@@ -66,6 +67,14 @@ public class ResultatExamenMapper {
         return ResultatCreationResponse.builder()
                 .id(id)
                 .resultat_experience(rexp)
+                .build();
+    }
+
+    public ResNomPrenomResponse toDtoGetIdentite(ResultatExamen listEntity){
+
+        return ResNomPrenomResponse.builder()
+                .nom(listEntity.getNomPerson())
+                .prenom(listEntity.getPrenomPerson())
                 .build();
     }
 

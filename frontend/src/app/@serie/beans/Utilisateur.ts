@@ -1,14 +1,14 @@
 export class Utilisateur{
-    public examen:Number=0.0;
+    public examen:number=0.0;
     public groupe:string="";
     public nom:string="";
     public prenom:string="";
-    public age: Number = 0.0;
+    public age: number = 0.0;
     public sex : string="";
     public pratique:string="";
     public pro:boolean=false;
-    public anneeExperience: Number = 0.0;
-    public matche: Number = 0.0;
-    public entrainement: Number = 0.0;
-    public heure: Number = 0.0;
+    public anneeExperience: number = 0.0;
+    public matche: number = 0.0;
+    public entrainement: number = 0.0;
+    public heure: number = 0.0;
 }

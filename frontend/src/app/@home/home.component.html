@@ -63,11 +63,13 @@
 
 
 <jw-modal id="{{_selectScenarioModalName}}" >
-    <h1 class="titre">{{_selectedScenario.nom}}</h1>
     <nav class="menu">
         <ul>
             <li  class="boutton" >
                 <a (click)="resetFeedBack(_selectScenarioModalName)">Annuler</a>
+            </li>
+            <li class="titre" style="display: inline-block;">
+                <a >{{_selectedScenario.nom}}</a>
             </li>
             <li  class="boutton" >
                 <a (click)="playVisualisation(_selectedScenario)">Play</a>
@@ -121,9 +123,6 @@
             <li  class="boutton" >
                 <a (click)="addDesign(_feedBackModal)">Valider</a>
             </li>
-            <li  class="boutton" >
-                <a  >Repliquer</a>
-            </li>
         </ul>
     </nav><br>
 
@@ -134,12 +133,21 @@
     </div>
 
     <div class="titre">
-        Mode de la series:
+        Mode de la serie:
         <input type="checkbox" id="sequentiel" class="hidden-checkbox" (click)="updateModeSequentiel('sequentiel')">
-        <label for="sequentiel" class="round-button" [style.background-color]="_newExam.mode === 'sequentiel' ? '#3498db' : 'initial'">Sequentiel</label>
+        <label for="sequentiel" class="round-button" [style.background-color]="_newExam.sequencage === 'sequentiel' ? '#3498db' : 'initial'">Sequentiel</label>
 
         <input type="checkbox" id="aleatoire" class="hidden-checkbox" (click)="updateModeSequentiel('aleatoire')">
-        <label for="aleatoire" class="round-button" [style.background-color]="_newExam.mode  === 'aleatoire' ? '#3498db' : 'initial'">Aleatoire</label>
+        <label for="aleatoire" class="round-button" [style.background-color]="_newExam.sequencage  === 'aleatoire' ? '#3498db' : 'initial'">Aleatoire</label>
+    </div><br>
+
+    <div class="titre">
+        complexité de la serie:
+        <input type="checkbox" id="analytique" class="hidden-checkbox" (click)="updateModeComplexite('analytique')">
+        <label for="analytique" class="round-button" [style.background-color]="_newExam.complexite === 'analytique' ? '#3498db' : 'initial'">Analytique</label>
+
+        <input type="checkbox" id="synthétique" class="hidden-checkbox" (click)="updateModeComplexite('synthétique')">
+        <label for="synthétique" class="round-button" [style.background-color]="_newExam.complexite  === 'synthétique' ? '#3498db' : 'initial'">Synthétique</label>
     </div><br>
 
     <h1 class="presentation">Design : </h1><br>
@@ -203,13 +211,20 @@
             <li  class="boutton" >
                 <a (click)="addFeedBack(_feedBackModal)">Valider</a>
             </li>
-            <li  class="boutton" >
-                <a  >Repliquer</a>
-            </li>
         </ul>
     </nav><br>
 
     <h1 class="presentation">FeedBack : </h1>
+
+    <div class="titre">
+        contenu feedBack de la serie:
+        <input type="checkbox" id="global" class="hidden-checkbox" (click)="updateModeContenu('global')">
+        <label for="global" class="round-button" [style.background-color]="_newExam.contenuFeedback === 'global' ? '#3498db' : 'initial'">Global</label>
+
+        <input type="checkbox" id="specifique" class="hidden-checkbox" (click)="updateModeContenu('specifique')">
+        <label for="specifique" class="round-button" [style.background-color]="_newExam.contenuFeedback  === 'specifique' ? '#3498db' : 'initial'">Specifique</label>
+    </div><br>
+
     <table class="tableau">
         <tr>
             <td class="titre colonne">

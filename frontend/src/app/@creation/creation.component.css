@@ -115,11 +115,13 @@ nav.menu ul li.boutton:hover a{
     background: transparent;
     border: 1px solid black;
     border-collapse: collapse;
+    borderStyle: dashed;
 }
 .zone{
     background: transparent;
     border: 1px solid black;
     border-collapse: collapse;
+    borderStyle: dashed;
 }
 .tableau_terrain{
     padding: 5%;
@@ -129,7 +131,7 @@ nav.menu ul li.boutton:hover a{
 }
 .tabter{
     border: 1px solid white;
-    height: 63vh;
+    height: 60vh;
 }
 .mode{
     font-size: 110%;

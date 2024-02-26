@@ -1,5 +1,7 @@
 export class Examen {
     public nom: string = "";
-    public mode: string = "";
+    public sequencage: string = "sequentiel";
+    public complexite: string = "analytique";
+    public contenuFeedback: string = "global";
     //public experience: number[] = [];
 }

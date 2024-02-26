@@ -23,7 +23,7 @@ export class CreationService {
         return this._http.post<Entite>("/entite",entite)
     }
 
-    public getEntiteList(id:Number): Observable<Entite[]> {
+    public getEntiteList(id:number): Observable<Entite[]> {
         return this._http.get<Entite[]>('/entite/'+id);
     }
 
@@ -31,11 +31,11 @@ export class CreationService {
         return this._http.post<Deplacement>("/deplacement",deplacement)
     }
 
-    public DelEntite(id:Number): Observable<any> {
+    public DelEntite(id:number): Observable<any> {
         return this._http.delete('/entite/last/'+id)
     }
 
-    public DelDeplacement(id:Number): Observable<any> {
+    public DelDeplacement(id:number): Observable<any> {
         return this._http.delete('/deplacement/last/'+id)
     }
 

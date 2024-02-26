@@ -12,6 +12,7 @@ import {Deplacement} from "./beans/Deplacement";
 import {Essai} from "./beans/Essai";
 import {ResultatFeedBack} from "./beans/ResultatFeedBack";
 import {ResultatUser} from "./beans/ResultatUser";
+import {DeplacementFeedBack} from "./beans/DeplacementFeedBack";
 
 @Component({
     selector: 'serie',
@@ -38,7 +39,9 @@ export class SerieComponent {
                     let serie: Serie = {
                         id: examSerie.id,
                         nom: examSerie.nom,
-                        mode: examSerie.mode,
+                        mode: examSerie.sequencage,
+                        contenuFeedback:examSerie.contenuFeedback,
+                        complexite :examSerie.complexite,
                         experience: []
                     };
 
@@ -94,6 +97,7 @@ export class SerieComponent {
         this._modalService.close(modal);
     }
     openData(modal: string): void {
+        this._newEssai=new Essai();
         this._modalService.open(modal);
     }
     //ajoute l'utilisateur
@@ -112,7 +116,23 @@ export class SerieComponent {
             (resultat: ResultatUser) => {
                 this.resultUser=resultat;
             },);
+        this._nbEssai=0;
+        this.nbFeed=0;
+        //si mode aleatoire on reorganise aleatoirement
+        if (this._serieSelect.mode==='aleatoire'){
+            this._serieSelect.experience=this.shuffleArray(this._serieSelect.experience);
+        }
     }
+    //fonction qui change aleatoirement les experience
+    shuffleArray(array: Experience[]): Experience[] {
+        const shuffledArray = [];
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+        }
+        return shuffledArray;
+    }
+
     //update info user
     updateSex(sex: string){
         this._newUtilisateur.sex=sex;
@@ -131,6 +151,9 @@ export class SerieComponent {
     protected _nbVisualisation:number=1;
     protected _nbAction :number=1;
     protected _finvisu:boolean=true;
+    protected finSimu=false;
+    protected StartTime;
+    protected EndTime;
 
     //recuperer position du tableau
     protected tableau: HTMLTableElement | null = null;
@@ -165,7 +188,7 @@ export class SerieComponent {
         };
     }
     //genere les entite
-    private genEntite(id:Number){
+    private genEntite(id:number){
         this._serieService.getEntiteList(id).subscribe(
             res  =>
                 this._entiteList = res
@@ -181,6 +204,7 @@ export class SerieComponent {
         this.tableau =document.getElementById(elementid)as HTMLTableElement;
         //this.tableau =document.getElementById('tableau_terrain')as HTMLTableElement;
         this.positionPercentage = this.getPositionPercentage(this.tableau);
+
 
         this.tabLeft=this.positionPercentage.left;
         this.tabTop=this.positionPercentage.top;
@@ -242,6 +266,7 @@ export class SerieComponent {
         });
     }
     lance_simu() {
+        this.finSimu = false;
         this._isLancer = true;
         this._nbVisualisation = 1;
         const visuFeedback = this._serieSelect.experience[this._scenarioLancer].visuFeedback;
@@ -254,6 +279,8 @@ export class SerieComponent {
                     console.log("visu",this._nbVisualisation);
                 }
                 setTimeout(launchNextVisu, 2000); // Attendre 2 secondes avant de vérifier si une nouvelle visualisation peut être lancée
+            }else{
+                this.finSimu = true;
             }
         };
 
@@ -274,6 +301,7 @@ export class SerieComponent {
         this.resetData(this._veridModal);
         this._isLancer=false;
         //on regenere le terrain
+        this.numAction=0;
         this._serieService.getScenarioId(this._serieSelect.experience[this._scenarioLancer].scenario).subscribe(scenario => {
             this.selectScenario(scenario,'tableau_terrain2');
             this._scenarioplay=scenario;
@@ -286,17 +314,20 @@ export class SerieComponent {
         this._newEssai.resultatExperience=this.resultUser.resultat_experience[this._scenarioLancer];
         this._newEssai.temps=0.0;
         this._ispostdeplacement=true;
+        this.StartTime=Date.now();
     }
     selectEntite(entite:Entite){
-        if (this._selectEntite==false && this._ispostdeplacement){
+        if (this._selectEntite===false){
             this._entiteSelect=entite;
             this._selectEntite=true;
+            this._newDeplacement=new Deplacement();
             this._newDeplacement.startPosX=entite.x;
             this._newDeplacement.startPosY=entite.y;
         }else{
             this._entiteSelect=null;
             this._selectEntite=false;
         }
+        event.stopPropagation();
         console.log("select ",this._selectEntite,this._entiteSelect.id)
     }
 
@@ -312,6 +343,7 @@ export class SerieComponent {
 
             const offsetX = event.clientX;
             const offsetY = event.clientY;
+            console.log("position deplacement px: ", offsetX, offsetY);
 
             const parentWidth = window.innerWidth;
             const parentHeight = window.innerHeight;
@@ -322,25 +354,32 @@ export class SerieComponent {
             this.numAction++;
             //recup position tableau
             this.positionPercentage = this.getPositionPercentage(this.tableau);
+            console.log("tableau :",this.tableau);
 
             this.tabLeft=this.positionPercentage.left;
             this.tabTop=this.positionPercentage.top;
+
+
+            console.log('deplacement  en pourcentage - Left:', percentX, 'Top:', percentY);
+
             console.log('tab finale en pourcentage - Left:', this.tabLeft, 'Top:', this.tabTop);
-            percentY=percentY-this.tabTop-1.5;
-            percentX=percentX-this.tabLeft-1.5;
+            percentY=percentY-this.tabTop;
+            percentX=percentX-this.tabLeft;
 
             // Mettre à jour les coordonnées de l'entité sélectionnée
-            this._entiteSelect.y = percentX;
-            this._entiteSelect.x = percentY;
+            this._entiteSelect.x = percentX;
+            this._entiteSelect.y = percentY;
+
             console.log('deplacement finale en pourcentage - Left:', percentX, 'Top:', percentY);
             this._entiteList.forEach(entite => {
                 if (entite.id == this._entiteSelect.id) {
                     this._newDeplacement.entite=entite.id;
                     this._newDeplacement.numAction=this.numAction;
-                    entite.y = percentX;
-                    entite.x = percentY;
-                    this._newDeplacement.endPosX=percentY;
-                    this._newDeplacement.endPosY=percentX;
+                    entite.x = percentX* (65 / 100);
+                    entite.y = percentY* (58 / 100);
+                    this._newDeplacement.endPosX=percentX* (65 / 100);
+                    console.log("deplacement percent :",percentY,"new :",this._newDeplacement.endPosX)
+                    this._newDeplacement.endPosY=percentY*(58 / 100);
                     //add deplacement dans essai
                     this._newEssai.deplacements.push(this._newDeplacement);
                     console.log("add deplacement",this._newEssai);
@@ -356,14 +395,20 @@ export class SerieComponent {
             });
         console.log("num action",this.numAction,this._depalcementList.length)
         if(this.numAction>=this._depalcementList.length){
-            this.lanceFeedBack();
+            this.lanceFeedBack();//a la fin on lance le feed back
         }
     }
 
     //on lance le feedBack
     protected _feedBackScoreModal: string = "_feedBackScoreModal";
+    protected _feedBackStaticModal: string = "_feedBackStaticModal";
+    protected _StaticModal: string = "_StaticModal";
     protected _resultat:ResultatFeedBack=new ResultatFeedBack();
+    protected nbFeed :number=0.0;
     lanceFeedBack(){
+        //recuper le time
+        this.EndTime=Date.now();
+        this._newEssai.temps=this.StartTime-this.EndTime;
         //on envoie l'essai et recupere le resultat
         this._serieService.addEssai(this._newEssai).subscribe(
             (resultat: ResultatFeedBack) => {
@@ -371,27 +416,164 @@ export class SerieComponent {
             });
         //on change le modal pour feedBack
         this.resetData(this._PostDeplacementModal);
-        if (this._serieSelect.experience[this._scenarioLancer].typeFeedback==='score'){
-            this.openData(this._feedBackScoreModal);
+
+        let freqfeed: number = (this._serieSelect.experience[this._scenarioLancer].freqFeedback)/100;
+
+        //si on lance freq
+        if(freqfeed === 1 || freqfeed > (this.nbFeed / this._nbEssai)){
+            this.nbFeed++;
+            if (this._serieSelect.experience[this._scenarioLancer].typeFeedback==='score'){
+                this.openData(this._feedBackScoreModal);
+            }
+            if (this._serieSelect.experience[this._scenarioLancer].typeFeedback==='static'){
+                this.openData(this._feedBackStaticModal);
+            }
+        }else{
+            this.relance();
         }
+    }
+
+
+    //affichage static
+    protected _depalcementListFeed :DeplacementFeedBack[]=[];
+    playVisualisationStatic() {
+        this._depalcementListFeed =this._resultat.listError;
+                // fonction récursive pour parcourir la liste avec un délai entre chaque itération
+                const processDepalcement = (index: number) => {
+                    // vérifie si nous avons atteint la fin de la liste
+                    if (index < this._depalcementListFeed.length) {
+
+                        const deplacement = this._depalcementListFeed[index];
+                        // parcourt la liste des entités
+                        this._entiteList.forEach(entite => {
+                            // cherche l'entité devant être déplacée
+                            if (entite.id === deplacement.entite) {
+
+                                //on déplace l'entité
+                                entite.x = deplacement.endPosX;
+                                entite.y = deplacement.endPosY;
+                                console.log("entite trouvée");
+                                // Afficher une flèche entre les entités
+
+                                const endX = (deplacement.endPosX * (100 / 65)) ;
+                                const endY = (deplacement.endPosY * (100 / 58)) ;
+                                const startX = (deplacement.startPosX * (100 / 65)) ;
+                                const startY = (deplacement.startPosY * (100 / 58)) ;
+                                // Obtenir les dimensions actuelles de la page
+                                const containerWidth = window.innerWidth;
+                                const containerHeight = window.innerHeight;
+                                // Convertir les coordonnées en pourcentage en coordonnées absolues
+                                const absStartX = (startX / 100)* containerWidth ;
+                                const absStartY = (startY / 100)* containerHeight;
+                                const absEndX = (endX / 100)* containerWidth ;
+                                const absEndY = (endY / 100)* containerHeight;
+                                // console.log("this.tabTop",this.tabTop,"this.tabLeft",this.tabLeft)
+                                // console.log("deplacement.startPosX:",deplacement.startPosX ,"startX :" ,startX);
+                                // console.log("deplacement.startPosY:",deplacement.startPosY ,"startY :" ,startY);
+                                // console.log("deplacement.endPosX:",deplacement.endPosX ,"endX :" ,endX);
+                                // console.log("deplacement.endPosY:",deplacement.endPosY ,"endY :" ,endY);
+                                console.log("deplacement reussi:",deplacement.reussi ,"this._serieSelect.contenuFeedback :" ,this._serieSelect.contenuFeedback);
+                                if(entite.type===0){
+
+                                }
+                                if (deplacement.reussi===true && this._serieSelect.contenuFeedback==='global'){
+                                    this.addArrow(absStartX, absStartY, absEndX, absEndY,'green');
+                                }
+                                if(deplacement.reussi===false){
+                                    this.addArrow(absStartX, absStartY, absEndX, absEndY,'red');
+                                }
+
+                            }
+                        });
+                        console.log("deplacement");
+                        // Appelle la fonction processDepalcement avec l'indice suivant après un délai
+                        setTimeout(() => {
+                            processDepalcement(index + 1);
+                        }, 2000); // délai de x seconde entre chaque déplacement
+                    }else {
+                        this.resetData(this._StaticModal);
+                         // racharge lorsque le traitement est terminé
+                    }
+                };
+                // démarrer le traitement avec l'indice 0
+                setTimeout(() => {
+                    processDepalcement(0);
+                }, 2500);
+    }
+    //permet de dessiner la fleche
+    // Déclarez une variable pour stocker les informations sur les flèches
+    arrows: { startX: number, startY: number, endX: number, endY: number, length: number }[] = [];
+    // Fonction pour ajouter une flèche entre deux points
+    addArrow(startX: number, startY: number, endX: number, endY: number,color:string): void {
+        // Créer un élément de flèche
+        const arrow = document.createElement('div');
+        arrow.classList.add('arrow');
+
+        // Obtenir les dimensions actuelles de la page
+        const containerWidth = window.innerWidth;
+        const containerHeight = window.innerHeight;
+
+        // Calculer la longueur et l'angle de la flèche
+        const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+        const angle = Math.atan2(endY-startY,endX-startX ) * (180 / Math.PI);
+        console.log("angle :",angle,"length:",length);
+
+
+        //on recalcule end en %
+        const endPX = (endX / containerWidth) * 100;
+        const endPY = (endY / containerHeight) * 100;
+        const startPY=(startY / containerHeight) * 100;
+        //on verifie si il change pas d'angle
+        if ((angle >= -190 && angle <= -140) || (angle >= 140 && angle <= 190)) {
+            // Appliquer les styles à la flèche
+            arrow.style.position = 'absolute';
+            arrow.style.width = length + 'px';
+            arrow.style.height = '2px'; // Épaisseur de la flèche
+            arrow.style.backgroundColor = color; // Couleur de la flèche
+            arrow.style.left = (endPX+this.tabLeft)+ '%';
+            arrow.style.top = (endPY+this.tabTop) + '%';
+            arrow.style.transform = 'rotate(' + angle + 'deg)';
+        }else{
+            // Appliquer les styles à la flèch
+            arrow.style.position = 'absolute';
+            arrow.style.width = length + 'px';
+            arrow.style.height = '2px'; // Épaisseur de la flèche
+            arrow.style.backgroundColor = color; // Couleur de la flèche
+            arrow.style.left = (endPX)+ '%';
+            arrow.style.top = (endPY) + '%';
+            arrow.style.transform = 'rotate(' + angle + 'deg)';
+        }
+
+        // Ajouter la flèche au DOM
+        document.querySelector('.tableau_joueur2 .colonne_terrain2').appendChild(arrow);
+    }
+
+    lanceStatic(){
+        this.openData(this._StaticModal);
+        this.selectScenario(this._scenarioplay,'tableau_terrain3');
+        this.playVisualisationStatic();
     }
 
     //on relance
     relance(){
         //si il a reussi
         if(this._resultat.reussi===true){
+            this._scenarioLancer++;
             //si c le dernier scenario
-            if(this._scenarioLancer >= this._serieSelect.experience.length){
+            if(this._scenarioLancer === this._serieSelect.experience.length){
                 //on ferme les feedBack
                 this.resetData(this._feedBackScoreModal);
+                this.resetData(this._feedBackStaticModal);
             }else {//sinon on lance le prochain scenario
-                this._scenarioLancer++;
                 this.openData(this._veridModal);
                 this.resetData(this._feedBackScoreModal);
+                this.resetData(this._feedBackStaticModal);
             }
         }else{//si il a pas reussi
-            this.openData(this._veridModal);
             this.resetData(this._feedBackScoreModal);
+            this.resetData(this._feedBackStaticModal);
+            this.openData(this._veridModal);
         }
     }
+
 }

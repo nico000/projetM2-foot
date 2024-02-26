@@ -1,8 +1,8 @@
 export class Deplacement{
-    public scenario:Number=0.0;
-    public entite:Number=0.0;
+    public scenario:number=0.0;
+    public entite:number=0.0;
 
-    public numAction:Number=0.0;
+    public numAction:number=0.0;
 
     public startPosX:number=0.0;
     public startPosY:number=0.0;

@@ -20,19 +20,19 @@
                 <button (click)="filterBy('nom', titreFilter.value)"><span>&#10003;</span></button></div>
         </td>
         <td class="titre colonne">
-            Scenario
-        </td>
-        <td class="titre colonne">
             Type feedBack
         </td>
         <td class="titre colonne">
             Frequence feedBack
         </td>
         <td class="titre colonne">
-            Nombre de zone
+            Contenu de feedBack
         </td>
         <td class="titre colonne">
-            Nombre de couloire
+            Complexité de la serie
+        </td>
+        <td class="titre colonne">
+            Mode de la serie
         </td>
         <td class="titre colonne">
             //
@@ -43,13 +43,6 @@
     <tr class="tableau" *ngFor="let serie of _serieList" (play)="orderBy('nom')" >
         <td class="ecriture colonne">
             {{serie.nom}}
-        </td>
-        <td class="colonne" >
-            <div *ngFor="let exp of serie.experience">
-                <div class="ecriture " >
-                    {{exp.scenario}}
-                </div>
-            </div>
         </td>
         <td class="colonne">
             <div *ngFor="let exp of serie.experience">
@@ -65,19 +58,14 @@
                 </div>
             </div>
         </td>
-        <td class="colonne">
-            <div *ngFor="let exp of serie.experience">
-                <div class="ecriture" >
-                    {{exp.zone_nb_zone}}
-                </div>
-            </div>
+        <td class="ecriture colonne">
+            {{serie.contenuFeedback}}
         </td>
-        <td class="colonne" >
-            <div *ngFor="let exp of serie.experience">
-                <div class="ecriture" >
-                    {{exp.zone_nb_couloir}}
-                </div>
-            </div>
+        <td class="ecriture colonne">
+            {{serie.sequencage}}
+        </td>
+        <td class="ecriture colonne">
+            {{serie.complexite}}
         </td>
         <td class=" colonne ecriture">
             <button (click)="openSimu(_simulationModal,serie)">Lancer serie</button>
@@ -166,25 +154,17 @@
 
 
 <jw-modal id="{{_veridModal}}" >
-    <p class="presentation" *ngIf="_isLancer===false">Cliquer sur lancer quand vous etes pret</p>
-    <nav class="menu">
-        <ul>
-            <li class="boutton" style="width: 50%"><a *ngIf="_isLancer===false" (click)="lance_simu()">Lancer</a></li>
-            <li class="boutton" style="width: 50%"><a *ngIf="_isLancer===true" (click)="toTest()">Fin visualisation</a></li>
-        </ul>
-    </nav>
-    <div *ngIf="_isLancer" class="ecriture">Visualisation : {{_nbVisualisation-1}}</div>
-    <div *ngIf="_isLancer" class="ecriture">action : {{_nbAction-1}}</div>
+
     <table class="tableau_joueur">
         <tr>
             <td class="colonne_terrain2">
-                <div  style="background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                <div  style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
                     <table id="tableau_terrain" class="tableau_terrain tabter">
                         <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
                             <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
                                  [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
                                 <div  *ngFor="let entite of _entiteList" class="draggable"
-                                      [style.left.%]="(entite.y+this.tabLeft)" [style.top.%]="entite.x+this.tabTop">
+                                      [style.left.%]="((entite.x*(100/65)))" [style.top.%]="((entite.y*(100/57))-3)">
                                     <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
                                         {{ entite.numero }}
                                     </div>
@@ -198,6 +178,14 @@
             </td>
         </tr>
     </table>
+    <nav class="menu">
+        <ul>
+            <li class="boutton" style="width:auto"><a *ngIf="_isLancer===false" (click)="lance_simu()">Cliquer pour Lancer</a></li>
+            <li><div *ngIf="_isLancer" class="ecriture" style="display: inline-block;width:auto">essaie:{{_nbEssai}}//</div></li>
+            <li><div *ngIf="_isLancer" class="ecriture" style="display: inline-block;width:auto">Visualisation : {{_nbVisualisation-1}}// action : {{_nbAction-1}}</div></li>
+            <li class="boutton" style="display: inline-block;width:auto"><a *ngIf="_isLancer && finSimu" (click)="toTest()">Fin visualisation</a></li>
+        </ul>
+    </nav>
 </jw-modal>
 
 <jw-modal id="{{_PostDeplacementModal}}" >
@@ -205,13 +193,13 @@
     <table class="tableau_joueur">
         <tr>
             <td class="colonne_terrain2">
-                <div  style="background-image: url('./assets/terrain.png'); background-size: 100% 100%; background-repeat: no-repeat;">
-                    <table id="tableau_terrain2" class="tableau_terrain tabter" (dblclick)="addDeplacement($event)">
+                <div  style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                    <table id="tableau_terrain2" class="tableau_terrain tabter" (click)="addDeplacement($event)">
                         <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
                             <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
                                  [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
                                 <div  *ngFor="let entite of _entiteList" class="draggable"
-                                      [style.left.%]="(entite.y+this.tabLeft)" [style.top.%]="entite.x+this.tabTop"
+                                      [style.left.%]="((entite.x*(100/65)))" [style.top.%]="((entite.y*(100/57)))"
                                       (click)="selectEntite(entite)">
                                     <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
                                         <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">
@@ -238,8 +226,62 @@
     <div class="categorie">Score : {{_resultat.score}}</div>
     <nav class="menu">
         <ul>
-            <li class="boutton" style="width: 40%"><a (click)="resetData(_feedBackScoreModal)">Abandoner</a></li>
-            <li class="boutton" style="width: 40%"><a (click)="relance()">Recommencer</a></li>
+            <li class="boutton" *ngIf="this._resultat.reussi===false" style="width: 40%"><a (click)="resetData(_feedBackScoreModal)">Abandoner</a></li>
+            <li class="boutton" *ngIf="this._resultat.reussi===false" style="width: 40%"><a (click)="relance()">Recommencer</a></li>
+            <li class="boutton" *ngIf="this._resultat.reussi===true" style="width: 40%"><a (click)="relance()">Suivant</a></li>
         </ul>
     </nav>
+</jw-modal>
+<jw-modal id="{{_feedBackStaticModal}}" >
+    <h1  class="presentation">
+        <a>FeedBack Static</a>
+    </h1>
+
+    <nav class="menu">
+        <ul>
+            <li  class="boutton">
+                <a (click)="lanceStatic()">Lancer feedBack</a>
+            </li>
+        </ul>
+    </nav><br>
+
+    <div class="categorie">Resultat : {{_resultat.reussi}}</div>
+    <div class="categorie">  Score : {{_resultat.score}}</div>
+
+    <nav class="menu">
+        <ul>
+            <li class="boutton" *ngIf="this._resultat.reussi===false" style="width: 40%"><a (click)="resetData(_feedBackStaticModal)">Abandoner</a></li>
+            <li class="boutton" *ngIf="this._resultat.reussi===false" style="width: 40%"><a (click)="relance()">Recommencer</a></li>
+            <li class="boutton" *ngIf="this._resultat.reussi===true" style="width: 40%"><a (click)="relance()">Suivant</a></li>
+        </ul>
+    </nav>
+</jw-modal>
+
+<jw-modal id="{{_StaticModal}}" >
+    <table class="tableau_joueur2">
+        <tr>
+            <td class="colonne_terrain2">
+                <div  style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                    <table id="tableau_terrain3" class="tableau_terrain tabter" >
+                        <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
+                            <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
+                                 [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
+                                <div  *ngFor="let entite of _entiteList" class="draggable"
+                                      [style.left.%]="((entite.x*(100/65)))" [style.top.%]="((entite.y*(100/58)))">
+                                    <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
+                                        {{ entite.numero }}
+                                    </div>
+                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0">
+                                        {{ entite.numero }}
+                                    </div>
+                                    <!-- Ajouter des éléments pour représenter les flèches -->
+                                    <div *ngFor="let arrow of arrows">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table></div>
+            </td>
+        </tr>
+    </table>
 </jw-modal>

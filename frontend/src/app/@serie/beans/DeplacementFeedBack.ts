@@ -1,9 +1,9 @@
 export class DeplacementFeedBack{
 
-    public entite:Number=0.0;
+    public entite:number=0.0;
 
     public reussi:Boolean=false;
-    public numAction:Number=0.0;
+    public numAction:number=0.0;
 
     public startPosX:number=0.0;
     public startPosY:number=0.0;

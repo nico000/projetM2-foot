@@ -19,7 +19,7 @@ export class HomeService {
         return this._http.get<Scenario[]>("/scenario");
     }
 
-    public getEntiteList(id:Number): Observable<Entite[]> {
+    public getEntiteList(id:number): Observable<Entite[]> {
         return this._http.get<Entite[]>('/entite/'+id);
     }
 
@@ -27,7 +27,7 @@ export class HomeService {
         return this._http.get<Scenario>(`/scenario?nom=${nom}`);
     }
 
-    public DelScenario(id:Number): Observable<any> {
+    public DelScenario(id:number): Observable<any> {
         return this._http.delete('/scenario/'+id)
     }
 
@@ -39,7 +39,7 @@ export class HomeService {
         return this._http.put<Examen>(`/examen/add?nom=${nom}`,exp);
     }
 
-    public getDepalcementList(id:Number): Observable<Deplacement[]> {
+    public getDepalcementList(id:number): Observable<Deplacement[]> {
         return this._http.get<Deplacement[]>(`/deplacement?scenario=${id}`);
     }
 

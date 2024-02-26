@@ -27,8 +27,8 @@ export class CreationComponent {
 
     protected LastScenario: Scenario = new Scenario();
     protected lastNom: string;
-    protected lastCouloir: Number;
-    protected lastZone: Number;
+    protected lastCouloir: number;
+    protected lastZone: number;
     protected lastCouleur:String;
 
     protected is_placement : boolean =false;
@@ -44,6 +44,7 @@ export class CreationComponent {
                 private _modalService: ModalService) {
     }
 
+    //fonction ajout scenario
     addScenario(modal: string): void {
         this.numero = 0;
         this.lastNom = this._newScenario.nom;
@@ -73,6 +74,7 @@ export class CreationComponent {
     }
 
 
+    //fonction pop-up
     openModal(modal: string): void {
         this._modalService.open(modal);
     }
@@ -81,7 +83,7 @@ export class CreationComponent {
         this._modalService.close(modal);
         this._newScenario = new Scenario();
     }
-
+    //fonction changer les config d'un scenario
     updateModeScenario(nom: string) {
         this._newScenario.mode_scene = nom;
     }
@@ -111,6 +113,7 @@ export class CreationComponent {
     }
 
     /*terrain*/
+    //fonction pour savoir le nb de couloir et zone
     nb_couloir(nombreDeCouloirs: number): number[] {
         return Array.from({length: nombreDeCouloirs}, (_, index) => index + 1);
     }
@@ -163,6 +166,7 @@ export class CreationComponent {
     protected positionPercentage = this.getPositionPercentage(this.tableau);
 
 
+    //genere les objet
     objectInit() {
         // daplacement joueur
         this.draggableObject = document.getElementById('deplacableObject') as HTMLDivElement;
@@ -186,8 +190,6 @@ export class CreationComponent {
             this.ballon_onTouchStart.bind(this), this.ballon_onTouchMove.bind(this), this.ballon_onTouchEnd.bind(this),
             this.ballon_onTouchCancel.bind(this));
     }
-
-
     private addEventListeners(
         element: HTMLDivElement | null,
         onMouseDown: (e: MouseEvent) => void,
@@ -216,6 +218,7 @@ export class CreationComponent {
         }
     }
 
+    //fonction deplacement des entité
     private onMouseDown(event: MouseEvent) {
 
         if (this.draggableObject) {
@@ -543,12 +546,12 @@ export class CreationComponent {
         }
 
     }
-
+    //on pass au deplacemnt
     passEntite() {
         this.is_deplacement=true;
         this.is_placement=false;
     }
-
+    //selectionner une entité
     selectEntite(entite:Entite){
         if (this._selectEntite===false){
             this._entiteSelect=entite;
@@ -569,7 +572,7 @@ export class CreationComponent {
         }
         return false;
     }
-
+    //ajout d'un deplacement
     addDeplacement(event: MouseEvent) {
         // Ajouter un délai de 500 millisecondes (par exemple)
             if (this._selectEntite == true && this.is_deplacement) {
@@ -614,12 +617,12 @@ export class CreationComponent {
                 this._selectEntite = false;
             }
     }
-
+    //fin des deplacement
     passDeplacement(){
         window.location.reload();
         this.is_deplacement=false;
     }
-
+    //supp le dernier entite
     delEntite(){
         this.getScenarioName(this.lastNom).then(() => {
             this._creationService.DelEntite(this.LastScenario.id).subscribe();
@@ -635,7 +638,7 @@ export class CreationComponent {
             // Gérer l'erreur ici si nécessaire
         });
     }
-
+//supp le dernier depalcement
     delDeplacement(){
         this.getScenarioName(this.lastNom).then(() => {
             this._creationService.DelDeplacement(this.LastScenario.id).subscribe();

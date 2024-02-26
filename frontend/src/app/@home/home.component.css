@@ -126,21 +126,24 @@ nav.menu ul {
   background: transparent;
   border: 1px solid black;
   border-collapse: collapse;
+  borderStyle: dashed;
 }
 .zone{
   background: transparent;
   border: 1px solid black;
   border-collapse: collapse;
+  borderStyle: dashed;
 }
 .tableau_terrain{
   padding: 5%;
   width:100%;
   border: 1px solid black;
   border-collapse: collapse;
+  borderStyle: dashed;
 }
 .tabter{
   border: 1px solid white;
-  height: 90vh;
+  height: 92vh;
 }
 /* Style du conteneur de la case à cocher */
 .checkbox-container {

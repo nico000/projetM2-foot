@@ -22,18 +22,18 @@ export class SerieService {
         return this._http.get<Examen[]>("/examen/all");
     }
 
-    public getExperience(id:Number):Observable<Experience> {
+    public getExperience(id:number):Observable<Experience> {
         return this._http.get<Experience>("/experience/"+id);
     }
 
-    public getDepalcementList(id:Number): Observable<Deplacement[]> {
+    public getDepalcementList(id:number): Observable<Deplacement[]> {
         return this._http.get<Deplacement[]>(`/deplacement?scenario=${id}`);
     }
 
-    public getEntiteList(id:Number): Observable<Entite[]> {
+    public getEntiteList(id:number): Observable<Entite[]> {
         return this._http.get<Entite[]>('/entite/'+id);
     }
-    public getScenarioId(id:Number):Observable<Scenario> {
+    public getScenarioId(id:number):Observable<Scenario> {
         return this._http.get<Scenario>(`/scenario/`+id);
     }
 

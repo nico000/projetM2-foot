@@ -36,6 +36,7 @@ export class HomeComponent {
     constructor(private _homeService: HomeService,
                 private _modalService: ModalService) {}
 
+    //genere la liste des scenario
     ngOnInit(): void{
         this._homeService.getScenarioList().subscribe(
             res  =>
@@ -43,6 +44,7 @@ export class HomeComponent {
         )
     }
 
+    //permet de filtrer et ordonner par un type
     orderBy(type:string): void {
         this._scenarioList.sort((a,b) => {
             if(isNaN(a[type])) {
@@ -67,6 +69,7 @@ export class HomeComponent {
     }
 
     //detail
+    //recuperer un scenario par sont nom
     private getScenarioName(nom: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this._homeService.getScenarioNom(nom).subscribe(
@@ -200,10 +203,10 @@ export class HomeComponent {
     updateTypeFeed(nom: string,experience:Experience){
         experience.typeFeedback=nom;
     }
-    updateFrequenceFeed(nom: Number,experience:Experience){
+    updateFrequenceFeed(nom: number,experience:Experience){
         experience.freqFeedback=nom;
     }
-    updateVisuFeed(nom: Number,experience:Experience){
+    updateVisuFeed(nom: number,experience:Experience){
         experience.visuFeedback=nom;
     }
 
@@ -220,9 +223,15 @@ export class HomeComponent {
         });
     }
     updateModeSequentiel(nom:string){
-        this._newExam.mode=nom;
+        this._newExam.sequencage=nom;
     }
 
+    updateModeComplexite(nom:string){
+        this._newExam.complexite=nom;
+    }
+    updateModeContenu(nom:string){
+        this._newExam.contenuFeedback=nom;
+    }
     addFeedBack(modal:string){
         this._homeService.addExamen(this._newExam).subscribe();
         console.log("addexam");
@@ -259,9 +268,9 @@ export class HomeComponent {
                                 // Afficher une flèche entre les entités
 
                                 const endX = (deplacement.endPosX * (100 / 65)) ;
-                                const endY = (deplacement.endPosY * (100 / 65)) ;
+                                const endY = (deplacement.endPosY * (100 / 58)) ;
                                 const startX = (deplacement.startPosX * (100 / 65)) ;
-                                const startY = (deplacement.startPosY * (100 / 65)) ;
+                                const startY = (deplacement.startPosY * (100 / 58)) ;
                                 // Obtenir les dimensions actuelles de la page
                                 const containerWidth = window.innerWidth;
                                 const containerHeight = window.innerHeight;
@@ -318,7 +327,7 @@ export class HomeComponent {
         const endPY = (endY / containerHeight) * 100;
         const startPY=(startY / containerHeight) * 100;
         //on verifie si il change pas d'angle
-        if (Math.abs(endPY - startPY) <= 10) {
+        if ((angle >= -190 && angle <= -140) || (angle >= 140 && angle <= 190)) {
             // Appliquer les styles à la flèche
             arrow.style.position = 'absolute';
             arrow.style.width = length + 'px';

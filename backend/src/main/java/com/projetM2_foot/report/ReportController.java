@@ -1,17 +1,18 @@
 package com.projetM2_foot.report;
 
 
-import com.projetM2_foot.entity.Examen;
-import com.projetM2_foot.entity.Scenario;
+import com.projetM2_foot.entity.*;
 import com.projetM2_foot.report.mapper.ReportMapper;
-import com.projetM2_foot.report.response.ReportExamen;
-import com.projetM2_foot.report.response.ReportScenario;
+import com.projetM2_foot.report.response.*;
 import com.projetM2_foot.service.ExamenService;
+import com.projetM2_foot.service.ResultatExamenService;
 import com.projetM2_foot.service.ScenarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/export")
+@RequestMapping("/report")
 public class ReportController {
 
     @Autowired
@@ -32,32 +33,72 @@ public class ReportController {
     @Autowired
     ReportMapper reportMapper;
 
+    @Autowired
+    ResultatExamenService resExamService;
 
-    @GetMapping("/all")
+
+    // Partie rapport en excel
+
+    @GetMapping("/export/all")
     public void exportToExcel(HttpServletResponse response) throws IOException {
-        this.userReportService.exportToExcel(response);
+        this.userReportService.exportToExcelAll(response);
     }
+
+    @GetMapping("/export")
+    public void exportToExcel(
+            HttpServletResponse response,
+            @RequestParam String nom,
+            @RequestParam String prenom) throws IOException {
+        this.userReportService.exportToExcelPerson(response,nom,prenom);
+    }
+
+    // Partie rapport en json
 
     @GetMapping("/scenario")
     public ResponseEntity<List<ReportScenario>> getScenarioReport() {
 
         List<Scenario> data = scenarioService.getAllScenario();
-        List<ReportScenario> sceneList = data.stream().map(reportMapper::toDtoScenario).collect(Collectors.toList());
+        List<ReportScenario> sceneList = data
+                .stream()
+                .map(reportMapper::toDtoScenario)
+                .collect(Collectors.toList());
         return ResponseEntity.ok().body(sceneList);
     }
 
-    @GetMapping("/exp")
-    public ResponseEntity<List<ReportExamen>> getAllReport() {
+    @GetMapping("/serie")
+    public ResponseEntity<List<ReportExamen>> getSerieReport() {
 
         List<Examen> data = examService.getAll();
-        List<ReportExamen> sceneList = data
+        List<ReportExamen> serieList = data
                 .stream()
                 .map(reportMapper::toDtoExamen)
                 .collect(Collectors.toList());
-
-        return ResponseEntity.ok().body(sceneList);
+        return ResponseEntity.ok().body(serieList);
     }
 
+    @GetMapping("/resultats")
+    public ResponseEntity<List<ReportResultatExamen>> getResultatReport() {
+
+        List<ResultatExamen> data = resExamService.getAll();
+        List<ReportResultatExamen> serieList =
+                data.stream().map(reportMapper::toDtoResultatExamen)
+                        .collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(serieList);
+    }
+
+
+    @GetMapping("/resultat")
+    public ResponseEntity<List<ReportResultatExamen>> getResultatNomPrenomReport(
+            @RequestParam String nom,
+            @RequestParam String prenom
+    ) {
+        List<ResultatExamen> data = resExamService.getByNomPrenom(nom,prenom);
+        List<ReportResultatExamen> serieList =
+                data.stream().map(reportMapper::toDtoResultatExamen)
+                        .collect(Collectors.toList());
+        return ResponseEntity.ok().body(serieList);
+    }
 
 
 }

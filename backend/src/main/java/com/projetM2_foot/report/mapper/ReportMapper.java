@@ -2,12 +2,14 @@ package com.projetM2_foot.report.mapper;
 
 import com.projetM2_foot.entity.*;
 import com.projetM2_foot.report.response.*;
-import com.projetM2_foot.repository.DeplacementRepository;
-import com.projetM2_foot.repository.EntiteRepository;
-import com.projetM2_foot.repository.ScenarioRepository;
+import com.projetM2_foot.repository.*;
+import com.projetM2_foot.service.EssaiService;
+import com.projetM2_foot.service.ResultatExperienceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +20,115 @@ public class ReportMapper {
     final EntiteRepository entiteRepository;
     final DeplacementRepository deplacementRepository;
     final ScenarioRepository scenarioRepository;
+    final EssaiService essaiService;
+    final ResultatExperienceService resultatExperience;
+
+
+
+    public ReportResultatExamen toDtoResultatExamen(ResultatExamen entity){
+
+        List<ResultatExperience> list =
+                    resultatExperience.getListByResultatExamen(entity.getId());
+
+        return ReportResultatExamen.builder()
+                .id(entity.getId())
+                .personalInformation(toDtoPerson(entity))
+                .resultatExperiences(list
+                        .stream()
+                        .map(this::toDtoResultatExperience)
+                        .collect(Collectors.toList()))
+                .createDate(entity.getCreateDate())
+                .score(entity.getScore())
+                .examen(toDtoExamen(entity.getExamen()))
+                .build();
+    }
+
+
+    public ReportPerson toDtoPerson(ResultatExamen entity){
+
+        return ReportPerson.builder()
+                .nom(entity.getNomPerson())
+                .prenom(entity.getPrenomPerson())
+                .groupe(entity.getGroupePerson())
+                .age(entity.getAgePerson())
+                .genre(entity.getSexPerson())
+                .pratique(entity.getPratiquePerson())
+
+                .pro(entity.getProPerson())
+                .anneeExperience(entity.getAnneeExperiencePerson())
+                .nombreMatches(entity.getMatchePerson())
+                .entrainement(entity.getEntrainementPerson())
+                .heure(entity.getHeurePerson())
+                .build();
+    }
+
+    public ReportResultatExperience toDtoResultatExperience(ResultatExperience entity){
+        List<ResultatEssai> listEssai  = essaiService.getEssaisByIdResultatExperience(entity.getId());
+
+
+        return ReportResultatExperience.builder()
+                .id(entity.getId())
+                .score(entity.getScore())
+                .createDate(entity.getCreateDate())
+                .experience(toDtoExperience(entity.getExperience()))
+                .essais(listEssai.stream().map(this::toDtoEssai).collect(Collectors.toList()))
+                .build();
+    }
+
+    public ReportEssai toDtoEssai(ResultatEssai entity){
+
+        List<ResultatDeplacement> rdep =
+                new ArrayList<>(entity.getDeplacementSet());
+        Comparator<ResultatDeplacement> comparator = Comparator.comparingInt(ResultatDeplacement::getNumAction);
+        rdep.sort(comparator);
+
+        return ReportEssai.builder()
+                .id(entity.getId())
+                .reussi(entity.isReussi())
+                .score(entity.getScore())
+                .temps(entity.getTemps())
+                .numEssai(entity.getNum())
+                .deplacementsRealiser(rdep
+                        .stream()
+                        .map(this::toDtoResultatDeplacement)
+                        .collect(Collectors.toList()))
+                .build();
+    }
+
+
+    public ReportZonePos toDtoZone(int x1 , int y1 , int x2 , int y2){
+
+        return ReportZonePos.builder()
+                .zoneDepartX(x1)
+                .zoneDepartY(y1)
+                .zoneArriveeX(x2)
+                .zoneArriveeY(y2)
+                .build();
+    }
+
+    public ReportResultatDeplacement toDtoResultatDeplacement(ResultatDeplacement entity){
+
+        return ReportResultatDeplacement.builder()
+                .id(entity.getId())
+                .reussi(entity.getReussi())
+                .action(entity.getNumAction())
+                .entite(toDtoEntite(entity.getEntite()))
+                .scenarioPos(toDtoZone(
+                        entity.getScenarioStartZoneX() ,
+                        entity.getScenarioStartZoneY() ,
+                        entity.getScenarioEndZoneX() ,
+                        entity.getScenarioEndZoneY()))
+                .essaiPos(toDtoZone(
+                        entity.getStartZoneX() ,
+                        entity.getStartZoneY() ,
+                        entity.getEndZoneX() ,
+                        entity.getEndZoneY()))
+                .startPosX(entity.getStartPosX())
+                .startPosY(entity.getStartPosY())
+                .endPosX(entity.getEndPosX())
+                .endPosY(entity.getEndPosY())
+                .build();
+    }
 
     public ReportExamen toDtoExamen (Examen entity){
 
@@ -54,9 +165,12 @@ public class ReportMapper {
 
         Entite entite = entiteRepository.findById(entity.getEntite().getId()).orElse(null);
 
+        ReportEntite reportEntite = null;
+        if(entite != null) reportEntite = toDtoEntite(entite);
+
         return ReportDeplacement.builder()
                 .id(entity.getId())
-                .entite(toDtoEntite(entite))
+                .entite(reportEntite)
                 .action(entity.getNumAction())
                 .posXDepart(entity.getStartPosX())
                 .posYDepart(entity.getStartPosY())
@@ -65,22 +179,6 @@ public class ReportMapper {
                 .build();
     }
 
-    /*
-    public static ResultatDeplacementResponse toDtoResultatDeplacement(ResultatDeplacement entity){
-
-        return ResultatDeplacementResponse.builder()
-                .id(entity.getId())
-                .reussi(entity.getReussi())
-                .entite(entity.getEntite().getId())
-                .numAction(entity.getNumAction())
-                .startPosX(entity.getStartPosX())
-                .startPosY(entity.getStartPosY())
-                .endPosX(entity.getEndPosX())
-                .endPosY(entity.getEndPosY())
-                .build();
-    }
-
-     */
 
     public ReportScenario toDtoScenario(Scenario scenario){
 
@@ -104,14 +202,6 @@ public class ReportMapper {
 
     }
 
-
-
-    public List<ReportScenario> toDtoAllScenario (List<Scenario> scenarioList){
-
-        return scenarioList.stream()
-                .map(this::toDtoScenario)
-                .collect(Collectors.toList());
-    }
 
     public ReportEntite toDtoEntite (Entite entity){
 

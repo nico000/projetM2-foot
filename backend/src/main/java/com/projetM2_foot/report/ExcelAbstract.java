@@ -14,7 +14,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class ReportAbstract {
+public abstract class ExcelAbstract {
 
 
     // ----------------------
@@ -49,7 +49,7 @@ public abstract class ReportAbstract {
         CellStyle style = workbook.createCellStyle();
         XSSFFont font = workbook.createFont();
         font.setBold(true);
-        font.setFontHeight(20);
+        font.setFontHeight(15);
         style.setFont(font);
         style.setAlignment(HorizontalAlignment.CENTER);
 
@@ -78,7 +78,7 @@ public abstract class ReportAbstract {
         } else if (value instanceof Float) {
             cell.setCellValue((Float) value);
         } else if (value instanceof Timestamp) {
-            cell.setCellValue((String) value.toString());
+            cell.setCellValue(value.toString());
         } else {
             cell.setCellValue((String) value);
         }

@@ -7,6 +7,8 @@ import com.projetM2_foot.service.ResultatExperienceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -33,14 +35,19 @@ public class ResultatEssaiMapper {
 
     public FeedbackResponse toFeedbackDto (ResultatEssai rtry){
 
+        List<ResultatDeplacement> rdep =
+                new ArrayList<>(rtry.getDeplacementSet());
+        Comparator<ResultatDeplacement> comparator = Comparator.comparingInt(ResultatDeplacement::getNumAction);
+        rdep.sort(comparator);
         //rtry.getDeplacementSet().removeIf(ResultatDeplacement::getReussi);
         return FeedbackResponse.builder()
                 .essai(rtry.getId())
                 .score(rtry.getScore())
-                .listError(rtry.getDeplacementSet()
-                        .stream()
-                        .map(DeplacementMapper::toResDto)
-                        .collect(Collectors.toList()))
+                .listError(rdep
+                                .stream()
+                                .map(DeplacementMapper::toResDto)
+                                .collect(Collectors.toList())
+                )
                 .reussi(rtry.isReussi())
                 .build();
     }

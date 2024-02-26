@@ -12,4 +12,6 @@ public interface EssaiRepository extends CrudRepository<ResultatEssai, Long> {
     @Override
     List<ResultatEssai> findAll();
 
+    List<ResultatEssai> findByResultatExperienceId(long resultatExperience);
+
 }

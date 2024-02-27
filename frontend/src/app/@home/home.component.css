@@ -10,7 +10,7 @@
   align-items: flex-start;
 }
 .tableau{
-  padding: 5px;
+  padding: 2px;
   border: 1px solid black;
   border-collapse: collapse;
   width:100%;
@@ -52,7 +52,7 @@ nav.menu ul li.boutton a{
   text-decoration: none;
   text-align: center;
   display: flex;
-  font-size:35px;
+  font-size:20px;
   justify-content: center;
 }
 nav.menu ul li.boutton:hover a{

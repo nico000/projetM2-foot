@@ -62,7 +62,7 @@
             {{serie.contenuFeedback}}
         </td>
         <td class="ecriture colonne">
-            {{serie.sequencage}}
+            {{serie.mode}}
         </td>
         <td class="ecriture colonne">
             {{serie.complexite}}
@@ -222,6 +222,8 @@
 
 <jw-modal id="{{_feedBackScoreModal}}" >
     <h1 class="presentation">FeedBack Score</h1>
+    <div *ngIf="_resultat.reussi" class="presentation">FÉLICITATIONS, SCÉNARIO RÉUSSI !</div>
+    <div *ngIf="_resultat.reussi===false" class="presentation">DOMMAGE, SCÉNARIO RATÉ !</div>
     <div class="categorie">Resultat : {{_resultat.reussi}}</div>
     <div class="categorie">Score : {{_resultat.score}}</div>
     <nav class="menu">
@@ -237,6 +239,8 @@
         <a>FeedBack Static</a>
     </h1>
 
+    <div *ngIf="_resultat.reussi" class="presentation">FÉLICITATIONS, SCÉNARIO RÉUSSI !</div>
+    <div *ngIf="_resultat.reussi===false" class="presentation">DOMMAGE, SCÉNARIO RATÉ !</div>
     <nav class="menu">
         <ul>
             <li  class="boutton">
@@ -244,6 +248,7 @@
             </li>
         </ul>
     </nav><br>
+
 
     <div class="categorie">Resultat : {{_resultat.reussi}}</div>
     <div class="categorie">  Score : {{_resultat.score}}</div>

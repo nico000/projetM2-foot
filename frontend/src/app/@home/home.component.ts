@@ -315,6 +315,7 @@ export class HomeComponent {
         // Obtenir les dimensions actuelles de la page
         const containerWidth = window.innerWidth;
         const containerHeight = window.innerHeight;
+        this.positionPercentage = this.getPositionPercentage(this.tableau);
 
         // Calculer la longueur et l'angle de la flèche
         const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
@@ -325,27 +326,84 @@ export class HomeComponent {
         //on recalcule end en %
         const endPX = (endX / containerWidth) * 100;
         const endPY = (endY / containerHeight) * 100;
-        const startPY=(startY / containerHeight) * 100;
+
         //on verifie si il change pas d'angle
-        if ((angle >= -190 && angle <= -140) || (angle >= 140 && angle <= 190)) {
-            // Appliquer les styles à la flèche
-            arrow.style.position = 'absolute';
-            arrow.style.width = length + 'px';
-            arrow.style.height = '2px'; // Épaisseur de la flèche
-            arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-            arrow.style.left = (endPX+this.tabLeft)+ '%';
-            arrow.style.top = (endPY+this.tabTop) + '%';
-            arrow.style.transform = 'rotate(' + angle + 'deg)';
-        }else{
-            // Appliquer les styles à la flèche
-            arrow.style.position = 'absolute';
-            arrow.style.width = length + 'px';
-            arrow.style.height = '2px'; // Épaisseur de la flèche
-            arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-            arrow.style.left = (endPX)+ '%';
-            arrow.style.top = (endPY) + '%';
-            arrow.style.transform = 'rotate(' + angle + 'deg)';
+        if (angle >= -45 && angle <= 80) {
+            if ((angle >= -190 && angle <= -15) || (angle >= 170)) {
+                console.log("4");
+                // Appliquer les styles à la flèche
+                arrow.style.position = 'absolute';
+                arrow.style.width = (length-20 )+ 'px';
+                arrow.style.height = '2px'; // Épaisseur de la flèche
+                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+                arrow.style.left = ((endPX-6)-this.tabTop)+ '%';
+                arrow.style.top = (endPY + (this.tabTop)+5) + '%';
+                arrow.style.transform = 'rotate(' + angle + 'deg)';
+            }
+            else if (angle > -15 && angle < 15) {
+                console.log("5");//
+                // Appliquer les styles à la flèche
+                arrow.style.position = 'absolute';
+                arrow.style.width = (length-20) + 'px';
+                arrow.style.height = '2px'; // Épaisseur de la flèche
+                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+                arrow.style.left = ((endPX-5)-this.tabTop) + '%';
+                arrow.style.top = (endPY + ((this.tabTop)/2)) + '%';
+                arrow.style.transform = 'rotate(' + angle + 'deg)';
+            } else {
+                console.log("6");
+                // Appliquer les styles à la flèche
+                arrow.style.position = 'absolute';
+                arrow.style.width = (length-20) + 'px';
+                arrow.style.height = '2px'; // Épaisseur de la flèche
+                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+                arrow.style.left = ((endPX-7)-this.tabTop) + '%';
+                arrow.style.top = (endPY-3) + '%';
+                arrow.style.transform = 'rotate(' + angle + 'deg)';
+            }
+        } else {
+            if ((angle >= -190 && angle <= -15) || (angle >= 165)) {
+                // Appliquer les styles à la flèche
+                console.log("1");
+                arrow.style.position = 'absolute';
+                arrow.style.width = (length-20) + 'px';
+                arrow.style.height = '2px'; // Épaisseur de la flèche
+                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+                arrow.style.left = ((endPX )) + '%';
+                arrow.style.top = (endPY + (this.tabTop)) + '%';
+                arrow.style.transform = 'rotate(' + angle + 'deg)';
+            } else {
+                console.log("3");
+                // Appliquer les styles à la flèche
+                arrow.style.position = 'absolute';
+                arrow.style.width = (length -20) + 'px';
+                arrow.style.height = '2px'; // Épaisseur de la flèche
+                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+                arrow.style.left = ((endPX)) + '%';
+                arrow.style.top = (endPY-4) + '%';
+                arrow.style.transform = 'rotate(' + angle + 'deg)';
+            }
         }
+
+        // if ((angle >= -190 && angle <= 15) || (angle >= 165)) {
+        //     // Appliquer les styles à la flèche
+        //     arrow.style.position = 'absolute';
+        //     arrow.style.width = length + 'px';
+        //     arrow.style.height = '2px'; // Épaisseur de la flèche
+        //     arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+        //     arrow.style.left =( endPX-this.tabLeft)+ '%';
+        //     arrow.style.top = (endPY+this.tabTop) + '%';
+        //     arrow.style.transform = 'rotate(' + angle + 'deg)';
+        // }else{
+        //     // Appliquer les styles à la flèche
+        //     arrow.style.position = 'absolute';
+        //     arrow.style.width = length + 'px';
+        //     arrow.style.height = '2px'; // Épaisseur de la flèche
+        //     arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+        //     arrow.style.left = (endPX)+ '%';
+        //     arrow.style.top = (endPY) + '%';
+        //     arrow.style.transform = 'rotate(' + angle + 'deg)';
+        // }
 
 
         // Ajouter la flèche au DOM

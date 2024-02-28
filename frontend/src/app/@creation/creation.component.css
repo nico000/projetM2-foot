@@ -67,6 +67,7 @@ nav.menu ul li.boutton:hover a{
 }
 .colonne{
     width:35%;
+    text-align: center;
 }
 .colonne3{
     width:35%;
@@ -87,6 +88,7 @@ nav.menu ul li.boutton:hover a{
     color: white;
     text-align: center;
 }
+
 .numEcriture{
     font-size: 120%;
     color: black;
@@ -107,7 +109,6 @@ nav.menu ul li.boutton:hover a{
     background-color: #ffeb3b;
 }
 .ballon {
-    background-color:white;
     width: 15px;
     height: 15px;
 }

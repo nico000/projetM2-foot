@@ -528,7 +528,7 @@ export class SerieComponent {
                 arrow.style.position = 'absolute';
                 arrow.style.width = (length-20 )+ 'px';
                 arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+                arrow.style.backgroundColor = color; // Couleur de la flèche
                 arrow.style.left = ((endPX-6)-this.tabTop)+ '%';
                 arrow.style.top = (endPY + (this.tabTop)+5) + '%';
                 arrow.style.transform = 'rotate(' + angle + 'deg)';
@@ -539,7 +539,7 @@ export class SerieComponent {
                 arrow.style.position = 'absolute';
                 arrow.style.width = (length-20) + 'px';
                 arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+                arrow.style.backgroundColor = color; // Couleur de la flèche
                 arrow.style.left = ((endPX-5)-this.tabTop) + '%';
                 arrow.style.top = (endPY + ((this.tabTop)/2)) + '%';
                 arrow.style.transform = 'rotate(' + angle + 'deg)';
@@ -549,7 +549,7 @@ export class SerieComponent {
                 arrow.style.position = 'absolute';
                 arrow.style.width = (length-20) + 'px';
                 arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+                arrow.style.backgroundColor = color; // Couleur de la flèche
                 arrow.style.left = ((endPX-7)-this.tabTop) + '%';
                 arrow.style.top = (endPY-3) + '%';
                 arrow.style.transform = 'rotate(' + angle + 'deg)';
@@ -561,7 +561,7 @@ export class SerieComponent {
                 arrow.style.position = 'absolute';
                 arrow.style.width = (length-20) + 'px';
                 arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+                arrow.style.backgroundColor = color; // Couleur de la flèche
                 arrow.style.left = ((endPX )) + '%';
                 arrow.style.top = (endPY + (this.tabTop)) + '%';
                 arrow.style.transform = 'rotate(' + angle + 'deg)';
@@ -571,7 +571,7 @@ export class SerieComponent {
                 arrow.style.position = 'absolute';
                 arrow.style.width = (length -20) + 'px';
                 arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
+                arrow.style.backgroundColor = color; // Couleur de la flèche
                 arrow.style.left = ((endPX)) + '%';
                 arrow.style.top = (endPY-4) + '%';
                 arrow.style.transform = 'rotate(' + angle + 'deg)';
@@ -610,5 +610,6 @@ export class SerieComponent {
             this.openData(this._veridModal);
         }
     }
+
 
 }

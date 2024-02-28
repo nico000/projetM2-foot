@@ -285,7 +285,6 @@ export class HomeComponent {
                                 console.log("deplacement.endPosX:",deplacement.endPosX ,"endX :" ,endX);
                                 console.log("deplacement.endPosY:",deplacement.endPosY ,"endY :" ,endY);
                                 this.addArrow(absStartX, absStartY, absEndX, absEndY);
-
                             }
                         });
                         console.log("deplacement");
@@ -385,30 +384,10 @@ export class HomeComponent {
             }
         }
 
-        // if ((angle >= -190 && angle <= 15) || (angle >= 165)) {
-        //     // Appliquer les styles à la flèche
-        //     arrow.style.position = 'absolute';
-        //     arrow.style.width = length + 'px';
-        //     arrow.style.height = '2px'; // Épaisseur de la flèche
-        //     arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-        //     arrow.style.left =( endPX-this.tabLeft)+ '%';
-        //     arrow.style.top = (endPY+this.tabTop) + '%';
-        //     arrow.style.transform = 'rotate(' + angle + 'deg)';
-        // }else{
-        //     // Appliquer les styles à la flèche
-        //     arrow.style.position = 'absolute';
-        //     arrow.style.width = length + 'px';
-        //     arrow.style.height = '2px'; // Épaisseur de la flèche
-        //     arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-        //     arrow.style.left = (endPX)+ '%';
-        //     arrow.style.top = (endPY) + '%';
-        //     arrow.style.transform = 'rotate(' + angle + 'deg)';
-        // }
 
 
         // Ajouter la flèche au DOM
         document.querySelector('.tableau_joueur .colonne_terrain2').appendChild(arrow);
     }
-
 
 }

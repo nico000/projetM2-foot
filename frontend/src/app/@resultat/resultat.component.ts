@@ -25,30 +25,7 @@ export class ResultatComponent {
     }
 
     exportExel(nom, prenom) {
-        this._resultatService.exportExel(nom, prenom).subscribe(
-            (res) => {
-                // Créer un blob à partir de la réponse
-                let blob = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-
-                // Créer un objet URL à partir du blob
-                var url = window.URL.createObjectURL(blob);
-
-                // Créer un lien d'ancrage pour le téléchargement
-                var a = document.createElement('a');
-                a.href = url;
-                a.download = 'donnees.xlsx'; // Nom du fichier téléchargé
-                document.body.appendChild(a);
-
-                // Cliquer sur le lien d'ancrage pour déclencher le téléchargement
-                a.click();
-
-                // Nettoyer l'URL de l'objet après le téléchargement
-                window.URL.revokeObjectURL(url);
-            },
-            (error) => {
-                // Gérer les erreurs
-                console.error("Une erreur s'est produite lors de la récupération des données:", error);
-            }
-        );
+        const url = `http://localhost:8080/report/export?nom=${nom}&prenom=${prenom}`;
+        window.open(url, '_blank');
     }
 }

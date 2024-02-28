@@ -168,8 +168,8 @@
                                     <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
                                         {{ entite.numero }}
                                     </div>
-                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0">
-                                        {{ entite.numero }}
+                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0"
+                                         style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
                                     </div>
                                 </div>
                             </td>
@@ -206,9 +206,9 @@
                                             {{ entite.numero }}
                                         </div>
                                     </div>
-                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0">
+                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0"
+                                         style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
                                         <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">
-                                            {{ entite.numero }}
                                         </div>
                                     </div>
                                 </div>
@@ -225,7 +225,7 @@
     <div *ngIf="_resultat.reussi" class="presentation">FÉLICITATIONS, SCÉNARIO RÉUSSI !</div>
     <div *ngIf="_resultat.reussi===false" class="presentation">DOMMAGE, SCÉNARIO RATÉ !</div>
     <div class="categorie">Resultat : {{_resultat.reussi}}</div>
-    <div class="categorie">Score : {{_resultat.score}}</div>
+    <div class="categorie">Score : {{_resultat.score}}/{{_resultat.listError.length}}</div>
     <nav class="menu">
         <ul>
             <li class="boutton" *ngIf="this._resultat.reussi===false" style="width: 40%"><a (click)="resetData(_feedBackScoreModal)">Abandoner</a></li>
@@ -251,12 +251,12 @@
 
 
     <div class="categorie">Resultat : {{_resultat.reussi}}</div>
-    <div class="categorie">  Score : {{_resultat.score}}</div>
+    <div class="categorie">  Score : {{_resultat.score}}/{{_resultat.listError.length}}</div>
 
     <nav class="menu">
         <ul>
             <li class="boutton" *ngIf="this._resultat.reussi===false" style="width: 40%"><a (click)="resetData(_feedBackStaticModal)">Abandoner</a></li>
-            <li class="boutton" *ngIf="this._resultat.reussi===false" style="width: 40%"><a (click)="relance()">Recommencer</a></li>
+            <li class="boutton" *ngIf="this._resultat.reussi===false " style="width: 40%"><a (click)="relance()">Recommencer</a></li>
             <li class="boutton" *ngIf="this._resultat.reussi===true" style="width: 40%"><a (click)="relance()">Suivant</a></li>
         </ul>
     </nav>
@@ -276,8 +276,8 @@
                                     <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
                                         {{ entite.numero }}
                                     </div>
-                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0">
-                                        {{ entite.numero }}
+                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0"
+                                         style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
                                     </div>
                                     <!-- Ajouter des éléments pour représenter les flèches -->
                                     <div *ngFor="let arrow of arrows">

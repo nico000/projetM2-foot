@@ -1,6 +1,6 @@
 <table class="tableau" >
     <tr>
-        <td class=" colonne" > <!-- parametre  -->
+        <td *ngIf="is_placement===false && is_deplacement===false" class=" colonne" > <!-- parametre  -->
             <h1 class="presentation">Ajout d'un Scenario</h1>
             <div class="titre">
                 nom:
@@ -63,35 +63,37 @@
                 </ul>
             </nav>
         </td>
+        <td *ngIf="is_placement && is_deplacement===false" class=" colonne" > <!-- ajout entite -->
+            <div  class="presentation">Ajout des entités</div><br><br>
+            <div  class="Ecriture"><button (click)="delEntite()" class="boutton">retour placement</button></div><br>
+            <div  class="Ecriture"><button  (click)="passEntite()" class="boutton">fin placement</button></div><br><br>
+            <div class="presentation" style="display: inline-block">joueur :   </div>
+            <div id="deplacableObject" class="draggable joueur" style="display: inline-block"></div><br><br>
+            <div class="presentation"style="display: inline-block" >ballon :   </div>
+            <div id="ballondeplacableObject" class="draggable ballon"style="display: inline-block;background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;" ></div><br><br>
 
+
+            <nav class="menu">
+                <ul>
+                    <li class="boutton" ><a *ngIf="is_placement" (click)="addJoueur()">ajouter joueur</a></li>
+                </ul>
+            </nav>
+                <br>
+            <nav class="menu">
+                <ul>
+                    <li class="boutton" ><a *ngIf="is_placement" (click)="addBallon()">ajouter ballon</a></li>
+                </ul>
+            </nav>
+        </td>
+        <td *ngIf="is_placement===false && is_deplacement" class=" colonne" > <!-- ajout deplacement -->
+            <div class="presentation">Ajout deplacement </div><br><br>
+            <div class="presentation">   Action={{ numAction }}</div><br><br>
+            <div class="Ecriture"><button (click)="delDeplacement()" class="boutton">retour deplacement</button></div><br><br>
+            <div  class="Ecriture"><button  (click)="passDeplacement()" class="boutton">fin deplacement</button></div><br><br>
+        </td>
 
         <td class="colonne2" ><!-- terrain -->
-            <div *ngIf="is_placement" class="mode">Ajout des entités</div>
-            <div *ngIf="is_deplacement" class="mode">Ajout deplacement   ::   Action={{ numAction }}</div>
-            <table class="tableau_terrain">
-                <tr>
-                    <td class="barreOutils">
-                        <div *ngIf="is_placement" class="Ecriture"><button (click)="delEntite()" class="boutton">retour placement</button></div>
-                        <div *ngIf="is_deplacement" class="Ecriture"><button (click)="delDeplacement()" class="boutton">retour deplacement</button></div>
-                    </td>
-                    <td class="barreOutils">
-                        <div class="Ecriture">joueur :</div>
-                    </td>
-                    <td class="barreOutils">
-                        <div id="deplacableObject" class="draggable joueur"></div>
-                    </td>
-                    <td class="barreOutils">
-                        <div class="Ecriture">ballon :</div>
-                    </td>
-                    <td class="barreOutils">
-                        <div id="ballondeplacableObject" class="draggable ballon"></div>
-                    </td>
-                    <td class="barreOutils">
-                        <div *ngIf="is_placement" class="Ecriture"><button  (click)="passEntite()" class="boutton">fin placement</button></div>
-                        <div *ngIf="is_deplacement" class="Ecriture"><button  (click)="passDeplacement()" class="boutton">fin deplacement</button></div>
-                    </td>
-                    <br><br><br>
-                </tr></table><br>
+
             <div style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
             <table id="tableau_terrain" class="tableau_terrain tabter" (click)="addDeplacement($event)">
                 <tr  *ngFor="let couloir of nb_couloir(lastCouloir); let odd = odd" class="couloir">
@@ -105,9 +107,9 @@
                                     {{ entite.numero }}
                                 </div>
                             </div>
-                            <div class="draggable ballon numEcriture" *ngIf="entite.type==0">
+                            <div class="draggable ballon numEcriture" *ngIf="entite.type==0"
+                                 style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
                                 <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">
-                                    {{ entite.numero }}
                                 </div>
                             </div>
                         </div>
@@ -116,22 +118,7 @@
             </table>
             </div>
             <br>
-            <table>
-                <td class="colonne">
-                    <nav class="menu">
-                        <ul>
-                            <li class="boutton" ><a *ngIf="is_placement" (click)="addJoueur()">ajouter joueur</a></li>
-                        </ul>
-                    </nav>
-                </td>
-                <td class="colonne">
-                    <nav class="menu">
-                        <ul>
-                            <li class="boutton" ><a *ngIf="is_placement" (click)="addBallon()">ajouter ballon</a></li>
-                        </ul>
-                    </nav>
-                </td>
-            </table>
+            
         </td>
     </tr>
 </table>

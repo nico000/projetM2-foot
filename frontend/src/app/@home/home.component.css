@@ -15,6 +15,11 @@
   border-collapse: collapse;
   width:100%;
 }
+.ligne{
+  margin-bottom: 25px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 
 .colonne{
   width:20%;
@@ -213,4 +218,8 @@ nav.menu ul {
 .container {
   display: flex; /* Utilisation de flexbox pour afficher les éléments en ligne */
   flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+}
+#c {
+  position: relative; /* Assurez-vous que le positionnement est relatif ou absolu */
+  z-index: 2000; /* Changer le z-index selon vos besoins */
 }

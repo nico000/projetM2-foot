@@ -60,10 +60,12 @@ export class CreationComponent {
             }
         )
         this.resetData(modal);
-        this.objectInit();
         this.is_placement=true;
         this.is_deplacement=false;
         this.numAction=0.0;
+        setTimeout(() => {
+            this.objectInit();
+        }, 2000); // 1000 millisecondes = 1 seconde
     }
 
     isBlanc(){

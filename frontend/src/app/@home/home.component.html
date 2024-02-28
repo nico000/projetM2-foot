@@ -30,12 +30,12 @@
             <button (click)="filterBy('nom', titreFilter.value)"><span>&#10003;</span></button></div>
         </td>
         <td class="titre colonne" (click)="orderBy('joueur_nb')">
-            Nombre de zone
+            Nombre de Joueur
             <div *ngIf="_isFiltering == true"><input class="contient" type="text" #titreFilter placeholder="Contient..."/>
                 <button (click)="filterBy('joueur_nb', titreFilter.value)"><span>&#10003;</span></button></div>
         </td>
         <td class="titre colonne" (click)="orderBy('nom')">
-            Nombre de couloir
+            Nombre de deplacement
             <div *ngIf="_isFiltering == true"><input class="contient" type="text" #titreFilter placeholder="Contient..."/>
                 <button (click)="filterBy('nom', titreFilter.value)"><span>&#10003;</span></button></div>
         </td>
@@ -43,15 +43,15 @@
             //
         </td>
     </tr>
-    <tr *ngFor="let scenario of _scenarioList" (play)="orderBy('nom')" >
+    <tr *ngFor="let scenario of _scenarioList" (play)="orderBy('nom')"  class="ligne">
         <td class="colonne ecriture">
             {{scenario.nom}}
         </td>
         <td class="colonne ecriture">
-            {{scenario.zone_nb_zone}}
+            {{scenario.joueur_nb}}
         </td>
         <td class="colonne ecriture">
-            {{scenario.zone_nb_couloir}}
+            ////
         </td>
         <td class="colonne2 ecriture">
             <button (click)="selectScenario(_selectScenarioModalName,scenario)">details</button>
@@ -89,8 +89,8 @@
                                 <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
                                     {{ entite.numero }}
                                 </div>
-                                <div class="draggable ballon numEcriture" *ngIf="entite.type==0">
-                                    {{ entite.numero }}
+                                <div class="draggable ballon numEcriture" *ngIf="entite.type==0"
+                                     style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
                                 </div>
                                 <!-- Ajouter des éléments pour représenter les flèches -->
                                 <div *ngFor="let arrow of arrows">

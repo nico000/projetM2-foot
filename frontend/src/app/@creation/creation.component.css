@@ -106,6 +106,9 @@ nav.menu ul li.boutton:hover a{
     align-items: center;
 }
 .joueur{
+    background-color: #2196F3;
+}
+.gardien{
     background-color: #ffeb3b;
 }
 .ballon {
@@ -114,15 +117,14 @@ nav.menu ul li.boutton:hover a{
 }
 .couloir{
     background: transparent;
-    border: 1px solid black;
+    border: 1px dashed  black;
     border-collapse: collapse;
     borderStyle: dashed;
 }
 .zone{
     background: transparent;
-    border: 1px solid black;
+    border: 1px dashed  black;
     border-collapse: collapse;
-    borderStyle: dashed;
 }
 .tableau_terrain{
     padding: 5%;

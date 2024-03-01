@@ -77,6 +77,11 @@
                 <ul>
                     <li class="boutton" ><a *ngIf="is_placement" (click)="addJoueur()">ajouter joueur</a></li>
                 </ul>
+            </nav><br>
+            <nav class="menu">
+                <ul>
+                    <li class="boutton" ><a *ngIf="is_placement" (click)="addJoueugardien()">ajouter Gardien</a></li>
+                </ul>
             </nav>
                 <br>
             <nav class="menu">
@@ -103,6 +108,11 @@
                              [style.left.%]="entite.x+this.tabLeft" [style.top.%]="entite.y+tabTop"
                               (click)="selectEntite(entite)">
                             <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
+                                <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">
+                                    {{ entite.numero }}
+                                </div>
+                            </div>
+                            <div class="draggable gardien numEcriture" *ngIf="entite.type==2">
                                 <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">
                                     {{ entite.numero }}
                                 </div>

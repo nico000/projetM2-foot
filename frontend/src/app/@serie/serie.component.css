@@ -122,15 +122,13 @@ nav.menu ul {
 }
 .couloir{
     background: transparent;
-    border: 1px solid black;
+    border: 1px dashed black;
     border-collapse: collapse;
-    borderStyle: dashed;
 }
 .zone{
     background: transparent;
-    border: 1px solid black;
+    border: 1px dashed black;
     border-collapse: collapse;
-    borderStyle: dashed;
 }
 .tableau_terrain{
     padding: 5%;
@@ -141,19 +139,33 @@ nav.menu ul {
 }
 .tabter {
     border: 1px solid white;
-    height: 92vh;
+    height: 95vh;
 }
 .arrow {
     position: absolute;
     width: 0;
     height: 0;
     z-index: 9999;
-    color: black;
     border-bottom: 10px solid black; /* Taille et couleur de la pointe de la flèche */
 }
 .container {
     display: flex; /* Utilisation de flexbox pour afficher les éléments en ligne */
     flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+}
+
+.arrow-container {
+    z-index: 2000;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.table-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.arrow-line{
+    stroke-dasharray: 5, 5;
 }
 .categorie{
     font-size: 150%;

@@ -6,8 +6,8 @@ import {Entite} from "../@creation/beans/Entite";
 import {Experience} from "./beans/Experience";
 import {Examen} from "./beans/Examen";
 import {Deplacement} from "./beans/Deplacement";
-import {getArrow} from "perfect-arrows";
-import {forkJoin, Observable} from "rxjs";
+
+
 
 
 
@@ -273,7 +273,7 @@ export class HomeComponent {
                                 const startY = (deplacement.startPosY * (100 / 58)) ;
                                 // Obtenir les dimensions actuelles de la page
                                 const containerWidth = window.innerWidth;
-                                const containerHeight = window.innerHeight;
+                                const containerHeight = window.innerHeight*0.9;
                                 // Convertir les coordonnées en pourcentage en coordonnées absolues
                                 const absStartX = (startX / 100)* containerWidth ;
                                 const absStartY = (startY / 100)* containerHeight;
@@ -284,7 +284,14 @@ export class HomeComponent {
                                 console.log("deplacement.startPosY:",deplacement.startPosY ,"startY :" ,startY);
                                 console.log("deplacement.endPosX:",deplacement.endPosX ,"endX :" ,endX);
                                 console.log("deplacement.endPosY:",deplacement.endPosY ,"endY :" ,endY);
-                                this.addArrow(absStartX, absStartY, absEndX, absEndY);
+                                // Utiliser  pour dessiner la flèche
+                                if (entite.type===0.0){
+                                    //si c un ballon on ajoute une fleche pleine
+                                    this.arrows.push({ startX: absStartX, startY: absStartY, endX: absEndX, endY: absEndY ,strokeDasharray: false});
+                                }else{
+                                    //si c un joueur un ajoute une fleche pointiller
+                                    this.arrows.push({ startX: absStartX, startY: absStartY, endX: absEndX, endY: absEndY ,strokeDasharray: true});
+                                }
                             }
                         });
                         console.log("deplacement");
@@ -304,90 +311,65 @@ export class HomeComponent {
     }
     //permet de dessiner la fleche
     // Déclarez une variable pour stocker les informations sur les flèches
-    arrows: { startX: number, startY: number, endX: number, endY: number, length: number }[] = [];
+    arrows: { startX: number, startY: number, endX: number, endY: number , strokeDasharray: boolean }[] = [];
     // Fonction pour ajouter une flèche entre deux points
-    addArrow(startX: number, startY: number, endX: number, endY: number): void {
-        // Créer un élément de flèche
-        const arrow = document.createElement('div');
-        arrow.classList.add('arrow');
 
-        // Obtenir les dimensions actuelles de la page
-        const containerWidth = window.innerWidth;
-        const containerHeight = window.innerHeight;
-        this.positionPercentage = this.getPositionPercentage(this.tableau);
+    drawArrow(ctx: CanvasRenderingContext2D, x1: number, y1: number, x2: number, y2: number): void {
+        const arrowSize: number = 25;
+        const lineLength: number = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+        const lineDx: number = x2 - x1;
+        const lineDy: number = y2 - y1;
+        const [dx, dy]: [number, number] = [Math.sign(x1 - x2), Math.sign(y1 - y2)];
 
-        // Calculer la longueur et l'angle de la flèche
-        const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
-        const angle = Math.atan2(endY-startY,endX-startX ) * (180 / Math.PI);
-        console.log("angle :",angle,"length:",length);
-
-
-        //on recalcule end en %
-        const endPX = (endX / containerWidth) * 100;
-        const endPY = (endY / containerHeight) * 100;
-
-        //on verifie si il change pas d'angle
-        if (angle >= -45 && angle <= 80) {
-            if ((angle >= -190 && angle <= -15) || (angle >= 170)) {
-                console.log("4");
-                // Appliquer les styles à la flèche
-                arrow.style.position = 'absolute';
-                arrow.style.width = (length-20 )+ 'px';
-                arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-                arrow.style.left = ((endPX-6)-this.tabTop)+ '%';
-                arrow.style.top = (endPY + (this.tabTop)+5) + '%';
-                arrow.style.transform = 'rotate(' + angle + 'deg)';
+        try {
+            let angle: number;
+            if (lineLength !== 0) {
+                angle = Math.acos(lineDx / lineLength);
             }
-            else if (angle > -15 && angle < 15) {
-                console.log("5");//
-                // Appliquer les styles à la flèche
-                arrow.style.position = 'absolute';
-                arrow.style.width = (length-20) + 'px';
-                arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-                arrow.style.left = ((endPX-5)-this.tabTop) + '%';
-                arrow.style.top = (endPY + ((this.tabTop)/2)) + '%';
-                arrow.style.transform = 'rotate(' + angle + 'deg)';
-            } else {
-                console.log("6");
-                // Appliquer les styles à la flèche
-                arrow.style.position = 'absolute';
-                arrow.style.width = (length-20) + 'px';
-                arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-                arrow.style.left = ((endPX-7)-this.tabTop) + '%';
-                arrow.style.top = (endPY-3) + '%';
-                arrow.style.transform = 'rotate(' + angle + 'deg)';
+            if (lineDy >= 0) {
+                angle = (Math.PI * 2) - angle;
             }
-        } else {
-            if ((angle >= -190 && angle <= -15) || (angle >= 165)) {
-                // Appliquer les styles à la flèche
-                console.log("1");
-                arrow.style.position = 'absolute';
-                arrow.style.width = (length-20) + 'px';
-                arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-                arrow.style.left = ((endPX )) + '%';
-                arrow.style.top = (endPY + (this.tabTop)) + '%';
-                arrow.style.transform = 'rotate(' + angle + 'deg)';
-            } else {
-                console.log("3");
-                // Appliquer les styles à la flèche
-                arrow.style.position = 'absolute';
-                arrow.style.width = (length -20) + 'px';
-                arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = 'black'; // Couleur de la flèche
-                arrow.style.left = ((endPX)) + '%';
-                arrow.style.top = (endPY-4) + '%';
-                arrow.style.transform = 'rotate(' + angle + 'deg)';
-            }
+
+            const arrowP0: { x: number, y: number } = { x: x2, y: y2 };
+            const arrowP1: { x: number, y: number } = {
+                x: arrowP0.x - (Math.sin(angle + Math.PI / 2.5) * arrowSize),
+                y: arrowP0.y - (Math.cos(angle + Math.PI / 2.5) * arrowSize)
+            };
+            const arrowP2: { x: number, y: number } = {
+                x: arrowP0.x - (Math.sin(angle + Math.PI - Math.PI / 2.5) * arrowSize),
+                y: arrowP0.y - (Math.cos(angle + Math.PI - Math.PI / 2.5) * arrowSize)
+            };
+
+            ctx.beginPath();
+            ctx.ellipse(x1 - 2.5, y1 - 2.5, 5, 5, 0, 0, Math.PI * 2);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(arrowP0.x, arrowP0.y);
+            ctx.lineTo(arrowP1.x, arrowP1.y);
+            ctx.lineTo(arrowP2.x, arrowP2.y);
+            ctx.closePath();
+            ctx.fill();
+
+        } catch (e) {
+            console.error(e);
         }
-
-
-
-        // Ajouter la flèche au DOM
-        document.querySelector('.tableau_joueur .colonne_terrain2').appendChild(arrow);
     }
+    // Méthode factice pour obtenir le contexte de rendu du canevas
+    private getCanvasRenderingContext2D(): CanvasRenderingContext2D | null {
+        const canvas = document.getElementById('arrow') as HTMLCanvasElement;
+        if (canvas) {
+            return canvas.getContext('2d');
+        } else {
+            console.error("Impossible de trouver l'élément canvas.");
+            return null;
+        }
+    }
+
 
 }

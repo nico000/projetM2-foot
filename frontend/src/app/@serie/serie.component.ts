@@ -230,6 +230,33 @@ export class SerieComponent {
                                 entite.x = deplacement.endPosX;
                                 entite.y = deplacement.endPosY;
                                 console.log("entite trouvée");
+                                const endX = (deplacement.endPosX * (100 / 65)) ;
+                                const endY = (deplacement.endPosY * (100 / 58)) ;
+                                const startX = (deplacement.startPosX * (100 / 65)) ;
+                                const startY = (deplacement.startPosY * (100 / 58)) ;
+                                // Obtenir les dimensions actuelles de la page
+                                const containerWidth = window.innerWidth;
+                                const containerHeight = window.innerHeight*0.9;
+                                // Convertir les coordonnées en pourcentage en coordonnées absolues
+                                const absStartX = (startX / 100)* containerWidth ;
+                                const absStartY = (startY / 100)* containerHeight;
+                                const absEndX = (endX / 100)* containerWidth ;
+                                const absEndY = (endY / 100)* containerHeight;
+                                console.log("this.tabTop",this.tabTop,"this.tabLeft",this.tabLeft)
+                                console.log("deplacement.startPosX:",deplacement.startPosX ,"startX :" ,startX);
+                                console.log("deplacement.startPosY:",deplacement.startPosY ,"startY :" ,startY);
+                                console.log("deplacement.endPosX:",deplacement.endPosX ,"endX :" ,endX);
+                                console.log("deplacement.endPosY:",deplacement.endPosY ,"endY :" ,endY);
+                                // Utiliser  pour dessiner la flèche
+                                if (entite.type===0.0){
+                                    //si c un ballon on ajoute une fleche pleine
+                                    this.arrows.push({ startX: absStartX, startY: absStartY, endX: absEndX, endY: absEndY
+                                        ,strokeDasharray: false,strokeColor: '#000'});
+                                }else{
+                                    //si c un joueur un ajoute une fleche pointiller
+                                    this.arrows.push({ startX: absStartX, startY: absStartY, endX: absEndX, endY: absEndY
+                                        ,strokeDasharray: true,strokeColor: '#000'});
+                                }
                             }
                         });
                         console.log("deplacement");
@@ -262,6 +289,7 @@ export class SerieComponent {
             scenario.zone_nb_couloir=this._serieSelect.experience[this._scenarioLancer].zone_nb_couloir;
             //on lance le scenario
             this.selectScenario(scenario,'tableau_terrain');
+            this.arrows=[];
             this.playVisualisation(scenario);
         });
     }
@@ -409,6 +437,7 @@ export class SerieComponent {
         //recuper le time
         this.EndTime=Date.now();
         this._newEssai.temps=(this.EndTime-this.StartTime)/1000;//temps en seconde
+        this._feedisStart=false;
         //on envoie l'essai et recupere le resultat
         this._serieService.addEssai(this._newEssai).subscribe(
             (resultat: ResultatFeedBack) => {
@@ -461,7 +490,7 @@ export class SerieComponent {
                                 const startY = (deplacement.startPosY * (100 / 58)) ;
                                 // Obtenir les dimensions actuelles de la page
                                 const containerWidth = window.innerWidth;
-                                const containerHeight = window.innerHeight;
+                                const containerHeight = window.innerHeight*0.9;
                                 // Convertir les coordonnées en pourcentage en coordonnées absolues
                                 const absStartX = (startX / 100)* containerWidth ;
                                 const absStartY = (startY / 100)* containerHeight;
@@ -473,15 +502,31 @@ export class SerieComponent {
                                 // console.log("deplacement.endPosX:",deplacement.endPosX ,"endX :" ,endX);
                                 // console.log("deplacement.endPosY:",deplacement.endPosY ,"endY :" ,endY);
                                 console.log("deplacement reussi:",deplacement.reussi ,"this._serieSelect.contenuFeedback :" ,this._serieSelect.contenuFeedback);
-                                if(entite.type===0){
+                                // Utiliser  pour dessiner la flèche
+                                if (entite.type===0.0){
+                                    //si c un ballon on ajoute une fleche pleine
+                                    if (deplacement.reussi===true && this._serieSelect.contenuFeedback==='global'){
+                                        //si reussi et global
+                                        this.arrows.push({ startX: absStartX, startY: absStartY, endX: absEndX, endY: absEndY
+                                            ,strokeDasharray: false,strokeColor: '#32cd32'});
+                                    }
+                                    if(deplacement.reussi===false){
+                                        //si mouvement rate
+                                        this.arrows.push({ startX: absStartX, startY: absStartY, endX: absEndX, endY: absEndY
+                                            ,strokeDasharray: false,strokeColor: '#b22222'});
+                                    }
+                                }else{
+                                    //si c un joueur un ajoute une fleche pointiller
+                                    if (deplacement.reussi===true && this._serieSelect.contenuFeedback==='global'){
+                                        this.arrows.push({ startX: absStartX, startY: absStartY, endX: absEndX, endY: absEndY
+                                            ,strokeDasharray: true,strokeColor: '#32cd32'});
+                                    }
+                                    if(deplacement.reussi===false){
+                                        this.arrows.push({ startX: absStartX, startY: absStartY, endX: absEndX, endY: absEndY
+                                            ,strokeDasharray: true,strokeColor: '#b22222'});
+                                    }
+                                }
 
-                                }
-                                if (deplacement.reussi===true && this._serieSelect.contenuFeedback==='global'){
-                                    this.addArrow(absStartX, absStartY, absEndX, absEndY,'green');
-                                }
-                                if(deplacement.reussi===false){
-                                    this.addArrow(absStartX, absStartY, absEndX, absEndY,'red');
-                                }
 
                             }
                         });
@@ -499,93 +544,15 @@ export class SerieComponent {
     }
     //permet de dessiner la fleche
     // Déclarez une variable pour stocker les informations sur les flèches
-    arrows: { startX: number, startY: number, endX: number, endY: number, length: number }[] = [];
+    arrows: { startX: number, startY: number, endX: number, endY: number , strokeDasharray: boolean , strokeColor: string}[] = [];
+    protected _feedisStart:boolean =false;
     // Fonction pour ajouter une flèche entre deux points
-    addArrow(startX: number, startY: number, endX: number, endY: number,color:string): void {
-        // Créer un élément de flèche
-        const arrow = document.createElement('div');
-        arrow.classList.add('arrow');
-
-        // Obtenir les dimensions actuelles de la page
-        const containerWidth = window.innerWidth;
-        const containerHeight = window.innerHeight;
-
-        // Calculer la longueur et l'angle de la flèche
-        const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
-        const angle = Math.atan2(endY-startY,endX-startX ) * (180 / Math.PI);
-        console.log("angle :",angle,"length:",length);
-
-
-        //on recalcule end en %
-        const endPX = (endX / containerWidth) * 100;
-        const endPY = (endY / containerHeight) * 100;
-        const startPY=(startY / containerHeight) * 100;
-        //on verifie si il change pas d'angle
-        if (angle >= -45 && angle <= 80) {
-            if ((angle >= -190 && angle <= -15) || (angle >= 170)) {
-                console.log("4");
-                // Appliquer les styles à la flèche
-                arrow.style.position = 'absolute';
-                arrow.style.width = (length-20 )+ 'px';
-                arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = color; // Couleur de la flèche
-                arrow.style.left = ((endPX-6)-this.tabTop)+ '%';
-                arrow.style.top = (endPY + (this.tabTop)+5) + '%';
-                arrow.style.transform = 'rotate(' + angle + 'deg)';
-            }
-            else if (angle > -15 && angle < 15) {
-                console.log("5");//
-                // Appliquer les styles à la flèche
-                arrow.style.position = 'absolute';
-                arrow.style.width = (length-20) + 'px';
-                arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = color; // Couleur de la flèche
-                arrow.style.left = ((endPX-5)-this.tabTop) + '%';
-                arrow.style.top = (endPY + ((this.tabTop)/2)) + '%';
-                arrow.style.transform = 'rotate(' + angle + 'deg)';
-            } else {
-                console.log("6");
-                // Appliquer les styles à la flèche
-                arrow.style.position = 'absolute';
-                arrow.style.width = (length-20) + 'px';
-                arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = color; // Couleur de la flèche
-                arrow.style.left = ((endPX-7)-this.tabTop) + '%';
-                arrow.style.top = (endPY-3) + '%';
-                arrow.style.transform = 'rotate(' + angle + 'deg)';
-            }
-        } else {
-            if ((angle >= -190 && angle <= -15) || (angle >= 165)) {
-                // Appliquer les styles à la flèche
-                console.log("1");
-                arrow.style.position = 'absolute';
-                arrow.style.width = (length-20) + 'px';
-                arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = color; // Couleur de la flèche
-                arrow.style.left = ((endPX )) + '%';
-                arrow.style.top = (endPY + (this.tabTop)) + '%';
-                arrow.style.transform = 'rotate(' + angle + 'deg)';
-            } else {
-                console.log("3");
-                // Appliquer les styles à la flèche
-                arrow.style.position = 'absolute';
-                arrow.style.width = (length -20) + 'px';
-                arrow.style.height = '2px'; // Épaisseur de la flèche
-                arrow.style.backgroundColor = color; // Couleur de la flèche
-                arrow.style.left = ((endPX)) + '%';
-                arrow.style.top = (endPY-4) + '%';
-                arrow.style.transform = 'rotate(' + angle + 'deg)';
-            }
-        }
-
-        // Ajouter la flèche au DOM
-        document.querySelector('.tableau_joueur2 .colonne_terrain2').appendChild(arrow);
-    }
 
     lanceStatic(){
-        this.arrows=[];
+        this._feedisStart=true;
         this.openData(this._StaticModal);
         this.selectScenario(this._scenarioplay,'tableau_terrain3');
+        this.arrows=[];
         this.playVisualisationStatic();
     }
 
@@ -609,6 +576,11 @@ export class SerieComponent {
             this.resetData(this._feedBackStaticModal);
             this.openData(this._veridModal);
         }
+    }
+
+    quitteFeedStatic(){
+        this.resetData(this._StaticModal);
+        this.openData(this._feedBackStaticModal);
     }
 
 

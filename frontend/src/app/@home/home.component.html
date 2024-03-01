@@ -63,6 +63,38 @@
 
 
 <jw-modal id="{{_selectScenarioModalName}}" >
+
+    <div class="table-container ">
+        <div style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+            <table id="tableau_terrain" class="tableau_terrain tabter">
+                <!-- Boucle pour les couloirs -->
+                <tr *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
+                    <!-- Boucle pour les zones -->
+                    <td *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone" [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
+                        <div *ngFor="let entite of _entiteList" class="draggable" [style.left.%]="((entite.x*(100/65)))" [style.top.%]="((entite.y*(100/65)))">
+                            <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
+                                {{ entite.numero }}
+                            </div>
+                            <div class="draggable ballon numEcriture" *ngIf="entite.type==0" style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <!-- Conteneur des flèches -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" class="arrow-container">
+                <defs>
+                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                        <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+                    </marker>
+                </defs>
+                <line *ngFor="let arrow of arrows" [attr.x1]="arrow.startX" [attr.y1]="arrow.startY"
+                      [attr.x2]="arrow.endX" [attr.y2]="arrow.endY" stroke="#f00" stroke-width="2" marker-end="url(#arrow)" class="arrow-line"
+                      [attr.stroke-dasharray]="arrow.strokeDasharray===true ? '5,5' : ''"  />
+            </svg>
+        </div>
+    </div>
+
     <nav class="menu">
         <ul>
             <li  class="boutton" >
@@ -76,41 +108,6 @@
             </li>
         </ul>
     </nav>
-<table class="tableau_joueur">
-        <tr>
-            <td class="colonne_terrain2">
-                <div  style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
-                <table id="tableau_terrain" class="tableau_terrain tabter" >
-                    <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
-                        <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
-                             [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
-                            <div  *ngFor="let entite of _entiteList" class="draggable"
-                                  [style.left.%]="((entite.x*(100/65))+this.tabLeft)" [style.top.%]="((entite.y*(100/65))+this.tabTop)">
-                                <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
-                                    {{ entite.numero }}
-                                </div>
-                                <div class="draggable ballon numEcriture" *ngIf="entite.type==0"
-                                     style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
-                                </div>
-                                <!-- Ajouter des éléments pour représenter les flèches -->
-                                <div *ngFor="let arrow of arrows">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table></div>
-            </td>
-        </tr>
-        <tr>
-            <div class="container">
-                <div class="categorie">Mode Scene : </div><div class="Ecriture">{{_selectedScenario.mode_scene}}&nbsp;&nbsp;&nbsp;</div>
-                <div class="categorie">Couleur terrain : </div><div class="Ecriture">{{_selectedScenario.terrain_couleur}}&nbsp;&nbsp;&nbsp;</div>
-                <div class="categorie">Taille terrain : </div><div class="Ecriture">{{_selectedScenario.terrain_taille}}&nbsp;&nbsp;&nbsp;</div>
-                <div class="categorie">Nombre de zone : </div><div class="Ecriture">{{_selectedScenario.zone_nb_zone}}&nbsp;&nbsp;&nbsp;</div>
-                <div class="categorie">Nombre de couloir : </div><div class="Ecriture">{{_selectedScenario.zone_nb_couloir}}</div>
-            </div>
-        </tr>
-    </table>
 
 </jw-modal>
 

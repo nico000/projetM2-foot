@@ -158,23 +158,36 @@
     <table class="tableau_joueur">
         <tr>
             <td class="colonne_terrain2">
-                <div  style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
-                    <table id="tableau_terrain" class="tableau_terrain tabter">
-                        <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
-                            <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
-                                 [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
-                                <div  *ngFor="let entite of _entiteList" class="draggable"
-                                      [style.left.%]="((entite.x*(100/65)))" [style.top.%]="((entite.y*(100/57))-3)">
-                                    <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
-                                        {{ entite.numero }}
+                <div class="table-container ">
+                    <div style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                        <table id="tableau_terrain" class="tableau_terrain tabter">
+                            <!-- Boucle pour les couloirs -->
+                            <tr *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
+                                <!-- Boucle pour les zones -->
+                                <td *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone" [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
+                                    <div *ngFor="let entite of _entiteList" class="draggable" [style.left.%]="((entite.x*(100/65)))" [style.top.%]="((entite.y*(100/65)))">
+                                        <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
+                                            {{ entite.numero }}
+                                        </div>
+                                        <div class="draggable ballon numEcriture" *ngIf="entite.type==0" style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div>
                                     </div>
-                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0"
-                                         style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table></div>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- Conteneur des flèches -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" class="arrow-container">
+                            <defs>
+                                <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                                    <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+                                </marker>
+                            </defs>
+                            <line *ngFor="let arrow of arrows" [attr.x1]="arrow.startX" [attr.y1]="arrow.startY"
+                                  [attr.x2]="arrow.endX" [attr.y2]="arrow.endY" stroke="#f00" stroke-width="2" marker-end="url(#arrow)" class="arrow-line"
+                                  [attr.stroke-dasharray]="arrow.strokeDasharray===true ? '5,5' : ''"  [attr.stroke]="arrow.strokeColor"/>
+                        </svg>
+                    </div>
+                </div>
             </td>
         </tr>
     </table>
@@ -193,28 +206,32 @@
     <table class="tableau_joueur">
         <tr>
             <td class="colonne_terrain2">
-                <div  style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
-                    <table id="tableau_terrain2" class="tableau_terrain tabter" (click)="addDeplacement($event)">
-                        <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
-                            <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
-                                 [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
-                                <div  *ngFor="let entite of _entiteList" class="draggable"
-                                      [style.left.%]="((entite.x*(100/65)))" [style.top.%]="((entite.y*(100/57)))"
-                                      (click)="selectEntite(entite)">
-                                    <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
-                                        <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">
-                                            {{ entite.numero }}
+                <div class="table-container ">
+                    <div style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                        <table id="tableau_terrain2" class="tableau_terrain tabter" (click)="addDeplacement($event)">
+                            <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
+                                <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
+                                     [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
+                                    <div  *ngFor="let entite of _entiteList" class="draggable"
+                                          [style.left.%]="((entite.x*(100/65)))" [style.top.%]="((entite.y*(100/57)))"
+                                          (click)="selectEntite(entite)">
+                                        <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
+                                            <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">
+                                                {{ entite.numero }}
+                                            </div>
+                                        </div>
+                                        <div class="draggable ballon numEcriture" *ngIf="entite.type==0"
+                                             style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                                            <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''"
+                                                 [style.background-image]="isEntiteSelect(entite) ? '' : 'none'">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0"
-                                         style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
-                                        <div [style.background-color]="isEntiteSelect(entite) ? 'red' : ''">
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </td>
         </tr>
     </table>
@@ -256,7 +273,7 @@
     <nav class="menu">
         <ul>
             <li class="boutton" *ngIf="this._resultat.reussi===false" style="width: 40%"><a (click)="resetData(_feedBackStaticModal)">Abandoner</a></li>
-            <li class="boutton" *ngIf="this._resultat.reussi===false " style="width: 40%"><a (click)="relance()">Recommencer</a></li>
+            <li class="boutton" *ngIf="this._resultat.reussi===false && _feedisStart" style="width: 40%"><a (click)="relance()">Recommencer</a></li>
             <li class="boutton" *ngIf="this._resultat.reussi===true" style="width: 40%"><a (click)="relance()">Suivant</a></li>
         </ul>
     </nav>
@@ -266,32 +283,42 @@
     <table class="tableau_joueur2">
         <tr>
             <td class="colonne_terrain2">
-                <div  style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
-                    <table id="tableau_terrain3" class="tableau_terrain tabter" >
-                        <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
-                            <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
-                                 [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
-                                <div  *ngFor="let entite of _entiteList" class="draggable"
-                                      [style.left.%]="((entite.x*(100/65)))" [style.top.%]="((entite.y*(100/58)))">
-                                    <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
-                                        {{ entite.numero }}
+                <div class="table-container ">
+                    <div style="background-image: url('./assets/terrainFinal.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                        <table id="tableau_terrain3" class="tableau_terrain tabter" >
+                            <tr  *ngFor="let couloir of nb_couloir(_selectedScenario.zone_nb_couloir); let odd = odd" class="couloir">
+                                <td  *ngFor="let zone of nb_couloir(_selectedScenario.zone_nb_zone)" class="zone"
+                                     [style.background-color]="_selectedScenario.terrain_couleur === 'blanc' ? 'white' : 'initial'">
+                                    <div  *ngFor="let entite of _entiteList" class="draggable"
+                                          [style.left.%]="((entite.x*(100/65)))" [style.top.%]="((entite.y*(100/58)))">
+                                        <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
+                                            {{ entite.numero }}
+                                        </div>
+                                        <div class="draggable ballon numEcriture" *ngIf="entite.type==0"
+                                             style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div>
                                     </div>
-                                    <div class="draggable ballon numEcriture" *ngIf="entite.type==0"
-                                         style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
-                                    </div>
-                                    <!-- Ajouter des éléments pour représenter les flèches -->
-                                    <div *ngFor="let arrow of arrows">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table></div>
+                                </td>
+                            </tr>
+                        </table>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" class="arrow-container">
+                            <defs>
+                                <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                                    <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+                                </marker>
+                            </defs>
+                            <line *ngFor="let arrow of arrows" [attr.x1]="arrow.startX" [attr.y1]="arrow.startY"
+                                  [attr.x2]="arrow.endX" [attr.y2]="arrow.endY" stroke="#f00" stroke-width="2" marker-end="url(#arrow)" class="arrow-line"
+                                  [attr.stroke-dasharray]="arrow.strokeDasharray===true ? '5,5' : ''"  [attr.stroke]="arrow.strokeColor"/>
+                        </svg>
+                    </div>
+                </div>
             </td>
         </tr>
     </table>
     <nav class="menu">
         <ul>
-            <li class="boutton" ><a (click)="resetData(_StaticModal)">Quitter</a></li>
+            <li class="boutton" ><a (click)="quitteFeedStatic()">Quitter</a></li>
         </ul>
     </nav>
 </jw-modal>

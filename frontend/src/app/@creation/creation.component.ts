@@ -65,7 +65,7 @@ export class CreationComponent {
         this.numAction=0.0;
         setTimeout(() => {
             this.objectInit();
-        }, 2000); // 1000 millisecondes = 1 seconde
+        }, 1000); // 1000 millisecondes = 1 seconde
     }
 
     isBlanc(){
@@ -472,6 +472,65 @@ export class CreationComponent {
                 this._newEntite.scenario = this.LastScenario.id;
                 this._newEntite.numero = this.numero;
                 this._newEntite.type = 1;
+                this._newEntite.x = leftPercentage;
+                this._newEntite.y = topPercentage;
+                this._creationService.addEntite(this._newEntite).subscribe(
+                    res => {
+                        this._entiteList.push(res);
+                    }
+                )
+
+            }).catch(error => {
+                console.error('Une erreur s\'est produite lors de la récupération du scénario :', error);
+                // Gérer l'erreur ici si nécessaire
+            });
+
+            // Réinitialiser la position du joueur à sa place initiale (0%)
+            this.draggableObject.style.left = `${this.initialLeft}px`;
+            this.draggableObject.style.top = `${this.initialTop}px`;
+        }
+    }
+
+    //ajout d'un gardien2
+    addJoueugardien() {
+        console.log("Objet déplacé. Fonction 'add' appelée.");
+
+        //recuperation position jeton
+        if (this.draggableObject) {
+            // Récupérer les positions finales du jeton
+            const rect = this.draggableObject.getBoundingClientRect();
+            const finalLeft = this.draggableObject.offsetLeft;
+            const finalTop = this.draggableObject.offsetTop;
+
+            // Afficher les positions finales dans la console
+            console.log('joueur Position finale - Left:', finalLeft, 'Top:', finalTop);
+
+            // Récupérer les dimensions de la page
+            const pageWidth = window.innerWidth;
+            const pageHeight = window.innerHeight;
+
+            // Calculer les positions finales en pourcentage par rapport à la page
+            let leftPercentage = (finalLeft / pageWidth) * 100;
+            let topPercentage = (finalTop / pageHeight) * 100;
+
+            //recup position tableau
+            this.positionPercentage = this.getPositionPercentage(this.tableau);
+
+            this.tabLeft=this.positionPercentage.left;
+            this.tabTop=this.positionPercentage.top;
+            leftPercentage=leftPercentage-this.tabLeft;
+            topPercentage=topPercentage-this.tabTop;
+
+            // Afficher les positions finales en pourcentage dans la console
+            console.log('Position finale en pourcentage - Left:', leftPercentage, 'Top:', topPercentage);
+
+
+            // Ajouter joueur dans la bdd
+            this.numero += 1;
+            this.getScenarioName(this.lastNom).then(() => {
+                this._newEntite.scenario = this.LastScenario.id;
+                this._newEntite.numero = this.numero;
+                this._newEntite.type = 2;
                 this._newEntite.x = leftPercentage;
                 this._newEntite.y = topPercentage;
                 this._creationService.addEntite(this._newEntite).subscribe(

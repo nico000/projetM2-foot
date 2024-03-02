@@ -3,7 +3,6 @@ package com.projetM2_foot.controller;
 
 import com.projetM2_foot.api.request.ResultatEssaiRequestCreate;
 import com.projetM2_foot.api.response.FeedbackResponse;
-import com.projetM2_foot.api.response.ResultatExperienceResponse;
 import com.projetM2_foot.entity.ResultatDeplacement;
 import com.projetM2_foot.entity.ResultatEssai;
 import com.projetM2_foot.mapper.DeplacementMapper;
@@ -18,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @RestController

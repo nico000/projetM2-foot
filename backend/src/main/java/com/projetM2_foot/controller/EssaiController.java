@@ -49,14 +49,7 @@ public class EssaiController {
         // map la liste de déplacement
         Set<ResultatDeplacement> rdepSet = new HashSet<>(deplacementMapper.toResEntityAll(request.getDeplacements()));
 
-        // Vérifie la cohérence entre le résultat et le scénario et retourne le nombre de bonne réponse sur cette essai
-        int score = essaiService.getFeedbackListDeplacement(rdepSet , request.getResultatExperience());
-
-        // Creer l'essai avec la liste de deplacement
-        ResultatEssai rtry = resultatEssaiMapper.toEntity(request , rdepSet);
-        rtry.setScore(score);
-        rtry.setReussi(score == rdepSet.size());
-        rtry = essaiService.create(rtry);
+        ResultatEssai rtry = essaiService.create(rdepSet , request);
 
         FeedbackResponse dto = resultatEssaiMapper.toFeedbackDto(rtry);
         return ResponseEntity.ok(dto);

@@ -36,7 +36,7 @@ public class ResultatExamenMapper {
                 .matchePerson(request.getMatche())
                 .entrainementPerson(request.getEntrainement())
                 .heurePerson(request.getHeure())
-                .score(-1)
+                .score(0)
                 .examen(examenService.getById(request.getExamen()))
                 .createDate(new Date())
                 .vueMatchPerson(request.getVueMatch())

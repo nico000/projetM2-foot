@@ -38,5 +38,10 @@ public class ResultatExamenService {
                 .findByNomPersonAndPrenomPersonOrderByCreateDate(nom,prenom);
     }
 
+    public ResultatExamen addToScore(ResultatExamen rexa , int increment){
+        rexa.setScore(rexa.getScore() + increment);
+        return resultatExamenRepository.save(rexa);
+    }
+
 
 }

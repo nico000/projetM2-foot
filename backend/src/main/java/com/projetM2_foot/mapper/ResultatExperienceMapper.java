@@ -25,7 +25,7 @@ public class ResultatExperienceMapper {
         return ResultatExperience.builder()
                 .experience(experienceService.getById(experience))
                 .resultatExamen(resultatExamenService.getById(resultatExamen))
-                .score(-1)
+                .score(0)
                 .createDate(new Date())
                 .build();
     }

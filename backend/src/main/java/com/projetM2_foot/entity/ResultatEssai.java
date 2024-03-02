@@ -40,7 +40,7 @@ public class ResultatEssai {
     @JoinColumn(name = "rtry_fk_rexp")
     private ResultatExperience resultatExperience;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "rtry_dep",
             joinColumns = @JoinColumn(name = "rtry_id"),

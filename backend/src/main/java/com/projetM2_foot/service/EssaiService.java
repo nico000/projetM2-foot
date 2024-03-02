@@ -1,11 +1,14 @@
 package com.projetM2_foot.service;
 
 
+import com.projetM2_foot.api.request.ResultatEssaiRequestCreate;
 import com.projetM2_foot.entity.*;
+import com.projetM2_foot.mapper.ResultatEssaiMapper;
 import com.projetM2_foot.repository.EssaiRepository;
 import com.projetM2_foot.repository.ResultatDeplacementRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.Cascade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -28,24 +31,25 @@ public class EssaiService {
 
     private final ResultatExperienceService resultatExperienceService;
     private final DeplacementService deplacementService;
+    private final ResultatEssaiMapper resultatEssaiMapper;
 
-    @Transactional
-    public ResultatEssai create(ResultatEssai entity){
 
-        Set<ResultatDeplacement> rdepSet = new HashSet<>();
 
-        for(ResultatDeplacement dep : entity.getDeplacementSet()){
-            rdepSet.add(addDep(dep));
+    public ResultatEssai create(Set<ResultatDeplacement> rdepSet , ResultatEssaiRequestCreate request){
+
+
+        // Vérifie la cohérence entre le résultat et le scénario et retourne le nombre de bonne réponse sur cette essai
+        int score = getFeedbackListDeplacement(rdepSet , request.getResultatExperience());
+
+        // Creer l'essai avec la liste de deplacement
+        ResultatEssai rtry = resultatEssaiMapper.toEntity(request , rdepSet);
+        rtry.setScore(score);
+        rtry.setReussi(score == rdepSet.size());
+
+        if(rtry.isReussi()){
+            resultatExperienceService.addToScore(rtry.getResultatExperience() , 1);
         }
-        entity.setDeplacementSet(rdepSet);
-
-        return essaiRepository.save(entity);
-    }
-
-
-    public ResultatDeplacement addDep(ResultatDeplacement dep){
-        assert dep != null;
-        return resultatDeplacementRepository.save(dep);
+        return essaiRepository.save(rtry);
     }
 
 

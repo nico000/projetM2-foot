@@ -19,6 +19,7 @@ public class ResultatExperienceService {
 
     @Autowired
     private final ResultatExperienceRepository resultatExperienceRepository;
+    private final ResultatExamenService resultatExamenService;
 
     public ResultatExperience create(ResultatExperience entity){
         return resultatExperienceRepository.save(entity);
@@ -41,6 +42,14 @@ public class ResultatExperienceService {
 
         return resultatExperienceRepository
                 .findByResultatExamenId(idResultatExamen);
+    }
+
+    public ResultatExperience addToScore(ResultatExperience rexp , int increment){
+
+        rexp.setScore(rexp.getScore() + increment);
+        resultatExamenService.addToScore(rexp.getResultatExamen() , increment);
+        return resultatExperienceRepository.save(rexp);
+
     }
 
 

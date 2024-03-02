@@ -85,16 +85,14 @@ public class ResultatDeplacement {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("ResultatDeplacement{");
-        sb.append("id=").append(id);
-        sb.append(", numAction=").append(numAction);
-        sb.append(", reussi=").append(reussi);
-        sb.append(", entite=").append(entite);
-        sb.append(", startZoneX=").append(startZoneX);
-        sb.append(", startZoneY=").append(startZoneY);
-        sb.append(", endZoneX=").append(endZoneX);
-        sb.append(", endZoneY=").append(endZoneY);
-        sb.append('}');
-        return sb.toString();
+        return "ResultatDeplacement{" + "id=" + id +
+                ", numAction=" + numAction +
+                ", reussi=" + reussi +
+                ", entite=" + entite +
+                ", startZoneX=" + startZoneX +
+                ", startZoneY=" + startZoneY +
+                ", endZoneX=" + endZoneX +
+                ", endZoneY=" + endZoneY +
+                '}';
     }
 }

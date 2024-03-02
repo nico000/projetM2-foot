@@ -39,6 +39,10 @@ public class ResultatExamenMapper {
                 .score(-1)
                 .examen(examenService.getById(request.getExamen()))
                 .createDate(new Date())
+                .vueMatchPerson(request.getVueMatch())
+                .vueTvPerson(request.getVueTv())
+                .jvPerson(request.getJv())
+                .visionPerson(request.getVision())
                 .build();
     }
 
@@ -60,6 +64,10 @@ public class ResultatExamenMapper {
                 .heure(entity.getHeurePerson())
                 .score(entity.getScore())
                 .examen(entity.getExamen().getId())
+                .vueMatch(entity.getVueMatchPerson())
+                .vueTv(entity.getVueTvPerson())
+                .jv(entity.getJvPerson())
+                .vision(entity.getVisionPerson())
                 .build();
     }
 

@@ -23,5 +23,10 @@ public class ResultatExamenResponse {
     private int entrainement;
     private int heure;
 
+    private int vueMatch;
+    private int vueTv;
+    private Boolean jv;
+    private Boolean vision;
+
     private int score;
 }

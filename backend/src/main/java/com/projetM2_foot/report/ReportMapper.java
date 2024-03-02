@@ -1,4 +1,4 @@
-package com.projetM2_foot.report.mapper;
+package com.projetM2_foot.report;
 
 import com.projetM2_foot.entity.*;
 import com.projetM2_foot.report.response.*;
@@ -59,6 +59,11 @@ public class ReportMapper {
                 .nombreMatches(entity.getMatchePerson())
                 .entrainement(entity.getEntrainementPerson())
                 .heure(entity.getHeurePerson())
+
+                .vueMatch(entity.getVueMatchPerson())
+                .vueTv(entity.getVueTvPerson())
+                .jv(entity.getJvPerson())
+                .vision(entity.getVisionPerson())
                 .build();
     }
 

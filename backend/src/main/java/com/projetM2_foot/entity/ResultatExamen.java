@@ -50,6 +50,17 @@ public class ResultatExamen {
     @Column(name = "rexa_heure_person")
     private int heurePerson;
 
+    @Column(name = "rexa_vue_match_person")
+    private int vueMatchPerson;
+    @Column(name = "rexa_vue_tv_person")
+    private int vueTvPerson;
+    @Column(name = "rexa_jv_person")
+    private Boolean jvPerson;
+    @Column(name = "rexa_vision_person")
+    private Boolean visionPerson;
+
+
+
 
     @Column(name = "rexa_score")
     private int score;

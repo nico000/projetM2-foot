@@ -48,15 +48,13 @@ public class EssaiController {
 
         log.info("Endpoint appelé : POST /essai/");
 
-        log.info(String.valueOf(request));
-
-        // creer la liste de déplacement
+        // map la liste de déplacement
         Set<ResultatDeplacement> rdepSet = new HashSet<>(deplacementMapper.toResEntityAll(request.getDeplacements()));
 
-        // Vérifie la cohérence entre le résultat et le scénario et retourne le nobre de bonne réponse sur cette essai
+        // Vérifie la cohérence entre le résultat et le scénario et retourne le nombre de bonne réponse sur cette essai
         int score = essaiService.getFeedbackListDeplacement(rdepSet , request.getResultatExperience());
 
-        // Creer l'essai avec la liste de placement
+        // Creer l'essai avec la liste de deplacement
         ResultatEssai rtry = resultatEssaiMapper.toEntity(request , rdepSet);
         rtry.setScore(score);
         rtry.setReussi(score == rdepSet.size());
@@ -66,15 +64,5 @@ public class EssaiController {
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/all")
-    @Operation(
-            summary = "Récupérer tout les resultat des essai",
-            description = "Trouve l'ensemble des resultat experience")
-    public ResponseEntity<List<ResultatExperienceResponse>> getResultatExperience(
-    ){
-
-
-        return ResponseEntity.ok(null);
-    }
 
 }

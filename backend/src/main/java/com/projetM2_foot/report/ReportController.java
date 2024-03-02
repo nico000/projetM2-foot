@@ -2,7 +2,6 @@ package com.projetM2_foot.report;
 
 
 import com.projetM2_foot.entity.*;
-import com.projetM2_foot.report.mapper.ReportMapper;
 import com.projetM2_foot.report.response.*;
 import com.projetM2_foot.service.ExamenService;
 import com.projetM2_foot.service.ResultatExamenService;
@@ -46,7 +45,6 @@ public class ReportController {
             HttpServletResponse response,
             @RequestParam String nom,
             @RequestParam String prenom) throws IOException {
-        System.out.println("nom:" +nom+"prenom"+prenom);
         this.userReportService.exportToExcelPerson(response,nom,prenom);
     }
 

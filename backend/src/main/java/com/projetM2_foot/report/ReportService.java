@@ -1,7 +1,6 @@
 package com.projetM2_foot.report;
 
 import com.projetM2_foot.entity.ResultatExamen;
-import com.projetM2_foot.report.mapper.ReportMapper;
 import com.projetM2_foot.report.response.ReportResultatExamen;
 import com.projetM2_foot.service.ResultatExamenService;
 import lombok.AllArgsConstructor;

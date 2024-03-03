@@ -95,6 +95,7 @@ public class ExamenController {
     ){
 
         log.info("Endpoint appelé : PUT /examen/add?id=" + id +"&nom="+ nom);
+        log.info(request.toString());
 
         if(nom == null && id == null) {
             throw new ResponseStatusException(
@@ -117,6 +118,7 @@ public class ExamenController {
                 entity_exa = examenService.addExp(nom, entity_save);
             }
             // creer response
+            log.info("Retour examen  : " + entity_exa.getExperienceSet());
             final ExamenResponse dto = examenMapper.toDto(entity_exa);
             return ResponseEntity.ok().body(dto);
         }

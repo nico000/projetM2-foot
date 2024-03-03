@@ -13,17 +13,21 @@ public class ExperienceRequestCreate {
     private int freqFeedback;
     private int visuFeedback;
 
-    //private Boolean displayArea;
-   // private int colonArea;
-    //private int corridorArea;
-
     private String modeScene;
-    //private String groundColor;
-
-
 
     private String terrain_couleur;
     private Boolean zone_display;
     private int zone_nb_zone;
     private int zone_nb_couloir;
+
+    @Override
+    public String toString() {
+        return "ExperienceRequestCreate{" + "scenario=" + scenario +
+                ", typeFeedback='" + typeFeedback + '\'' +
+                ", freqFeedback=" + freqFeedback +
+                ", visuFeedback=" + visuFeedback +
+                ", modeScene='" + modeScene + '\'' +
+                ", terrain_couleur='" + terrain_couleur + '\'' +
+                '}';
+    }
 }

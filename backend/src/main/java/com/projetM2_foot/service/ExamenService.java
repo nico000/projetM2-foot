@@ -53,7 +53,9 @@ public class ExamenService {
     }
 
     public Examen addExp(String name , Experience exp){
+        log.info("PassageBefore");
         Examen exa = getByName(name);
+        log.info("PassageAfter");
         exa.getExperienceSet().add(exp);
         return examenRepository.save(exa);
     }

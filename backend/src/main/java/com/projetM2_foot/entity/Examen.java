@@ -21,6 +21,7 @@ public class Examen {
     private Long id;
 
     @ManyToMany
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JoinTable(
             name = "exa_exp",
             joinColumns = @JoinColumn(name = "exa_id"),

@@ -50,6 +50,7 @@ public class ResultatExamenController {
             @RequestBody ResultatExamenRequestCreate request){
 
         log.info("Endpoint appelé : POST /resultat_examen");
+        log.info(request.toString());
 
         // Créer le résultat d'examen
         ResultatExamen resultatExamen = resultatExamenMapper.toEntity(request);

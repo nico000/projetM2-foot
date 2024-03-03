@@ -11,4 +11,9 @@ export class Utilisateur{
     public matche: number = 0.0;
     public entrainement: number = 0.0;
     public heure: number = 0.0;
+
+    public vueMatch: number = 0.0;
+    public vueTv: number = 0.0;
+    public vision: boolean = false;
+    public jv: boolean = false;
 }

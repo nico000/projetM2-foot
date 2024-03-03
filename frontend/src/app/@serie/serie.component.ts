@@ -141,6 +141,16 @@ export class SerieComponent {
         this._newUtilisateur.pro=bool;
     }
 
+    updateVision(bool:boolean){
+        this._newUtilisateur.vision=bool;
+    }
+
+    updateJeuVideo(bool:boolean){
+        this._newUtilisateur.jv=bool;
+    }
+
+
+
     // lancer la simulation
     protected _serieSelect:Serie=new Serie();
     protected _depalcementList: Deplacement[]= [];

@@ -19,7 +19,7 @@ public class ResultatExamenRequestCreate {
     private String pratique;
     private Boolean pro;
     private int anneeExperience;
-    public int matche;
+    private int matche;
     private int entrainement;
     private int heure;
 
@@ -27,4 +27,18 @@ public class ResultatExamenRequestCreate {
     private int vueTv;
     private Boolean jv;
     private Boolean vision;
+
+    @Override
+    public String toString() {
+        return "ResultatExamenRequestCreate{" + "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", pro=" + pro +
+                ", vueMatch=" + vueMatch +
+                ", vueTv=" + vueTv +
+                ", jv=" + jv +
+                ", vision=" + vision +
+                '}';
+    }
 }

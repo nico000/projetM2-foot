@@ -16,7 +16,7 @@ export class HomeService {
     }
 
     public getScenarioList(): Observable<Scenario[]> {
-        return this._http.get<Scenario[]>("/scenario");
+        return this._http.get<Scenario[]>("/scenario/all");
     }
 
     public getEntiteList(id:number): Observable<Entite[]> {

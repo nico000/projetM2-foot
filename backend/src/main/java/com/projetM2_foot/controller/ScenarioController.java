@@ -49,7 +49,7 @@ public class ScenarioController {
     }
 
 
-    @GetMapping
+    @GetMapping("/all")
     @Operation(
         summary = "Lire les scénarios",
         description = "Récupère les scénarios"
@@ -59,6 +59,13 @@ public class ScenarioController {
         log.info("Endpoint appelé : GET /scenario/");
         final List<Scenario> listScenario = scenarioService.getAllScenario();
         final List<ScenarioResponse> response = scenarioMapper.toGetAll(listScenario);
+
+        for(ScenarioResponse res : response){
+            // Nombre joueur
+            res.setNb_joueur(scenarioService.CountJoueurByScenario(res.getId()));
+            // Nombre deplacement
+            res.setNb_deplacement(scenarioService.CountDeplacementByScenario(res.getId()));
+        }
         return ResponseEntity.ok(response);
     }
 

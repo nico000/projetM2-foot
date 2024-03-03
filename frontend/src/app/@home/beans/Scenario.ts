@@ -13,4 +13,8 @@ export class Scenario{
     public zone_nb_zone:number=0.0;
     public zone_nb_couloir:number=0.0;
     public zone_epaisseur:number=0.0;
+
+    // extra
+    public nb_joueur:number = 0.0;
+    public nb_deplacement:number = 0.0;
 }

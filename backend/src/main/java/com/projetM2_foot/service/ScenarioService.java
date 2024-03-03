@@ -1,5 +1,7 @@
 package com.projetM2_foot.service;
 
+import com.projetM2_foot.entity.Deplacement;
+import com.projetM2_foot.entity.Entite;
 import com.projetM2_foot.entity.Scenario;
 import com.projetM2_foot.repository.ScenarioRepository;
 
@@ -18,6 +20,7 @@ public class ScenarioService {
 
     private final ScenarioRepository scenarioRepository;
     private final EntiteService entiteService;
+    private final DeplacementService deplacementService;
 
     /**
      * Créer un scénario
@@ -56,6 +59,20 @@ public class ScenarioService {
 
     public Scenario updateScenario(Scenario entity){
         return scenarioRepository.save(entity);
+    }
+
+    public int CountJoueurByScenario(Long idScenario){
+        List<Entite> list = entiteService.getByScenario(idScenario);
+        int nbJoueur = 0;
+        for(Entite e : list){
+            if(e.getType() != 0) nbJoueur++;
+        }
+        return nbJoueur;
+    }
+
+    public int CountDeplacementByScenario(Long idScenario){
+        List<Deplacement> list = deplacementService.getByScenario(idScenario);
+        return list.size();
     }
 
 

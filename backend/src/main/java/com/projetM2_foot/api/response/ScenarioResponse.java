@@ -20,6 +20,10 @@ public class ScenarioResponse {
     private int zone_nb_couloir;
     private int zone_epaisseur;
 
+    // extra
+    private int nb_joueur;
+    private int nb_deplacement;
+
 
     // List de déplacement
     /*

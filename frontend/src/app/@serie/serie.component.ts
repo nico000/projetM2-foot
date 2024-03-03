@@ -31,7 +31,7 @@ export class SerieComponent {
 
     constructor(private _serieService: SerieService,
                 private _modalService: ModalService) {}
-    ngOnInit(): void {
+    ngOnInit(): void {//initialisation de depart
         this._serieService.getSerieList().subscribe(
             res => {
                 this._examList = res;
@@ -39,7 +39,7 @@ export class SerieComponent {
                     let serie: Serie = {
                         id: examSerie.id,
                         nom: examSerie.nom,
-                        mode: examSerie.sequencage,
+                        sequencage: examSerie.sequencage,
                         contenuFeedback:examSerie.contenuFeedback,
                         complexite :examSerie.complexite,
                         experience: []
@@ -56,7 +56,7 @@ export class SerieComponent {
             }
         );
     }
-
+    //fonction de trie
     orderBy(type:string): void {
         this._examList.sort((a, b) => {
             if(isNaN(a[type])) {
@@ -79,7 +79,7 @@ export class SerieComponent {
             }
         )
     }
-
+    //recuperer une experience
     getExperience(id: number, serie: Serie): void {
         this._serieService.getExperience(id).subscribe(
             res => {
@@ -88,7 +88,7 @@ export class SerieComponent {
             }
         );
     }
-
+    //calcul du nombre de couloir ou zone
     nb_couloir(nombreDeCouloirs: number): number[] {
         return Array.from({length: nombreDeCouloirs}, (_, index) => index + 1);
     }
@@ -107,8 +107,8 @@ export class SerieComponent {
     protected _isLancer:boolean=false;
     protected resultUser:ResultatUser=new ResultatUser();
     addUser(modal: string){
-        this.openData(modal);
         this.resetData(this._simulationModal);
+        this.arrows=[];
         this._isLancer=false;
         //on ajoute l'utlisateur
         this._newUtilisateur.examen=this._serieSelect.id;
@@ -119,20 +119,21 @@ export class SerieComponent {
         this._nbEssai=0;
         this.nbFeed=0;
         //si mode aleatoire on reorganise aleatoirement
-        if (this._serieSelect.mode==='aleatoire'){
+        if (this._serieSelect.sequencage==='aleatoire'){
             this._serieSelect.experience=this.shuffleArray(this._serieSelect.experience);
         }
+        this.openData(modal);
     }
     //fonction qui change aleatoirement les experience
     shuffleArray(array: Experience[]): Experience[] {
-        const shuffledArray = [];
+        const shuffledArray = array;
         for (let i = shuffledArray.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
         }
         return shuffledArray;
     }
-
+    //update les config a partir bouton
     //update info user
     updateSex(sex: string){
         this._newUtilisateur.sex=sex;
@@ -293,26 +294,67 @@ export class SerieComponent {
             this.playVisualisation(scenario);
         });
     }
+
+    //lancer la simualtion en fonction du nombre de visualisation
     lance_simu() {
-        this.finSimu = false;
-        this._isLancer = true;
-        this._nbVisualisation = 1;
-        const visuFeedback = this._serieSelect.experience[this._scenarioLancer].visuFeedback;
+        console.log("complexité",this._serieSelect.complexite);
+        if (this._serieSelect.complexite==='global'){
+            console.log("complexité global confimre");
+            const launchNextVisu = (i: number) => {
+                if (i < this._serieSelect.experience.length) {
+                    console.log("i: ",i);
+                    this.finSimu = false;
+                    this._isLancer = true;
+                    this._nbVisualisation = 1;
+                    this._scenarioLancer=i;
+                    const visuFeedback = this._serieSelect.experience[this._scenarioLancer].visuFeedback;
 
-        const launchNextVisu = () => {
-            if (this._nbVisualisation <= visuFeedback) {
-                if (this._finvisu) {
-                    this.lance_visu();
-                    this._nbVisualisation++;
-                    console.log("visu",this._nbVisualisation);
+                    const handleNextIteration = () => {
+                        i++;
+                        launchNextVisu(i); // Appeler la prochaine itération
+                    };
+
+                    const launchVisu = () => {
+                        if (this._nbVisualisation <= visuFeedback) {
+                            if (this._finvisu) {
+                                this.lance_visu();
+                                this._nbVisualisation++;
+                                console.log("visu", this._nbVisualisation);
+                            }
+                            setTimeout(launchVisu, 2000); // Attendre 2 secondes avant de vérifier si une nouvelle visualisation peut être lancée
+                        } else {
+                            handleNextIteration(); // Passer à l'itération suivante une fois que toutes les visualisations sont terminées
+                        }
+                    };
+
+                    launchVisu(); // Lancer la première visualisation
+                }else {
+                    this._scenarioLancer=0.0;
+                    this.finSimu = true; // Mettre finSimu à true une fois que toutes les itérations sont terminées
                 }
-                setTimeout(launchNextVisu, 2000); // Attendre 2 secondes avant de vérifier si une nouvelle visualisation peut être lancée
-            }else{
-                this.finSimu = true;
-            }
-        };
+            };
+            launchNextVisu(0);
+        }else {
+            this.finSimu = false;
+            this._isLancer = true;
+            this._nbVisualisation = 1;
+            const visuFeedback = this._serieSelect.experience[this._scenarioLancer].visuFeedback;
 
-        launchNextVisu(); // Lancer le premier appel de la visualisation
+            const launchNextVisu = () => {
+                if (this._nbVisualisation <= visuFeedback) {
+                    if (this._finvisu) {
+                        this.lance_visu();
+                        this._nbVisualisation++;
+                        console.log("visu", this._nbVisualisation);
+                    }
+                    setTimeout(launchNextVisu, 2000); // Attendre 2 secondes avant de vérifier si une nouvelle visualisation peut être lancée
+                } else {
+                    this.finSimu = true;
+                }
+            };
+
+            launchNextVisu(); // Lancer le premier appel de la visualisation
+        }
     }
     //l'utilisateur entre les deplacement
     protected _nbEssai:number=0.0;
@@ -324,7 +366,9 @@ export class SerieComponent {
     protected _ispostdeplacement=false;
     protected _newEssai:Essai=new Essai();
     protected  _PostDeplacementModal: string = "_PostDeplacementModal";
+    //lancer l'essaie
     toTest(){
+        console.log("_scenarioLancer ::: ",this._scenarioLancer);
         this.openData(this._PostDeplacementModal);
         this.resetData(this._veridModal);
         this._isLancer=false;
@@ -343,7 +387,9 @@ export class SerieComponent {
         this._newEssai.temps=0.0;
         this._ispostdeplacement=true;
         this.StartTime=Date.now();
+
     }
+
     selectEntite(entite:Entite){
         if (this._selectEntite===false){
             this._entiteSelect=entite;
@@ -391,8 +437,8 @@ export class SerieComponent {
             console.log('deplacement  en pourcentage - Left:', percentX, 'Top:', percentY);
 
             console.log('tab finale en pourcentage - Left:', this.tabLeft, 'Top:', this.tabTop);
-            percentY=percentY-this.tabTop;
-            percentX=percentX-this.tabLeft;
+            percentY=percentY;
+            percentX=percentX;
 
             // Mettre à jour les coordonnées de l'entité sélectionnée
             this._entiteSelect.x = percentX;
@@ -423,7 +469,18 @@ export class SerieComponent {
             });
         console.log("num action",this.numAction,this._depalcementList.length)
         if(this.numAction>=this._depalcementList.length){
-            this.lanceFeedBack();//a la fin on lance le feed back
+            if (this._serieSelect.complexite==='global'){
+                //si c le dernier scenario
+                if(this._scenarioLancer<this._serieSelect.experience.length-1){
+                    console.log("this.enregiste_global();",this._scenarioLancer,"length",this._serieSelect.experience.length)
+                    this.enregiste_global();
+                }else {
+                    console.log("this.feedBackGlobal();",this._scenarioLancer,"length",this._serieSelect.experience.length)
+                    this.feedBackGlobal();
+                }
+            }else {
+                this.lanceFeedBack();//a la fin on lance le feed back
+            }
         }
     }
 
@@ -432,6 +489,7 @@ export class SerieComponent {
     protected _feedBackStaticModal: string = "_feedBackStaticModal";
     protected _StaticModal: string = "_StaticModal";
     protected _resultat:ResultatFeedBack=new ResultatFeedBack();
+    protected _resultatGlobal:ResultatFeedBack []=[];
     protected nbFeed :number=0.0;
     lanceFeedBack(){
         //recuper le time
@@ -558,23 +616,63 @@ export class SerieComponent {
 
     //on relance
     relance(){
-        //si il a reussi
-        if(this._resultat.reussi===true){
-            this._scenarioLancer++;
-            //si c le dernier scenario
-            if(this._scenarioLancer === this._serieSelect.experience.length){
-                //on ferme les feedBack
-                this.resetData(this._feedBackScoreModal);
-                this.resetData(this._feedBackStaticModal);
-            }else {//sinon on lance le prochain scenario
-                this.openData(this._veridModal);
-                this.resetData(this._feedBackScoreModal);
-                this.resetData(this._feedBackStaticModal);
+        if (this._serieSelect.complexite==='global'){
+            let reussiTotal:boolean=true;
+            //si c le dernier feed
+            if(this._scenarioLancer===this._serieSelect.experience.length-1) {
+
+                for (let i =0;i<this._serieSelect.experience.length;i++){
+                    console.log(" i: ",i,"resultatGlobal[i]:",this._resultatGlobal[i]);
+                    if(this._resultatGlobal[i].reussi === false){
+                        reussiTotal=false;
+                    }
+                }
+                //si tout es reussi
+                if(reussiTotal===true){
+                    //on ferme les feedBack
+                    this.resetData(this._feedBackScoreModal);
+                    this.resetData(this._feedBackStaticModal);
+                }else{//sinon on relance
+                    this.selectScenario(this._scenarioplay, 'tableau_terrain')
+                    this.arrows = [];
+                    this.openData(this._veridModal);
+                    this.resetData(this._feedBackScoreModal);
+                    this.resetData(this._feedBackStaticModal);
+                }
+            }else{//sinon on lance le prochain feed
+                this._scenarioLancer++;
+                console.log(" feed lancer:",this._scenarioLancer);
+                this._resultat=this._resultatGlobal[this._scenarioLancer];
+                if (this._serieSelect.experience[this._scenarioLancer].typeFeedback === 'score') {
+                    this.openData(this._feedBackScoreModal);
+                }
+                if (this._serieSelect.experience[this._scenarioLancer].typeFeedback === 'static') {
+                    this.openData(this._feedBackStaticModal);
+                }
             }
-        }else{//si il a pas reussi
-            this.resetData(this._feedBackScoreModal);
-            this.resetData(this._feedBackStaticModal);
-            this.openData(this._veridModal);
+        }else {
+            //si il a reussi
+            if (this._resultat.reussi === true) {
+                this._scenarioLancer++;
+                //si c le dernier scenario
+                if (this._scenarioLancer === this._serieSelect.experience.length) {
+                    //on ferme les feedBack
+                    this.resetData(this._feedBackScoreModal);
+                    this.resetData(this._feedBackStaticModal);
+                } else {//sinon on lance le prochain scenario
+                    this.selectScenario(this._scenarioplay, 'tableau_terrain')
+                    this.arrows = [];
+                    this.openData(this._veridModal);
+                    this.resetData(this._feedBackScoreModal);
+                    this.resetData(this._feedBackStaticModal);
+                }
+            } else {//si il a pas reussi
+                this.resetData(this._feedBackScoreModal);
+                this.resetData(this._feedBackStaticModal);
+                this.arrows = [];
+                this.selectScenario(this._scenarioplay, 'tableau_terrain');
+                this.openData(this._veridModal);
+            }
         }
     }
 
@@ -583,5 +681,58 @@ export class SerieComponent {
         this.openData(this._feedBackStaticModal);
     }
 
+    //complexite = global
+    enregiste_global(){
+        //recuper le time
+        this.EndTime = Date.now();
+        this._newEssai.temps = (this.EndTime - this.StartTime) / 1000;//temps en seconde
+        this._feedisStart = false;
+        //on envoie l'essai et recupere le resultat
+        console.log("addEssaie :",this._newEssai);
+        this._serieService.addEssai(this._newEssai).subscribe(
+            (resultat: ResultatFeedBack) => {
+                console.log("addEssaie sub:");
+                this._resultat = resultat;
+                this._resultatGlobal.push(resultat);
+            });
+        //on change le modal pour feedBack
+        this.resetData(this._PostDeplacementModal);
 
+        this._scenarioLancer++;
+        this._newEssai=new Essai();
+        this.toTest();
+    }
+    feedBackGlobal(){
+        //recuper le time
+        this.EndTime = Date.now();
+        this._newEssai.temps = (this.EndTime - this.StartTime) / 1000;//temps en seconde
+        this._feedisStart = false;
+        //on envoie l'essai et recupere le resultat
+        console.log("addEssaie :",this._newEssai);
+        this._serieService.addEssai(this._newEssai).subscribe(
+            (resultat: ResultatFeedBack) => {
+                console.log("addEssaie sub:");
+                this._resultat = resultat;
+                this._resultatGlobal.push(resultat);
+            });
+        //on change le modal pour feedBack
+        this.resetData(this._PostDeplacementModal);
+
+        this._scenarioLancer=0.0;
+        let freqfeed: number = (this._serieSelect.experience[this._scenarioLancer].freqFeedback) / 100;
+
+        //si on lance freq
+        if (freqfeed === 1 || freqfeed > (this.nbFeed / this._nbEssai)) {
+            this.nbFeed++;
+            this._resultat=this._resultatGlobal[this._scenarioLancer];
+            if (this._serieSelect.experience[this._scenarioLancer].typeFeedback === 'score') {
+                this.openData(this._feedBackScoreModal);
+            }
+            if (this._serieSelect.experience[this._scenarioLancer].typeFeedback === 'static') {
+                this.openData(this._feedBackStaticModal);
+            }
+        }else{
+            this.relance();
+        }
+    }
 }

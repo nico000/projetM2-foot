@@ -93,6 +93,12 @@
         <td *ngIf="is_placement===false && is_deplacement" class=" colonne" > <!-- ajout deplacement -->
             <div class="presentation">Ajout deplacement </div><br><br>
             <div class="presentation">   Action={{ numAction }}</div><br><br>
+
+<!--            <div class="categorie" style="display: inline-block">entite selectioner : {{ _entiteSelect.numero }} </div>-->
+<!--            <div class="categorie" *ngIf="_entiteSelect.type===1" style="display: inline-block">   joueur={{ _entiteSelect.numero }}</div>-->
+<!--            <div class="categorie" *ngIf="_entiteSelect.type===2" style="display: inline-block">   Gardien={{ _entiteSelect.numero }}</div>-->
+<!--            <div class="categorie" *ngIf="_entiteSelect.type===0" style="display: inline-block">   Ballon</div>-->
+
             <div class="Ecriture"><button (click)="delDeplacement()" class="boutton">retour deplacement</button></div><br><br>
             <div  class="Ecriture"><button  (click)="passDeplacement()" class="boutton">fin deplacement</button></div><br><br>
         </td>

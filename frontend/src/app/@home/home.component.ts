@@ -233,15 +233,19 @@ export class HomeComponent {
         this._newExam.contenuFeedback=nom;
     }
     addFeedBack(modal:string){
-        this._homeService.addExamen(this._newExam).subscribe();
-        console.log("addexam");
-        //ajout des exp
-        this._newExeperience.forEach((experience) => {
-            console.log("addExp",experience,this._newExam.nom);
-            this._homeService.addExeperience(experience,this._newExam.nom).subscribe();
+        this._homeService.addExamen(this._newExam).subscribe( () => {
+            //ajout des exp
+            this._newExeperience.forEach((experience) => {
+                console.log("addExp",experience,this._newExam.nom);
+                this._homeService.addExeperience(experience,this._newExam.nom).subscribe();
+            });
+
+            //reset
+            this.resetFeedBack(modal);
         });
-        //reset
-        this.resetFeedBack(modal);
+        
+        
+       
     }
 
 

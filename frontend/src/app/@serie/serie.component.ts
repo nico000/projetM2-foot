@@ -137,16 +137,10 @@ export class SerieComponent {
     updateSex(sex: string){
         this._newUtilisateur.sex=sex;
     }
-    updatePro(bool:boolean){
-        this._newUtilisateur.pro=bool;
-    }
 
-    updateVision(bool:boolean){
-        this._newUtilisateur.vision=bool;
-    }
-
-    updateJeuVideo(bool:boolean){
-        this._newUtilisateur.jv=bool;
+    // Update des données à selectionner du formulaire utilisateur
+    updateFormUser(prop:string , etat:boolean){
+        this._newUtilisateur[prop] = etat;
     }
 
 

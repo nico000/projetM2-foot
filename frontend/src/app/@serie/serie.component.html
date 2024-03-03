@@ -98,7 +98,7 @@
     </div><br>
 
     <div class="titre">
-        Sex :
+        Genre :
         <input type="checkbox" id="fille" class="hidden-checkbox" (click)="updateSex('fille')">
         <label for="fille" class="round-button" [style.background-color]="_newUtilisateur.sex === 'fille' ? '#3498db' : 'initial'">Fille</label>
 
@@ -113,11 +113,11 @@
 
     <div class="titre">
         Etes-vous profesionelle :
-        <input type="checkbox" id="oui" class="hidden-checkbox" (click)="updatePro(true)">
-        <label for="oui" class="round-button" [style.background-color]="_newUtilisateur.pro === true ? '#3498db' : 'initial'">oui</label>
+        <input type="checkbox" id="ouiPro" class="hidden-checkbox" (click)="updateFormUser('pro' , true)">
+        <label for="ouiPro" class="round-button" [style.background-color]="_newUtilisateur.pro === true ? '#3498db' : 'initial'">oui</label>
 
-        <input type="checkbox" id="non" class="hidden-checkbox" (click)="updatePro(false)">
-        <label for="non" class="round-button" [style.background-color]="_newUtilisateur.pro === false ? '#3498db' : 'initial'">non</label>
+        <input type="checkbox" id="nonPro" class="hidden-checkbox" (click)="updateFormUser('pro' , false)">
+        <label for="nonPro" class="round-button" [style.background-color]="_newUtilisateur.pro === false ? '#3498db' : 'initial'">non</label>
     </div><br>
 
     <div *ngIf="_newUtilisateur.pro===true" class="titre">
@@ -139,6 +139,36 @@
         Nombre d'heure pratique/semaine :
         <input type="text" [(ngModel)]="_newUtilisateur.heure"/>
     </div><br>
+
+    <div class="titre">
+        Nombre de visionnage de match à la télévision (par semaine) :
+        <input type="text" [(ngModel)]="_newUtilisateur.vueTv"/>
+    </div><br>
+
+    <div class="titre">
+        Nombre de match regardé (par semaine) :
+        <input type="text" [(ngModel)]="_newUtilisateur.vueMatch"/>
+    </div><br>
+
+    <div class="titre">
+        Vision corrigé :
+        <input type="checkbox" id="ouiVision" class="hidden-checkbox" (click)="updateFormUser('vision' ,true)">
+        <label for="ouiVision" class="round-button" [style.background-color]="_newUtilisateur.vision === true ? '#3498db' : 'initial'">Oui</label>
+
+        <input type="checkbox" id="nonVision" class="hidden-checkbox" (click)="updateFormUser('vision' , false)">
+        <label for="nonVision" class="round-button" [style.background-color]="_newUtilisateur.vision === false ? '#3498db' : 'initial'">Non</label>
+    </div><br>
+
+    <div class="titre">
+        Avez-vous déjà joué à un jeu-vidéo lié au football :
+        <input type="checkbox" id="ouiJv" class="hidden-checkbox" (click)="updateFormUser('jv' , true)">
+        <label for="ouiJv" class="round-button" [style.background-color]="_newUtilisateur.jv === true ? '#3498db' : 'initial'">Oui</label>
+
+        <input type="checkbox" id="nonJv" class="hidden-checkbox" (click)="updateFormUser('jv' , false)">
+        <label for="nonJv" class="round-button" [style.background-color]="_newUtilisateur.jv === false ? '#3498db' : 'initial'">Non</label>
+    </div><br>
+
+
 
     <nav class="menu">
         <ul>

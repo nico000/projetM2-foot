@@ -75,6 +75,9 @@
                             <div class="draggable joueur numEcriture" *ngIf="entite.type==1">
                                 {{ entite.numero }}
                             </div>
+                            <div class="draggable gardien numEcriture" *ngIf="entite.type==2">
+                                {{ entite.numero }}
+                            </div>
                             <div class="draggable ballon numEcriture" *ngIf="entite.type==0" style="background-image: url('./assets/ballon.png'); background-size: 100% 100%; background-repeat: no-repeat;">
                             </div>
                         </div>
@@ -88,9 +91,11 @@
                         <path d="M0,0 L0,6 L9,3 z" fill="#f00" />
                     </marker>
                 </defs>
-                <line *ngFor="let arrow of arrows" [attr.x1]="arrow.startX" [attr.y1]="arrow.startY"
-                      [attr.x2]="arrow.endX" [attr.y2]="arrow.endY" stroke="#f00" stroke-width="2" marker-end="url(#arrow)" class="arrow-line"
-                      [attr.stroke-dasharray]="arrow.strokeDasharray===true ? '5,5' : ''"  />
+                <line *ngFor="let arrow of arrows; let i = index" [attr.x1]="arrow.startX" [attr.y1]="arrow.startY"
+                      [attr.x2]="arrow.endX" [attr.y2]="arrow.endY" stroke="#f00" stroke-width="2" marker-end="url(#arrow)"
+                      [attr.stroke-dasharray]="arrow.strokeDasharray ? '5,5' : ''"  />
+                <!-- Ajouter le numéro de flèche -->
+                <text *ngFor="let arrow of arrows; let i = index" [attr.x]="(arrow.startX + arrow.endX) / 2" [attr.y]="((arrow.startY + arrow.endY) / 2)+15" alignment-baseline="middle" text-anchor="middle" fill="black">{{ i + 1 }}</text>
             </svg>
         </div>
     </div>
@@ -143,8 +148,8 @@
         <input type="checkbox" id="analytique" class="hidden-checkbox" (click)="updateModeComplexite('analytique')">
         <label for="analytique" class="round-button" [style.background-color]="_newExam.complexite === 'analytique' ? '#3498db' : 'initial'">Analytique</label>
 
-        <input type="checkbox" id="synthétique" class="hidden-checkbox" (click)="updateModeComplexite('synthétique')">
-        <label for="synthétique" class="round-button" [style.background-color]="_newExam.complexite  === 'synthétique' ? '#3498db' : 'initial'">Global</label>
+        <input type="checkbox" id="globalC" class="hidden-checkbox" (click)="updateModeComplexite('global')">
+        <label for="globalC" class="round-button" [style.background-color]="_newExam.complexite  === 'global' ? '#3498db' : 'initial'">Global</label>
     </div><br>
 
     <h1 class="presentation">Design : </h1><br>

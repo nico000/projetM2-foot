@@ -97,8 +97,8 @@ nav.menu ul li.boutton:hover a{
 
 .draggable {
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: 27px;
+    height: 27px;
     border-radius: 50%;
     cursor: grab;
     overflow: hidden;
@@ -106,24 +106,24 @@ nav.menu ul li.boutton:hover a{
     align-items: center;
 }
 .joueur{
-    background-color: #2196F3;
+    background-color:#ffeb3b;
 }
 .gardien{
-    background-color: #ffeb3b;
+    background-color: mediumblue;
 }
 .ballon {
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
 }
 .couloir{
     background: transparent;
-    border: 1px dashed  black;
+    border: 2px dashed  black;
     border-collapse: collapse;
     borderStyle: dashed;
 }
 .zone{
     background: transparent;
-    border: 1px dashed  black;
+    border: 2px dashed  black;
     border-collapse: collapse;
 }
 .tableau_terrain{

@@ -5,7 +5,7 @@
 }
 .tableau{
     padding: 5px;
-    border: 1px solid black;
+    border: 2px solid black;
     border-collapse: collapse;
     width:100%;
 }
@@ -113,7 +113,10 @@ nav.menu ul {
     text-align: center;
 }
 .joueur{
-    background-color: #ffeb3b;
+    background-color:#ffeb3b;
+}
+.gardien{
+    background-color: mediumblue;
 }
 .ballon {
     background-color:white;

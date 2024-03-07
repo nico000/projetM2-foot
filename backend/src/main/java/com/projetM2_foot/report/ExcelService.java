@@ -170,29 +170,30 @@ public class ExcelService extends ExcelAbstract {
         createSheet(sheetName);
 
         CellStyle style = getFontContentExcel();
-
+        style.setAlignment(HorizontalAlignment.CENTER);
+        style.setFillPattern(FillPatternType.BIG_SPOTS);
+        style.setFillBackgroundColor(IndexedColors.WHITE.index);
 
         CellStyle styleError = getFontContentExcel();
-
-        styleError.setFillBackgroundColor(IndexedColors.WHITE.index);
-        styleError.setFillPattern(FillPatternType.BIG_SPOTS);
         styleError.setFillForegroundColor(IndexedColors.RED1.getIndex());
-        styleError.setAlignment(HorizontalAlignment.CENTER);
 
-        style.setAlignment(HorizontalAlignment.CENTER);
+
 
         CellStyle styleErrorDep = getFontContentExcel();
-        styleErrorDep.setAlignment(HorizontalAlignment.CENTER);
-        styleErrorDep.setFillBackgroundColor(IndexedColors.WHITE.index);
-        styleErrorDep.setFillPattern(FillPatternType.BIG_SPOTS);
         styleErrorDep.setFillForegroundColor(new XSSFColor(new java.awt.Color(147,2,2),workbook.getStylesSource().getIndexedColors()));
 
 
         CellStyle styleGoodDep = getFontContentExcel();
-        styleGoodDep.setAlignment(HorizontalAlignment.CENTER);
-        styleGoodDep.setFillBackgroundColor(IndexedColors.WHITE.index);
-        styleGoodDep.setFillPattern(FillPatternType.BIG_SPOTS);
         styleGoodDep.setFillForegroundColor(new XSSFColor(new java.awt.Color(48, 114, 3),workbook.getStylesSource().getIndexedColors()));
+
+
+        CellStyle styleGoodTry = workbook.createCellStyle();
+        styleGoodTry.cloneStyleFrom(style);
+        styleGoodTry.setFillForegroundColor(new XSSFColor(new java.awt.Color(48, 114, 3),workbook.getStylesSource().getIndexedColors()));
+
+        CellStyle styleFailTry = workbook.createCellStyle();
+        styleFailTry.cloneStyleFrom(style);
+        styleFailTry.setFillForegroundColor(new XSSFColor(new java.awt.Color(236, 22, 54),workbook.getStylesSource().getIndexedColors()));
 
 
         CellStyle pourcentStyle = getFontContentExcel();
@@ -222,25 +223,27 @@ public class ExcelService extends ExcelAbstract {
 
 
 
-                        createCell(row, column++, rexa.getExamen().getId(), style);
-                        createCell(row, column++, rexa.getExamen().getName(), style);
-                        createCell(row, column++, rexa.getExamen().getSequencage(), style);
-                        createCell(row, column++, rexa.getExamen().getComplexite(), style);
-                        createCell(row, column++, rexa.getExamen().getContenuFeedback(), style);
-                        createCell(row, column++, rexp.getId(), style);
-                        createCell(row, column++, rexp.getExperience().getTypeFeedback(), style);
+                        createCell(row, column++, rexa.getExamen().getId(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                        createCell(row, column++, rexa.getExamen().getName(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                        createCell(row, column++, rexa.getExamen().getSequencage(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                        createCell(row, column++, rexa.getExamen().getComplexite(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                        createCell(row, column++, rexa.getExamen().getContenuFeedback(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+
+                        //createCell(row, column++, rexp.getExperience().getScenario().getId(), style);
+                        createCell(row, column++, rexp.getExperience().getScenario().getNom(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                        //createCell(row, column++, rexp.getId(), style);
+                        createCell(row, column++, rexp.getExperience().getTypeFeedback(), rtry.isReussi() ? styleGoodTry : styleFailTry );
                         createCell(row, column++, (float) rexp.getExperience().getFreqFeedback() / 100, pourcentStyle);
-                        createCell(row, column++, rexp.getExperience().getVisuFeedback(), style);
-                        createCell(row, column++, rexp.getExperience().getScenario().getId(), style);
-                        createCell(row, column++, rexp.getExperience().getScenario().getNom(), style);
+                        createCell(row, column++, rexp.getExperience().getVisuFeedback(), rtry.isReussi() ? styleGoodTry : styleFailTry );
 
 
-                        createCell(row, column++, rtry.getNumEssai(), rtry.isReussi() ? style : styleError);
-                        createCell(row, column++, rtry.getScore(), rtry.isReussi() ? style : styleError);
-                        createCell(row, column++, rtry.getTemps(), rtry.isReussi() ? style : styleError);
-                        createCell(row, column++, rtry.isReussi() ? "Oui" : "Non",  rtry.isReussi() ? style : styleError);
 
-                        createCell(row, column++, rdep.getId() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        createCell(row, column++, rtry.getNumEssai(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                        createCell(row, column++, rtry.getScore(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                        createCell(row, column++, rtry.getTemps(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                        createCell(row, column++, rtry.isReussi() ? "Oui" : "Non",  rtry.isReussi() ? styleGoodTry : styleFailTry );
+
+                        //createCell(row, column++, rdep.getId() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
                         createCell(row, column++, rdep.getAction() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
                         createCell(row, column++, rdep.getEntite().getType() == 1 ? "Joueur" : "Balle",  rdep.getReussi() ? styleGoodDep : styleErrorDep);
                         createCell(row, column++, rdep.getEntite().getNumero() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
@@ -256,6 +259,7 @@ public class ExcelService extends ExcelAbstract {
 
 
                     }
+                    row++;
 
                 }
             }

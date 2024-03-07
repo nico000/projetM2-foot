@@ -233,6 +233,19 @@ export class HomeComponent {
         this._newExam.contenuFeedback=nom;
     }
     addFeedBack(modal:string){
+
+        this._homeService.addExamen(this._newExam).subscribe( () => {
+            //ajout des exp
+            this._newExeperience.forEach((experience) => {
+                console.log("addExp",experience,this._newExam.nom);
+                this._homeService.addExeperience(experience,this._newExam.nom).subscribe();
+            });
+
+            //reset
+            this.resetFeedBack(modal);
+        });
+
+        /*
         this._homeService.addExamen(this._newExam).subscribe();
         this.resetFeedBack(modal);
         console.log("addexam");
@@ -244,6 +257,7 @@ export class HomeComponent {
             });
 
         }, 2000); // 1000 millisecondes = 1 seconde
+        */
     }
 
 

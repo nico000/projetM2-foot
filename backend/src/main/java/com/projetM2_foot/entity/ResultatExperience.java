@@ -37,4 +37,7 @@ public class ResultatExperience {
     @Column(name = "rexp_create_date")
     private Date createDate;
 
+    @Column(name = "rexp_ordre")
+    private int ordre;
+
 }

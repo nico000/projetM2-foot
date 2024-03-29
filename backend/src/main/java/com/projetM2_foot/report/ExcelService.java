@@ -135,8 +135,9 @@ public class ExcelService extends ExcelAbstract {
             sheet.autoSizeColumn(a);
         }
 
+        createSynthetique(data , "Données synthétique");
         // Détail
-        createDetail(data , "Détails");
+        createBrut(data , "Données brut");
 
 
 /*
@@ -161,7 +162,160 @@ public class ExcelService extends ExcelAbstract {
         outputStream.close();
     }
 
-    public void createDetail(Object dataBrut , String sheetName){
+    public void createSynthetique(Object dataBrut , String sheetName){
+
+        int row_init = 0;
+        int column_init = 0;
+        int row = row_init;
+        int column = column_init;
+        createSheet(sheetName);
+
+        CellStyle style = getFontContentExcel();
+        style.setAlignment(HorizontalAlignment.CENTER);
+        style.setFillPattern(FillPatternType.BIG_SPOTS);
+        style.setFillBackgroundColor(IndexedColors.WHITE.index);
+
+        CellStyle styleError = getFontContentExcel();
+        styleError.setFillForegroundColor(IndexedColors.RED1.getIndex());
+
+
+
+        CellStyle styleErrorDep = getFontContentExcel();
+        styleErrorDep.setFillForegroundColor(new XSSFColor(new java.awt.Color(147,2,2),workbook.getStylesSource().getIndexedColors()));
+
+
+        CellStyle styleGoodDep = getFontContentExcel();
+        styleGoodDep.setFillForegroundColor(new XSSFColor(new java.awt.Color(48, 114, 3),workbook.getStylesSource().getIndexedColors()));
+
+
+        CellStyle styleGoodTry = workbook.createCellStyle();
+        styleGoodTry.cloneStyleFrom(style);
+        styleGoodTry.setFillForegroundColor(new XSSFColor(new java.awt.Color(48, 114, 3),workbook.getStylesSource().getIndexedColors()));
+
+        CellStyle styleFailTry = workbook.createCellStyle();
+        styleFailTry.cloneStyleFrom(style);
+        styleFailTry.setFillForegroundColor(new XSSFColor(new java.awt.Color(236, 22, 54),workbook.getStylesSource().getIndexedColors()));
+
+
+        CellStyle pourcentStyle = getFontContentExcel();
+        pourcentStyle.setDataFormat(workbook.createDataFormat().getFormat("0.00%"));
+
+        //    styleError.setFillForegroundColor(IndexedColors.RED.getIndex());
+
+        row++;
+
+        List<ReportResultatExamen> rexaList = (List<ReportResultatExamen>) dataBrut;
+
+        for( ReportResultatExamen rexa : rexaList ){
+
+            for( ReportResultatExperience rexp : rexa.getResultatExperiences()){
+
+                for(ReportEssai rtry : rexp.getEssais()){
+
+                    column = 0;
+                    row++;
+
+                    // SCénario / série
+                    createCell(row, column++, rexa.getExamen().getId(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                    createCell(row, column++, rexa.getExamen().getName(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                    createCell(row,column++, rexa.getCreateDate() , rtry.isReussi() ? styleGoodTry : styleFailTry);
+                    createCell(row, column++, rexp.getExperience().getScenario().getNom(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+
+                    //Feedback
+                    createCell(row, column++, rexa.getExamen().getComplexite(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                    createCell(row, column++, rexa.getExamen().getSequencage(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                    createCell(row, column++, rexp.getExperience().getTypeFeedback(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                    createCell(row, column++, rexa.getExamen().getContenuFeedback(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                    createCell(row, column++, (float) rexp.getExperience().getFreqFeedback() / 100, pourcentStyle);
+                    createCell(row, column++, rexp.getExperience().getVisuFeedback(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+
+                    // essai
+                    createCell(row, column++, rtry.getNumEssai(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                    createCell(row, column++, rtry.getScore(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                    createCell(row, column++, rtry.getTemps(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                    createCell(row, column++, rtry.isReussi() ? "1" : "0",  rtry.isReussi() ? styleGoodTry : styleFailTry );
+
+
+                }
+                row++;
+            }
+        }
+
+        String[][] headerList = createHeaderSynthetique(row_init,column_init);
+        CellRangeAddress region;
+        int col = 0;
+        for( int i = 0 ; i < headerList.length-1 ; i++){
+            col = col + headerList[i].length;
+            region = new CellRangeAddress(0, row, col-1, col-1);
+
+            RegionUtil.setBorderRight(BorderStyle.DOUBLE, region, sheet);
+            RegionUtil.setRightBorderColor(IndexedColors.RED.index, region, sheet);
+
+
+        }
+
+        region = new CellRangeAddress(row_init+1, row_init+1, column_init, column);
+        RegionUtil.setBorderBottom(BorderStyle.DASH_DOT, region, sheet);
+        RegionUtil.setBorderTop(BorderStyle.DOUBLE , region , sheet);
+        RegionUtil.setRightBorderColor(IndexedColors.BLACK.index, region, sheet);
+
+
+        for(int a = 0 ; a < 100 ; a++) {
+            sheet.autoSizeColumn(a);
+        }
+    }
+
+
+    public String[][] createHeaderSynthetique(int row_init , int column_init){
+
+        CellStyle style = getFontContentExcel();
+        style.setAlignment(HorizontalAlignment.CENTER);
+
+        XSSFFont font = workbook.createFont();
+        font.setFontHeight(20);
+        style.setFont(font);
+
+
+        // header
+        String[] headersSerie = new String[]{
+                "ID", "Nom scénario", "Date de création" , "Nom situation" ,
+        };
+
+        String[] headersExperience = new String[]{
+                "Complexité" , "Séquençage","Format feed-back" , "Type feed-back" ,"Fréquence feed-back", "Nombre de visualisation",
+        };
+
+        String[] headersEssai = new String[]{
+                "Essai N°", "Score essai", "Temps essai", "Essai réussi",
+        };
+
+
+
+        String[][] headersList = new String[][]{
+                headersSerie, headersExperience, headersEssai,
+        };
+
+        // Créer les têtes des headers
+        String[] nameHeader = new String[]{ "Scénario" , "Feedback" , "Essai"};
+        String[] headers = concatArrays(headersList);
+        int column = column_init;
+        for (int i = 0 ; i < headersList.length ; i++){
+            column = createHeaderHead(row_init, column , headersList[i], nameHeader[i] , style) + 1;
+        }
+
+
+        int row = row_init + 1;
+        for(int col = column_init ; col < headers.length ; col++){
+            createCell(row, col , headers[col] , headerStyle);
+        }
+
+
+
+        return headersList;
+    }
+
+
+    public void createBrut(Object dataBrut , String sheetName){
 
         int row_init = 0;
         int column_init = 0;
@@ -222,37 +376,42 @@ public class ExcelService extends ExcelAbstract {
                         if(rdep.getReussi()) dep_reussi++;
 
 
-
+                        // SCénario / série
                         createCell(row, column++, rexa.getExamen().getId(), rtry.isReussi() ? styleGoodTry : styleFailTry );
                         createCell(row, column++, rexa.getExamen().getName(), rtry.isReussi() ? styleGoodTry : styleFailTry );
-                        createCell(row, column++, rexa.getExamen().getSequencage(), rtry.isReussi() ? styleGoodTry : styleFailTry );
-                        createCell(row, column++, rexa.getExamen().getComplexite(), rtry.isReussi() ? styleGoodTry : styleFailTry );
-                        createCell(row, column++, rexa.getExamen().getContenuFeedback(), rtry.isReussi() ? styleGoodTry : styleFailTry );
-
-                        //createCell(row, column++, rexp.getExperience().getScenario().getId(), style);
+                        createCell(row,column++, rexa.getCreateDate() , rtry.isReussi() ? styleGoodTry : styleFailTry);
                         createCell(row, column++, rexp.getExperience().getScenario().getNom(), rtry.isReussi() ? styleGoodTry : styleFailTry );
-                        //createCell(row, column++, rexp.getId(), style);
+
+                        //Feedback
+                        createCell(row, column++, rexa.getExamen().getComplexite(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                        createCell(row, column++, rexa.getExamen().getSequencage(), rtry.isReussi() ? styleGoodTry : styleFailTry );
                         createCell(row, column++, rexp.getExperience().getTypeFeedback(), rtry.isReussi() ? styleGoodTry : styleFailTry );
+                        createCell(row, column++, rexa.getExamen().getContenuFeedback(), rtry.isReussi() ? styleGoodTry : styleFailTry );
                         createCell(row, column++, (float) rexp.getExperience().getFreqFeedback() / 100, pourcentStyle);
                         createCell(row, column++, rexp.getExperience().getVisuFeedback(), rtry.isReussi() ? styleGoodTry : styleFailTry );
 
-
-
+                        // essai
                         createCell(row, column++, rtry.getNumEssai(), rtry.isReussi() ? styleGoodTry : styleFailTry );
                         createCell(row, column++, rtry.getScore(), rtry.isReussi() ? styleGoodTry : styleFailTry );
                         createCell(row, column++, rtry.getTemps(), rtry.isReussi() ? styleGoodTry : styleFailTry );
-                        createCell(row, column++, rtry.isReussi() ? "Oui" : "Non",  rtry.isReussi() ? styleGoodTry : styleFailTry );
+                        createCell(row, column++, rtry.isReussi() ? "1" : "0",  rtry.isReussi() ? styleGoodTry : styleFailTry );
 
-                        //createCell(row, column++, rdep.getId() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        // Déplacements
                         createCell(row, column++, rdep.getAction() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
-                        createCell(row, column++, rdep.getEntite().getType() == 1 ? "Joueur" : "Balle",  rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        createCell(row, column++, rdep.getEntite().getType() == 0 ? "Balle" : "Joueur",  rdep.getReussi() ? styleGoodDep : styleErrorDep);
                         createCell(row, column++, rdep.getEntite().getNumero() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
 
+                        createCell(row, column++ , "[ " + rdep.getScenarioPos().getZoneDepartX() + " , " + rdep.getScenarioPos().getZoneDepartY() + " ]", rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        createCell(row, column++ , "[ " + rdep.getScenarioPos().getZoneArriveeX() + " , " + rdep.getScenarioPos().getZoneArriveeY() + " ]", rdep.getReussi() ? styleGoodDep : styleErrorDep);
+
+                        createCell(row, column++ , "[ " + rdep.getEssaiPos().getZoneDepartX() + " , " + rdep.getEssaiPos().getZoneDepartY() + " ]", rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        createCell(row, column++ , "[ " + rdep.getEssaiPos().getZoneArriveeX() + " , " + rdep.getEssaiPos().getZoneArriveeY() + " ]", rdep.getReussi() ? styleGoodDep : styleErrorDep);
+                        /*
                         createCell(row, column++, rdep.getEssaiPos().getZoneDepartX() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
                         createCell(row, column++, rdep.getEssaiPos().getZoneDepartY() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
                         createCell(row, column++, rdep.getEssaiPos().getZoneArriveeX() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
                         createCell(row, column++, rdep.getEssaiPos().getZoneArriveeY() ,  rdep.getReussi() ? styleGoodDep : styleErrorDep);
-
+*/
 
                         // Calcul pourcentage ascendant
                         createCell(row, column, (float) dep_reussi/dep_total , pourcentStyle);
@@ -267,7 +426,7 @@ public class ExcelService extends ExcelAbstract {
 
         }
 
-        String[][] headerList = createHeader(row_init,column_init);
+        String[][] headerList = createHeaderBrut(row_init,column_init);
         CellRangeAddress region;
         int col = 0;
         for( int i = 0 ; i < headerList.length-1 ; i++){
@@ -291,35 +450,40 @@ public class ExcelService extends ExcelAbstract {
         }
     }
 
-    public String[][] createHeader(int row_init , int column_init){
+    public String[][] createHeaderBrut(int row_init , int column_init){
 
         CellStyle style = getFontContentExcel();
         style.setAlignment(HorizontalAlignment.CENTER);
+
+        XSSFFont font = workbook.createFont();
+        font.setFontHeight(20);
+        style.setFont(font);
 
 
 
         // header
         String[] headersSerie = new String[]{
-                "ID", "Nom série", "Séquençage", "Complexité", "Contenu feed-back",
-                };
+                "ID", "Nom scénario", "Date de création" , "Nom situation" ,
+        };
 
         String[] headersExperience = new String[]{
-                "ID Résultat d'expérience", "Type feed-back", "Fréquence feed-back", "Nombre de visualisation", "ID Expérience", "Nom Expérience"
-                };
+                "Complexité" , "Séquençage","Format feed-back" , "Type feed-back" ,"Fréquence feed-back", "Nombre de visualisation",
+        };
 
         String[] headersEssai = new String[]{
                 "Essai N°", "Score essai", "Temps essai", "Essai réussi",
                 };
 
         String[] headersDeplacement = new String[]{
-                "ID deplacement", "Déplacement N°", "Type de déplacement", "Joueur/Balle N°", "Zone départ", "Couloir départ", "Zone arrivé", "Couloir arrivé" , "Score ascendant"};
+                "Déplacement N°", "Type de l'entité", "numéro entité", "Déplacement scénario départ", "Déplacement scénario arrivé" , "Déplacement essai départ" , "Déplacement essai arrivé" , "Score ascendant" ,
+        };
 
         String[][] headersList = new String[][]{
                 headersSerie, headersExperience, headersEssai, headersDeplacement
         };
 
         // Créer les têtes des headers
-        String[] nameHeader = new String[]{ "Série" , "Expérience" , "Essai" , "Déplacement"};
+        String[] nameHeader = new String[]{ "Scénario" , "Feedback" , "Essai" , "Déplacement"};
         String[] headers = concatArrays(headersList);
         int column = column_init;
         for (int i = 0 ; i < headersList.length ; i++){
@@ -353,6 +517,7 @@ public class ExcelService extends ExcelAbstract {
                 .flatMap(Arrays::stream)
                 .toArray(String[]::new);
     }
+
 
     // Créer la tête d'un header et fusionne les colonnes
     public int createHeaderHead(int row , int column , String[] header , String nom , CellStyle style){

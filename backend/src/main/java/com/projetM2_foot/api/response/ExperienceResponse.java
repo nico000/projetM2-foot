@@ -19,4 +19,6 @@ public class ExperienceResponse {
 
     private String mode_scene;
     private String terrain_couleur;
+
+    private int ordre;
 }

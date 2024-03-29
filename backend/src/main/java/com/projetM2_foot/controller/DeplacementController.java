@@ -6,6 +6,7 @@ import com.projetM2_foot.api.response.DeplacementResponse;
 import com.projetM2_foot.entity.Deplacement;
 import com.projetM2_foot.mapper.DeplacementMapper;
 import com.projetM2_foot.service.DeplacementService;
+import com.projetM2_foot.service.EssaiService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ public class DeplacementController {
     public final DeplacementMapper deplacementMapper;
     public final DeplacementService deplacementService;
 
+
     @PostMapping
     @Operation(
             summary = "Créer un déplacement",
@@ -38,6 +40,8 @@ public class DeplacementController {
             @RequestBody DeplacementRequestCreate request){
 
         log.info("Endpoint appelé : POST /deplacement/");
+
+
         final Deplacement entity = deplacementMapper.toEntity(request);
         final Deplacement new_entity = deplacementService.create(entity);
         final DeplacementResponse dto = deplacementMapper.toDto(new_entity);
@@ -68,6 +72,11 @@ public class DeplacementController {
         deplacementService.deleteLast(scenarioId);
         return ResponseEntity.ok().build();
     }
+
+
+    private final static float MAX_POURCENTAGE_TERRAIN_WIDTH_TEMP = 65;
+    private final static float MAX_POURCENTAGE_TERRAIN_HEIGHT_TEMP = 58;
+
 
 
 }

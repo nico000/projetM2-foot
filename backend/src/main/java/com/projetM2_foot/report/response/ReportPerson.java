@@ -7,23 +7,29 @@ import lombok.Data;
 @Builder
 public class ReportPerson {
 
+    private String groupe;
     private String nom;
     private String prenom;
-    private String groupe;
     private int age;
     private String genre;
+    private String vision;
+
     private String pratique;
+    private String pratique_type;
 
-    private Boolean pro;
-    private int anneeExperience;
-    public int nombreMatches;
-    private int entrainement;
-    private int heure;
+    private String club;
+    private String club_actu;
+    private String club_niveau;
+    private int club_annee;
+    private int club_match;
+    private int club_entrainement;
 
-    private int vueMatch;
-    private int vueTv;
-    private Boolean jv;
-    private Boolean vision;
+    private int match_tv;
+    private int match_stade;
+
+    private String jeu;
+    private String jeu_foot;
+    private int jeu_frequence;
 
 
 }

@@ -15,30 +15,31 @@ public class ResultatExamenRequestCreate {
     private String nom;
     private String prenom;
     private int age;
-    private String sex;
-    private String pratique;
-    private Boolean pro;
-    private int anneeExperience;
-    private int matche;
-    private int entrainement;
-    private int heure;
+    private String genre;
+    private String vision;
 
-    private int vueMatch;
-    private int vueTv;
-    private Boolean jv;
-    private Boolean vision;
+    private String pratique;
+    private String pratique_type;
+
+    private String club;
+    private String club_actu;
+    private String club_niveau;
+    private int club_annee;
+    private int club_match;
+    private int club_entrainement;
+
+    private int match_tv;
+    private int match_stade;
+
+    private String jeu;
+    private String jeu_foot;
+    private int jeu_frequence;
 
     @Override
     public String toString() {
         return "ResultatExamenRequestCreate{" + "nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", age=" + age +
-                ", sex='" + sex + '\'' +
-                ", pro=" + pro +
-                ", vueMatch=" + vueMatch +
-                ", vueTv=" + vueTv +
-                ", jv=" + jv +
-                ", vision=" + vision +
                 '}';
     }
 }

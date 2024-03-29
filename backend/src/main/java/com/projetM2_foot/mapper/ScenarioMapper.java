@@ -16,11 +16,8 @@ public class ScenarioMapper {
 
         return Scenario.builder()
                 .name(scenarioRequestCreate.getNom())
-                .modeScene(scenarioRequestCreate.getMode_scene())
+                .playerIcon(0)
                 .groundColor(scenarioRequestCreate.getTerrain_couleur())
-                .groundWidth(scenarioRequestCreate.getTerrain_taille())
-                .playerNb(scenarioRequestCreate.getJoueur_nb())
-                .displayArea(scenarioRequestCreate.getZone_display())
                 .colonArea(scenarioRequestCreate.getZone_nb_zone())
                 .corridorArea(scenarioRequestCreate.getZone_nb_couloir())
                 .build();
@@ -31,11 +28,8 @@ public class ScenarioMapper {
         return Scenario.builder()
                 .id(request.getId())
                 .name(request.getNom())
-                .modeScene(request.getMode_scene())
+                .playerIcon(0)
                 .groundColor(request.getTerrain_couleur())
-                .groundWidth(request.getTerrain_taille())
-                .playerNb(request.getJoueur_nb())
-                .displayArea(request.getZone_display())
                 .colonArea(request.getZone_nb_zone())
                 .corridorArea(request.getZone_nb_couloir())
                 .build();
@@ -46,15 +40,9 @@ public class ScenarioMapper {
         return ScenarioResponse.builder()
                 .id(scenario.getId())
                 .nom(scenario.getName())
-                .mode_scene(scenario.getModeScene())
                 .terrain_couleur(scenario.getGroundColor())
-                .terrain_taille(scenario.getGroundWidth())
-                .joueur_nb(scenario.getPlayerNb())
-                .zone_use(true)
-                .zone_display(scenario.getDisplayArea())
                 .zone_nb_zone(scenario.getColonArea())
                 .zone_nb_couloir(scenario.getCorridorArea())
-                .zone_epaisseur(2)
                 .build();
 
     }

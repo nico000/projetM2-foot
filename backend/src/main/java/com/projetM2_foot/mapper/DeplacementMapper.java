@@ -65,6 +65,7 @@ public class DeplacementMapper {
                 .id(entity.getId())
                 .scenario(entity.getScenario().getId())
                 .entite(entity.getEntite().getId())
+                .numEntite(entity.getEntite().getNumero())
                 .numAction(entity.getNumAction())
                 .startPosX(entity.getStartPosX())
                 .startPosY(entity.getStartPosY())

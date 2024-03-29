@@ -47,23 +47,27 @@ public class ReportMapper {
     public ReportPerson toDtoPerson(ResultatExamen entity){
 
         return ReportPerson.builder()
-                .nom(entity.getNomPerson())
-                .prenom(entity.getPrenomPerson())
-                .groupe(entity.getGroupePerson())
-                .age(entity.getAgePerson())
-                .genre(entity.getSexPerson())
-                .pratique(entity.getPratiquePerson())
+                .groupe(entity.getUserGroupe())
+                .nom(entity.getUserNom())
+                .prenom(entity.getUserPrenom())
+                .age(entity.getUserAge())
+                .genre(entity.getUserGenre())
+                .vision(entity.getUserVision())
 
-                .pro(entity.getProPerson())
-                .anneeExperience(entity.getAnneeExperiencePerson())
-                .nombreMatches(entity.getMatchePerson())
-                .entrainement(entity.getEntrainementPerson())
-                .heure(entity.getHeurePerson())
+                .pratique(entity.getUserPratique())
+                .pratique_type(entity.getUserPratiqueType())
 
-                .vueMatch(entity.getVueMatchPerson())
-                .vueTv(entity.getVueTvPerson())
-                .jv(entity.getJvPerson())
-                .vision(entity.getVisionPerson())
+                .club(entity.getUserClub())
+                .club_actu(entity.getUserClubActu())
+                .club_niveau(entity.getUserClubNiveau())
+                .club_annee(entity.getUserClubAnnee())
+                .club_match(entity.getUserClubMatch())
+                .club_entrainement(entity.getUserClubEntrainement())
+
+                .jeu(entity.getUserJeu())
+                .jeu_foot(entity.getUserJeuFoot())
+                .jeu_frequence(entity.getUserJeuFrequence())
+
                 .build();
     }
 
@@ -195,10 +199,7 @@ public class ReportMapper {
                 .nom(scenario.getName())
                 .scene3D(scenario.getThreeDim())
                 .couleur(scenario.getGroundColor())
-                .taille(scenario.getGroundWidth())
                 .nombreJoueur(entiteList.size())
-                .zoneUtiliser(scenario.getDisplayArea())
-                .zoneAfficher(scenario.getDisplayArea())
                 .nombreZone(scenario.getColonArea())
                 .nombreCouloir(scenario.getCorridorArea())
                 .entiteList(entiteList.stream().map(this::toDtoEntite).collect(Collectors.toList()))

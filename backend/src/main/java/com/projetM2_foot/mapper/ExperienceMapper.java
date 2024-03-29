@@ -31,6 +31,7 @@ public class ExperienceMapper {
                 .modeScene(request.getModeScene())
                 .displayArea(request.getZone_display())
                 .groundColor(request.getTerrain_couleur())
+                .ordre(request.getOrdre())
                 .build();
     }
 
@@ -48,6 +49,7 @@ public class ExperienceMapper {
                 .zone_display(entity.getDisplayArea())
                 .mode_scene(entity.getModeScene())
                 .terrain_couleur(entity.getGroundColor())
+                .ordre(entity.getOrdre())
                 .build();
     }
 

@@ -56,8 +56,8 @@ public class EssaiService {
     }
 
 
-    private final static float MAX_POURCENTAGE_TERRAIN_WIDTH = 65;
-    private final static float MAX_POURCENTAGE_TERRAIN_HEIGHT = 58;
+    final static float MAX_POURCENTAGE_TERRAIN_WIDTH = 100;
+    final static float MAX_POURCENTAGE_TERRAIN_HEIGHT = 100;
 
     /**
      * Retourne les numero de zone X Y en focntion des délimitation
@@ -113,17 +113,21 @@ public class EssaiService {
         Deplacement dep = deplacementService.getByScenarioAndAction(scenario , num_action);
 
         // Position de départ
-        int[] zoneScenarioStart = getZoneByCoord(dep.getStartPosX(), dep.getStartPosY(), nb_colonne, nb_ligne);
+        int[] zoneScenarioStart = getZoneByCoord(
+                dep.getStartPosX(),
+                dep.getStartPosY(), nb_colonne, nb_ligne);
         rdep.setScenarioStartZoneX(zoneScenarioStart[0]);
         rdep.setScenarioStartZoneY(zoneScenarioStart[1]);
 
         // Position de départ
         int[] zoneEssaiStart = getZoneByCoord(rdep.getStartZoneX(), rdep.getStartZoneY(), nb_colonne, nb_ligne);
-        rdep.setScenarioStartZoneX(zoneEssaiStart[0]);
-        rdep.setScenarioStartZoneY(zoneEssaiStart[1]);
+        rdep.setStartZoneX(zoneEssaiStart[0]);
+        rdep.setStartZoneY(zoneEssaiStart[1]);
 
         // Récupération et set des valeurs de zones
-        int[] zoneScenario = getZoneByCoord(dep.getEndPosX(), dep.getEndPosY(), nb_colonne, nb_ligne);
+        int[] zoneScenario = getZoneByCoord(
+                dep.getEndPosX(),
+                dep.getEndPosY(), nb_colonne, nb_ligne);
         rdep.setScenarioEndZoneX(zoneScenario[0]);
         rdep.setScenarioEndZoneY(zoneScenario[1]);
 
@@ -164,5 +168,8 @@ public class EssaiService {
     }
 
 
+    public float Convert(float x , float pourcent){
+        return (x * MAX_POURCENTAGE_TERRAIN_WIDTH ) / pourcent;
+    }
 
 }

@@ -27,6 +27,7 @@ public class ResultatExperienceMapper {
                 .resultatExamen(resultatExamenService.getById(resultatExamen))
                 .score(0)
                 .createDate(new Date())
+                .ordre(experienceService.getById(experience).getOrdre())
                 .build();
     }
 
@@ -38,6 +39,7 @@ public class ResultatExperienceMapper {
                 .experience(entity.getExperience().getId())
                 .resultatExamen(entity.getResultatExamen().getId())
                 .score(entity.getScore())
+                .ordre(entity.getOrdre())
                 .build();
     }
 

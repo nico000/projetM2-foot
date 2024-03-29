@@ -26,45 +26,57 @@ public class ResultatExamen {
     private Examen examen;
 
 
+    // Identité user
+    @Column(name = "user_groupe")
+    private String userGroupe;
+    @Column(name = "user_nom")
+    private String userNom;
+    @Column(name = "user_prenom")
+    private String userPrenom;
+    @Column(name = "user_age")
+    private int userAge;
+    @Column(name = "user_genre")
+    private String userGenre;
+    @Column(name = "user_vision")
+    private String userVision;
 
-    @Column(name = "rexa_groupe_person")
-    private String groupePerson;
-    @Column(name = "rexa_nom_person")
-    private String nomPerson;
-    @Column(name = "rexa_prenom_person")
-    private String prenomPerson;
-    @Column(name = "rexa_age_person")
-    private int agePerson;
-    @Column(name = "rexa_sex_person")
-    private String sexPerson;
-    @Column(name = "rexa_pratique_person")
-    private String pratiquePerson;
-    @Column(name = "rexa_pro_person")
-    private Boolean proPerson;
-    @Column(name = "rexa_annee_experience_person")
-    private int anneeExperiencePerson;
-    @Column(name = "rexa_matche_person")
-    public int matchePerson;
-    @Column(name = "rexa_entrainement_person")
-    private int entrainementPerson;
-    @Column(name = "rexa_heure_person")
-    private int heurePerson;
+    // pratique user
+    @Column(name = "user_pratique")
+    private String userPratique;
+    @Column(name = "user_pratique_type")
+    private String userPratiqueType;
 
-    @Column(name = "rexa_vue_match_person")
-    private int vueMatchPerson;
-    @Column(name = "rexa_vue_tv_person")
-    private int vueTvPerson;
-    @Column(name = "rexa_jv_person")
-    private Boolean jvPerson;
-    @Column(name = "rexa_vision_person")
-    private Boolean visionPerson;
+    // club user
+    @Column(name = "user_club")
+    private String userClub;
+    @Column(name = "user_club_actu")
+    private String userClubActu;
+    @Column(name = "user_club_niveau")
+    private String userClubNiveau;
+    @Column(name = "user_club_annee")
+    private int userClubAnnee;
+    @Column(name = "user_club_match")
+    private int userClubMatch;
+    @Column(name = "user_club_entrainement")
+    private int userClubEntrainement;
 
+    // extra user
+    @Column(name = "user_match_tv")
+    private int userMatchTv;
+    @Column(name = "user_match_stade")
+    private int userMatchStade;
+
+    @Column(name = "user_jeu")
+    private String userJeu;
+    @Column(name = "user_jeu_foot")
+    private String userJeuFoot;
+    @Column(name = "user_jeu_frequence")
+    private int userJeuFrequence;
 
 
 
     @Column(name = "rexa_score")
     private int score;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "rexa_create_date")
     private Date createDate;

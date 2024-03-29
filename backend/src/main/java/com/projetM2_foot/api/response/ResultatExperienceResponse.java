@@ -12,4 +12,5 @@ public class ResultatExperienceResponse {
     private Long experience;
     private Long resultatExamen;
     private int score;
+    private int ordre;
 }

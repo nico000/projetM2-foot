@@ -8,25 +8,31 @@ import lombok.Data;
 public class ResultatExamenResponse {
 
     private Long id;
-
     private Long examen;
+    private int score;
 
     private String groupe;
     private String nom;
     private String prenom;
     private int age;
-    private String sex;
+    private String genre;
+    private String vision;
+
     private String pratique;
-    private Boolean pro;
-    private int anneeExperience;
-    public int matche;
-    private int entrainement;
-    private int heure;
+    private String pratique_type;
 
-    private int vueMatch;
-    private int vueTv;
-    private Boolean jv;
-    private Boolean vision;
+    private String club;
+    private String club_actu;
+    private String club_niveau;
+    private int club_annee;
+    private int club_match;
+    private int club_entrainement;
 
-    private int score;
+    private int match_tv;
+    private int match_stade;
+
+    private String jeu;
+    private String jeu_foot;
+    private int jeu_frequence;
+
 }

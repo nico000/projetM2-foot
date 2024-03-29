@@ -35,7 +35,7 @@ public class ResultatExamenService {
 
     public List<ResultatExamen> getByNomPrenom(String nom , String prenom){
         return resultatExamenRepository
-                .findByNomPersonAndPrenomPersonOrderByCreateDate(nom,prenom);
+                .findByUserNomAndUserPrenomOrderByCreateDate(nom,prenom);
     }
 
     public ResultatExamen addToScore(ResultatExamen rexa , int increment){

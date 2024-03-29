@@ -56,4 +56,8 @@ public class Experience {
     private String groundColor;
 
 
+    @Column(name = "exp_ordre")
+    private int ordre;
+
+
 }

@@ -23,6 +23,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,11 +63,16 @@ public class ResultatExamenController {
 
         List<Long> listrexp = new ArrayList<>();
 
+        // Tri de la liste en utilisant Comparator
+        listExp.sort(Comparator.comparingInt(Experience::getOrdre));
+
         for(Experience exp : listExp ){
             ResultatExperience rexp = resultatExperienceMapper.toEntity(resultatExamen.getId() , exp.getId());
             rexp = resultatExperienceService.create(rexp);
             listrexp.add(rexp.getId());
         }
+
+
 
         ResultatCreationResponse dto = resultatExamenMapper.toDtoCreation(resultatExamen.getId() , listrexp);
         return ResponseEntity.status(HttpStatus.CREATED).body(dto);

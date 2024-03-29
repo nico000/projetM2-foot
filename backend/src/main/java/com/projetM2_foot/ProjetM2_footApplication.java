@@ -10,3 +10,4 @@ public class ProjetM2_footApplication {
         SpringApplication.run(ProjetM2_footApplication.class, args);}
 
 }
+

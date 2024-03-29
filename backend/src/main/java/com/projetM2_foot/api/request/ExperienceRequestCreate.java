@@ -20,6 +20,8 @@ public class ExperienceRequestCreate {
     private int zone_nb_zone;
     private int zone_nb_couloir;
 
+    private int ordre;
+
     @Override
     public String toString() {
         return "ExperienceRequestCreate{" + "scenario=" + scenario +

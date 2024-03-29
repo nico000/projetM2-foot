@@ -12,6 +12,6 @@ public interface ResultatExamenRepository extends CrudRepository<ResultatExamen,
     @Override
     List<ResultatExamen> findAll();
 
-    List<ResultatExamen> findByNomPersonAndPrenomPersonOrderByCreateDate(String nomPerson , String prenomPerson);
+    List<ResultatExamen> findByUserNomAndUserPrenomOrderByCreateDate(String userNom , String userPrenom);
 
 }
